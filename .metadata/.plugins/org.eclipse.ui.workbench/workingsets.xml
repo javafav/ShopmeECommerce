@@ -2,6 +2,16 @@
 <workingSetManager>
 <workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1702897729297_0" label="Java Main Sources" name="Java Main Sources"/>
 <workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1702897729317_1" label="Java Test Sources" name="Java Test Sources"/>
+<<<<<<< HEAD
 <workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1702957676265_3" label="ShopmeProject" name="ShopmeProject"/>
+=======
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1702957676265_3" label="ShopmeProject" name="ShopmeProject">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ShopmeProject" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ShopmeCommon" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ShopmeWebParent" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ShopmeBackend" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ShopmeFrontend" type="4"/>
+</workingSet>
+>>>>>>> 5eb4eb3d0de42f5ae4e98c52156203b83dcfe872
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1702897730978_2" label="Window Working Set" name="Aggregate for window 1702897730978"/>
 </workingSetManager>

@@ -10348,6 +10348,7 @@ Binding(CTRL+SHIFT+C,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.textEditorScope,,,system)
+<<<<<<< HEAD
 !SESSION 2023-12-20 11:23:19.768 -----------------------------------------------
 eclipse.buildId=4.17.2.202301310704
 java.version=17.0.5
@@ -11147,3 +11148,5 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+=======
+>>>>>>> 5eb4eb3d0de42f5ae4e98c52156203b83dcfe872
