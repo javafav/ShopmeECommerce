@@ -26,4 +26,13 @@ public class UserRepositoryTests {
 		User findUserByName = repo.getUserByName(username);
 		assertThat(findUserByName).isNotNull();
 	}
+	
+	@Test
+	public void testCountById() {
+		Integer id = 1;
+		Long countById = repo.countById(id);
+		
+		assertThat(countById).isEqualTo(1);
+	}
+	
 }

@@ -11,9 +11,9 @@
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" />
 <link rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
 <link rel="stylesheet" th:href="@{/style.css}">
-
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
 
 
 
@@ -91,24 +91,44 @@
 							<td>[[${user.firstName}]]</td>
 							<td>[[${user.lastName}]]</td>
 							<td>[[${user.roles}]]</td>
-							
-							<td>
-							
-							<a th:if="${user.enabled == true}" class="fa fa-circle-check fa-2x icon-green" href=""></a>
-							<a th:if="${user.enabled == false}" class="fa fa-circle-check fa-2x icon-dark" href=""></a>
-							
-							</td>
-							
-							<td><a  class="fa fa-edit fa-2x  icon-green" th:href="@{'/users/edit/' + ${user.id}}"
-							        title="Edit this user"></a>
-								&nbsp;
-								 <a href="#" class="fa fa-trash fa-2x icon-silver"></a></td>
+
+							<td><a th:if="${user.enabled == true}"
+								class="fa fa-circle-check fa-2x icon-green" href=""></a> <a
+								th:if="${user.enabled == false}"
+								class="fa fa-circle-check fa-2x icon-dark" href=""></a></td>
+
+							<td><a class="fa fa-edit fa-2x  icon-green"
+								th:href="@{'/users/edit/' + ${user.id}}" title="Edit this user"></a>
+								&nbsp; <a class="fa fa-trash fa-2x icon-dark link-delete"
+								th:href="@{'/users/delete/' + ${user.id}}" th:userId="${user.id}"
+								 title="Delete this user"></a></td>
 						</tr>
 					</th:block>
 				</tbody>
 			</table>
 		</div>
 
+		<div class="modal fade text-center" id="confirmModal">
+
+			<div class="modal-dialog">
+
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="modalTitle">Delete Confirmation</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<span id="confirmText"></span>
+					</div>
+					<div class="modal-footer">
+						<a type="button" class="btn btn-success" href="" 
+							id="yesButton" >Yes</a>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
 
 
 		<div>
@@ -116,5 +136,27 @@
 		</div>
 
 	</div>
+
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+
+					$(".link-delete")
+							.on(
+									"click",
+									function(e) {
+										e.preventDefault();
+									
+										link = $(this);
+										userId = link.attr("userId");
+										$("#yesButton").attr("href",link.attr("href"));
+										$("#confirmText").text(
+												"Are you sure to delete user with ID: "
+														+ userId);
+										$("#confirmModal").modal();
+
+									});
+				})
+	</script>
 </body>
 </html>

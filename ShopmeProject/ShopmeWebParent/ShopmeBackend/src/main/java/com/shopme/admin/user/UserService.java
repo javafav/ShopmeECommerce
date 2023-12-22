@@ -2,6 +2,7 @@ package com.shopme.admin.user;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,14 +30,18 @@ public class UserService {
 	}
 
 	public void save(User user) {
-		User existingUser = userRepo.findById(user.getId()).get();
-		if(existingUser.getId() != null) {
-		
+		boolean isUpdaingUser = (user.getId() != null);
+		if (isUpdaingUser) {
+			User existsingUser = userRepo.findById(user.getId()).get();
+			if (user.getPassword().isEmpty()) {
+				user.setPassword(existsingUser.getPassword());
+			} else {
+				encodePassword(user);
+			}
+		} else {
+			encodePassword(user);
 		}
-		
-		
-		
-	
+
 		userRepo.save(user);
 	}
 
@@ -48,29 +53,36 @@ public class UserService {
 	public boolean isEmailUnique(Integer id, String email) {
 
 		User userByEmail = userRepo.getUserByName(email);
-		if(userByEmail == null) return true;
-		boolean isCreatingNew = (id ==  null);
-		if(isCreatingNew) {
-			if(userByEmail != null) {
+		if (userByEmail == null)
+			return true;
+		boolean isCreatingNew = (id == null);
+		if (isCreatingNew) {
+			if (userByEmail != null) {
 				return false;
 			}
-		}else {
-			if(userByEmail.getId() != id) {
+		} else {
+			if (userByEmail.getId() != id) {
 				return false;
 			}
 		}
 		return true;
 	}
 
-	
-	
-	
 	public User getUser(Integer id) throws UserNotFoundException {
 
 		try {
 			return userRepo.findById(id).get();
 		} catch (NoSuchElementException ex) {
-			throw new UserNotFoundException("User not found with give ID " + id );
+			throw new UserNotFoundException("User not found with given ID " + id);
 		}
+	}
+	
+	public void deleteUser(Integer id) throws UserNotFoundException {
+		Long countById = userRepo.countById(id);
+		if(countById == 0 || countById == null) {
+			throw new UserNotFoundException("User not found with given ID " + id);
+
+		}
+		userRepo.deleteById(id);
 	}
 }

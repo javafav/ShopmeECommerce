@@ -68,4 +68,20 @@ public String updateUser(@PathVariable(name = "id") Integer id,Model model,Redir
 	
 }
 
+@GetMapping("/users/delete/{id}")
+public String deleteUser(@PathVariable(name = "id") Integer id,RedirectAttributes redirectAttributes) {
+	try {
+		
+	service.deleteUser(id);
+	redirectAttributes.addFlashAttribute("message","The user wih (ID:"+id + ")  deleted successfuly!");
+    
+	return "redirect:/users";
+	} catch (UserNotFoundException e) {
+		
+		redirectAttributes.addFlashAttribute("message", e.getMessage());
+		return "redirect:/users";
+		
+	}
+
+}
 }
