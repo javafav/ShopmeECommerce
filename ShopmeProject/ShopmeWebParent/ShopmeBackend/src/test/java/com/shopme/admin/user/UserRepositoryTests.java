@@ -35,4 +35,14 @@ public class UserRepositoryTests {
 		assertThat(countById).isEqualTo(1);
 	}
 	
+	@Test
+	public void testUpdateDisabledStatus() {
+		Integer id = 16;
+		repo.updateEnabledStatus(id, false);
+	}
+	@Test
+	public void testUpdateEnabledStatus() {
+		Integer id = 16;
+		repo.updateEnabledStatus(id, true);
+	}
 }

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
 
 @Service
+@Transactional
 public class UserService {
 
 	@Autowired
@@ -29,7 +32,7 @@ public class UserService {
 		return (List<Role>) roleRepo.findAll();
 	}
 
-	public void save(User user) {
+	public User save(User user) {
 		boolean isUpdaingUser = (user.getId() != null);
 		if (isUpdaingUser) {
 			User existsingUser = userRepo.findById(user.getId()).get();
@@ -42,7 +45,7 @@ public class UserService {
 			encodePassword(user);
 		}
 
-		userRepo.save(user);
+	return	userRepo.save(user);
 	}
 
 	private void encodePassword(User user) {
@@ -76,13 +79,19 @@ public class UserService {
 			throw new UserNotFoundException("User not found with given ID " + id);
 		}
 	}
-	
+
 	public void deleteUser(Integer id) throws UserNotFoundException {
 		Long countById = userRepo.countById(id);
-		if(countById == 0 || countById == null) {
+		if (countById == 0 || countById == null) {
 			throw new UserNotFoundException("User not found with given ID " + id);
 
 		}
 		userRepo.deleteById(id);
 	}
+
+	public void updateUserEnableStatus(Integer userId, boolean status) {
+		userRepo.updateEnabledStatus(userId, status);
+
+	}
+
 }
