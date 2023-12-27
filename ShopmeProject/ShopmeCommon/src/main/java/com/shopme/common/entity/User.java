@@ -123,10 +123,11 @@ public class User {
 		this.roles.add(role);
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", roles=" + roles
-				+ "]";
+		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 
 	@Transient
