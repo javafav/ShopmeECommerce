@@ -2,3 +2,7 @@
 .icon-silver{color:silver}
 .icon-green{color:green}
 .icon-dark{color:grey}
+
+.midNight-blue :hover {
+	color: #333;
+}

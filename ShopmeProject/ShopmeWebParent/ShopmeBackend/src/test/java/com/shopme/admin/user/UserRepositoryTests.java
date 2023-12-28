@@ -3,6 +3,8 @@ package com.shopme.admin.user;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 
+import java.util.List;
+
 import javax.print.attribute.standard.PagesPerMinute;
 
 import org.junit.jupiter.api.Test;
@@ -61,5 +63,22 @@ Page<User> listUsers = repo.findAll(page);
 listUsers.forEach(user -> {
 	System.out.println(user);
 });
+	}
+	
+	
+	@Test
+	public void testSearchUsers() {
+		String keyword = "5";
+		
+		int pageNum=0;
+		int pageSize=4;
+	Pageable pageable = PageRequest.of(pageNum, pageSize);
+Page<User> page = repo.findAll(keyword,pageable);
+List<User> listUsers = page.getContent();
+listUsers.forEach(user -> {
+	System.out.println(user);
+});
+
+assertThat(listUsers.size()).isGreaterThan(0);
 	}
 }

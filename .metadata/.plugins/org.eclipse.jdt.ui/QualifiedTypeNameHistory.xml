@@ -31,9 +31,9 @@
     <fullyQualifiedTypeName name="java.awt.print.Pageable"/>
     <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable"/>
     <fullyQualifiedTypeName name="javax.print.attribute.standard.PagesPerMinute"/>
-    <fullyQualifiedTypeName name="org.springframework.data.domain.Page"/>
-    <fullyQualifiedTypeName name="org.springframework.data.domain.Pageable"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.PageRequest"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="org.springframework.data.domain.Page"/>
+    <fullyQualifiedTypeName name="org.springframework.data.domain.Pageable"/>
 </qualifiedTypeNameHistroy>
