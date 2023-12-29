@@ -3,9 +3,13 @@ package com.shopme.admin.user;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -68,6 +72,14 @@ public class UserController {
 		
 		return "users";
 	}
+	
+	@GetMapping("/users/export/csv")
+	public void exportCsv(HttpServletResponse response) throws IOException {
+		Sort sort = Sort.by(Direction.ASC, "firstName");
+		List<User> listUsers = service.listAll(sort);
+		UserCsvExporter exporter =  new UserCsvExporter();
+		exporter.export(listUsers, response);
+	}
 
 	@GetMapping("/users/new")
 	public String createNewUser(Model model) {
@@ -99,8 +111,13 @@ public class UserController {
 		}
 
 		redirectAttributes.addFlashAttribute("message", "The User has been saved successfuly!");
+		return getURLOfAffectedUser(user);
+	}
 
-		return "redirect:/users";
+	private String getURLOfAffectedUser(User user) {
+		String emailFirstPart = user.getEmail().split("@")[0];
+		
+		return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword=" + emailFirstPart;
 	}
 
 	@GetMapping("/users/edit/{id}")

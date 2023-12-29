@@ -29,8 +29,9 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	public List<User> listAll() {
-		return (List<User>) userRepo.findAll();
+	public List<User> listAll(Sort sort) {
+		
+		return (List<User>) userRepo.findAll(sort);
 	}
 
 	public List<Role> listRoles() {
