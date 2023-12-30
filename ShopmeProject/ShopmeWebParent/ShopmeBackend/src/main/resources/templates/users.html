@@ -61,13 +61,13 @@
 
 		<div>
 			<h2>Manage Users</h2>
-			<a th:href="@{/users/new}">Create New User</a>
-			&nbsp;|&nbsp;
-			<a th:href="@{/users/export/csv}">Export to CSV</a>
+	
+			<a th:href="@{/users/new}">Create New User</a> &nbsp;|&nbsp; <a
+				th:href="@{/users/export/csv}">Export to CSV</a> &nbsp;|&nbsp; <a
+				th:href="@{/users/export/excel}">Export to Excel</a> &nbsp;|&nbsp; <a
+				th:href="@{/users/export/pdf}">Export to PDF</a>
 		</div>
-		<div th:if="${message != null}"
-			class="alert alert-success text-center">[[${message}]]</div>
-		<div>
+		
 			<div class="m-3">
 				<form th:action="@{/users/page/1}" class="form-inline">
 					<input type="hidden" name="sortField" th:value="${sortField}">
@@ -84,6 +84,10 @@
 				</form>
 
 			</div>
+			
+					<div th:if="${message != null}"
+			class="alert alert-success text-center">[[${message}]]</div>
+		<div>
 
 			<table
 				class="table table-border  table-striped table-hover  table-responsive-xl mt-2">
@@ -91,18 +95,19 @@
 				<thead class="table-dark  ">
 					<tr>
 						<th th:replace="fragments :: column_link('id', 'User ID')"></th>
-						
+
 						<th>Photos</th>
-						
+
 						<th th:replace="fragments :: column_link('email', 'E-mail')"></th>
-						
-						<th	th:replace="fragments :: column_link('firstName', 'First Name')"></th>
+
+						<th
+							th:replace="fragments :: column_link('firstName', 'First Name')"></th>
 						<th th:replace="fragments :: column_link('lastName', 'Last Name')"></th>
-						
+
 						<th>Roles</th>
-						
+
 						<th th:replace="fragments :: column_link('enabled', 'Enabled')"></th>
-						
+
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -149,35 +154,31 @@
 				<ul class="pagination justify-content-center">
 					<li
 						th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-					<a th:replace = "fragments :: page_link(1,'First')" ></a>
+						<a th:replace="fragments :: page_link(1,'First')"></a>
 					</li>
 					<li
 						th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-						
-						<a th:replace = "fragments :: page_link(${currentPage -1},'Previous')" ></a>
-						
+
+						<a
+						th:replace="fragments :: page_link(${currentPage -1},'Previous')"></a>
+
 					</li>
 					<li
 						th:class="${currentPage == i ? 'page-item active' : 'page-item'}"
-						th:each="i : ${#numbers.sequence(1,totalPages)}">
-						
-						
-						<a th:replace = "fragments :: page_link(${i},${i})" ></a>
-						
-					
-					</li>
+						th:each="i : ${#numbers.sequence(1,totalPages)}"><a
+						th:replace="fragments :: page_link(${i},${i})"></a></li>
 
 					<li
 						th:class="${currentPage < totalPages  ? 'page-item' : 'page-item disabled'}">
-						
-						<a th:replace = "fragments :: page_link(${currentPage + 1},'Next')" ></a>
-						
+
+						<a th:replace="fragments :: page_link(${currentPage + 1},'Next')"></a>
+
 					</li>
 					<li
 						th:class="${currentPage < totalPages  ? 'page-item' : 'page-item disabled'}">
-						
-						<a th:replace = "fragments :: page_link( ${totalPages},'Last')" ></a>
-						 
+
+						<a th:replace="fragments :: page_link( ${totalPages},'Last')"></a>
+
 					</li>
 				</ul>
 			</nav>
@@ -235,10 +236,10 @@
 
 									});
 				})
-				
+
 		function clearFunction() {
-    window.location.href = "[[@{/users}]]";
-}
+			window.location.href = "[[@{/users}]]";
+		}
 	</script>
 </body>
 </html>

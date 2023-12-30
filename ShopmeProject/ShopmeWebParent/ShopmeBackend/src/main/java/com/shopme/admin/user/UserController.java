@@ -33,7 +33,7 @@ public class UserController {
 	@GetMapping("/users")
 	public String listFirstPage(Model model) {
 
-		return listByPage(1, "firstName", "asc",null, model);
+		return listByPage(1, "firstName", "asc", null, model);
 	}
 
 	@GetMapping("/users/page/{pageNum}")
@@ -43,7 +43,7 @@ public class UserController {
 
 			Model model) {
 
-		Page<User> page = service.listByPage(pageNum, sortField, sortDir,keyword);
+		Page<User> page = service.listByPage(pageNum, sortField, sortDir, keyword);
 
 		List<User> listUsers = page.getContent();
 		long startCount = (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
@@ -67,20 +67,35 @@ public class UserController {
 		model.addAttribute("reverseSortDir", reverseSortDir);
 		model.addAttribute("keyword", keyword);
 
-
-		
-		
 		return "users";
 	}
-	
+
 	@GetMapping("/users/export/csv")
-	public void exportCsv(HttpServletResponse response) throws IOException {
+	public void exportToCsv(HttpServletResponse response) throws IOException {
 		Sort sort = Sort.by(Direction.ASC, "firstName");
 		List<User> listUsers = service.listAll(sort);
-		UserCsvExporter exporter =  new UserCsvExporter();
+		UserCsvExporter exporter = new UserCsvExporter();
 		exporter.export(listUsers, response);
 	}
 
+	@GetMapping("/users/export/excel")
+	public void exportToExcel(HttpServletResponse response) throws IOException {
+		Sort sort = Sort.by(Direction.ASC, "firstName");
+		List<User> listUsers = service.listAll(sort);
+		UserExcelExporter exporter = new UserExcelExporter();
+		
+		exporter.export(listUsers,response);
+	}
+	@GetMapping("/users/export/pdf")
+	public void exportToPdf(HttpServletResponse response) throws IOException {
+		Sort sort = Sort.by(Direction.ASC, "firstName");
+		List<User> listUsers = service.listAll(sort);
+		UserPdfExporter exporter = new UserPdfExporter();
+		
+		exporter.export(listUsers,response);
+	}
+	
+	
 	@GetMapping("/users/new")
 	public String createNewUser(Model model) {
 		User user = new User();
@@ -116,7 +131,7 @@ public class UserController {
 
 	private String getURLOfAffectedUser(User user) {
 		String emailFirstPart = user.getEmail().split("@")[0];
-		
+
 		return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword=" + emailFirstPart;
 	}
 
