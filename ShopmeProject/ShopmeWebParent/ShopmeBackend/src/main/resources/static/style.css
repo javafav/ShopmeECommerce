@@ -1,8 +1,56 @@
-.icon-white{color:white}
-.icon-silver{color:silver}
-.icon-green{color:green}
-.icon-dark{color:grey}
+.icon-white {
+	color: white
+}
+
+.icon-silver {
+	color: silver
+}
+
+.icon-green {
+	color: green
+}
+
+.icon-dark {
+	color: grey
+}
 
 .midNight-blue :hover {
 	color: #333;
+}
+
+@media screen and (max-width:768px) {
+	/* small screens */
+	div .full-details {
+		display: none;
+	}
+	div .less-details {
+		display: block;
+	}
+	.less-details-margin {
+	margin-top:10px}
+}
+
+@media screen and (min-width:768px) and (max-width:1024px) {
+	/* medium screens */
+	div.full-details {
+		display: block;
+	}
+	div .less-details {
+		display: none;
+	}
+	.hideable-column {
+	display: none;
+	}
+}
+
+@media screen and (min-width:1024px) {
+	/* Large screens */
+	div .less-details {
+		display: none;
+	}
+	
+	.hideable-column {
+	display: table-cell;
+	}
+	
 }
