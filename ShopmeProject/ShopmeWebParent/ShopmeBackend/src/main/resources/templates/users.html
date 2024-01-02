@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	>
 
 <head>
 <meta http-equiv="Content_Type" content="text/html; charset=UTF-8">
@@ -107,22 +108,26 @@
 				<thead class="table-dark  ">
 					<tr>
 
-						<th class="hideable-column"><th th:replace="fragments :: column_link('id', 'User ID','tag')" /></th>
-						
+						<th class="hideable-column">
+						<th th:replace="fragments :: column_link('id', 'User ID','tag')" /></th>
+
 
 						<th>Photos</th>
 
-						<th class="hideable-column"><th th:replace="fragments :: column_link('email', 'E-mail','tag')" /></th>
-						
+						<th class="hideable-column">
+						<th th:replace="fragments :: column_link('email', 'E-mail','tag')" /></th>
+
 
 						<th
 							th:replace="fragments :: column_link('firstName', 'First Name', 'none')" />
 
-				<th th:replace="fragments :: column_link('lastName', 'Last Name', 'none')"/>
+						<th
+							th:replace="fragments :: column_link('lastName', 'Last Name', 'none')" />
 
 						<th>Roles</th>
 
-						<th th:replace="fragments :: column_link('enabled', 'Enabled', 'none')"/>
+						<th
+							th:replace="fragments :: column_link('enabled', 'Enabled', 'none')" />
 
 						<th>Actions</th>
 					</tr>

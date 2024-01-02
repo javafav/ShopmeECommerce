@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/extras/spring-security5">
 
 <head>
 <meta http-equiv="Content_Type" content="text/html; charset=UTF-8">
@@ -8,8 +9,11 @@
 <title>eShopme Admin Controller</title>
 
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<link rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
+<link rel="stylesheet" th:href="@{/style.css}">
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
 
 
 
@@ -60,6 +64,18 @@
         </li>
         <li class="nav-item">
             <a  class="nav-link" th:href="@{/settings}">Settings</a>
+        </li>
+            <li class="nav-item ml-2">
+             <a href="">
+              <img th:src="${#authentication.principal.getPhotoImagePath()}" alt="User Photo" class="profile-pic"/>
+         </a>
+        </li>
+         <li class="nav-item dropdown">
+            <a  class="nav-link dropdown-toggle"  data-toggle="dropdown"
+            sec:authentication="principal.fullName"></a>
+            <div class="dropdown-menu">
+            <a class="dropdown-item" href="">Logout</a>
+            </div>
         </li>
       </ul>
 

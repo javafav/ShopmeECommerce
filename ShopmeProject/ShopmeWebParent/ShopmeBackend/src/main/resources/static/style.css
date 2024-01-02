@@ -54,3 +54,12 @@
 	}
 	
 }
+
+
+.profile-pic {
+	
+	 width: 35px; /* Adjust the width as needed */
+    height: 35px; /* Adjust the height as needed */
+    border-radius:50px;
+    object-fit: cover;
+}
