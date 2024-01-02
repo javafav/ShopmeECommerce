@@ -20,17 +20,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public UserDetailsService userDetailsService() {
 		return new ShopmeUserDetailsService();
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	 
-	
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	auth.authenticationProvider(daoAuthenticationProvider());
+		auth.authenticationProvider(daoAuthenticationProvider());
 	}
 
 	public DaoAuthenticationProvider daoAuthenticationProvider() {
@@ -39,23 +37,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		authProvider.setPasswordEncoder(passwordEncoder());
 		return authProvider;
 	}
-	
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().anyRequest().authenticated()
-		.and().formLogin().loginPage("/login").usernameParameter("email").
-		
-		
-		permitAll();
+		http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login")
+				.usernameParameter("email").permitAll().and().logout().permitAll();
 	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-	web.ignoring().antMatchers("/images/**", "/webjars/**","/js/**");
+		web.ignoring().antMatchers("/images/**", "/webjars/**", "/js/**");
 	}
 
-	
-	
 }

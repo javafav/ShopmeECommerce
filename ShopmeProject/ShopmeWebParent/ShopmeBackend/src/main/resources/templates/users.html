@@ -72,7 +72,9 @@
 				th:href="@{/users/export/pdf}"
 				class="fa fa-file-pdf fa-2x icon-dark mr-2"></a>
 		</div>
-
+<form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
+<input type="submit">
+</form>
 		<div class="m-3">
 			<form th:action="@{/users/page/1}" class="form-inline">
 				<input type="hidden" name="sortField" th:value="${sortField}">
