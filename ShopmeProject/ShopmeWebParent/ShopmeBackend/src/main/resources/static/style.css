@@ -63,3 +63,8 @@
     border-radius:50px;
     object-fit: cover;
 }
+
+.logoutLink:hover {
+	background: #333;
+	color: white;
+}
