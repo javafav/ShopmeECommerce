@@ -112,4 +112,22 @@ public class UserService {
 
 	}
 
+	public User getUserByEmail(String email) {
+		return userRepo.getUserByName(email);
+		
+	}
+
+	public User updateAccount(User userInform) {
+		User userInDB = userRepo.findById(userInform.getId()).get();
+		if(!userInform.getPassword().isEmpty()) {
+			encodePassword(userInform);
+		}
+		if(userInform.getPhotos() != null ) {
+			userInDB.setPhotos(userInform.getPhotos());
+		}
+		userInDB.setFirstName(userInform.getFirstName());
+		userInDB.setLastName(userInform.getLastName());
+		return userRepo.save(userInDB);
+		
+	}
 }
