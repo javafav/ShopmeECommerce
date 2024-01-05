@@ -76,7 +76,7 @@ public class ShopmeUserDetails implements UserDetails {
 		return this.user.getFirstName() + " " + this.user.getLastName();
 	}
 	public String getPhotoImagePath() {
-		if(this.user.getId() == null || this.user.getPhotos() == null) return "/images/default-user.png";
+		if(this.user.getId() == null || this.user.getPhotos() == null) return "/ShopmeAdmin/images/default-user.png";
 		return "/ShopmeAdmin/user-photos/" + this.user.getId()  + "/" + this.user.getPhotos();
 	}
 	
