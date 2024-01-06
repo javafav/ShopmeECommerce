@@ -1,0 +1,7 @@
+.error-page {
+  width: 100%; /* Set initial width to 100% of container */
+  height: 100%; /* Set initial height to 100% of container */
+  object-fit: cover; /* Cover the container, cropping if necessary */
+  display: block; /* Make sure it's a block-level element */
+  margin: 0 auto; /* Center the image horizontally */
+}
