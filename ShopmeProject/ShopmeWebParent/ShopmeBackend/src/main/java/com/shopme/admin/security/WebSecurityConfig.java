@@ -45,7 +45,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 				.antMatchers("/users/**").hasAuthority("Admin").anyRequest().authenticated().
 
-				and().formLogin().loginPage("/login").usernameParameter("email").permitAll().and().logout().permitAll()
+				and().formLogin()
+				.loginPage("/login")
+				.usernameParameter("email").permitAll().defaultSuccessUrl("/users").
+				and().logout().permitAll()
 				.and().rememberMe().key("ABCDEDGHiJKLMNOOPQRSTUVWXYZ4541").tokenValiditySeconds(7 * 24 * 60 * 60);
 	}
 
