@@ -39,6 +39,10 @@ public class Category {
 	@OneToMany(mappedBy = "parent")
 	private Set<Category> children = new HashSet<>();
 
+	
+	
+	
+	
 	public Category() {}
 	
 	
@@ -53,6 +57,21 @@ public class Category {
 		this.parent = parent;
 	}
 
+	public static Category copyIdAndName(Category catgory) {
+		Category copyCategory = new Category();
+		copyCategory.setName(catgory.getName());
+		copyCategory.setId(catgory.getId());
+		return copyCategory;
+	}
+	
+	public static Category copyIdAndName(Category catgory,String name) {
+		Category copyCategory = new Category();
+		copyCategory.setName(name);
+		copyCategory.setId(catgory.getId());
+		return copyCategory;
+		
+	}
+	
 	public Category(int id) {
 		this.id = id;
 	}

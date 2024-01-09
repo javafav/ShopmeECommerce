@@ -40,7 +40,7 @@
 					 <option value="0">[No Parent]</option>
 					 
 					 <th:block th:each="cat : ${listCategories}" >
-					 	 <option value="${cat.id}">[[${cat.name}]]</option>
+					 	 <option th:value="${cat.id}">[[${cat.name}]]</option>
 					 
 					 </th:block>
 					 
@@ -51,9 +51,10 @@
 					<label class="col-sm-4 col-form-label mt-4">Image:</label>
 					<div>
 						<input type="hidden" th:field="*{image}"> <input
-							class="m-2" id="fileimage" name="image" type="file"
-							accept="image/png, image/jpeg"> 
+							class="m-2" id="fileimage" name="fileimage" type="file"
+							accept="image/png, image/jpeg" required> 
 							<div  class="mt-2">
+							
 							<img class="img-fluid"
 							style="width: 100px; height: auto;" id="thumbnail"
 							th:src="@{/images/image-thumbnail.png}">
