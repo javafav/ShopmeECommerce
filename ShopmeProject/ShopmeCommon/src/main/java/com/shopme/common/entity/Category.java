@@ -1,5 +1,6 @@
 package com.shopme.common.entity;
 
+import java.beans.Transient;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -72,6 +73,24 @@ public class Category {
 		
 	}
 	
+	public static Category copyFull(Category catgory) {
+		Category copyCategory = new Category();
+		copyCategory.setName(catgory.getName());
+		copyCategory.setId(catgory.getId());
+		copyCategory.setAlias(catgory.getAlias());
+		copyCategory.setImage(catgory.getImage());
+		copyCategory.setEnabled(catgory.isEnabled());
+		
+		return copyCategory;
+		
+	}
+	
+	public static Category copyFull(Category catgory,String name) {
+		Category copyCategory = Category.copyFull(catgory);
+		copyCategory.setName(name);
+		return copyCategory;
+	}
+	
 	public Category(int id) {
 		this.id = id;
 	}
@@ -132,4 +151,9 @@ public class Category {
 		this.enabled = enabled;
 	}
 
+	@Transient
+	public String getImagePath() {
+		return "/category-images/" + this.id + "/" + this.image;
+	}
+	
 }

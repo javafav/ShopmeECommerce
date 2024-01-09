@@ -21,25 +21,32 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		String userPhtoPath = userPhotoDir.toFile().getAbsolutePath();
 
 		registry.addResourceHandler("/" + dirName + "/**").addResourceLocations("file:/" + userPhtoPath + "/");
-	}
-public static void cleanDir(String dir) {
-	Path dirPath = Paths.get(dir);
-	try {
-		Files.list(dirPath).forEach(file -> {
-			if(Files.isDirectory(file)){
-			try {
-				Files.delete(file);
-			}catch(IOException e) {
-				System.out.print("Could not delete the file" + file);
-			}
-			
-			}
-		});
-	}catch(IOException e) {
-		System.out.print("Could not list the directory" + dir);
+
+		String categoryImagesDirName = "../category-images";
+		Path categoryImagesDir = Paths.get(categoryImagesDirName);
+		String categoryImagesPath = categoryImagesDir.toFile().getAbsolutePath();
+
+		registry.addResourceHandler("/category-images/**").addResourceLocations("file:/" + categoryImagesPath + "/");
 
 	}
-}
 
+	public static void cleanDir(String dir) {
+		Path dirPath = Paths.get(dir);
+		try {
+			Files.list(dirPath).forEach(file -> {
+				if (Files.isDirectory(file)) {
+					try {
+						Files.delete(file);
+					} catch (IOException e) {
+						System.out.print("Could not delete the file" + file);
+					}
+
+				}
+			});
+		} catch (IOException e) {
+			System.out.print("Could not list the directory" + dir);
+
+		}
+	}
 
 }
