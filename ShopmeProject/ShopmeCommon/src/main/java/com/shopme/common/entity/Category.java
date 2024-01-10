@@ -58,6 +58,17 @@ public class Category {
 		this.parent = parent;
 	}
 
+	
+	
+	
+	public Category(Integer id, String name, String alias) {
+		
+		this.id = id;
+		this.name = name;
+		this.alias = alias;
+	}
+
+
 	public static Category copyIdAndName(Category catgory) {
 		Category copyCategory = new Category();
 		copyCategory.setName(catgory.getName());

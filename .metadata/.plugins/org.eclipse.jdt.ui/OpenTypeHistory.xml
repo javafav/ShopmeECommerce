@@ -2,5 +2,5 @@
 <typeInfoHistroy>
     <typeInfo handle="=ShopmeBackend/C:\/Users\/fahad\/.m2\/repository\/org\/springframework\/security\/spring-security-config\/5.6.3\/spring-security-config-5.6.3.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.security=/=/maven.artifactId=/spring-security-config=/=/maven.version=/5.6.3=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.security.config.annotation.web.configuration(WebSecurityConfigurerAdapter.class[WebSecurityConfigurerAdapter" modifiers="1057" timestamp="1675263895287"/>
     <typeInfo handle="=ShopmeCommon/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shopme.common.entity{User.java[User" modifiers="1" timestamp="1704183302885"/>
-    <typeInfo handle="=ShopmeCommon/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shopme.common.entity{Category.java[Category" modifiers="1" timestamp="1704796251884"/>
+    <typeInfo handle="=ShopmeCommon/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shopme.common.entity{Category.java[Category" modifiers="1" timestamp="1704874743127"/>
 </typeInfoHistroy>

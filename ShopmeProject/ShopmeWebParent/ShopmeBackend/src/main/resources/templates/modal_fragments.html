@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="page_head(title)">
+<meta http-equiv="Content_Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, inital-scale=1.0, minimum-scale=1.0">
+<title>[[${title}]]</title>
+
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" />
+<link rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
+<link rel="stylesheet" th:href="@{/style.css}">
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+
+</head>
+<body>
+<div th:fragment = "modal_dialog" class="modal fade text-center" id="modalDialog">
+
+			<div class="modal-dialog">
+
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="modalTitle">Warning</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<span id="modalBody"></span>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+
+				</div>
+			</div>
+		</div>	
+</body>
+</html>
