@@ -3,7 +3,7 @@ package com.shopme.admin.user.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -182,7 +182,7 @@ public class UserController {
 		service.updateUserEnableStatus(id, status);
 		String messageEnabledOrDisabled = status == true ? "enabled" : "disabled";
 		redirectAttributes.addFlashAttribute("message",
-				"The user wih (ID:" + id + ") " + messageEnabledOrDisabled + " successfuly!");
+				"The user wih (ID " + id + ") " + messageEnabledOrDisabled + " successfuly!");
 
 		return "redirect:/users";
 

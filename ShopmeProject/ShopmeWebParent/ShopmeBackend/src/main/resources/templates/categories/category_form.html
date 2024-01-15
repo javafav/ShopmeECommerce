@@ -15,7 +15,7 @@
 			th:object="${category}" style="max-width: 650px; margin: 0 auto;"
 			enctype="multipart/form-data" onsubmit="return checkUnique(this)">
 			<input type="hidden" th:field="*{id}">
-			<div class="border border-secondary rounded p-3">
+	 		<div class="border border-secondary rounded p-3">
 
 				<div class="form-group row">
 					<label class="col-sm-4 col-form-label">Name:</label>
@@ -57,7 +57,7 @@
 							
 							<img class="img-fluid"
 							style="width: 100px; height: auto;" id="thumbnail"
-							th:src="@{/images/image-thumbnail.png}">
+							th:src="@{${category.imagePath}}">
 							</div>
 					</div>
 				</div>

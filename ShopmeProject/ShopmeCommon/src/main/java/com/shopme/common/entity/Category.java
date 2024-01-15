@@ -1,6 +1,6 @@
 package com.shopme.common.entity;
 
-import java.beans.Transient;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "categories")
@@ -69,35 +70,36 @@ public class Category {
 	}
 
 
-	public static Category copyIdAndName(Category catgory) {
+	public static Category copyIdAndName(Category category) {
 		Category copyCategory = new Category();
-		copyCategory.setName(catgory.getName());
-		copyCategory.setId(catgory.getId());
+		copyCategory.setName(category.getName());
+		copyCategory.setId(category.getId());
 		return copyCategory;
 	}
 	
-	public static Category copyIdAndName(Category catgory,String name) {
+	public static Category copyIdAndName(Category category,String name) {
 		Category copyCategory = new Category();
 		copyCategory.setName(name);
-		copyCategory.setId(catgory.getId());
+		copyCategory.setId(category.getId());
 		return copyCategory;
 		
 	}
 	
-	public static Category copyFull(Category catgory) {
+	public static Category copyFull(Category category) {
 		Category copyCategory = new Category();
-		copyCategory.setName(catgory.getName());
-		copyCategory.setId(catgory.getId());
-		copyCategory.setAlias(catgory.getAlias());
-		copyCategory.setImage(catgory.getImage());
-		copyCategory.setEnabled(catgory.isEnabled());
+		copyCategory.setName(category.getName());
+		copyCategory.setId(category.getId());
+		copyCategory.setAlias(category.getAlias());
+		copyCategory.setImage(category.getImage());
+		copyCategory.setEnabled(category.isEnabled());
+		copyCategory.setHasChildren(category.getChildren().size() > 0);
 		
 		return copyCategory;
 		
 	}
 	
-	public static Category copyFull(Category catgory,String name) {
-		Category copyCategory = Category.copyFull(catgory);
+	public static Category copyFull(Category category,String name) {
+		Category copyCategory = Category.copyFull(category);
 		copyCategory.setName(name);
 		return copyCategory;
 	}
@@ -162,9 +164,27 @@ public class Category {
 		this.enabled = enabled;
 	}
 
+	
+	public boolean isHasChildren() {
+		return hasChildren;
+	}
+
+
+	public void setHasChildren(boolean hasChildren) {
+		this.hasChildren = hasChildren;
+	}
+
+
 	@Transient
 	public String getImagePath() {
+		if(id == null) return "/images/image-thumbnail.png";
 		return "/category-images/" + this.id + "/" + this.image;
 	}
+	
+	
+	
+	@Transient
+	private boolean hasChildren;
+	
 	
 }

@@ -68,7 +68,7 @@ public class CategoryServiceTest {
 		String name = "abc";
 		String alias = "def";
 		
-		Category category = new Category(id, name, alias);
+
 		
 		Mockito.when(repo.findByName(name)).thenReturn(null);
 		Mockito.when(repo.findByAlias(alias)).thenReturn(null);

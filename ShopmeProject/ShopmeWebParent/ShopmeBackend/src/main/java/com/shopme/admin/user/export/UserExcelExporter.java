@@ -1,7 +1,7 @@
 package com.shopme.admin.user.export;
 
 import java.io.IOException;
-import java.util.Date;
+
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
@@ -15,6 +15,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.shopme.admin.AbstractExporter;
 import com.shopme.common.entity.User;
 
 public class UserExcelExporter extends AbstractExporter {
@@ -59,7 +60,7 @@ public class UserExcelExporter extends AbstractExporter {
 	}
 
 	public void export(List<User> listUsers, HttpServletResponse response) throws IOException {
-		super.setResponseHeader(response, "application/octec-stream", ".xlsx");
+		super.setResponseHeader(response, "application/octec-stream", "users_", ".xlsx");
 
 		writeHeaderLine();
 		writeDataLines(listUsers);

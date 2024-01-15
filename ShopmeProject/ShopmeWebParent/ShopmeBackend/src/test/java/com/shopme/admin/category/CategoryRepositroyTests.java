@@ -1,7 +1,7 @@
 package com.shopme.admin.category;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 
 import java.util.List;
 import java.util.Set;
@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 
 import com.shopme.common.entity.Category;
@@ -88,8 +89,8 @@ public class CategoryRepositroyTests {
 	
 	
 	@Test
-	public void testFindAllRootCategories() {
-		List<Category> listCategories = repo.findAllRootCategories();
+	public void testFindRootCategories() {
+		List<Category> listCategories = repo.findRootCategories(Sort.by("name").ascending());
 		listCategories.forEach(cat -> System.out.println(cat.getName()));
 	}
 	
@@ -107,5 +108,19 @@ public class CategoryRepositroyTests {
 		assertThat(category.getAlias()).isEqualTo(alias);
 	}
 	
+	@Test
+	public void testUpdateEnablestatus() {
+		boolean status = false;
+		Integer categoryId = 1;
+		repo.updateEnablestatus(categoryId, status);
+	}
+	
+	
+	@Test
+	public void testCountById() {
+		Integer categoryId = 1;
+		Long countById = repo.countById(categoryId);
+		System.out.println("Count :" + countById);
+	}
 	
 }

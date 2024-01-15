@@ -55,6 +55,16 @@
 	
 }
 
+button .caption {
+    display: none;
+}
+
+button:hover .caption {
+    display: inline;
+    /* Additional styling as needed */
+}
+
+
 
 .profile-pic {
 	
