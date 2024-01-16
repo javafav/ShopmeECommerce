@@ -1,97 +1,135 @@
-  <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: page_head('Categories - Shopme Admin')" />
 <body>
-<div class="container-fluid">
-	<div th:replace="navigation :: menu"></div>
-	<div>
-		<h2>Manage Categories</h2>	
-		
-		<a th:href="@{/categories/new}" class="fas fa-folder-plus fa-2x icon-dark mr-2"></a>
-		<a th:href="@{/categories/export/csv}" class="fas fa-file-csv fa-2x icon-dark mr-2"></a>
-				
-	</div>
+	<div class="container-fluid">
+		<div th:replace="navigation :: menu"></div>
+		<div>
+			<h2>Manage Categories</h2>
 
-	<div th:replace="fragments :: search_form('/categories/page/1')"></div>
-	
-	
-	<div class="full-details">
-		<table class="table table-bordered table-striped table-hover table-responsive-xl">
-			<thead class="thead-dark">
-				<tr>
-					<th>ID</th>
-					<th>Category Image</th>
-					<th>
-					<a th:href="@{'/categories/page/' +${currentPage} + '?sortDir=' + ${reverseSortDir} + '&keyword=' + ${keyword != null ? keyword : ''}}" class="text-white">
-		
-					Category Name
-					<span   th:class="${reverseSortDir == 'desc' ? 'fa fa-sort-up' : 'fa fa-sort-down'}"></span>
-					</a>
-					</th>
-					<th>Alias</th>
-					<th>Enabled</th>
-					<th>Actions</th>
-				</tr>								
-			</thead>
-			<tbody>
-				<tr th:each="cat : ${listCategories}">
-					<td>[[${cat.id}]]</td>
-					<td>
-                       <img  th:src="@{${cat.imagePath}}" style="width:100px" class="img-fluid">
-					</td>
-					<td>[[${cat.name}]]</td>
-					<td>[[${cat.alias}]]</td>
-					<td>
-						<div th:replace="fragments :: category_status" ></div>
-					</td>
-					<td>
-						<div th:replace="fragments :: category_actions" ></div>
-					</td>					
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
+			<a th:href="@{/categories/new}"
+				class="fas fa-folder-plus fa-2x icon-dark mr-2"></a> <a
+				th:href="@{/categories/export/csv}"
+				class="fas fa-file-csv fa-2x icon-dark mr-2"></a>
 
-	
-<div th:if="${keyword != null}" class="text-center">
-<span th:if="${totalPages > 0 && keyword != null}" class="text-muted text-small">Note: Search result does not shows categories in hierarchical form</span>
-<div th:replace="fragments :: pagination('categories', '/categories')"></div>
+		</div>
 
-</div>
-	<th:block th:unless="${keyword != null}">
-	<div th:replace="fragments :: pagination('top level categories', '/categories')"></div>
-		
+		<div
+			th:replace="fragments :: search_form_and_message('/categories/page/1')"></div>
+
+
+		<div class="full-details">
+			<table
+				class="table table-bordered table-striped table-hover table-responsive-xl">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID</th>
+						<th>Category Image</th>
+
+
+						<th
+							th:replace="fragments :: column_link('/categories', 'name', 'Category Name', 'none')" />
+
+
+
+
+						<th class="hideable-column">Alias</th>
+						<th>Enabled</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cat : ${listCategories}">
+						<td>[[${cat.id}]]</td>
+						<td><img th:src="@{${cat.imagePath}}" style="width: 100px"
+							class="img-fluid"></td>
+						<td>[[${cat.name}]]</td>
+						<td class="hideable-column">[[${cat.alias}]]</td>
+						<td>
+							<div th:replace="fragments :: status(${cat.enabled}, 'category', '/categories/' + ${cat.id})"></div>
+						</td>
+						<td>
+								<div th:replace="fragments :: edit('/categories/edit/' + ${cat.id},'category')"></div>
+						
+								&nbsp;
+					
+								<div th:replace="fragments :: delete('/categories/edit/' + ${cat.id},'category', ${cat.id}, ${!cat.hasChildren})"></div>
+								
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="less-details">
+
+			<div th:each="cat : ${listCategories}" class="row m-1">
+
+				<div class="col-4">
+					<img th:src="@{${cat.imagePath}}" class="img-fluid mt-2"
+						style="width: 100px; height: auto;">
+
+				</div>
+
+				<div class="col-8">
+					<div class="mb-2">[[${cat.name}]]</div>
+					<div th:replace="fragments :: status(${cat.enabled}, 'category', '/categories/' + ${cat.id})"></div>
+					&nbsp;
+						<div th:replace="fragments :: edit('/categories/edit/' + ${cat.id},'category')"></div>
+						
+								&nbsp;
+					<div th:replace="fragments :: delete('/categories/edit/' + ${cat.id},'category', ${cat.id}, ${!cat.hasChildren})"></div>
+							
+
+				</div>
+				<hr>
+			</div>
+
+
+
+		</div>
+
+
+		<div th:if="${keyword != null}" class="text-center">
+			<span th:if="${totalPages > 0 && keyword != null}"
+				class="text-muted text-small">Note: Search result does not
+				shows categories in hierarchical form</span>
+			<div
+				th:replace="fragments :: pagination('categories', '/categories')"></div>
+
+		</div>
+		<th:block th:unless="${keyword != null}">
+			<div
+				th:replace="fragments :: pagination('top level categories', '/categories')"></div>
+
 		</th:block>
-	
-	
-	
-	<div th:replace="modal_fragments :: confirm_modal"></div>
-	<div th:replace="fragments :: footer"></div>
-	
-</div>
+
+
+
+		<div th:replace="modal_fragments :: confirm_modal"></div>
+		<div th:replace="fragments :: footer"></div>
+
+	</div>
 
 
 	<script th:src="@{/js/common.js}"></script>
 	<script th:src="@{/js/common_lists.js}"></script>
 	<script type="text/javascript">
-	entityURL = "[[@{/categories}]]"
-	
-	$(document).ready(function(){
+		entityURL = "[[@{/categories}]]"
 
-		$(".link-delete").on("click",function(e){
-			e.preventDefault();
-		
-			showDeleteConfirmModal($(this),"category");
-			
-			
-		
-		
+		$(document).ready(function() {
+
+			$(".link-delete").on("click", function(e) {
+				e.preventDefault();
+
+				showDeleteConfirmModal($(this), "category");
+
+			});
+
+			$("input[name='keyword']").attr("placeholder", "Categories");
+
 		});
-		
-	    $("input[name='keyword']").attr("placeholder", "Categories");
-
-	});
 	</script>
 </body>
 </html>

@@ -1,17 +1,17 @@
 .icon-white {
-	color: white
+	color: white;
 }
 
 .icon-silver {
-	color: silver
+	color: silver;
 }
 
 .icon-green {
-	color: green
+	color: green;
 }
 
 .icon-dark {
-	color: grey
+	color: grey;
 }
 
 .midNight-blue :hover {
@@ -34,6 +34,10 @@
 	/* medium screens */
 	div.full-details {
 		display: block;
+		
+	}
+	.table-width {
+	width: 100%;
 	}
 	div .less-details {
 		display: none;
