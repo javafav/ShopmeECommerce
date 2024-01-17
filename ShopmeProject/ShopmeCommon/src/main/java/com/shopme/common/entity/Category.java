@@ -185,6 +185,16 @@ public class Category {
 	
 	@Transient
 	private boolean hasChildren;
+
+
+
+
+
+	@Override
+	public String toString() {
+		return this.name;
+	}
+	
 	
 	
 }
