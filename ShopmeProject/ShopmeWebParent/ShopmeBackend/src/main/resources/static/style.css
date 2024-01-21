@@ -26,8 +26,11 @@
 	div .less-details {
 		display: block;
 	}
-	.less-details-margin {
-	margin-top:10px}
+
+	
+	.less-detail-field{
+	width: 45%;
+	}
 }
 
 @media screen and (min-width:768px) and (max-width:1024px) {
@@ -44,6 +47,10 @@
 	}
 	.hideable-column {
 	display: none;
+	}
+	
+.medium-sacreen-brand{
+	white-space: nowrap;
 	}
 }
 

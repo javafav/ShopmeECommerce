@@ -78,10 +78,9 @@
 
 							<td>
 								
-								<div th:replace="fragments :: edit('/users/edit/' + ${user.id},'user')"></div>
+								<div th:replace="fragments :: edit('user','/users/edit/' + ${user.id})"></div>
 								&nbsp;
-								
-								<div th:replace="fragments :: delete('/users/edit/' + ${user.id},'user',${user.id},true)"></div>
+							<div th:replace="fragments :: delete('user','/users/edit/' + ${user.id},${user.id},true)"></div>
 
 							</td>
 						</tr>
@@ -107,10 +106,10 @@
 						<div
 							th:replace="fragments :: status(${user.enabled}, 'category', '/users/' + ${user.id})"></div>
 
-					<div th:replace="fragments :: edit('/users/edit/' + ${user.id},'user')"></div>
+					<div th:replace="fragments :: edit('user','/users/edit/' + ${user.id})"></div>
 								&nbsp;
 								
-								<div th:replace="fragments :: delete('/users/edit/' + ${user.id},'user',${user.id},true)"></div>
+								<div th:replace="fragments :: delete('user','/users/edit/' + ${user.id},${user.id},true)"></div>
 
 					</div>
 				</div>
@@ -136,7 +135,7 @@
 	<script th:src="@{/js/common.js}"></script>
 	<script th:src="@{/js/common_lists.js}"></script>
 	<script type="text/javascript">
-		entityURL = "[[@{/users}]]"
+	    moduleURL = "[[@{/users}]]"
 
 		$(document).ready(function() {
 

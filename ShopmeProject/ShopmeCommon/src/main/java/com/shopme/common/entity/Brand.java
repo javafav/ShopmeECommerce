@@ -1,5 +1,6 @@
 package com.shopme.common.entity;
 
+import java.beans.Transient;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,12 +31,11 @@ public class Brand {
 	private String logo;
 	
 	@ManyToMany
-	@JoinTable(name = "brand_categories",joinColumns = 
+	@JoinTable(name = "brands_categories",joinColumns = 
 	@JoinColumn(name = "brand_id"),
 	inverseJoinColumns = 
 	@JoinColumn(name = "category_id") )
-
-	private Set<Category> category = new HashSet();
+    private Set<Category> categories = new HashSet<Category>();
 
 	public Brand() {}
 	
@@ -85,24 +85,33 @@ public class Brand {
 
 
 
-	public Set<Category> getCategory() {
-		return category;
+	
+
+	public Set<Category> getCategories() {
+		return categories;
 	}
 
-	public void setCategory(Set<Category> category) {
-		this.category = category;
+
+
+
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
 	}
-	
-	public void addCategory(Integer id) {
-		this.category.add(new Category(id));
-	}
-	
+
+
+
+
 
 	@Override
 	public String toString() {
-		return "Brand [id=" + id + ", name=" + name + ", logo=" + logo + ", caregory=" + category + "]";
+		return "Brand [id=" + id + ", name=" + name + ", logo=" + logo + ", caregory=" + categories + "]";
 	}
 	
-	
+	@Transient
+	public String getLogoPath() {
+		if(this.id == null) return "/images/image-thumbnail.png";
+		return "/brands-logos/" + this.id + "/" + this.logo;
+	}
 
 }

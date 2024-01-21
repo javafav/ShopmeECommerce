@@ -1,7 +1,7 @@
 
 
 function clearFunction() {
-	window.location.href = entityURL;
+	window.location.href = moduleURL;
 }
 
 

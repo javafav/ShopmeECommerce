@@ -164,7 +164,7 @@ public class UserController {
 		try {
 
 			service.deleteUser(id);
-			redirectAttributes.addFlashAttribute("message", "The user wih (ID:" + id + ")  deleted successfuly!");
+			redirectAttributes.addFlashAttribute("message", "The user wih (ID " + id + ")  deleted successfuly!");
 
 			return "redirect:/users";
 		} catch (UserNotFoundException e) {

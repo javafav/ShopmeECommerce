@@ -18,11 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 import com.shopme.admin.FileUploadUtil;
-import com.shopme.admin.user.export.UserCsvExporter;
 import com.shopme.common.entity.Category;
-import com.shopme.common.entity.User;
 
 
 @Controller
@@ -161,7 +158,7 @@ public class CategoryController {
 	
 	@GetMapping("/categories/export/csv")
 	public void exportToCsv(HttpServletResponse response) throws IOException {
-		Sort sort = Sort.by(Direction.ASC, "name");
+		
 		List<Category> listCategories = service.categoryListUsedInForm();
 		CategoryCsvExporter exporter = new  CategoryCsvExporter();
 		exporter.export(listCategories, response);

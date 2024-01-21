@@ -2,7 +2,7 @@ package com.shopme.admin.brand;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Set;
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import com.shopme.common.entity.Category;
 @Rollback(false)
 public class BrandRepositoryTests {
 
-	@Autowired 	private BrandRespository repo;
+	@Autowired 	private BrandRepository repo;
 
 	
 	@Test
@@ -28,8 +28,8 @@ public class BrandRepositoryTests {
 		String name = "Samsung";
 		Brand brand = new Brand(1,name);
 		
-		brand.getCategory().add(new Category(14));
-		brand.getCategory().add(new Category(9));
+		brand.getCategories().add(new Category(14));
+		brand.getCategories().add(new Category(9));
 		Brand savedBrand = repo.save(brand);
 		assertThat(savedBrand.getId()).isGreaterThan(0);
 		
@@ -42,7 +42,7 @@ public class BrandRepositoryTests {
 		String name = "Ufone";
 		Brand brand = new Brand(4,name);
 		
-		brand.getCategory().add(new Category(2));
+		brand.getCategories().add(new Category(2));
 	
 		Brand savedBrand = repo.save(brand);
 		assertThat(savedBrand.getId()).isGreaterThan(0);

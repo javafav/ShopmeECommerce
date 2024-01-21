@@ -28,6 +28,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 		registry.addResourceHandler("/category-images/**").addResourceLocations("file:/" + categoryImagesPath + "/");
 
+		
+		String brandLogosDirName = "../brands-logos";
+		Path brandLogosDir = Paths.get(brandLogosDirName);
+		String brandLogosPath = brandLogosDir.toFile().getAbsolutePath();
+
+		registry.addResourceHandler("/brands-logos/**").addResourceLocations("file:/" + brandLogosPath + "/");
+
+		
 	}
 
 	public static void cleanDir(String dir) {

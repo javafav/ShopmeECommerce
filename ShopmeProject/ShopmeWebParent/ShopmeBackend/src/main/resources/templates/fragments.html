@@ -51,15 +51,16 @@
 	</div>
 
 
-	<div th:fragment="edit(editURL,entityName)" th:remove="tag">
+	<div th:fragment="edit(entityName,editURL)" th:remove="tag">
 		<a class="fas fa-edit fa-2x icon-green"
-	
+	       
 			th:href="@{${editURL}}"
 			th:title="'Edit this' + ${entityName}"></a>
+			
 			</div>
 			
 
-<div th:fragment ="delete(deleteURL,entityName,entityId,visible)" th:remove="tag">
+<div th:fragment ="delete(entityName,deleteURL,,entityId,visible)" th:remove="tag">
 		
 		<th:block th:if="${visible}">
 
@@ -127,8 +128,9 @@
 			<input type="hidden" name="sortDir" th:value="${sortDir}">
 
 
-			Filter: &nbsp;  <input type="search" name="keyword" 
-				th:value="${keyword}" class="form-control"> &nbsp; &nbsp;
+			Filter: &nbsp;  
+			<input type="search" name="keyword" 
+				th:value="${keyword}" class="form-control less-detail-field"> &nbsp; &nbsp;
 			<button type="submit" class="btn btn-primary less-details-margin">
 
 
