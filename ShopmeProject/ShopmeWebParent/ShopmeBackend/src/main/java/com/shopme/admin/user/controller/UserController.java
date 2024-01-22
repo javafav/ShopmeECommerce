@@ -179,10 +179,17 @@ public class UserController {
 	@GetMapping("/users/{id}/enabled/{status}")
 	public String updateUserEnabledStatus(@PathVariable("id") Integer id, @PathVariable("status") boolean status,
 			RedirectAttributes redirectAttributes) {
-		service.updateUserEnableStatus(id, status);
-		String messageEnabledOrDisabled = status == true ? "enabled" : "disabled";
-		redirectAttributes.addFlashAttribute("message",
-				"The user wih (ID " + id + ") " + messageEnabledOrDisabled + " successfuly!");
+		try {
+			service.updateUserEnableStatus(id, status);
+			String messageEnabledOrDisabled = status == true ? "enabled" : "disabled";
+			redirectAttributes.addFlashAttribute("message",
+					"The user wih (ID " + id + ") " + messageEnabledOrDisabled + " successfuly!");
+		} catch (UserNotFoundException e) {
+			redirectAttributes.addFlashAttribute("message", e.getMessage());
+			return "redirect:/users";
+			
+		}
+	
 
 		return "redirect:/users";
 

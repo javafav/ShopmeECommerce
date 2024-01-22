@@ -17,6 +17,6 @@ public interface BrandRepository extends PagingAndSortingRepository<Brand, Integ
 	
 
 	
-	@Query("SELECT b FROM Brand b WHERE b.name LIKE %?1%")
+	@Query("SELECT b FROM Brand b WHERE b.name LIKE %?1% OR b.id LIKE  %?1% ")
 	public Page<Brand> findAll(String keyword, Pageable pageable);
 }

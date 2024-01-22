@@ -78,13 +78,13 @@ public class BrandService {
 	
 	public String checkUnique(Integer id,String name) {
 		boolean isCreatingNew = (id == null || id == 0);
-		Brand brand = repo.findByName(name);
+		Brand brandByName = repo.findByName(name);
 		if(isCreatingNew) {
 			
-			if(brand != null ) {
+			if(brandByName != null ) {
 				return "Duplicate";
 			}
-		}else if(brand.getId() != id) {
+		}else if(brandByName != null && brandByName.getId() != id) {
 			return "Duplicate";
 		} 
 		

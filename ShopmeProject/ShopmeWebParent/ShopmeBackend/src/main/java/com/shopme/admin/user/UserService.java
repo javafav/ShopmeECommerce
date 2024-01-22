@@ -3,7 +3,6 @@ package com.shopme.admin.user;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,24 +29,24 @@ public class UserService {
 	private PasswordEncoder passwordEncoder;
 
 	public List<User> listAll(Sort sort) {
-		
+
 		return (List<User>) userRepo.findAll(sort);
 	}
 
 	public List<Role> listRoles() {
 		return (List<Role>) roleRepo.findAll();
 	}
-	
-	public Page<User> listByPage(int pageNum, String sortField, String sortDir,String keyword){
+
+	public Page<User> listByPage(int pageNum, String sortField, String sortDir, String keyword) {
 		Sort sort = Sort.by(sortField);
 		sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-		
-		Pageable pageable = PageRequest.of(pageNum -1, USERS_PER_PAGE, sort);
-		if(keyword != null) {
+
+		Pageable pageable = PageRequest.of(pageNum - 1, USERS_PER_PAGE, sort);
+		if (keyword != null) {
 			return userRepo.findAll(keyword, pageable);
 		}
 		return userRepo.findAll(pageable);
-		
+
 	}
 
 	public User save(User user) {
@@ -63,7 +62,7 @@ public class UserService {
 			encodePassword(user);
 		}
 
-	return	userRepo.save(user);
+		return userRepo.save(user);
 	}
 
 	private void encodePassword(User user) {
@@ -107,27 +106,34 @@ public class UserService {
 		userRepo.deleteById(id);
 	}
 
-	public void updateUserEnableStatus(Integer userId, boolean status) {
-		userRepo.updateEnabledStatus(userId, status);
+	public void updateUserEnableStatus(Integer userId, boolean status) throws UserNotFoundException {
+		try {
+			User user = userRepo.findById(userId).get();
+			if (user != null) {
+				userRepo.updateEnabledStatus(userId, status);
+			}
+		} catch (NoSuchElementException ex) {
+			throw new UserNotFoundException("User not found with given ID " + userId);
+		}
 
 	}
 
 	public User getUserByEmail(String email) {
 		return userRepo.getUserByName(email);
-		
+
 	}
 
 	public User updateAccount(User userInform) {
 		User userInDB = userRepo.findById(userInform.getId()).get();
-		if(!userInform.getPassword().isEmpty()) {
+		if (!userInform.getPassword().isEmpty()) {
 			encodePassword(userInform);
 		}
-		if(userInform.getPhotos() != null ) {
+		if (userInform.getPhotos() != null) {
 			userInDB.setPhotos(userInform.getPhotos());
 		}
 		userInDB.setFirstName(userInform.getFirstName());
 		userInDB.setLastName(userInform.getLastName());
 		return userRepo.save(userInDB);
-		
+
 	}
 }
