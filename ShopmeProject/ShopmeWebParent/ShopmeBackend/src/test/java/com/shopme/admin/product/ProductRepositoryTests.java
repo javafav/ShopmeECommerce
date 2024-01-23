@@ -39,7 +39,7 @@ public class ProductRepositoryTests {
 		Product product = new Product();
 		
 		product.setBrand(brand);
-		product.setCatgory(category);
+		product.setCategory(category);
 		
 		product.setName("Acer Laptops");
 		product.setAlias("Acer-Laptops");
