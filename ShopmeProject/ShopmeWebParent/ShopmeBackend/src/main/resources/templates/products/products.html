@@ -32,6 +32,7 @@
 						<th>Product Name</th>
 						<th>Brand</th>
                        <th>Category</th>
+                       <th>Enabled</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -43,6 +44,11 @@
 							<td>[[${product.name}]]</td>
 							<td>[[${product.brand.name}]]</td>
 						   <td>[[${product.category.name}]]</td>
+								<td>
+								
+								<div th:replace="fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})"></div>
+							</td>
+							
 							<td>
 								<a class="fa fa-file-alt fa-2x icon-green" href=""></a>
 								&nbsp;
@@ -59,7 +65,7 @@
 				</tbody>
 			</table>
 		</div>
-
+</div>
 
 
 
@@ -84,11 +90,14 @@
 				$(".link-delete").on("click", function(e) {
 					e.preventDefault();
 
-					showDeleteConfirmModal($(this), "brand");
+					showDeleteConfirmModal($(this), "product");
 
 				});
-				$("input[name='keyword']").attr("placeholder", "Brands")
+				$("input[name='keyword']").attr("placeholder", "Products")
 			});
+			
+			
+			
 		</script>
 </body>
 </html>

@@ -57,4 +57,13 @@ public class ProductRepositoryTests {
 		
 		
 	}
+	
+	@Test
+	public void testFindByName() {
+		
+		String productName = "Samsung M52";
+		Product product = repo.findByName( productName);
+		
+		assertThat(product.getName()).isEqualTo(productName);
+	}
 }
