@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
@@ -65,5 +66,26 @@ public class ProductRepositoryTests {
 		Product product = repo.findByName( productName);
 		
 		assertThat(product.getName()).isEqualTo(productName);
+
+	}
+	
+	@Test
+	public void testAddExtramAndMainImage() {
+		
+		Product product = repo.findById(1).get();
+		
+		String mainImage = "main-imag.jpeg";
+		product.setMainImage(mainImage);
+		
+	
+		String extraImage1 = "extra-image1";
+		String extraImage2 = "extra-image2";
+		product.addExtraImage(extraImage1);
+		product.addExtraImage(extraImage2);
+
+		
+		repo.save(product);
+		
+				
 	}
 }

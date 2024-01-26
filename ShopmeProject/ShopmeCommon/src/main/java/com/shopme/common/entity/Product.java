@@ -1,7 +1,11 @@
 package com.shopme.common.entity;
 
+import java.beans.Transient;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -17,34 +23,34 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(unique = true, length = 256, nullable = false)
 	private String name;
-	
+
 	@Column(unique = true, length = 256, nullable = false)
 	private String alias;
-	
+
 	@Column(length = 512, nullable = false, name = "short_description")
 	private String shortDescription;
-	
+
 	@Column(length = 4096, nullable = false, name = "full_description")
 	private String fullDescription;
 
 	@Column(name = "created_time")
 	private Date createdTime;
-	
+
 	@Column(name = "updated_time")
 	private Date updatedTime;
 
 	private boolean enabled;
-	
+
 	@Column(name = "in_stock")
 	private boolean inStock;
 
 	private float cost;
 
 	private float price;
-	
+
 	@Column(name = "discount_percent")
 	private float discountPercent;
 
@@ -52,6 +58,9 @@ public class Product {
 	private float width;
 	private float height;
 	private float weight;
+
+	@Column(nullable = false, length = 64)
+	private String mainImage;
 
 	@ManyToOne
 	@JoinColumn(name = "brand_id")
@@ -61,9 +70,11 @@ public class Product {
 	@JoinColumn(name = "category_id")
 	private Category category;
 
-	
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	private Set<Product_Image> images = new HashSet<>();
+
 	public Integer getId() {
-	
+
 		return id;
 	}
 
@@ -126,8 +137,6 @@ public class Product {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-
-
 
 	public boolean isInStock() {
 		return inStock;
@@ -193,6 +202,14 @@ public class Product {
 		this.weight = weight;
 	}
 
+	public String getMainImage() {
+		return mainImage;
+	}
+
+	public void setMainImage(String mainImage) {
+		this.mainImage = mainImage;
+	}
+
 	public Brand getBrand() {
 		return brand;
 	}
@@ -209,4 +226,21 @@ public class Product {
 		this.category = catgory;
 	}
 
+	public Set<Product_Image> getImages() {
+		return images;
+	}
+
+	public void setImages(Set<Product_Image> images) {
+		this.images = images;
+	}
+
+	public void addExtraImage(String imageName) {
+		this.images.add(new Product_Image(imageName, this));
+	}
+	
+	@Transient
+	public String getMainImagePath() {
+		if(id == null || mainImage == null) return "/images/image-thumbnail.png";
+		return "product-images" + "/" + this.id + "/" + this.mainImage;
+	}
 }

@@ -112,7 +112,7 @@ public class CategoryController {
 	}
 
 	@PostMapping("/categories/save")
-	public String saveCategory(Category category, @RequestParam("fileimage") MultipartFile multipartFile,
+	public String saveCategory(Category category, @RequestParam("fileImage") MultipartFile multipartFile,
 			RedirectAttributes redirectAttributes, Model model) throws IOException {
 
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());

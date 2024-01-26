@@ -51,7 +51,9 @@
 					   <div th:replace = "products/product_description :: content"></div>
 					</div>
 					
-					<div class="tab-pane" id="images" role="tabpanel">Images</div>
+					<div class="tab-pane" id="images" role="tabpanel">
+					    <div th:replace = "products/product_image :: content"></div>
+					</div>
 					
 					<div class="tab-pane" id="details" role="tabpanel">Details</div>
 					
@@ -81,58 +83,15 @@
 	<script type="text/javascript">
 		moduleURL = "[[@{/products}]]";
 		brandModuleURL = "[[@{/brands}]]";
+		defaultImageSrc = "[[@{/images/image-thumbnail.png}]]"
+		MAX_FILE_SIZE = 1 * 1024 * 1024; //5 MB
 		
-		$("#shortDescription").richText();
-		$("#fullDescription").richText()
-		
-		dropdownBrands = $("#brand");
-		dropdownCategory = $("#category")
-		
-		$(document).ready(function(){
-			dropdownBrands.change(function(){
-				dropdownCategory.empty();
-				getCategories();
-			});
-			getCategories();
-		});
-		
-		function getCategories(){
-			brandId = dropdownBrands.val();
-			url = brandModuleURL + "/" + brandId + "/categories";
-			
-			$.get(url , function(responseJSON){
-			   $.each(responseJSON, function(index , category){
-				   $("<option>").val(category.id).text(category.name).appendTo(dropdownCategory);
-			   });	
-			});
-		}
-		
-		   function checkUnique(form){
-		    	url = "[[@{/products/check_unique}]]";
-		    	productId = $("#id").val();
-		    	productName = $("#name").val();
-				csrfValue = $("input[name = '_csrf']").val();
-				
-				params = {id: productId, name: productName,  _csrf: csrfValue };
-				
-				$.post(url,params,function(response){
-					if(response =='OK' ){
-						form.submit();
-					} else if(response == 'Duplicate'){
-						showWarningDialog("There is another product exisits with the name: "+ productName);
-					} else {
-						showErrorDialog("Unknown response from server")
-					}
-					
-				}).fail(function(){
-					showErrorDialog("Could not connect to the server");
-
-				});
-				return false;
-		    }
 	</script>
+		<script th:src="@{/js/common_forms.js}"></script>
+	<script th:src="@{/js/pruduct_forms.js}"></script>
 	<script th:src="@{/js/common.js}"></script>
-	<script th:src="@{/js/common_forms.js}"></script>
+	
+
 </body>
 
 </html>

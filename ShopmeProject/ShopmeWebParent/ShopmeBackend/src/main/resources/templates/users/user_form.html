@@ -75,7 +75,7 @@
 					<label for="password" class="col-sm-4 col-form-label mt-4">Photos:</label>
 					<div>
 						<input type="hidden" th:field="*{photos}"> <input
-							class="m-2" id="fileimage" name="image" type="file"
+							class="m-2" id="fileImage" name="image" type="file"
 							accept="image/png, image/jpeg"> <img class="img-fluid"
 							style="width: 100px; height: auto;" id="thumbnail"
 							th:src="@{${user.photoImagePath}}">
@@ -100,7 +100,7 @@
 	</div>
 	<script type="text/javascript">
 		moduleURL = "[[@{/users}]]";
-
+		MAX_FILE_SIZE = 1 * 1024 * 1024; //1 MB
 		function checkUniqueUser(form) {
 			url = "[[@{/users/email_unique}]]";
 			csrfValue = $("input[name = '_csrf']").val();

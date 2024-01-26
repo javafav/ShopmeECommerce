@@ -51,7 +51,7 @@
 					<label class="col-sm-4 col-form-label mt-4">Image:</label>
 					<div>
 						<input type="hidden" th:field="*{image}"> <input
-							class="m-2" id="fileimage" name="fileimage" type="file"
+							class="m-2" id="fileImage" name="fileImage" type="file"
 							accept="image/png, image/jpeg" required> 
 							<div  class="mt-2">
 							
@@ -89,7 +89,8 @@
 	</div>
 	<script type="text/javascript">
 		moduleURL = "[[@{/categories}]]";
-    function checkUnique(form){
+        MAX_FILE_SIZE = 2 * 1024 * 1024; //2 MB
+		function checkUnique(form){
     	url = "[[@{/categories/check_unique}]]";
     	catId = $("#id").val();
     	catName = $("#name").val();
