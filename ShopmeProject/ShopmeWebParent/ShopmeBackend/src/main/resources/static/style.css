@@ -31,6 +31,11 @@
 	.less-detail-field{
 	width: 45%;
 	}
+.product-images {
+	max-width: 200px;
+	max-height: 200px;
+}
+	
 }
 
 @media screen and (min-width:768px) and (max-width:1024px) {
@@ -75,7 +80,10 @@ button:hover .caption {
     /* Additional styling as needed */
 }
 
-
+.product-images {
+	max-width: 500px;
+	max-height: 500px;
+}
 
 .profile-pic {
 	

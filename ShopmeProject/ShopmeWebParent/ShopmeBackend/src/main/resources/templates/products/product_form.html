@@ -55,7 +55,13 @@
 					    <div th:replace = "products/product_image :: content"></div>
 					</div>
 					
-					<div class="tab-pane" id="details" role="tabpanel">Details</div>
+					<div class="tab-pane p-3" id="details" role="tabpanel">
+					     <div th:replace = "products/product_details :: content"></div>
+					       <div>
+					          <input type="button" class="btn btn-success mt-2" value="Add More Details"
+					              onclick="addNextDetailSection();"> 
+					       </div>
+					</div>
 					
 					<div class="tab-pane" id="shipping" role="tabpanel">
 					   <div th:replace = "products/product_shipping :: content"></div>
@@ -84,11 +90,14 @@
 		moduleURL = "[[@{/products}]]";
 		brandModuleURL = "[[@{/brands}]]";
 		defaultImageSrc = "[[@{/images/image-thumbnail.png}]]"
-		MAX_FILE_SIZE = 1 * 1024 * 1024; //5 MB
+		checkUniqueProductURL = "[[@{/products/check_unique}]]";
+		MAX_FILE_SIZE = 1 * 1024 * 1024; //1 MB
 		
 	</script>
 		<script th:src="@{/js/common_forms.js}"></script>
-	<script th:src="@{/js/pruduct_forms.js}"></script>
+	<script th:src="@{/js/pruduct_form_overview.js}"></script>
+	<script th:src="@{/js/pruduct_form_images.js}"></script>
+	<script th:src="@{/js/pruduct_form_details.js}"></script>
 	<script th:src="@{/js/common.js}"></script>
 	
 

@@ -8,8 +8,8 @@
 				<label>Main Image:</label>
 				
 				<div>
-					<img th:src="@{${product.mainImagePath}}" class="img-fluid"  id="thumbnail"
-					     alt="Main image preview"/>
+					<img th:src="@{${product.mainImagePath}}" class="img-fluid product-images"  id="thumbnail"
+					     alt="Main image preview" style="max-width:500px;max-height: 500px"/>
 				</div>
 				
 				<div class="mt-2">
@@ -19,11 +19,12 @@
 
 			</div>
 		
-			<div class="col border m-2 p-2">
-				<label id = "extraImageHeader0">Extra Image # 1:</label>
+			<div class="col border m-2 p-2" id="divExtraImage0">
+				
+			<div id="extraImageHeader0"><label>Extra Image # 1:</label></div>
 				
 				<div>
-					<img th:src="@{/images/image-thumbnail.png}" class="img-fluid"  id="extraThumbnail0"
+					<img th:src="@{/images/image-thumbnail.png}" class="img-fluid product-images"  id="extraThumbnail0"
 					     alt="Extra image #1 preview "/>
 				</div>
 				

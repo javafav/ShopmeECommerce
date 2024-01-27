@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -20,6 +21,7 @@ import com.shopme.admin.product.ProductRepository;
 import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Category;
 import com.shopme.common.entity.Product;
+import com.shopme.common.entity.ProductDetail;
 
 @DataJpaTest(showSql = false)
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -87,5 +89,18 @@ public class ProductRepositoryTests {
 		repo.save(product);
 		
 				
+	}
+	
+	@Test
+	public void testAddDetails() {
+		
+		Product product = repo.findById(1).get();
+		
+		String name = "Samsung M52";
+		String value = "Best Phone of Samsung";
+		
+	product.addDetail(name, value);
+	repo.save(product);
+		
 	}
 }
