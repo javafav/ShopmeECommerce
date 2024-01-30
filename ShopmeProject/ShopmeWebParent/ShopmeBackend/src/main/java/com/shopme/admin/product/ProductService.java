@@ -9,7 +9,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shopme.admin.brand.BrandNotFoundException;
 import com.shopme.admin.user.UserNotFoundException;
+import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Product;
 
 @Service
@@ -81,5 +83,16 @@ public class ProductService {
 	}
 
 
+	public Product get(Integer id) throws ProductNotFoundException {
+		try {
+			
+			return repo.findById(id).get();
+
+		} catch (NoSuchElementException ex) {
+			throw new ProductNotFoundException("Could not find the product with given (ID " + id + ")");
+		}
+	}
+	
+	
 
 }

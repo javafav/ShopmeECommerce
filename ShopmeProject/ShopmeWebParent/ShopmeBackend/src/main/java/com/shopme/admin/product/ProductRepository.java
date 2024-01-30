@@ -14,7 +14,7 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
 
 	public Long countById(Integer id);
 	
-   
+
 	
 	public Product findByName(String name);
 }

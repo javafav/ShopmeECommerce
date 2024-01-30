@@ -38,7 +38,7 @@ public class FileUploadUtil {
 					try {
 						Files.delete(file);
 					}catch(IOException ex) {
-						LOGGER.error("Could not remove directory: "+ file);
+						LOGGER.error("Could not delete file: "+ file);
 					}
 				}
 			});

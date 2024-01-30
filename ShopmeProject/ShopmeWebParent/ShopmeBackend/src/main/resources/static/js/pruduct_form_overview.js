@@ -13,11 +13,20 @@ $("#fullDescription").richText();
 		dropdownCategory.empty();
 		getCategories();
 	});
-	getCategories();
+	getCategoriesUsedInForm();
 
 
 });
 
+function getCategoriesUsedInForm(){
+	categoryField = $("#categoryId");
+	editMode = false;
+	
+	if(categoryField.length){
+		editMode = true;
+	}
+	if(!editMode) getCategories();
+}
 
 
 function getCategories() {

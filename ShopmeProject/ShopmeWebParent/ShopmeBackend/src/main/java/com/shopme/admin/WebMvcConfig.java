@@ -43,33 +43,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		Path path = Paths.get(pathPattren);
 		String absloutePath = path.toFile().getAbsolutePath();
 		
-		String logicalPath = pathPattren.replace("..", "") + "/**";
+		String logicalPath = pathPattren.replace("../", "") + "/**";
 		
 		registry.addResourceHandler(logicalPath)
 		                      .addResourceLocations("file:/" + absloutePath + "/");
 
 		
 	}
-	
-	
 
-	public static void cleanDir(String dir) {
-		Path dirPath = Paths.get(dir);
-		try {
-			Files.list(dirPath).forEach(file -> {
-				if (Files.isDirectory(file)) {
-					try {
-						Files.delete(file);
-					} catch (IOException e) {
-						System.out.print("Could not delete the file" + file);
-					}
-
-				}
-			});
-		} catch (IOException e) {
-			System.out.print("Could not list the directory" + dir);
-
-		}
-	}
 
 }
