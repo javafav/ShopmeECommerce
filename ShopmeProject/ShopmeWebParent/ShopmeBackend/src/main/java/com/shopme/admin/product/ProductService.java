@@ -68,17 +68,21 @@ public class ProductService {
 
 		product.setEnabled(true);
 		product.setInStock(true);
-
+		
+		
+		if(product.getCreatedTime() == null) {
+			product.setCreatedTime(new Date());
+		} else {
+			product.setUpdatedTime(new Date());
+		}
+		
 		if (product.getAlias() == null || product.getAlias().isEmpty()) {
 			String defaultAlias = product.getName().replaceAll(" ", "-");
 			product.setAlias(defaultAlias);
 		} else {
 			product.setAlias(product.getAlias().replaceAll(" ", "-"));
 		}
-		if (product.getId() == null) {
-			product.setCreatedTime(new Date());
-		}
-
+	
 		return repo.save(product);
 	}
 

@@ -15,7 +15,7 @@
 		      <label class="m-3">Value:</label>
 		      <input type="text" maxlength="255"  class="form-control w-25"  name="detailValues"
 		             th:value="${detail.value}">
-		              <a name="linkRemoveDetail" class="btn fa-regular fa-circle-xmark fa-2x icon-dark" 
+		              <a name="linkRemoveDetail" class="btn fa-regular fa-circle-xmark fa-2x icon-green" 
                          title = "Remove this detail"></a>
 		    
 		
@@ -31,16 +31,16 @@
 		
 		
 		<div class="form-inline" th:id="'divDetail' + ${#lists.size(product.details)} ">
-		    <input type="hidden" name=detailIDs value="0">
+		    
 		    
 		      <label class="m-3">Name:</label>
 		      <input type="text" maxlength="255"  class="form-control w-25" name="detailNames">
 		    
-		     
+		    
 		      <label class="m-3">Value:</label>
 		      <input type="text" maxlength="255"  class="form-control w-25"  name="detailValues">
 		    
-		
+		 <input type="hidden" name=detailIDs value="0">
 		
 			
 	</div> 

@@ -120,17 +120,16 @@ public class ProductController {
 
 	private void setDetailNameAndValues(String[] detailIDs, String[] detailNames, String[] detailValues, Product product) {
 
-		if (detailNames == null || detailNames.length == 0)
-			return;
+		if (detailNames == null || detailNames.length == 0) return;
+			
 
 		for (int count = 0; count < detailNames.length; count++) {
 			String name = detailNames[count];
 			String value = detailValues[count];
             Integer id = Integer.parseInt(detailIDs[count]);
-            if(id == 0) {
+            if(id != 0) {
             	product.addDetail(id, name, value);
-            }
-			if (!name.isEmpty() && !value.isEmpty()) {
+            } else if (!name.isEmpty() && !value.isEmpty()) {
 				product.addDetail(name, value);
 			}
 		}
@@ -243,6 +242,24 @@ public class ProductController {
 			model.addAttribute("pageTitle", " Edit Product with (ID " + id + ")");
 
 			return "products/product_form";
+
+		} catch (ProductNotFoundException e) {
+
+			redirectAttributes.addFlashAttribute("message", e.getMessage());
+			return "redirect:/products";
+
+		}
+
+	}
+	
+	@GetMapping("/products/details/{id}")
+	public String detailsProduct(@PathVariable(name = "id") Integer id, Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+			Product product = productService.get(id);
+
+			model.addAttribute("product", product);
+		    return "products/product_detail_modal";
 
 		} catch (ProductNotFoundException e) {
 

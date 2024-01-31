@@ -40,7 +40,7 @@ function addNextDetailSection(){
 	
 	
 		htmlLinkDetailRemove = `
-  <a class="btn fa-regular fa-circle-xmark fa-2x icon-dark" 
+  <a class="btn fa-regular fa-circle-xmark fa-2x icon-silver" 
          href="javascript:removeDetailSectionById('${previousDetailId}')" 
      title = "Remove this detail"></a>
 `;

@@ -43,7 +43,13 @@
 							<td>
 							  <img  th:src="@{${product.mainImagePath}}" style="width: 120px" class="img-fluid"/>
 							</td>
-							<td>[[${product.name}]]</td>
+							<td>
+								<a th:href="@{'/products/details/' + ${product.id}}"
+								   class="link-detail"
+								   title="View details of this product">[[${product.name}]]</a>
+							
+							
+							</td>
 							<td>[[${product.brand.name}]]</td>
 						   <td>[[${product.category.name}]]</td>
 								<td>
@@ -52,7 +58,9 @@
 							</td>
 							
 							<td>
-								<a class="fa fa-file-alt fa-2x icon-green" href=""></a>
+								<a class="fa fa-file-alt fa-2x icon-green link-detail" 
+								   th:href="@{'/products/details/' + ${product.id}}"
+								   title="View details of this product"></a>
 								&nbsp;
 								<div
 									th:replace="fragments :: edit('products','/products/edit/' + ${product.id})"></div>
@@ -78,7 +86,18 @@
 
 
 
+  <div  class="modal fade" id="detailDialog">
 
+			<div class="modal-dialog modal-xl">
+
+				<div class="modal-content">
+					
+				</div>
+				
+			</div>
+			
+		
+</div>
 
 
 
@@ -96,6 +115,15 @@
 
 				});
 				$("input[name='keyword']").attr("placeholder", "Products")
+			
+			$(".link-detail").on("click", function(e){
+				linkDetailURL = $(this).attr("href");
+				e.preventDefault();
+				$('#detailDialog').modal('show').find(".modal-content").load(linkDetailURL);
+			});
+			
+			
+			
 			});
 			
 			
