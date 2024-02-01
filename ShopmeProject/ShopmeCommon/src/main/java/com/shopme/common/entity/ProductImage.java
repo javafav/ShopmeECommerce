@@ -23,7 +23,7 @@ public class ProductImage {
 	private String name;
 
 	@ManyToOne
-	@JoinColumn(name = "proudct_id")
+	@JoinColumn(name = "product_id")
 	private Product product;
 
 	public ProductImage() {

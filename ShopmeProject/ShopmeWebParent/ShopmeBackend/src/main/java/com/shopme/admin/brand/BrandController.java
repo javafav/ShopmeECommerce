@@ -18,8 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.admin.category.CategoryService;
-
-
+import com.shopme.admin.product.ProductService;
 import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Category;
 
@@ -47,8 +46,10 @@ public class BrandController {
 		Page<Brand> pageBrand = brandService.listByPage(pageNum, sortDir, sortField, keyword);
      
 		List<Brand> listBrands = pageBrand.getContent();
+
+		
 		long startCount = (pageNum - 1) * BrandService.BRANDS_PER_PAGE + 1;
-		long endCount = startCount +  BrandService.BRANDS_PER_PAGE;
+		long endCount = startCount +  BrandService.BRANDS_PER_PAGE - 1;
 		if (endCount > pageBrand.getTotalElements()) {
 			endCount = pageBrand.getTotalElements();
 		}

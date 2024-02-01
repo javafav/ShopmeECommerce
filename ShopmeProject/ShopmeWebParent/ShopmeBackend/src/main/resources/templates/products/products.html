@@ -46,7 +46,7 @@
 							<td>
 								<a th:href="@{'/products/details/' + ${product.id}}"
 								   class="link-detail"
-								   title="View details of this product">[[${product.name}]]</a>
+								   th:title="${product.name}">[[${product.shortName}]]</a>
 							
 							
 							</td>
@@ -79,8 +79,8 @@
 
 
 
-		<div th:replace="fragments :: pagination('products', '/products')"></div>
-
+		<div th:replace="product_pagination :: pagination('products', '/products')"></div>
+   
 		<div th:replace="modal_fragments :: confirm_modal"></div>
 		<div th:replace="fragments :: footer"></div>
 
@@ -104,7 +104,7 @@
 		<script th:src="@{/js/common.js}"></script>
 		<script th:src="@{/js/common_lists.js}"></script>
 		<script type="text/javascript">
-			moduleURL = "[[@{/users}]]"
+			moduleURL = "[[@{/products}]]"
 
 			$(document).ready(function() {
 

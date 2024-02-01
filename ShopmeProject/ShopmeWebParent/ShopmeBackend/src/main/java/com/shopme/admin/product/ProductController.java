@@ -12,6 +12,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -38,10 +39,50 @@ public class ProductController {
 
 	@GetMapping("/products")
 	public String listAll(Model model) {
-		List<Product> listProducts = productService.listAll();
+		return listByPage(1, "asc", "name", null, model);
+	}
+	
+	@GetMapping("/products/page/{pageNum}")
+	public String listByPage(@PathVariable(name = "pageNum") int pageNum,
+			 @RequestParam(name = "sortDir") String sortDir,
+			 @RequestParam(name = "sortField") String sortField,
+			 @RequestParam(name = "keyword") String keyword,
+
+			Model model) {
+
+		Page<Product> pageProduct = productService.listByPage(pageNum, sortDir, sortField, keyword);
+     
+		List<Product> listProducts = pageProduct.getContent();
+		long startCount =  (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE   + 1;
+		long endCount = startCount +  ProductService.PRODUCTS_PER_PAGE -1;
+		if (endCount > pageProduct.getTotalElements()) {
+			endCount = pageProduct.getTotalElements();
+		}
+  
+		Integer dashPage = pageProduct.getTotalPages();
+		dashPage /= productService.PRODUCTS_PER_PAGE;
+		String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
+
+		model.addAttribute("currentPage", pageNum);
+		model.addAttribute("totalPages", pageProduct.getTotalPages());
+		model.addAttribute("dashPage", dashPage);
 		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("startCount", startCount);
+		model.addAttribute("endCount", endCount);
+		model.addAttribute("totalItems", pageProduct.getTotalElements());
+
+		model.addAttribute("sortField", "name");
+		model.addAttribute("sortDir", sortDir);
+		model.addAttribute("reverseSortDir", reverseSortDir);
+		model.addAttribute("keyword", keyword);
+
 		return "products/products";
 	}
+
+	
+	
+	
+	
 
 	@GetMapping("/products/new")
 	public String newProduct(Model model) {
