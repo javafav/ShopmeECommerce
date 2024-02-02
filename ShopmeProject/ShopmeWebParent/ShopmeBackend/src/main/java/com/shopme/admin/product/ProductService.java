@@ -29,7 +29,7 @@ public class ProductService {
 		return (List<Product>) repo.findAll();
 	}
 	
-    public Page<Product> listByPage(int pageNum,String sortDir, String sortField,String keyword) {
+    public Page<Product> listByPage(int pageNum,String sortDir, String sortField,String keyword,Integer categoryId) {
 		
 		Sort sort = Sort.by(sortField);
 		
@@ -40,13 +40,26 @@ public class ProductService {
 		
 		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE, sort);
 		
-		if(keyword == null ) {
-			 
-			return repo.findAll(pageable);
+		if(keyword != null && !keyword.isEmpty() ) {
+		
+			if(categoryId != null && categoryId > 0 ) {
+				String allParentIds = "-" + String.valueOf(categoryId) + "-";
+				return repo.searchInCategories(categoryId, allParentIds, keyword, pageable);
+			}
+			
+			
+			return repo.findAll( keyword ,pageable );
+			
+		}
+		if(categoryId != null && categoryId > 0 ) {
+			String allParentIds = "-" + String.valueOf(categoryId) + "-";
+			return repo.findAllInCategories(categoryId, allParentIds, pageable);
 		}
 	
 		
-		return repo.findAll( keyword ,pageable );
+		return repo.findAll(pageable);
+		
+		
 	
 		
 	

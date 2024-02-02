@@ -52,7 +52,7 @@
 					<div>
 						<input type="hidden" th:field="*{image}"> <input
 							class="m-2" id="fileImage" name="fileImage" type="file"
-							accept="image/png, image/jpeg" required> 
+							accept="image/png, image/jpeg" th:required="${id == null}"> 
 							<div  class="mt-2">
 							
 							<img class="img-fluid"

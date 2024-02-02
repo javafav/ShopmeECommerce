@@ -20,10 +20,9 @@
 </head>
 <body>
 
-	<th th:fragment="column_link(moduleURL,fieldName, columnLabel, tag)"
-		th:remove="${tag}">
+	<th th:fragment="column_link(moduleURL,fieldName, columnLabel, tag)" th:remove="${tag}">
 		<a class="text-white"
-		th:href="@{${moduleURL} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + '&keyword=' + ${keyword != null ? keyword : ''}}"
+		th:href="@{${moduleURL} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + '&keyword=' + ${keyword != null ? keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : '' }}"
 		>
 			[[${columnLabel}]] 
 			</a> <span th:if="${sortField == fieldName}"
@@ -34,7 +33,7 @@
 
 	<a class="page-link"
 		th:fragment="page_link( moduleURL, pageNum,columnLabel)"
-		th:href="@{${moduleURL}+ '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir='+ ${sortDir} + '&keyword=' + ${keyword != null ? keyword : ''}}">[[${columnLabel}]]</a>
+		th:href="@{${moduleURL}+ '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir='+ ${sortDir} + '&keyword=' + ${keyword != null ? keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : '' }}">[[${columnLabel}]]</a>
 
 
 

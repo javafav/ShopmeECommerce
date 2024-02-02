@@ -25,4 +25,18 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
 	public Page<Product> findAll(String keyword, Pageable pageable);
 	
 	public Product findByName(String name);
+	
+	@Query("SELECT p FROM Product p WHERE p.category.id = ?1"
+			+ " OR p.category.allPaentIds LIKE %?2%")
+	public Page<Product> findAllInCategories(Integer categoryId, String allParentIds, Pageable pageable);
+	
+	@Query("SELECT p FROM Product p WHERE (p.category.id = ?1"
+			+ " OR p.category.allPaentIds LIKE %?2%) AND"
+			+ " ( p.name LIKE %?3%"
+			+ " OR p.shortDescription LIKE %?3%"
+			+ " OR p.fullDescription LIKE %?3%"
+			+ " OR p.brand.name LIKE %?3%"
+			+ " OR p.category.name LIKE %?3% )")
+	public Page<Product> searchInCategories(Integer categoryId, String allParentIds, String keyword, Pageable pageable);
+	
 }
