@@ -7,7 +7,8 @@
 					<label class="col-sm-2 col-form-label">Product Name:</label>
 					<div class="col-sm-10">
 						<input th:field="*{name}" type="text" class="form-control"
-							required minlength="3" maxlegth="256">
+							   th:readonly="${#authorization.expression('hasAuthority(''Salesperson'') ' )}"
+							  required minlength="3" maxlegth="256">
 					</div>
 				</div>
 				
@@ -15,6 +16,7 @@
 					<label class="col-sm-2 col-form-label">Alias:</label>
 					<div class="col-sm-10">
 						<input th:field="*{alias}" type="text" class="form-control"
+							   th:readonly="${#authorization.expression('hasAuthority(''Salesperson'') ' )}"
 							 minlength="3" maxlegth="256" placeholder="Default is product name ( spaces are  replaced by dashes ) ">
 					</div>
 				</div>
@@ -23,6 +25,8 @@
 			<div class="form-group row">
 					<label class="col-sm-2 col-form-label">Brnad:</label>
 					<div class="col-sm-10">
+				<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+						
 						<select class="form-control"  th:field="*{brand}" required >
                               <th:block th:each="brand : ${listBrands}">
 								  
@@ -30,7 +34,16 @@
 
 							    </th:block>
 
+						
 						</select>
+					</th:block>
+					  
+					  <th:block sec:authorize="hasAuthority('Salesperson')">
+					  <input th:value="${product.brand.name}" type="text"
+							class="form-control" readonly>
+					  </th:block>
+					
+					
 					
 					</div>
 				</div>
@@ -39,6 +52,7 @@
 					<label class="col-sm-2 col-form-label">Category:</label>
 					
 					<div class="col-sm-10">
+			<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 				
 					<th:block th:if="${product.category != null}">
 					<select class="form-control"  th:field="*{category}" >
@@ -49,28 +63,41 @@
 					</th:block>
 				
 				
-					<th:block th:if="${product.category == null}">
+						<th:block th:if="${product.category == null}">
 					
-					<select class="form-control"  th:field="*{category}" >
+							<select class="form-control"  th:field="*{category}"  required>
                               
-					</select>
-					</th:block>
-					
-					</div>
+							</select>
+						</th:block>
+			</th:block>
+
+				<th:block sec:authorize="hasAuthority('Salesperson')">
+					<input th:value="${product.category.name}" type="text"
+						class="form-control" readonly>
+
+				</th:block>
+
+
+			</div>
+				
 				
 				</div>
 				
 		<div class="form-group row">
 					<label  class="col-sm-2 col-form-label mb-2">In Stock:</label>
 					<div class="col-sm-10">
-						<input th:field="*{inStock}" type="checkbox">
+						<input th:field="*{inStock}" type="checkbox"
+						  	 th:disabled="${#authorization.expression('hasAuthority(''Salesperson'') ' )}"
+						  >
 					</div>
 				</div>		
 	
 		<div class="form-group row">
 					<label  class="col-sm-2 col-form-label mb-2">Enabled:</label>
 					<div class="col-sm-10">
-						<input th:field="*{enabled}" type="checkbox">
+						<input th:field="*{enabled}" type="checkbox"
+						       th:disabled="${#authorization.expression('hasAuthority(''Salesperson'') ' )}"
+						     >
 					</div>
 				</div>	
 				

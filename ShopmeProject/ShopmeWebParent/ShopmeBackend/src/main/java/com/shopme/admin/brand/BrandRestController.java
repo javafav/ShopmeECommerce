@@ -20,7 +20,7 @@ public class BrandRestController {
 	@Autowired private BrandService service;
 	
 	@PostMapping("/brands/check_unique")
-	public String checkUnique(@RequestParam(name = "id") Integer id,@RequestParam(name = "name") String name) {
+	public String checkUnique(@RequestParam(name = "id", required = false) Integer id,@RequestParam(name = "name") String name) {
 		return service.checkUnique(id, name);
 	}
 	

@@ -44,15 +44,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 
 				.antMatchers("/users/**").hasAuthority("Admin")
-				.antMatchers("/categories/**","/brands//**").hasAnyAuthority("Admin", "Editor")
+				.antMatchers("/categories/**","/brands/**").hasAnyAuthority("Admin", "Editor")
 				
+				.antMatchers("/products/delete/**","/products/new").hasAnyAuthority("Admin", "Editor")
+				.antMatchers("/products/edit/**","/products/check_unique","/products/save").hasAnyAuthority("Admin", "Editor", "Salesperson")
+				.antMatchers("/products/","/products/detail/**").hasAnyAuthority("Admin", "Editor", "Salesperson", "Shipper")
 				
 				.anyRequest().authenticated().
 
 				and().formLogin()
 				.loginPage("/login")
-				.usernameParameter("email").permitAll().defaultSuccessUrl("/users").
-				and().logout().permitAll()
+				.usernameParameter("email").permitAll()
+				.and().logout().permitAll()
 				.and().rememberMe().key("ABCDEDGHiJKLMNOOPQRSTUVWXYZ4541").tokenValiditySeconds(7 * 24 * 60 * 60);
 	}
 

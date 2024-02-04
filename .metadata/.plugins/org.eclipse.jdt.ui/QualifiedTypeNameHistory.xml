@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest"/>
-    <fullyQualifiedTypeName name="com.shopme.admin.category.CategoryRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
-    <fullyQualifiedTypeName name="javax.persistence.Transient"/>
     <fullyQualifiedTypeName name="com.shopme.admin.category.CategoryNotFoundException"/>
     <fullyQualifiedTypeName name="com.lowagie.text.PageSize"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
@@ -60,4 +56,8 @@
     <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Pageable"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.security.ShopmeUserDetails"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.context.SecurityContextHolder"/>
+    <fullyQualifiedTypeName name="org.springframework.security.authentication.AnonymousAuthenticationToken"/>
 </qualifiedTypeNameHistroy>

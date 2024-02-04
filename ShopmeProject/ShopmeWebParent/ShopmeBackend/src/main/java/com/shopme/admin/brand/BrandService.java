@@ -88,8 +88,6 @@ public class BrandService {
 			return "Duplicate";
 		} 
 		
-		
-		
 		return "OK";
 	}
 }

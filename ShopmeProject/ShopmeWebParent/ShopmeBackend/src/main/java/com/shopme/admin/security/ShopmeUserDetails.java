@@ -90,4 +90,9 @@ public class ShopmeUserDetails implements UserDetails {
 	public void setPhotos(String photoPath) {
 		this.user.setPhotos(photoPath);
 	}
+	
+	public boolean hasRole(String roleName) {
+	    return user.hasRole(roleName);
+	}
+	
 }
