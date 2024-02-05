@@ -21,7 +21,7 @@
 		<form th:action="@{/products/page/1}" class="form-inline" id="searchForm">
 			<input type="hidden" name="sortField" th:value="${sortField}">
 			<input type="hidden" name="sortDir" th:value="${sortDir}">
-			Category:&nbsp;
+			<span class="text-left">Category:</span>&nbsp;
 			<select class="form-control" name="categoryId" id="dropdownCategory">
 					<option value="0">All Categories</option>
 					 
@@ -34,14 +34,14 @@
 
 			&nbsp;Filter: 
 			<input type="search" name="keyword" 
-				th:value="${keyword}" class="form-control less-detail-field"> &nbsp; &nbsp;
-			<button type="submit" class="btn btn-primary less-details-margin">
+				th:value="${keyword}" class="form-control "> &nbsp; &nbsp;
+			<button type="submit" class="btn btn-primary proudct-less-details">
 
 
 				<i class="fa fa-search"></i><span class="caption">&nbsp; Search</span>
 			</button>
 			&nbsp; &nbsp;
-			<button type="button" class="btn btn-secondary less-details-margin"
+			<button type="button" class="btn btn-secondary proudct-less-details"
 				onclick="clearFunction();">
 				<i class="fa fa-eraser"></i><span class="caption">&nbsp; Clear</span>
 			</button>
@@ -54,7 +54,7 @@
 		
 		
 		
-	</div>
+	
 		
 
 
@@ -66,13 +66,19 @@
 
 					<tr>
 
-						<th >ID</th>
+						<th class="hideable-column" >ID</th>
 						<th>Main Image</th>
 						
 						<th	th:replace="fragments :: column_link('/products', 'name', 'Product Name', 'none')" />
 						
-						<th>Brand</th>
-                       <th>Category</th>
+						<th class="hideable-column">
+						<th	th:replace="fragments :: column_link('/products', 'brand', 'Brand', 'tag')" />
+						</th>
+                      
+                    
+                       <th class="hideable-column"> <th	th:replace="fragments :: column_link('/products', 'category', 'Category', 'tag')" />  </th>
+                       
+                     
                        
                       <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
                          <th>Enabled</th>
@@ -84,20 +90,20 @@
 				<tbody class="p-5">
 					<th:block th:each="product : ${listProducts}">
 						<tr>
-							<td>[[${product.id}]]</td>
+							<td class="hideable-column">[[${product.id}]]</td>
 							<td>
 							  <img  th:src="@{${product.mainImagePath}}" style="width: 120px" class="img-fluid"/>
 							</td>
-							<td>
+							<td >
 								<a th:href="@{'/products/details/' + ${product.id}}"
 								   class="link-detail"
 								   th:title="${product.name}">[[${product.shortName}]]</a>
 							
 							
 							</td>
-							<td>[[${product.brand.name}]]</td>
-						   <td>[[${product.category.name}]]</td>
-							     <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+							<td class="hideable-column">[[${product.brand.name}]]</td>
+						   <td class="hideable-column">[[${product.category.name}]]</td>
+							    <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 								<td>
 								
 								<div th:replace="fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})"></div>
@@ -127,8 +133,39 @@
 				</tbody>
 			</table>
 		</div>
-</div>
 
+
+	<div class="less-details">
+		<div th:each="product : ${listProducts}" class="row m-1">
+			<div class="col-4">
+				<img th:src="@{${product.mainImagePath}}" style="width: 80px" class="img-fluid" />			
+			</div>
+			<div class="col-8">
+				<div>
+					<a class="link-detail" th:href="@{'/products/details/' + ${product.id}}">[[${product.shortName}]]</a>				
+				</div>
+				<div class="mt-2">
+					<a class="fas fa-file-alt fa-2x icon-green link-detail"
+						th:href="@{'/products/detail/' + ${product.id}}"
+						></a>
+						
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor', 'Salesperson')">
+					&nbsp; 	
+					<div th:replace="fragments :: edit('product', '/products/edit/' + ${product.id})" />
+					</th:block>
+					
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+					&nbsp; 
+					<div th:replace="fragments :: delete('products','/products/delete/' + ${product.id},${product.id},true)" />
+					
+			
+					</th:block>		
+				</div>
+			</div>
+			<div>&nbsp;</div>
+		</div>	
+	</div>
+</div>
 
 
 		<div th:replace="product_pagination :: pagination('products', '/products')"></div>
@@ -150,6 +187,9 @@
 			
 		
 </div>
+
+
+
 
 
 

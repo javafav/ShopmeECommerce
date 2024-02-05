@@ -2,23 +2,46 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta http-equiv="Content_Type" content="text/html; charset=UTF-8">
-<meta name="viewport"
-	content="width=device-width, inital-scale=1.0, minimum-scale=1.0">
-<title>eShopme Website</title>
+
+<head th:replace="fragments :: page_head('Shopme', tag)" />
 
 
 </head>
 <body>
 
+<div class="container-fluid">
+
+<div th:replace="navigation :: header_menu"></div>
+
+
+
+
 	<div>
 		<h1>Welcome  Shopme Website-</h1>
-		<h3>Happy Shopping</h3>
+		
 	</div>
-	<div>
-		<p>Shopme Website - Copyright &copy; Shopme</p>
+	<div class="row" >
+	  <div class="col" th:each="cat : ${listCategories}">
+	 	 <div>	<img th:src="@{${cat.imagePath}}" style="width:80px" /></div>
+	  	 <div>
+	  	 <a th:href="@{ '/c/' + ${cat.alias}}">
+	  	 [[${cat.name}]]
+	  	 </a>
+	  	 </div>
+	
+	
+	
+	
+	  </div>
+		
+	
 	</div>
+	
 
+
+<div th:replace="navigation :: footer_menu"></div>
+
+</div>
 
 </body>
 </html>

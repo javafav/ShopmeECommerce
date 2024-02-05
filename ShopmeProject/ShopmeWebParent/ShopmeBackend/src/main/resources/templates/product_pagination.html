@@ -44,7 +44,7 @@
 							th:each="i : ${#numbers.sequence(1,5)}"><a
 							th:replace="fragments :: page_link(${moduleURL},${i},${i})"></a>
 						</li>
-						<a th:if="{currentPage <= 5}" th:replace="fragments :: page_link(${moduleURL},${ currentPage <= 5 ? 6 : 16 } ,'...')"></a>
+						<a th:if="{currentPage <= 5}" th:replace="fragments :: page_link(${moduleURL},${dashPage} ,'...')"></a>
                     
 						<li
 							th:class="${currentPage == i ? 'page-item active' : 'page-item'}"

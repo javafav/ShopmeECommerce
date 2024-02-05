@@ -23,17 +23,55 @@
 
 			<div class="collapse navbar-collapse" id="topNavbar">
 				<ul class="navbar-nav">
-					<li class="nav-item" sec:authorize="hasAuthority('Admin')"><a
-						class="nav-link" th:href="@{/users}">Users</a></li>
+		
+     			
+				<th:block  sec:authorize="hasAuthority('Admin')">
+     					
+     					<li class="nav-item dropdown">
+     				
+							<a	class="nav-link dropdown-toggle" data-toggle="dropdown"
+								th:href="@{/users}" >Users</a>
+							
+							<div class="dropdown-menu">
 
-					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-
-
-						<li class="nav-item"><a class="nav-link"
-							th:href="@{/categories}">Categories</a></li>
-
-						<li class="nav-item"><a class="nav-link" th:href="@{/brands}">Brands</a>
+							<a class="dropdown-item dropdown-menu-hover"  th:href="@{/users/new}">Create New User</a>
+							<a class="dropdown-item dropdown-menu-hover"  th:href="@{/users}">View All</a>
+							
+							</div>
 						</li>
+					
+					</th:block>
+					
+					
+				<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+
+
+					<li class="nav-item dropdown">
+     				
+							<a	class="nav-link dropdown-toggle" data-toggle="dropdown"
+								th:href="@{/categories}" >Categories</a>
+							
+							<div class="dropdown-menu">
+
+							<a class="dropdown-item dropdown-menu-hover"  th:href="@{/categories/new}">Create New Category</a>
+							<a class="dropdown-item dropdown-menu-hover"  th:href="@{/categories}">View All</a>
+							
+							</div>
+						</li>
+						
+					<li class="nav-item dropdown">
+     				
+							<a	class="nav-link dropdown-toggle" data-toggle="dropdown"
+								th:href="@{/brands}" >Brands</a>
+							
+							<div class="dropdown-menu">
+
+							<a class="dropdown-item dropdown-menu-hover"  th:href="@{/brands/new}">Create New Brand</a>
+							<a class="dropdown-item dropdown-menu-hover"  th:href="@{/brands}">View All</a>
+							
+							</div>
+						</li>
+				
 
 						</th:block>
 
@@ -41,8 +79,20 @@
 								sec:authorize="hasAnyAuthority('Admin', 'Salesperson', 'Editor', 'Shipper')">
 
 
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/products}">Products</a></li>
+									
+						<li class="nav-item dropdown">
+     				
+							<a	class="nav-link dropdown-toggle" data-toggle="dropdown"
+								th:href="@{/products}" >Products</a>
+							
+							<div class="dropdown-menu">
+
+							<a class="dropdown-item dropdown-menu-hover"  sec:authorize="hasAnyAuthority('Admin', 'Editor')" th:href="@{/products/new}">Create New Product</a>
+							<a class="dropdown-item dropdown-menu-hover"  th:href="@{/products}">View All</a>
+							
+							</div>
+						</li>
+									
 
 							</th:block>
                                                                                
@@ -95,7 +145,7 @@
 								th:href="@{/account}" sec:authentication="principal.fullName"></a>
 								<div class="dropdown-menu">
 
-									<a class="dropdown-item logoutLink" id="logoutLink" href="">Logout</a>
+									<a class="dropdown-item dropdown-menu-hover " id="logoutLink" href="">Logout</a>
 								</div></li>
 				</ul>
 

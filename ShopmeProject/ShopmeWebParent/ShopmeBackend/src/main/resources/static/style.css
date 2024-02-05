@@ -31,6 +31,12 @@
 	.less-detail-field{
 	width: 45%;
 	}
+	.proudct-less-details{
+		 margin-top:10px;
+		  margin-bottom:10px;
+		
+	}
+	
 .product-images {
 	max-width: 200px;
 	max-height: 200px;
@@ -93,7 +99,7 @@ button:hover .caption {
     object-fit: cover;
 }
 
-.logoutLink:hover {
+.dropdown-menu-hover:hover {
 	background: #343a40;
 	color: ivory;
 }

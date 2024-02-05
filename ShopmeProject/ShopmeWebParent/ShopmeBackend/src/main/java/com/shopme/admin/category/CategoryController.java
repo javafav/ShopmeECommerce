@@ -118,7 +118,7 @@ public class CategoryController {
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		category.setImage(fileName);
 		Category savedCategory = service.save(category);
-		String uploadDir = "../category-images/" + savedCategory.getId();
+		String uploadDir = "../categories-images/" + savedCategory.getId();
 		FileUploadUtil.cleanDir(uploadDir);
 		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		redirectAttributes.addFlashAttribute("message", "The category has been saved successfully!");
