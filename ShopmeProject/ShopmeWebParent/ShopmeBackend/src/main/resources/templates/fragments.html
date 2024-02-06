@@ -31,8 +31,8 @@
 
 	</th>
 
-	<a class="page-link"
-		th:fragment="page_link( moduleURL, pageNum,columnLabel)"
+	<a th:fragment="page_link( moduleURL, pageNum,columnLabel)"
+	    class="page-link"
 		th:href="@{${moduleURL}+ '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir='+ ${sortDir} + '&keyword=' + ${keyword != null ? keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : '' }}">[[${columnLabel}]]</a>
 
 
@@ -40,6 +40,8 @@
 	<div class="text-center" th:fragment="footer">
 		<p>Shopme Control Panel - Copyright &copy; Shopme</p>
 	</div>
+	
+	
 	<div th:fragment="status(enabled, entitytName, entityURL)" th:remove="tag">
 		<a th:if="${enabled == true}"
 			class="fas fa-check-circle fa-2x icon-green m-2"

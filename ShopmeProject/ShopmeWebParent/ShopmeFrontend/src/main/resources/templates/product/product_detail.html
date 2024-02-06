@@ -1,0 +1,47 @@
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<head th:replace="fragments :: page_head(${pageTitle}, tag)" />
+
+
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+<div th:replace="navigation :: header_menu"></div>
+
+
+<div th:replace="breadcrumb :: content"></div>
+	<div class="row">
+	   
+	   <div class="col-sm" >
+	      <img th:src="@{${product.mainImagePath}}" />
+	    </div>
+	   
+     <div class="col-sm-8" >
+	      <h2>[[${product.name}]]</h2>
+	    </div>
+	
+	
+	</div>
+
+	
+
+
+
+
+	
+
+
+
+
+<div th:replace="navigation :: footer_menu"></div>
+
+</div>
+
+</body>
+</html>
