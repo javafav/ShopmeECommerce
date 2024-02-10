@@ -292,8 +292,11 @@ public class Product {
 		if(name.length() > 70) {
 			name = name.substring(0, 70).concat("...");	
 		}
-		return name;
+		return  name;
 	}
+	
+
+
 
 	@Transient
 public float getDiscountPrice() {

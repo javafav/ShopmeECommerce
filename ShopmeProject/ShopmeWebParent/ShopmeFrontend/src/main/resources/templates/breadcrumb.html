@@ -19,7 +19,9 @@
     		  <th:block th:each="parent : ${listCategoryParents}">
     		  	<li class="breadcrumb-item"><a th:href="@{'/c/' + ${parent.alias}}">[[${parent.name}]]</a></li>
     		  </th:block>
-             <li class="breadcrumb-item" th:if="${product != null}"><a>[[${product.shortName}]]</a></li>
+            	<li class="breadcrumb-item" th:if="${product != null}">
+							<span>[[${product.shortName}]]</span>
+						</li>
   		  </ol>
 	  </nav>
 	

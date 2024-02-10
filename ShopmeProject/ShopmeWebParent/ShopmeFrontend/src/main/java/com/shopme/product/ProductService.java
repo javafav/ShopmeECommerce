@@ -12,6 +12,7 @@ import com.shopme.common.exception.ProductNotFoundException;
 public class ProductService {
     
 	public static final int PRODUCTS_PER_PAGE = 10;
+	public static final int SEARCH_RESULTS_PER_PAGE = 10;
 	
 	@Autowired
 	 private ProductRepository repo;
@@ -32,5 +33,13 @@ public class ProductService {
 			throw new ProductNotFoundException("Could not find the product with given alias " + alias);
 		}
 		return product;
+	}
+	
+	public Page<Product> search(String keyword, int pageNum) {
+	
+		PageRequest pagebale = PageRequest.of(pageNum - 1, SEARCH_RESULTS_PER_PAGE);
+		return repo.search(keyword, pagebale);
+		
+
 	}
 }

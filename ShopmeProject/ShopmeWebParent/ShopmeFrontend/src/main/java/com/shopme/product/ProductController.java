@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shopme.category.CategoryService;
 import com.shopme.common.entity.Category;
@@ -84,6 +84,7 @@ public class ProductController {
 			Product product = productService.getProduct(alias);
 			List<Category> listCategoryParents = categoryService.getAllParents(product.getCategory());
 			
+			model.addAttribute("name", product.getName());
 			model.addAttribute("product", product);
 			model.addAttribute("pageTitle", product.getName());
 			model.addAttribute("listCategoryParents", listCategoryParents);
@@ -96,5 +97,40 @@ public class ProductController {
 		 model.addAttribute("product", "product");
 			return "error/404";
 		}
+	}
+	
+	@GetMapping("/search")
+	public String searchProductzFirstPage(@RequestParam("keyword") String keyword, Model model) {
+		return searchProductByPage(keyword, 1, model);
+	}
+	
+	@GetMapping("/search/page/{pageNum}")
+	public String searchProductByPage(@RequestParam("keyword") String keyword,@PathVariable("pageNum") Integer pageNum, Model model) {
+		
+		Page<Product> pageProduct = productService.search(keyword, pageNum);
+		List<Product> listProducts = pageProduct.getContent();
+		
+
+		long startCount =  (pageNum - 1) * ProductService.SEARCH_RESULTS_PER_PAGE   + 1;
+		long endCount = startCount +  ProductService.SEARCH_RESULTS_PER_PAGE -1;
+		if (endCount > pageProduct.getTotalElements()) {
+			endCount = pageProduct.getTotalElements();
+		}
+
+        
+		model.addAttribute("currentPage", pageNum);
+		model.addAttribute("totalPages", pageProduct.getTotalPages());
+		model.addAttribute("keyword", keyword);
+
+		
+	
+		model.addAttribute("startCount", startCount);
+		model.addAttribute("endCount", endCount);
+		
+		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("totalItems", pageProduct.getTotalElements());
+		
+		
+		return "product/search_result";
 	}
 }
