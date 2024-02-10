@@ -14,12 +14,12 @@
 
 	<div class="row">
 		<div class="col-sm">
-			<div>
-				<img th:src="@{${product.mainImagePath}}" class="img-fluid" id="bigImage" index = 0 />
+			<div id="imageContainer">
+				<img th:src="@{${product.mainImagePath}}" class="img-fluid" id="bigImage" th:index = 0 />
 			</div>	
 			
 			<div class="justify-content-center" >
-			  <img th:src="@{${product.mainImagePath}}" height="40px" class="m-2 border   p-1 image-thumbnail"  index = 0 />
+			  <img th:src="@{${product.mainImagePath}}" height="40px" class="m-2 border   p-1 image-thumbnail"  th:index = 0 />
 			  <th:block th:each="extraImage,status : ${product.images}">
 			    <img th:src="@{${extraImage.imagePath}}" height="40px" class="m-2 border  p-1 image-thumbnail"
 			      th:index="${status.count}"/>
@@ -93,19 +93,33 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+
+	
+	
 	bigImage = $("#bigImage");
 	
 
 	$(".image-thumbnail").hover(function(){
 		currentImageSource = $(this).attr("src");
-		imageIndex = $(".image-thumbnail").attr("index");
+		currentImageIndex = $(this).attr("index");
+		
+		
+		
 		
 		bigImage.attr("src",currentImageSource );
+		bigImage.attr("index", currentImageIndex );
+
 	});
+	
 	bigImage.click(function(){
 		$("#carouselModal").modal("show");
+		imageIndex = parseInt(currentImageIndex);
+		$("#carouselExampleIndicators").carousel(imageIndex)
+		
 		
 	});
+	
+
 });
 
 </script>	

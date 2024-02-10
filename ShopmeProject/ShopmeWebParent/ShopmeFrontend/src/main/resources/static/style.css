@@ -11,3 +11,7 @@
 .carousel-control-next-icon {
     background-color: #494951; /* Green background */
 }
+
+.carousel-indicators li {
+    background-color: #a6a6b0;
+}
