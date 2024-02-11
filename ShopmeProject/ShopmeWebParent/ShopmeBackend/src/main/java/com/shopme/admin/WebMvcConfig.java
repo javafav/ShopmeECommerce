@@ -27,7 +27,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		exposeDirectory("../categories-images", registry);
 		exposeDirectory("../brands-logos", registry);
 		exposeDirectory("../product-images", registry);
-
+		exposeDirectory("../site-logo", registry);
 		
 //		String brandLogosDirName = "../brands-logos";
 //		Path brandLogosDir = Paths.get(brandLogosDirName);

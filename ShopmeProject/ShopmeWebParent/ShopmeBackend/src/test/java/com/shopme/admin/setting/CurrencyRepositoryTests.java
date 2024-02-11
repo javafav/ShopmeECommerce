@@ -45,4 +45,13 @@ public class CurrencyRepositoryTests {
 		
 		assertThat(iterable).size().isEqualTo(12);
 	}
+	
+	@Test
+	public void testFindAllByOrderByNameAsc() {
+		List<Currency> listCurrencies = repo.findAllByOrderByNameAsc();
+		
+		listCurrencies.forEach(System.out :: println);
+		
+		assertThat(listCurrencies.size()).isGreaterThan(4);
+	}
 }

@@ -47,4 +47,11 @@ public class SettingRepositoryTests {
 				decimalDigits, thousandsPointType));
 		
 	}
+	
+	@Test
+	public void testFindByCategory() {
+		List<Setting> listSetting = repo.findByCategory(SettingCategory.GENERAL);
+		
+		listSetting.forEach(System.out::println);
+	}
 }
