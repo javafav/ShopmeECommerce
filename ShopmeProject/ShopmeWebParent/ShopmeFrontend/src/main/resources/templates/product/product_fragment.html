@@ -12,15 +12,30 @@
 							[[${product.shortName}]]
 						</a>
 					</div>
-					<div>
-						<span th:if="${product.discountPercent > 0}"> <del>$[[${product.price}]]</del>
-							<span style="color: darkred">$[[${product.discountPrice}]]</span>
-						</span> <span th:if="${product.discountPercent <= 0}">$[[${product.price}]]</span>
+					
+					<div  th:if="${product.discountPercent <= 0}">
+			     
+			         <div th:replace="product/product_fragment :: product_price(${product.price})"></div>
+					
+					</div>
+					
+					<div th:if="${product.discountPercent > 0}">
+						<span > <del><div th:replace="product/product_fragment :: product_price(${product.price})"></div></del>
+							<span style="color: darkred"><div th:replace="product/product_fragment :: product_price(${product.discountPrice})"></div></span>
+						</span>
 					</div>
 
+				
 				</div>
 	
 	</div>
+	
+		
+		<div th:fragment="product_price(productPrice)"  th:remove="tag">
+		  <span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}" th:remove="tag"><span >[[${CURRENCY_SYMBOL}]][[${#numbers.formatDecimal(productPrice, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span></span>
+		  <span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"  th:remove="tag"><span>[[${#numbers.formatDecimal(productPrice, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]][[${CURRENCY_SYMBOL}]]</span></span>
+		
+		</div>
 
 
 

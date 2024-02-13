@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class Setting {
 	@Column(nullable = false, length = 1024)
 	private String value;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	@Column(length = 45,nullable = false)
 	private SettingCategory category;
 

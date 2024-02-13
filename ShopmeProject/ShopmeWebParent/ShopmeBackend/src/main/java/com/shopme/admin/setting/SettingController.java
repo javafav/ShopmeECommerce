@@ -61,21 +61,19 @@ public class SettingController {
 		return "redirect:/settings";
 	}
 	
-	private void saveCurencySybmol(HttpServletRequest request, GeneralSettingBag generalSettingBag) {
-	String currencyId = request.getParameter("CURRENCY_ID");
-		 
-	}
+
 	
 	private void saveSiteLogo(MultipartFile multipartFile, GeneralSettingBag generalSettingBag) throws IOException {
-		if (!multipartFile.getOriginalFilename().isEmpty()) {
+		
+		if (!multipartFile.isEmpty()) {
 
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-			String value = "../site-logo/" + fileName;
+			String value = "/site-logo/" + fileName;
 			String uploadDir = "../site-logo/";
 			
 		   generalSettingBag.updateSiteLog(value);
 		   
-		   FileUploadUtil.cleanDir(uploadDir);
+		    FileUploadUtil.cleanDir(uploadDir);
 			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		}
 	}
