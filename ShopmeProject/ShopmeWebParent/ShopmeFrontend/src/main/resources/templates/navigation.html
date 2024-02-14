@@ -11,7 +11,7 @@
 		
 		<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 			<a class="navbar-brand" th:href="@{/}"> <img
-				th:src="@{/images/ShopmeAdminSmall.png}" alt="Shopme">
+				th:src="@{${SITE_LOGO}}" alt="Shopme">
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#topNavbar">
@@ -104,9 +104,8 @@
 			</div>
 		</nav>
 	
-	<div class="m-2">
-		<p>Shopme Ltd. - Copyright &copy; Shopme</p>
-	</div>
+	<div class="m-2 text-center">
+		<p>[[${COPYRIGHT}]]</p>
 	</div>
 
 

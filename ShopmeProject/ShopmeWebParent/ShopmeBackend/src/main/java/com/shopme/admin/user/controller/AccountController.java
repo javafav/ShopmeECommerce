@@ -38,7 +38,7 @@ public class AccountController {
 	public String saveUser(User user, RedirectAttributes redirectAttributes,
 			@RequestParam("image") MultipartFile multipartFile,@AuthenticationPrincipal ShopmeUserDetails loggedUser) throws IOException {
 
-		if (!multipartFile.getOriginalFilename().isEmpty()) {
+		if (!multipartFile.isEmpty()) {
 
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 			user.setPhotos(fileName);

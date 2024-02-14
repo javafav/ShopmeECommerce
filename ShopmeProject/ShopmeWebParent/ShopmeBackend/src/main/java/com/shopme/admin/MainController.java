@@ -1,6 +1,6 @@
 package com.shopme.admin;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
+
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

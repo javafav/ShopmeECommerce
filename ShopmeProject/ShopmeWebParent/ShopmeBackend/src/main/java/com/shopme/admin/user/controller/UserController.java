@@ -115,7 +115,7 @@ public class UserController {
 	public String saveUser(User user, RedirectAttributes redirectAttributes,
 			@RequestParam("image") MultipartFile multipartFile) throws IOException {
 
-		if (!multipartFile.getOriginalFilename().isEmpty()) {
+		if (!multipartFile.isEmpty()) {
 
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 			user.setPhotos(fileName);
