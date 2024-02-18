@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content" th:remove="tag">
+	<div>
+		<p>
+			Use this page to manage cities which will be chosen by visitors in the customer registration form.
+			Click Load States List first.
+		</p>
+	</div>
+	
+	
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Selected Country:</label>
+		<div class="col-sm-10">
+			<select class="form-control m-2" id="dropDownCountriesForStates">
+			</select>
+		</div>
+	</div>
+	
+	<div>
+		<input type="button" value="Load States List" id="buttonLoadStatesForCities" class="btn btn-primary m-2" />
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Selected State:</label>
+		<div class="col-sm-10">
+			<select class="form-control m-2" id="dropDownStatesForCities">
+			</select>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">All Cites:</label>
+		<div class="col-sm-10">
+			<select class="form-control m-2" style="height: 300px" size="3" id="dropDownCities">
+			</select>
+		</div>
+	</div>	
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label mt-2" id="labelCityName">City Name:</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control mt-2" id="fieldCityName" />
+		</div>	
+		<div class="col-lg-4 mt-2">
+			<input type="button" id="buttonAddCity" value="New" class="btn btn-secondary mr-2" />
+			<input type="button" id="buttonUpdateCity" value="Update" class="btn btn-secondary mr-2" disabled="disabled" />
+			<input type="button" id="buttonDeleteCity" value="Delete" class="btn btn-secondary" disabled="disabled" />
+		</div>	
+	</div>
+</div>
+</body>
+</html>

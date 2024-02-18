@@ -20,6 +20,7 @@ import com.shopme.common.entity.Country;
 public class CountryRepositoryTests {
 	
 	@Autowired private CountryRepository repo;
+
 	
 	@Test
 	public void testCreateCountry() {
@@ -64,4 +65,6 @@ public class CountryRepositoryTests {
 		Optional<Country> findById = repo.findById(id);
 		assertThat(findById.isEmpty());
 	}
+	
+
 }
