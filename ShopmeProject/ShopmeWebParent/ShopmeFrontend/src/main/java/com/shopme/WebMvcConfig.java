@@ -3,7 +3,10 @@ package com.shopme;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -22,6 +25,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 
 		
+	}
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 	
 	private void exposeDirectory(String pathPattren, ResourceHandlerRegistry registry) {

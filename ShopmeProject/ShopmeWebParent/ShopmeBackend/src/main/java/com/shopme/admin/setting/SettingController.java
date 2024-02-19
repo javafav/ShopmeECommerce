@@ -61,6 +61,31 @@ public class SettingController {
 		return "redirect:/settings";
 	}
 	
+	@PostMapping("/settings/save_mail_server")
+	public String saveMailServerSetting(HttpServletRequest request, RedirectAttributes redirectAttributes)
+			throws IOException {
+
+		List<Setting> mialServerSetting = service.getMailServerSetting();
+
+		updateSettingValuesFromForm(request, mialServerSetting);
+
+		redirectAttributes.addFlashAttribute("message", "Mail Server settings updated successfully!");
+		return "redirect:/settings#mailServer";
+	}
+	
+	@PostMapping("/settings/mail_templates/account_verficition")
+	public String saveMailTemplateSetting(HttpServletRequest request, RedirectAttributes redirectAttributes)
+			throws IOException {
+
+		List<Setting> mialTemplateSetting = service.getMailTemplatesSetting();
+
+		updateSettingValuesFromForm(request, mialTemplateSetting);
+
+		redirectAttributes.addFlashAttribute("message", "Customer verification template updated successfully!");
+		return "redirect:/settings#mailTemplates";
+	}
+	
+	
 
 	
 	private void saveSiteLogo(MultipartFile multipartFile, GeneralSettingBag generalSettingBag) throws IOException {

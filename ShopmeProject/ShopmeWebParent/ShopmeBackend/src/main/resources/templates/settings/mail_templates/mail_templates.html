@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+  <div th:fragment="content" th:remove="tag">
+	
+	
+		<div>
+		<ul class="nav nav-tabs m-3" id="mailTemlatesTab" role="tablist">
+
+			<li class="nav-item"><a class="nav-link active"
+				data-toggle="tab" href="#account_verification" role="tab">Account Verification</a></li>
+
+			<li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="#order_confirmation" role="tab">Order Confirmation</a></li>
+
+			
+
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content p-3">
+
+			<div class="tab-pane active" id="account_verification" role="tabpanel">
+			<div th:replace="settings/mail_templates/account_verification :: content"></div>
+			</div>
+
+			<div class="tab-pane p-3" id="order_confirmation" role="tabpanel">
+				<h2>Order Confirmation</h2>
+			</div>
+
+
+
+		</div>
+
+
+	</div>
+
+
+
+	</div>
+
+
+
+
+
+</body>
+</html>

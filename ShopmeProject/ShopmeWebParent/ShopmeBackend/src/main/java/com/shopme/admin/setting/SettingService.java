@@ -38,4 +38,10 @@ public class SettingService {
 		repo.saveAll(setting);
 	}
 	
+	public List<Setting> getMailServerSetting(){
+		return repo.findByCategory(SettingCategory.MAIL_SERVER);
+	}
+	public List<Setting> getMailTemplatesSetting(){
+		return repo.findByCategory(SettingCategory.MAIL_TEMPLATES);
+	}
 }

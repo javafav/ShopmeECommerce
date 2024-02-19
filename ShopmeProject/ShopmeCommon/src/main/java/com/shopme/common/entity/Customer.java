@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "customers")
@@ -187,6 +188,12 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
+    
+	@Transient
+	public String getFullName() {
+	
+		return firstName + " " + lastName;
 	}
 	
 		
