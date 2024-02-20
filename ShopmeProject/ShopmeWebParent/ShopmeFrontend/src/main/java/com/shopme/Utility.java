@@ -15,24 +15,24 @@ public class Utility {
 		return siteURL.replaceAll(request.getServletPath(), "");
 	}
 	
-
-	public static JavaMailSenderImpl prepareMailSender(EmailSettingBag settings) {
-		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+	public static JavaMailSenderImpl prepareMailSender(EmailSettingBag setting ) {
 		
-		mailSender.setHost(settings.getHost());
-		mailSender.setPort(settings.getPort());
-		mailSender.setUsername(settings.getUsername());
-		mailSender.setPassword(settings.getPassword());
-	
+		JavaMailSenderImpl  mailSender = new JavaMailSenderImpl();
+		
+		mailSender.setHost(setting.getHost());
+		mailSender.setPort(setting.getPort());
+		mailSender.setUsername(setting.getUsername());
+		mailSender.setPassword(setting.getPassword());
 		
 		Properties mailProperties = new Properties();
-		mailProperties.setProperty("mail.smtp.auth", settings.getSmtpAuth());
 		
-		mailProperties.setProperty("mail.smtp.starttls.enable", "true");
-		mailProperties.setProperty("mail.smtp.ssl.enable", "true");
+		mailProperties.setProperty("mail.smtp.auth", setting.getSmtpAuth());
+		mailProperties.setProperty("mail.smtp.starttls.enable", setting.getSmtpSecured());
+		
 		mailSender.setJavaMailProperties(mailProperties);
 		
 		return mailSender;
+		
 	}
 	
 

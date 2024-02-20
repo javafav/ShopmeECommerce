@@ -68,7 +68,19 @@ function deleteState() {
 	
 }
 
+function formStateValidiy() {
+	var countryForm = document.getElementById("formStates");
+	if (!countryForm.checkValidity()) {
+		countryForm.reportValidity();
+		return false;
+	}
+	return true;
+
+}
+
 function updateState() {
+	if(!formStateValidiy()) return;
+	
 	url = contextPath + "states/save";
 	stateId = dropDownStates.val();
 	stateName = fieldStateName.val();
@@ -97,6 +109,7 @@ function updateState() {
 }
 
 function addState() {
+	if(!formStateValidiy()) return;
 	url = contextPath + "states/save";
 	stateName = fieldStateName.val();
 	

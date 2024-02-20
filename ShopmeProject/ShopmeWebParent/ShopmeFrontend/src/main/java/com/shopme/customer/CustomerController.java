@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shopme.Utility;
 import com.shopme.common.entity.Country;
@@ -51,6 +52,7 @@ public class CustomerController {
 
 	private void sendVerificationEmail(HttpServletRequest request, Customer customer)
 			throws UnsupportedEncodingException, MessagingException {
+		
 		EmailSettingBag emailSettings = settingService.getEmailSettings();
 		JavaMailSenderImpl mailSender = Utility.prepareMailSender(emailSettings);
 
@@ -75,7 +77,11 @@ public class CustomerController {
 
 		mailSender.send(message);
 
-		System.out.println("to Address: " + toAddress);
-		System.out.println("Verify URL: " + verifyURL);
+	}
+	
+	@GetMapping("/verify")
+	public String verifyCustomer(@RequestParam("code") String code) {
+		boolean verified = customerService.verifyCustomer(code);
+		return "register/" + ( verified ? "verify_success" : "verify_fail");
 	}
 }
