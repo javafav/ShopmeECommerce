@@ -16,7 +16,7 @@
 		</div>
 
 		<div
-			th:replace="fragments :: search_form_and_message('/brands/page/1')"></div>
+			th:replace="fragments :: search_form_and_message"></div>
 
 
 		<div class="full-details">
@@ -30,7 +30,7 @@
 						<th class="hideable-column">Brand ID</th>
 						<th>Logo</th>
 						<th
-							th:replace="fragments :: column_link('/brands', 'name', 'Brand Name', 'none')" />
+							th:replace="fragments :: column_link('name', 'Brand Name', 'none')" />
 						<th>Categories</th>
 
 						<th>Actions</th>
@@ -96,7 +96,7 @@
 		</div>
 
 
-		<div th:replace="fragments :: pagination('brand', '/brands')"></div>
+		<div th:replace="fragments :: pagination('brand')"></div>
 
 		<div th:replace="modal_fragments :: confirm_modal"></div>
 		<div th:replace="fragments :: footer"></div>

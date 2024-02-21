@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.Currency"/>
-    <fullyQualifiedTypeName name="com.shopme.admin.setting.SettingRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-    <fullyQualifiedTypeName name="com.shopme.admin.setting.SettingService"/>
-    <fullyQualifiedTypeName name="com.shopme.admin.setting.CurrencyRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.Setting"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
-    <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
     <fullyQualifiedTypeName name="java.lang.Iterable"/>
     <fullyQualifiedTypeName name="com.shopme.admin.setting.GeneralSettingBag"/>
@@ -24,7 +15,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="com.shopme.admin.setting.state.StateDTO"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="com.shopme.admin.setting.state.StateRepository"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Country"/>
@@ -60,4 +50,14 @@
     <fullyQualifiedTypeName name="javax.mail.internet.MimeMessage"/>
     <fullyQualifiedTypeName name="org.springframework.mail.javamail.MimeMessageHelper"/>
     <fullyQualifiedTypeName name="javax.persistence.Transient"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.paging.PagingAndSoritngResovler"/>
+    <fullyQualifiedTypeName name="org.springframework.data.domain.Page"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.PagingAndSortingRepository"/>
+    <fullyQualifiedTypeName name="org.apache.poi.ss.formula.functions.T"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.NoRepositoryBean"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.paging.SearchAndPagingRepository"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.paging.PagingAndSortingParam"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.paging.PagingAndSortingHelper"/>
 </qualifiedTypeNameHistroy>

@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.shopme.admin.paging.PagingAndSortingHelper;
 import com.shopme.common.entity.Product;
 import com.shopme.common.exception.ProductNotFoundException;
 
@@ -27,40 +28,34 @@ public class ProductService {
 		return (List<Product>) repo.findAll();
 	}
 	
-    public Page<Product> listByPage(int pageNum,String sortDir, String sortField,String keyword,Integer categoryId) {
+    public void listByPage(int pageNum,PagingAndSortingHelper helper,Integer categoryId) {
 		
-		Sort sort = Sort.by(sortField);
-		
-		sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-		
-		
+    	Pageable pageable = helper.createPageable(PRODUCTS_PER_PAGE, pageNum);
+		String keyword = helper.getKeyword();
+		Page<Product> page = null;
 		
 		
-		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE, sort);
 		
-		if(keyword != null && !keyword.isEmpty() ) {
 		
-			if(categoryId != null && categoryId > 0 ) {
-				String allParentIds = "-" + String.valueOf(categoryId) + "-";
-				return repo.searchInCategories(categoryId, allParentIds, keyword, pageable);
+	
+		if (keyword != null && !keyword.isEmpty()) {
+			if (categoryId != null && categoryId > 0) {
+				String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
+				page = repo.searchInCategories(categoryId, categoryIdMatch, keyword, pageable);
+			} else {
+				page = repo.findAll(keyword, pageable);
 			}
-			
-			
-			return repo.findAll( keyword ,pageable );
-			
+		} else {
+			if (categoryId != null && categoryId > 0) {
+				String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
+				page = repo.findAllInCategories(categoryId, categoryIdMatch, pageable);
+			} else {		
+				page = repo.findAll(pageable);
+			}
 		}
-		if(categoryId != null && categoryId > 0 ) {
-			String allParentIds = "-" + String.valueOf(categoryId) + "-";
-			return repo.findAllInCategories(categoryId, allParentIds, pageable);
-		}
-	
 		
-		return repo.findAll(pageable);
+		helper.updateModelAttributes(pageNum, page);
 		
-		
-	
-		
-	
 	}
 	
 	

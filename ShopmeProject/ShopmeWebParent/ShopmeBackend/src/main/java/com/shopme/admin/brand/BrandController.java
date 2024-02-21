@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,67 +18,35 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.admin.category.CategoryService;
+import com.shopme.admin.paging.PagingAndSortingHelper;
+import com.shopme.admin.paging.PagingAndSortingParam;
 import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Category;
 
 
 @Controller
 public class BrandController {
-
+	
+	private String defaultRedirectURL = "redirect:/brands/page/1?sortField=name&sortDir=asc";
 	@Autowired private BrandService brandService;
 	@Autowired private CategoryService categoryService;
 	
 	
 	@GetMapping("/brands")
-	public String listFirstPage(Model model) {
-		return listByPage(1, "asc", "name",null, model);
+	public String listFirstPage() {
+		return defaultRedirectURL;
 	}
 	
 	@GetMapping("/brands/page/{pageNum}")
-	public String listByPage(@PathVariable(name = "pageNum") int pageNum,
-			 @RequestParam(name = "sortDir") String sortDir,
-			 @RequestParam(name = "sortField") String sortField,
-			 @RequestParam(name = "keyword") String keyword,
+	public String listByPage(@PagingAndSortingParam(listName = "listBrands", moduleURL = "/brands") PagingAndSortingHelper helper,
+			                 @PathVariable(name = "pageNum") int pageNum) {
 
-			Model model) {
-
-		Page<Brand> pageBrand = brandService.listByPage(pageNum, sortDir, sortField, keyword);
-     
-		List<Brand> listBrands = pageBrand.getContent();
-
-		
-		long startCount = (pageNum - 1) * BrandService.BRANDS_PER_PAGE + 1;
-		long endCount = startCount +  BrandService.BRANDS_PER_PAGE - 1;
-		if (endCount > pageBrand.getTotalElements()) {
-			endCount = pageBrand.getTotalElements();
-		}
-
-		String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
-
-		model.addAttribute("currentPage", pageNum);
-		model.addAttribute("totalPages", pageBrand.getTotalPages());
-
-		model.addAttribute("listBrands", listBrands);
-		model.addAttribute("startCount", startCount);
-		model.addAttribute("endCount", endCount);
-		model.addAttribute("totalItems", pageBrand.getTotalElements());
-
-		model.addAttribute("sortField", "name");
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", reverseSortDir);
-		model.addAttribute("keyword", keyword);
+		brandService.listByPage(pageNum, helper);
 
 		return "brands/brands";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@GetMapping("/brands/new")
 	public String createNewBrand(Model model) {
 		List<Category> listCategories = categoryService.categoryListUsedInForm();

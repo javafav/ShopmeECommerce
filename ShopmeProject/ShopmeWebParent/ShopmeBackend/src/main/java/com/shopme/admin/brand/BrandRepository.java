@@ -8,9 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import com.shopme.admin.paging.SearchAndPagingRepository;
 import com.shopme.common.entity.Brand;
 
-public interface BrandRepository extends PagingAndSortingRepository<Brand, Integer> {
+public interface BrandRepository extends SearchAndPagingRepository<Brand, Integer> {
 
 	@Query("SELECT COUNT(b) FROM Brand b WHERE b.id = ?1")
 	public Long count(Integer id);

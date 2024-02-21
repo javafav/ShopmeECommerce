@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.shopme.admin.paging.PagingAndSortingHelper;
 import com.shopme.common.entity.Brand;
 
 
@@ -29,27 +30,11 @@ public class BrandService {
     }
     
     
-    
-    public Page<Brand> listByPage(int pageNum,String sortDir, String sortField,String keyword) {
-		
-		Sort sort = Sort.by(sortField);
-		
-		sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-		
-		
-		
-		
-		Pageable pageable = PageRequest.of(pageNum - 1, BRANDS_PER_PAGE, sort);
-		
-		if(keyword != null ) {
-			 return repo.findAll( keyword ,pageable );
-		}
+	public void listByPage(int pageNum, PagingAndSortingHelper helper) {
 	
-		return	repo.findAll(pageable);
-		
-	
+		helper.listEntities(pageNum, BRANDS_PER_PAGE, repo);
+
 	}
-	
 
 
 	public Brand save(Brand brand) {

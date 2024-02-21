@@ -18,6 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.admin.brand.BrandService;
 import com.shopme.admin.category.CategoryService;
+import com.shopme.admin.paging.PagingAndSortingHelper;
+import com.shopme.admin.paging.PagingAndSortingParam;
 import com.shopme.admin.security.ShopmeUserDetails;
 import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Category;
@@ -27,74 +29,35 @@ import com.shopme.common.exception.ProductNotFoundException;
 @Controller
 public class ProductController {
 
-	@Autowired
-	private ProductService productService;
-	@Autowired
-	private BrandService brandService;
-	@Autowired
-	private CategoryService categoryService;
+  
+	private String defaultRedirectURL = "redirect:/products/page/1?sortField=name&sortDir=asc&categoryId=0";
 
+    @Autowired	private ProductService productService;
+    @Autowired	private BrandService brandService;
+	@Autowired	private CategoryService categoryService;
+
+	
 	@GetMapping("/products")
-	public String listAll(Model model) {
-		return listByPage(1, "asc", "name",0, null, model);
+	public String listFirstPage(Model model) {
+		return defaultRedirectURL;
 	}
 	
 	@GetMapping("/products/page/{pageNum}")
-	public String listByPage(@PathVariable(name = "pageNum") int pageNum,
-			 @RequestParam(name = "sortDir") String sortDir,
-			 @RequestParam(name = "sortField") String sortField,
-			 @RequestParam(name = "categoryId", required = false)Integer categoryId,
-			 @RequestParam(name = "keyword") String keyword,
-		     Model model) {
-
+	public String listByPage(
+			@PagingAndSortingParam(listName = "listProducts", moduleURL = "/products") PagingAndSortingHelper helper,
+			@PathVariable(name = "pageNum") int pageNum, Model model,
+			@RequestParam("categoryId") Integer categoryId
+			) {
 		
+		productService.listByPage(pageNum, helper, categoryId);
 		
+		List<Category> listCategories = categoryService.categoryListUsedInForm();
 		
-		Page<Product> pageProduct = productService.listByPage(pageNum, sortDir, sortField, keyword, categoryId);
-        List<Category> listCategories = categoryService.categoryListUsedInForm();
-        
-        
-       
-        
-       
-		List<Product> listProducts = pageProduct.getContent();
-		
-		long startCount =  (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE   + 1;
-		long endCount = startCount +  ProductService.PRODUCTS_PER_PAGE -1;
-		if (endCount > pageProduct.getTotalElements()) {
-			endCount = pageProduct.getTotalElements();
-		}
-  
-		Integer dashPage = 6;
-		if(pageProduct.getTotalPages() > 10 && pageNum > 5 && pageNum <= pageProduct.getTotalPages()) {
-			dashPage = pageProduct.getTotalPages() - 5 ;
-		}
-		
-		
-		
-		
-		String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
-		
-        if(categoryId != null) model.addAttribute("categoryId", categoryId);
-        
-		model.addAttribute("currentPage", pageNum);
-		model.addAttribute("totalPages", pageProduct.getTotalPages());
-		model.addAttribute("dashPage", dashPage);
-		model.addAttribute("listProducts", listProducts);
+		if (categoryId != null) model.addAttribute("categoryId", categoryId);
 		model.addAttribute("listCategories", listCategories);
-
-		model.addAttribute("startCount", startCount);
-		model.addAttribute("endCount", endCount);
-		model.addAttribute("totalItems", pageProduct.getTotalElements());
-
-		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", reverseSortDir);
-		model.addAttribute("keyword", keyword);
-
-		return "products/products";
+		
+		return "products/products";		
 	}
-
 	
 	
 	
@@ -126,12 +89,16 @@ public class ProductController {
 			@RequestParam(name = "imageNames", required = false) String[] imageNames,
 			@AuthenticationPrincipal ShopmeUserDetails loggedUser) throws IOException {
 
-	if(loggedUser.hasRole("Salesperson")) {
-		productService.saveProductPrice(product);
-		redirectAttributes.addFlashAttribute("message", "The product has been saved successfuly!");
-		return "redirect:/products";
-		
-	}
+		if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Editor")) {
+
+			if (loggedUser.hasRole("Salesperson")) {
+				productService.saveProductPrice(product);
+				redirectAttributes.addFlashAttribute("message", "The product has been saved successfuly!");
+				return "redirect:/products";
+
+			}
+		}
+	
 		
 		ProductSaveHelper.setMainImageName(mainImageMultipart, product);
 		ProductSaveHelper.serExisttingExtraImgesNames(imageIDs, imageNames, product);

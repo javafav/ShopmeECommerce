@@ -69,14 +69,14 @@
 						<th class="hideable-column" >ID</th>
 						<th>Main Image</th>
 						
-						<th	th:replace="fragments :: column_link('/products', 'name', 'Product Name', 'none')" />
+						<th	th:replace="fragments :: column_link( 'name', 'Product Name', 'none')" />
 						
 						<th class="hideable-column">
-						<th	th:replace="fragments :: column_link('/products', 'brand', 'Brand', 'tag')" />
+						<th	th:replace="fragments :: column_link( 'brand', 'Brand', 'tag')" />
 						</th>
                       
                     
-                       <th class="hideable-column"> <th	th:replace="fragments :: column_link('/products', 'category', 'Category', 'tag')" />  </th>
+                       <th class="hideable-column"> <th	th:replace="fragments :: column_link( 'category', 'Category', 'tag')" />  </th>
                        
                      
                        
@@ -151,12 +151,12 @@
 						
 					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor', 'Salesperson')">
 					&nbsp; 	
-					<div th:replace="fragments :: edit('product', '/products/edit/' + ${product.id})" />
+					<div th:replace="fragments :: edit('product', '/products/edit/' + ${product.id})" ></div>
 					</th:block>
 					
 					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 					&nbsp; 
-					<div th:replace="fragments :: delete('products','/products/delete/' + ${product.id},${product.id},true)" />
+					<div th:replace="fragments :: delete('products','/products/delete/' + ${product.id},${product.id},true)" ></div>
 					
 			
 					</th:block>		
@@ -168,7 +168,7 @@
 </div>
 
 
-		<div th:replace="product_pagination :: pagination('products', '/products')"></div>
+		<div th:replace="product_pagination :: pagination('products')"></div>
    
 		<div th:replace="modal_fragments :: confirm_modal"></div>
 		<div th:replace="fragments :: footer"></div>

@@ -70,6 +70,7 @@ public class CategoryController {
 		model.addAttribute("sortField", "name");
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("moduleURL", "/categories");
 		
 		
 		model.addAttribute("reverseSortDir", reverseSortDir);

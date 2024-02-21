@@ -3,7 +3,6 @@ package com.shopme.admin.user.controller;
 import java.io.IOException;
 import java.util.List;
 
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shopme.admin.FileUploadUtil;
+import com.shopme.admin.paging.PagingAndSortingHelper;
+import com.shopme.admin.paging.PagingAndSortingParam;
 import com.shopme.admin.user.UserNotFoundException;
 import com.shopme.admin.user.UserService;
 import com.shopme.admin.user.export.UserCsvExporter;
@@ -30,46 +31,21 @@ import com.shopme.common.entity.User;
 
 @Controller
 public class UserController {
-
+	private String defaultRedirectURL = "redirect:/users/page/1?sortField=firstName&sortDir=asc";
 	@Autowired
 	private UserService service;
 
 	@GetMapping("/users")
-	public String listFirstPage(Model model) {
+	public String listFirstPage() {
 
-		return listByPage(1, "firstName", "asc", null, model);
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/users/page/{pageNum}")
-	public String listByPage(@PathVariable(name = "pageNum") int pageNum,
-			@RequestParam(name = "sortField") String sortField, @RequestParam(name = "sortDir") String sortDir,
-			@RequestParam(name = "keyword") String keyword,
-
-			Model model) {
-
-		Page<User> page = service.listByPage(pageNum, sortField, sortDir, keyword);
-
-		List<User> listUsers = page.getContent();
-		long startCount = (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
-		long endCount = startCount + UserService.USERS_PER_PAGE - 1;
-		if (endCount > page.getTotalElements()) {
-			endCount = page.getTotalElements();
-		}
-
-		String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
-
-		model.addAttribute("currentPage", pageNum);
-		model.addAttribute("totalPages", page.getTotalPages());
-
-		model.addAttribute("listUsers", listUsers);
-		model.addAttribute("startCount", startCount);
-		model.addAttribute("endCount", endCount);
-		model.addAttribute("totalItems", page.getTotalElements());
-
-		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", reverseSortDir);
-		model.addAttribute("keyword", keyword);
+	public String listByPage(
+			@PagingAndSortingParam(listName = "listUsers", moduleURL = "/users") PagingAndSortingHelper helper,
+			@PathVariable(name = "pageNum") int pageNum) {
+         service.listByPage(pageNum, helper);
 
 		return "users/users";
 	}
@@ -87,19 +63,19 @@ public class UserController {
 		Sort sort = Sort.by(Direction.ASC, "firstName");
 		List<User> listUsers = service.listAll(sort);
 		UserExcelExporter exporter = new UserExcelExporter();
-		
-		exporter.export(listUsers,response);
+
+		exporter.export(listUsers, response);
 	}
+
 	@GetMapping("/users/export/pdf")
 	public void exportToPdf(HttpServletResponse response) throws IOException {
 		Sort sort = Sort.by(Direction.ASC, "firstName");
 		List<User> listUsers = service.listAll(sort);
 		UserPdfExporter exporter = new UserPdfExporter();
-		
-		exporter.export(listUsers,response);
+
+		exporter.export(listUsers, response);
 	}
-	
-	
+
 	@GetMapping("/users/new")
 	public String createNewUser(Model model) {
 		User user = new User();
@@ -187,9 +163,8 @@ public class UserController {
 		} catch (UserNotFoundException e) {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 			return "redirect:/users";
-			
+
 		}
-	
 
 		return "redirect:/users";
 

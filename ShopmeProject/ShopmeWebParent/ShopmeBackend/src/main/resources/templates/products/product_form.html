@@ -52,13 +52,19 @@
 					</div>
 
 					<div class="tab-pane" id="description" role="tabpanel">
+                     
+                      <th:block th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')') }">
+	
+					  	  
+						   <th:block th:if="${#authorization.expression('hasAuthority(''Salesperson'')')}">
+							
+							   <div th:replace="products/product_description_readonly :: content "></div>
+						 
+						  </th:block>
+					
+					</th:block>
 
-						<th:block sec:authorize="hasAuthority('Salesperson')">
-							<div
-								th:replace="products/product_description_readonly :: content "></div>
-						</th:block>
-
-						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+					<th:block th:if="${#authorization.expression('hasAuthority(''Admin'')') || #authorization.expression('hasAuthority(''Editor'')') }">
 							<div th:replace="products/product_description :: content"></div>
 						</th:block>
 
@@ -66,21 +72,35 @@
 					</div>
 
 					<div class="tab-pane" id="images" role="tabpanel">
-						<th:block sec:authorize="hasAuthority('Salesperson')">
-							<div th:replace="products/product_images_read_only :: content"></div>
-						</th:block>
+					   <th:block th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')') }">
+	                       
+	                       <th:block th:if="${#authorization.expression('hasAuthority(''Salesperson'')')}">
+							
+							     <div th:replace="products/product_images_read_only :: content"></div>
+						
+						   </th:block>
+						   
+						</th:block>   
+						
 
-						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+						<th:block th:if="${#authorization.expression('hasAuthority(''Admin'')') || #authorization.expression('hasAuthority(''Editor'')') }">
 							<div th:replace="products/product_images :: content"></div>
 						</th:block>
 					</div>
 
 					<div class="tab-pane p-3" id="details" role="tabpanel">
-						<th:block sec:authorize="hasAuthority('Salesperson')">
-							<div th:replace="products/product_details_read_only :: content"></div>
+						<th:block
+							th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')') }">
+
+							<th:block
+								th:if="${#authorization.expression('hasAuthority(''Salesperson'')')}">
+
+								<div th:replace="products/product_details_read_only :: content"></div>
+
+							</th:block>
 						</th:block>
 
-						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+					<th:block th:if="${#authorization.expression('hasAuthority(''Admin'')') || #authorization.expression('hasAuthority(''Editor'')') }">
 							<div th:replace="products/product_details :: content"></div>
 							<div>
 								<input type="button" class="btn btn-secondary"
@@ -90,16 +110,22 @@
 					</div>
 
 					<div class="tab-pane" id="shipping" role="tabpanel">
-						<th:block sec:authorize="hasAuthority('Salesperson')">
-							<div th:replace="products/product_shipping_read_only :: content"></div>
-						</th:block>
+						<th:block
+							th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')') }">
 
-						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-							<div th:replace="products/product_shipping :: content"></div>
-						</th:block>
+							<th:block
+								th:if="${#authorization.expression('hasAuthority(''Salesperson'')')}">
+								<div th:replace="products/product_shipping_read_only :: content"></div>
+							</th:block>
+						</th:block>	
+
+							<th:block
+								th:if="${#authorization.expression('hasAuthority(''Admin'')') || #authorization.expression('hasAuthority(''Editor'')') }">
+								<div th:replace="products/product_shipping :: content"></div>
+							</th:block>
 					</div>
-				
-				
+
+
 				</div>
 
 			</div>
@@ -128,7 +154,7 @@
 		MAX_FILE_SIZE = 1 * 1024 * 1024; //1 MB
 		
 	</script>
-	
+	<script th:src="@{/js/common_product.js}"></script>
 	<script th:src="@{/js/common_forms.js}"></script>
 	<script th:src="@{/js/pruduct_form_overview.js}"></script>
 	<script th:src="@{/js/pruduct_form_images.js}"></script>
