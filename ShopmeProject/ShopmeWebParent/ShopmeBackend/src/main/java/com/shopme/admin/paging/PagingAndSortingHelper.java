@@ -14,7 +14,7 @@ public class PagingAndSortingHelper {
 
 	private ModelAndViewContainer model;
 	private String listName;
-	private String moduelURL;
+
 	private String sortField;
 	private String sortDir;
 	private String keyword;
@@ -24,7 +24,7 @@ public class PagingAndSortingHelper {
 
 		this.model = model;
 		this.listName = listName;
-		this.moduelURL = moduelURL;
+		
 		this.sortField = sortField;
 		this.sortDir = sortDir;
 		this.keyword = keyword;

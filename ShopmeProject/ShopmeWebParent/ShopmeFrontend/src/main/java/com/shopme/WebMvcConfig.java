@@ -26,11 +26,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 		
 	}
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-	
+
 	private void exposeDirectory(String pathPattren, ResourceHandlerRegistry registry) {
 		
 		Path path = Paths.get(pathPattren);

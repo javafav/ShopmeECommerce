@@ -57,7 +57,8 @@
 						&nbsp; 
 						<div th:replace="fragments :: edit('customer', '/customers/edit/' + ${customer.id})" ></div>
 						&nbsp; 
-						<div th:replace="fragments :: delete('customer', ${customer.id}, '/customers/delete/' + ${customer.id}, true)" ></div>						
+						<div th:replace="fragments :: delete('customer', '/customers/delete/' + ${customer.id}, ${customer.id}, true)" ></div>		
+										
 					</td>					
 				</tr>
 			</tbody>
