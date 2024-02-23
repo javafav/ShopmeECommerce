@@ -13,8 +13,8 @@ public class CustomerOAuth2UserService extends DefaultOAuth2UserService {
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
 		
 	OAuth2User oAuth2User = super.loadUser(userRequest);
-		
-		return new CustomerOAuth2User(oAuth2User);
+	String clientName = userRequest.getClientRegistration().getClientName();
+		return new CustomerOAuth2User(oAuth2User,clientName);
 	}
 
 	

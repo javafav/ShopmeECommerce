@@ -55,14 +55,14 @@ public class CustomerService {
 		return customerRepo.findByEmail(email);
 	}
 	
-	public void addCustomer(String email, String name, String countryCode) {
+	public void addCustomer(String email, String name, String countryCode,AuthenticationType authenticationType) {
 		Customer customer = new Customer();
 		customer.setEmail(email);
 		setName(name, customer);
 		
 		customer.setEnabled(true);
 		customer.setCreatedTime(new Date());
-		customer.setAuthenticationType(AuthenticationType.GOOGLE);
+		customer.setAuthenticationType(authenticationType);
 		customer.setPassword("");
 		customer.setAddressLine1("");
 		customer.setCity("");
