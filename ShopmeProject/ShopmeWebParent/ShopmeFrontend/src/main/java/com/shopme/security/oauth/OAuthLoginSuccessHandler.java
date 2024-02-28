@@ -35,7 +35,7 @@ public class OAuthLoginSuccessHandler extends SavedRequestAwareAuthenticationSuc
 		AuthenticationType authenticationType = getAuthenticationType(clientName);
 
 	
-	    Customer customer = customerService.getByEmail(email);
+	    Customer customer = customerService.getCustomerByEmail(email);
 	    if(customer == null) {
 	    	customerService.addCustomer(email, name, countryCode, authenticationType);
 	    }else {

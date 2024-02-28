@@ -11,7 +11,7 @@ public class CustomerOAuth2User implements OAuth2User {
  
 	@Autowired OAuth2User oAuth2User;
 	private String clientName;
-	
+	private String fullName;
 	
 	
 	
@@ -42,13 +42,18 @@ public class CustomerOAuth2User implements OAuth2User {
 	}
 
 	public String getFullName() {
-		return oAuth2User.getAttribute("name");
+		return fullName != null ? fullName : oAuth2User.getAttribute("name");
 	}
+
 	
 	public String getEmail() {
 		return oAuth2User.getAttribute("email");
 	}
 	public String getClientName() {
 		return clientName;
+	}
+	
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 }
