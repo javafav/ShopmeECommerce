@@ -135,6 +135,17 @@ public class CustomerService {
 		customerInForm.setAuthenticationType(customerInDB.getAuthenticationType());
 		
 		customerRepo.save(customerInForm);
+	}
+
+	public void resetPasswordRequest(String email) {
+		Customer customer = customerRepo.findByEmail(email);
+		if(customer != null) {
+		   String token = RandomString.make(30);
+		   customer.setResetPasswordToken(token);
+		    
+			
+		}
+		
 	}	
 	
 }
