@@ -79,6 +79,10 @@ public class Customer {
 	public Customer() {
 	}
 
+	public Customer(Integer customerId) {
+	this.id = customerId;
+	}
+
 	public Integer getId() {
 		return id;
 	}
