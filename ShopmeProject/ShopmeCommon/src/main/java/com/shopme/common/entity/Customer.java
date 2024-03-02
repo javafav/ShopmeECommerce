@@ -17,7 +17,8 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "customers")
 public class Customer {
-
+	
+     
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -70,6 +71,10 @@ public class Customer {
 	
 	@Column(name = "reset_password_token" , length = 30)
 	private String resetPasswordToken;
+ 
+
+	
+
 
 	public Customer() {
 	}
@@ -209,6 +214,8 @@ public class Customer {
 	public void setResetPasswordToken(String resetPasswordToken) {
 		this.resetPasswordToken = resetPasswordToken;
 	}
+	
+
 
 	public void setCountry(Country country) {
 		this.country = country;
@@ -218,7 +225,9 @@ public class Customer {
 	public String toString() {
 		return "Customer [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
-    
+
+
+  
 	@Transient
 	public String getFullName() {
 	

@@ -135,7 +135,7 @@
 	
 	
 
-	<div class="m-3" th:fragment="search_form_and_message" th:remove="${tag}">
+	<div class="m-3" th:fragment="search_form_and_message">
 		<form th:action="@{${moduleURL} + '/page/1'}" class="form-inline">
 			<input type="hidden" name="sortField" th:value="${sortField}">
 			<input type="hidden" name="sortDir" th:value="${sortDir}">
@@ -157,6 +157,7 @@
 
 
 		</form>
+		
 		<div th:if="${message != null}"
 			class="alert alert-success text-center mt-3" >[[${message}]]</div>
 

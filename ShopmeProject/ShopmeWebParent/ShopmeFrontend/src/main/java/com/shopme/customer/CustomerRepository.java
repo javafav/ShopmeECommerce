@@ -15,12 +15,14 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 	@Query("SELECT c FROM Customer c WHERE c.verificationCode = ?1")
 	public Customer findByVerificationCode(String code);
 	
-	@Query("UPDATE Customer c SET c.enabled = true,c.verificationCode =  null WHERE c.id = ?1")
+	@Query("UPDATE Customer c SET c.enabled = 1 ,c.verificationCode = null WHERE c.id = ?1")
 	@Modifying
 	public void enable(Integer id);	
 	
 	@Query("UPDATE Customer c SET c.authenticationType = ?1 WHERE c.id = ?2")
 	@Modifying
 	public void updateAuthencation(AuthenticationType authenticationType, Integer id );
+	
+	Customer findByResetPasswordToken(String resetPasswordToken);
 
 }

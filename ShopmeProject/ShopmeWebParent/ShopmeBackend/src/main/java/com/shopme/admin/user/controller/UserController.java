@@ -6,7 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
@@ -129,7 +129,7 @@ public class UserController {
 		} catch (UserNotFoundException e) {
 
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
-			return "redirect:/users";
+			return defaultRedirectURL;
 
 		}
 
@@ -142,11 +142,11 @@ public class UserController {
 			service.deleteUser(id);
 			redirectAttributes.addFlashAttribute("message", "The user wih (ID " + id + ")  deleted successfuly!");
 
-			return "redirect:/users";
+			return defaultRedirectURL;
 		} catch (UserNotFoundException e) {
 
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
-			return "redirect:/users";
+			return defaultRedirectURL;
 
 		}
 
@@ -157,16 +157,18 @@ public class UserController {
 			RedirectAttributes redirectAttributes) {
 		try {
 			service.updateUserEnableStatus(id, status);
-			String messageEnabledOrDisabled = status == true ? "enabled" : "disabled";
+			String messageEnabledOrDisabled = ( status == true ? "enabled" : "disabled" );
 			redirectAttributes.addFlashAttribute("message",
 					"The user wih (ID " + id + ") " + messageEnabledOrDisabled + " successfuly!");
+			
+			return defaultRedirectURL;
 		} catch (UserNotFoundException e) {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
-			return "redirect:/users";
+			return defaultRedirectURL;
 
 		}
 
-		return "redirect:/users";
+	
 
 	}
 }

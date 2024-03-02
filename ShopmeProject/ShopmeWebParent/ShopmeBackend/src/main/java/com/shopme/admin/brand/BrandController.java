@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -96,7 +94,7 @@ public class BrandController {
 		} catch (BrandNotFoundException e) {
 
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
-			return"redirect:/brands";
+			return defaultRedirectURL;
 
 		}
 
@@ -110,11 +108,11 @@ public class BrandController {
 			brandService.delete(id);
 			redirectAttributes.addFlashAttribute("message", "The brand wih (ID " + id + ")  deleted successfuly!");
 
-			return "redirect:/brands";
+			return defaultRedirectURL;
 		} catch (BrandNotFoundException e) {
 
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
-			return "redirect:/brands";
+			return defaultRedirectURL;
 
 		}
 

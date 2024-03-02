@@ -3,8 +3,6 @@ package com.shopme.admin.customer;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +42,7 @@ public class CustomerController {
 		String message = "The Customer ID " + id + " has been " + status;
 		redirectAttributes.addFlashAttribute("message", message);
 		
-		return "redirect:/customers";
+		return defaultRedirectURL;
 	}	
 	
 	@GetMapping("/customers/detail/{id}")
@@ -56,7 +54,7 @@ public class CustomerController {
 			return "customers/customer_detail_modal";
 		} catch (CustomerNotFoundException ex) {
 			ra.addFlashAttribute("message", ex.getMessage());
-			return "redirect:/customers";			
+			return defaultRedirectURL;			
 		}
 	}
 	
@@ -74,7 +72,7 @@ public class CustomerController {
 			
 		} catch (CustomerNotFoundException ex) {
 			ra.addFlashAttribute("message", ex.getMessage());
-			return "redirect:/customers";
+			return defaultRedirectURL;
 		}
 	}
 	
@@ -82,7 +80,7 @@ public class CustomerController {
 	public String saveCustomer(Customer customer, Model model, RedirectAttributes ra) {
 		service.save(customer);
 		ra.addFlashAttribute("message", "The customer ID " + customer.getId() + " has been updated successfully.");
-		return "redirect:/customers";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/customers/delete/{id}")
@@ -90,12 +88,12 @@ public class CustomerController {
 		try {
 			service.delete(id);			
 			ra.addFlashAttribute("message", "The customer ID " + id + " has been deleted successfully.");
-			
+			return defaultRedirectURL;
 		} catch (CustomerNotFoundException ex) {
 			ra.addFlashAttribute("message", ex.getMessage());
 		}
 		
-		return "redirect:/customers";
+		return defaultRedirectURL;
 	}
 	
 }

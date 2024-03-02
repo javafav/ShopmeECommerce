@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -94,7 +94,7 @@ public class ProductController {
 			if (loggedUser.hasRole("Salesperson")) {
 				productService.saveProductPrice(product);
 				redirectAttributes.addFlashAttribute("message", "The product has been saved successfuly!");
-				return "redirect:/products";
+				return defaultRedirectURL;
 
 			}
 		}
@@ -109,7 +109,7 @@ public class ProductController {
 		ProductSaveHelper.	deleteExtraImagesWereRemovedFromForm(product);
 
 		redirectAttributes.addFlashAttribute("message", "The product has been saved successfuly!");
-		return "redirect:/products";
+		return defaultRedirectURL;
 	}
 
 	
@@ -121,10 +121,10 @@ public class ProductController {
 			String messageEnabledOrDisabled = status == true ? "enabled" : "disabled";
 			redirectAttributes.addFlashAttribute("message",
 					"The product wih (ID " + id + ") " + messageEnabledOrDisabled + " successfuly!");
-			return "redirect:/products";
+			return defaultRedirectURL;
 		} catch (ProductNotFoundException e) {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
-			return "redirect:/products";
+			return defaultRedirectURL;
 
 		}
 
@@ -143,11 +143,11 @@ public class ProductController {
 
 			redirectAttributes.addFlashAttribute("message", "The product  wih (ID " + id + ")  deleted successfuly!");
 
-			return "redirect:/products";
+			return defaultRedirectURL;
 		} catch (ProductNotFoundException e) {
 
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
-			return "redirect:/products";
+			return defaultRedirectURL;
 
 		}
 
@@ -155,12 +155,25 @@ public class ProductController {
 
 	@GetMapping("/products/edit/{id}")
 	public String updateProduct(@PathVariable(name = "id") Integer id, Model model,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes,@AuthenticationPrincipal ShopmeUserDetails loggedUser) {
 		try {
+ 
+			boolean isReadOnlyForSalesperson = false;
+
+			if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Editor")) {
+
+				if (loggedUser.hasRole("Salesperson")) {
+					isReadOnlyForSalesperson = true;
+
+				}
+			}
+			
 			Product product = productService.get(id);
 
 			List<Brand> listBrands = brandService.listAll();
 			Integer numberofExistingExtraImages = product.getImages().size();
+			
+			model.addAttribute("isReadOnlyForSalesperson", isReadOnlyForSalesperson);
 			model.addAttribute("product", product);
 			model.addAttribute("listBrands", listBrands);
 			model.addAttribute("numberofExistingExtraImages", numberofExistingExtraImages);
@@ -171,7 +184,7 @@ public class ProductController {
 		} catch (ProductNotFoundException e) {
 
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
-			return "redirect:/products";
+			return defaultRedirectURL;
 
 		}
 

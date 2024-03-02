@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import com.shopme.common.entity.Brand;
+
 
 public class PagingAndSortingHelper {
 

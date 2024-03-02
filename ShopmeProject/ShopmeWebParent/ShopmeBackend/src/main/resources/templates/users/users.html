@@ -80,7 +80,7 @@
 								
 								<div th:replace="fragments :: edit('user','/users/edit/' + ${user.id})"></div>
 								&nbsp;
-							<div th:replace="fragments :: delete('user','/users/edit/' + ${user.id},${user.id},true)"></div>
+							<div th:replace="fragments :: delete('user','/users/delete/' + ${user.id},${user.id},true)"></div>
 
 							</td>
 						</tr>
@@ -118,7 +118,7 @@
 
 
 		</div>
-	</div>
+
 
 
 	<div th:replace="fragments :: pagination('users')"></div>
@@ -128,7 +128,7 @@
 
 
 
-
+	</div>
 
 
 
