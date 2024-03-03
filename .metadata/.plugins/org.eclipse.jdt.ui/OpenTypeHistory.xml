@@ -10,7 +10,7 @@
     <typeInfo handle="=ShopmeCommon/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shopme.common.entity{Setting.java[Setting" modifiers="1" timestamp="1707736724143"/>
     <typeInfo handle="=ShopmeCommon/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shopme.common.entity{Currency.java[Currency" modifiers="1" timestamp="1707658021717"/>
     <typeInfo handle="=ShopmeBackend/C:\/Users\/fahad\/.m2\/repository\/org\/springframework\/spring-web\/5.3.19\/spring-web-5.3.19.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework=/=/maven.artifactId=/spring-web=/=/maven.version=/5.3.19=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.web.method.support(HandlerMethodArgumentResolver.class[HandlerMethodArgumentResolver" modifiers="1537" timestamp="1675263700921"/>
-    <typeInfo handle="=ShopmeCommon/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shopme.common.entity{Customer.java[Customer" modifiers="1" timestamp="1709287727879"/>
+    <typeInfo handle="=ShopmeCommon/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shopme.common.entity{Customer.java[Customer" modifiers="1" timestamp="1709392712950"/>
     <typeInfo handle="=ShopmeCommon/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shopme.common.entity{Country.java[Country" modifiers="1" timestamp="1708186123092"/>
-    <typeInfo handle="=ShopmeCommon/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shopme.common.entity{Product.java[Product" modifiers="1" timestamp="1707568865421"/>
+    <typeInfo handle="=ShopmeCommon/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shopme.common.entity{Product.java[Product" modifiers="1" timestamp="1709392779338"/>
 </typeInfoHistroy>

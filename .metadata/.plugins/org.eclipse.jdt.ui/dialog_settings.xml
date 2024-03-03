@@ -33,6 +33,10 @@
 		<item key="create_unimplemented" value="true"/>
 	</section>
 	<section name="completion_proposal_size">
+		<item key="size.x" value="428"/>
+		<item key="size.y" value="253"/>
+		<item key="contextSelector.size.x" value="331"/>
+		<item key="contextSelector.size.y" value="221"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 		<item key="size.x" value="796"/>
