@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.setting.EmailSettingBag"/>
-    <fullyQualifiedTypeName name="com.shopme.setting.SettingService"/>
-    <fullyQualifiedTypeName name="org.springframework.mail.javamail.JavaMailSenderImpl"/>
-    <fullyQualifiedTypeName name="javax.mail.internet.MimeMessage"/>
-    <fullyQualifiedTypeName name="org.springframework.mail.javamail.MimeMessageHelper"/>
-    <fullyQualifiedTypeName name="javax.persistence.Transient"/>
     <fullyQualifiedTypeName name="com.shopme.admin.paging.PagingAndSoritngResovler"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Page"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.PagingAndSortingRepository"/>
@@ -38,7 +32,6 @@
     <fullyQualifiedTypeName name="org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken"/>
     <fullyQualifiedTypeName name="com.shopme.security.oauth.CustomerOAuth2User"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
     <fullyQualifiedTypeName name="javax.persistence.Column"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
@@ -46,18 +39,25 @@
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="com.shopme.shoppingcart.CartItemRepository"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.CartItem"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Product"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="com.shopme.shoppingcart.ShoppingCartService"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.Customer"/>
     <fullyQualifiedTypeName name="com.shopme.Utility"/>
-    <fullyQualifiedTypeName name="com.shopme.customer.CustomerService"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.CustomerNotFoundException"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.ShoppingCartException"/>
     <fullyQualifiedTypeName name="com.shopme.shoppingcart.ShoppingCartException"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.Customer"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.shopme.shoppingcart.ShoppingCartService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="com.shopme.customer.CustomerService"/>
+    <fullyQualifiedTypeName name="javax.persistence.Transient"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.CartItem"/>
+    <fullyQualifiedTypeName name="com.shopme.product.ProductRepository"/>
+    <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
 </qualifiedTypeNameHistroy>

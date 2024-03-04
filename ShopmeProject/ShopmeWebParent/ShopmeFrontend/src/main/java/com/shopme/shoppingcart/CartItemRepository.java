@@ -11,9 +11,12 @@ import com.shopme.common.entity.Customer;
 import com.shopme.common.entity.Product;
 
 public interface CartItemRepository extends CrudRepository<CartItem, Integer> {
+	
 	public List<CartItem> findByCustomer(Customer customer);
 	
 	public CartItem findByCustomerAndProduct(Customer customer, Product product);
+	
+
 	
 	@Modifying
 	@Query("UPDATE CartItem c SET c.quantity = ?1 WHERE c.customer.id = ?2 AND c.product.id = ?3")
@@ -25,4 +28,6 @@ public interface CartItemRepository extends CrudRepository<CartItem, Integer> {
 	
 	@Query("SELECT SUM(c.quantity) FROM CartItem c WHERE c.customer.id = ?1")
 	public Integer getTotalCartItem(Integer customerId);
+	
+ 
 }

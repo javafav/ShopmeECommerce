@@ -1,3 +1,20 @@
+.icon-white {
+	color: white;
+}
+
+.icon-silver {
+	color: silver;
+}
+
+.icon-green {
+	color: green;
+}
+
+.icon-dark {
+	color: grey;
+}
+
+
 .modal-bg-color {
 	background: #e2e2e5;
 }
