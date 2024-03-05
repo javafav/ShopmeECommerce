@@ -109,13 +109,14 @@
 									    
 									</li>
 								
-								
-								
-								
-								
-								
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/shipping}">Shipping</a></li>
+								<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+								   th:href="@{/shipping_rates}">Shipping Rate</a><
+								   <div class="dropdown-menu">	
+									    	<a class="dropdown-item dropdown-menu-hover"  th:href="@{/shipping_rates/new}">Create New Shipping Rate</a>
+									    	<a class="dropdown-item dropdown-menu-hover"  th:href="@{/shipping_rates}">View All</a>
+									    	</div>
+									    	</li>
 							</th:block>
 
 							<th:block

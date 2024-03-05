@@ -51,7 +51,7 @@
 									th:replace="fragments :: edit('brand','/brands/edit/' + ${brand.id})"></div>
 								<span class="medium-sacreen-brand"></span> &nbsp;
 								<div
-									th:replace="fragments :: delete('user','/brands/delete/' + ${brand.id},${brand.id},true)"></div>
+									th:replace="fragments :: delete('brand','/brands/delete/' + ${brand.id},${brand.id},true)"></div>
 
 							</td>
 
@@ -79,7 +79,7 @@
 
 					&nbsp;
 					<div
-						th:replace="fragments :: delete('user','/brands/delete/' + ${brand.id},${brand.id},true)"></div>
+						th:replace="fragments :: delete('brand','/brands/delete/' + ${brand.id},${brand.id},true)"></div>
 
 					<hr>
 				</div>
@@ -110,7 +110,7 @@
 		<script th:src="@{/js/common.js}"></script>
 		<script th:src="@{/js/common_lists.js}"></script>
 		<script type="text/javascript">
-			moduleURL = "[[@{/users}]]"
+			moduleURL = "[[@{/brands}]]"
 
 			$(document).ready(function() {
 
