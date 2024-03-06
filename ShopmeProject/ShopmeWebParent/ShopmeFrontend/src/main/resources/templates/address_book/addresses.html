@@ -1,0 +1,152 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:replace=" fragments :: page_head('Your Address Book' , 'tag')" />
+<link rel="stylesheet" th:href="@{/address_card.css}" type="text/css" />
+</head>
+<body>
+
+	<div class="container-fluid">
+		<div th:replace="navigation ::header_menu"></div>
+		<div th:replace="navigation :: search_nav"></div>
+
+		<div class="text-center mb-2">
+			<h2>Your Address Book</h2>
+
+			<a th:href="@{address_book/new}" class=" h4">Add New Address</a>
+		</div>
+
+
+		<div th:if="${message!= null}"
+			class="alert alert-success text-center mb-2">[[${message}]]</div>
+		<div class="row m-1 ">
+			<div class="col-xl-3 col-lg-6">
+				<div class="card "
+					th:classappend="${usePrimaryAddressAsDefault ? 'l-bg-blue-dark' : 'l-bg-green-dark'}">
+					<div class="card-statistic-3 p-4">
+						<div class="card-icon card-icon-large mt-2 mr-5 ">
+							<i class=""
+								th:classappend="${usePrimaryAddressAsDefault ? 'fas fa-home' : 'fas fa-address-book'}"></i>
+						</div>
+						<div class="mb-4">
+							<h5 class="card-title mb-0">
+								<b>Your Primary Address</b>
+
+
+
+								<th:block th:if="${usePrimaryAddressAsDefault}">
+									<span class="text-danger h6 mr-2">[Default]</span>
+								</th:block>
+
+							
+
+
+							</h5>
+
+							<div class="row align-items-center mb-2 d-flex">
+								<div class="col-sm-8">
+									<h6 class="d-flex align-items-center mb-0">
+										[[${customer.address}]]</h6>
+								</div>
+								<div class="col-4 text-right">
+									<span></span>
+								</div>
+							</div>
+
+						</div>
+
+
+
+
+
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="col-xl-3 col-lg-6">
+				<th:blcok th:each="address ,status: ${listAddresses}">
+					<div class="card"
+						th:classappend="${address.defaultForShipping ? 'l-bg-blue-dark' : 'l-bg-green-dark'}">
+						<div class="card-statistic-3 p-3 ">
+							<div class="card-icon card-icon-large mr-5 mt-3">
+								<i class=""
+									th:classappend="${address.defaultForShipping ? 'fas fa-home ' : 'fas fa-address-book'}"></i>
+							</div>
+							<div class="mb-3">
+								<h5 class="card-title mb-5">
+									<b>Address # [[${status.count + 1}]]</b>
+
+									<th:block th:if="${address.defaultForShipping}">
+										<span class="text-danger h6 mr-2 ">[Default]</span>
+									</th:block>
+
+
+									<th:block th:unless="${address.defaultForShipping}">
+										<a th:unless="${param.redirect}" class="h6"
+											style="color: #00008b"
+											th:href="@{'/address_book/default/'+ ${address.id}}">[Set
+											as Default]</a>
+
+										<a class="h6" style="color: #00008b"
+											th:href="@{redirectedCheckoutPage }">Set as Default]</a>
+										<a class="h6" style="color: #00008b"
+											th:href="@{'/address_book/default/'+ ${address.id} + '?redirect=checkout' }">[Choose]</a>
+									</th:block>
+
+									<span class="float-right h5"> <a
+										th:unless="${param.redirect}" class="fas fa-edit icon-white"
+										title="Edit this Adderess"
+										th:href="@{'/address_book/edit/' + ${address.id}}"
+										th:entityId="${address.id}"></a> <a
+										th:if="${redirectedCheckoutPage}"
+										class="fas fa-edit icon-white" title="Edit this Adderess"
+										th:href="@{'/address_book/edit/' + ${address.id} + '?redirect=checkout'}"
+										th:entityId="${address.id}"></a>
+
+									</span> &nbsp; <span class="float-right h5 mr-2"> <a
+										class="fas fa-trash icon-white linkDelete"
+										title="Delete this Adderess" th:entityId="${address.id}"
+										th:href="@{'/address_book/delete/'+ ${address.id}}"></a></span>
+								</h5>
+							</div>
+							<div class="row align-items-center mb-2 d-flex">
+								<div class="col-sm-8">
+									<h6 class="d-flex align-items-center mb-0">
+										[[${customer.address}]]</h6>
+								</div>
+								<div class="col-4 text-right">
+									<span></span>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</th:blcok>
+			</div>
+
+
+
+
+		</div>
+
+		<div>&nbsp;</div>
+
+		<div th:replace="navigation ::footer_menu"></div>
+
+	</div>
+	<script type="text/javascript">
+		contextPath = "[[@{/}]]";
+
+		var csrfHeaderName = "[[${_csrf.headerName}]]";
+		var csrfValue = "[[${_csrf.token}]]";
+	</script>
+	<script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/js/shopping_cart_items_count.js}"></script>
+</body>
+
+
+</html>

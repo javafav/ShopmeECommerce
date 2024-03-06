@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.admin.paging.PagingAndSoritngResovler"/>
-    <fullyQualifiedTypeName name="org.springframework.data.domain.Page"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.PagingAndSortingRepository"/>
     <fullyQualifiedTypeName name="org.apache.poi.ss.formula.functions.T"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.NoRepositoryBean"/>
@@ -20,8 +18,6 @@
     <fullyQualifiedTypeName name="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.AuthencticationType"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
     <fullyQualifiedTypeName name="com.shopme.security.oauth.OAuthLoginSuccessHandler"/>
     <fullyQualifiedTypeName name="com.shopme.customer.CustomerUserDetails"/>
     <fullyQualifiedTypeName name="com.shopme.security.DatabaseLoginSuccessHandler"/>
@@ -44,8 +40,6 @@
     <fullyQualifiedTypeName name="com.shopme.common.exception.CustomerNotFoundException"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.ShoppingCartException"/>
     <fullyQualifiedTypeName name="com.shopme.shoppingcart.ShoppingCartException"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.Customer"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.shopme.shoppingcart.ShoppingCartService"/>
@@ -60,4 +54,10 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="com.shopme.admin.paging.SearchAndPagingRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.CrudRepository"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.Address"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.Customer"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
 </qualifiedTypeNameHistroy>
