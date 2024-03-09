@@ -30,15 +30,18 @@
 						</div>
 						<div class="mb-4">
 							<h5 class="card-title mb-0">
-								<b>Your Primary Address</b>
-
+								<b>Your Primary Address</b> 
+								<span class="float-right h5">
+									<a class="fas fa-edit icon-white"
+									title="Edit this Adderess" th:href="@{/account_details(redirect=address_book)}"></a>
+								</span>
 
 
 								<th:block th:if="${usePrimaryAddressAsDefault}">
 									<span class="text-danger h6 mr-2">[Default]</span>
 								</th:block>
 
-							
+
 
 
 							</h5>
@@ -48,9 +51,7 @@
 									<h6 class="d-flex align-items-center mb-0">
 										[[${customer.address}]]</h6>
 								</div>
-								<div class="col-4 text-right">
-									<span></span>
-								</div>
+								<div class="col-4 text-right"></div>
 							</div>
 
 						</div>
@@ -90,7 +91,7 @@
 											as Default]</a>
 
 										<a class="h6" style="color: #00008b"
-											th:href="@{redirectedCheckoutPage }">Set as Default]</a>
+											th:href="@{redirectedCheckoutPage }">[Set as Default]</a>
 										<a class="h6" style="color: #00008b"
 											th:href="@{'/address_book/default/'+ ${address.id} + '?redirect=checkout' }">[Choose]</a>
 									</th:block>
