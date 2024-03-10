@@ -93,8 +93,17 @@ public class AddressController {
 		Customer customer = getAuthenticatedCustomer(request);
 		addressService.delete(addressId, customer.getId());
 		
-		ra.addFlashAttribute("message", "The address ID " + addressId + " has been deleted.");
+		ra.addFlashAttribute("message", "The address  has been deleted.");
 		
 		return "redirect:/address_book";
+	}
+	
+	@GetMapping("/address_book/default/{id}")
+	public String setDefaultAddress(@PathVariable("id") Integer addressId,
+			HttpServletRequest request) {
+		Customer customer = getAuthenticatedCustomer(request);
+		addressService.seDefaultAddress(addressId, customer.getId());
+		
+		return "redirect:/address_book"; 
 	}
 }

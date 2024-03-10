@@ -144,4 +144,9 @@
   background-color: #303030;
   opacity: 8%;
 }
-
+.fa-trash:hover {
+	color: #ff5e5e;
+}
+.fa-edit:hover {
+	color: #ff5e5e;
+}
