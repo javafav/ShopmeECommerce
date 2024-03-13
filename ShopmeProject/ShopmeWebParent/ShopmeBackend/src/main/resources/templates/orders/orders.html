@@ -44,7 +44,7 @@
 					<td>[[${order.status}]]</td>
 
 					<td>
-						<a class="fas fa-file-alt fa-2x icon-green link-detail"
+						<a class="fas fa-file-alt fa-2x icon-green linkOrderDetail"
 							th:href="@{'/orders/detail/' + ${order.id}}"
 							title="View details of this order"
 							></a>					
@@ -68,16 +68,22 @@
 			</div>
 		</div>
 	</div>	
-	
+	<div class="modal fade" id="orderDetailModal">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+			</div>
+		</div>
+	</div>
 	<div th:replace="fragments :: footer"></div>
 	
 </div>
-<script th:src="@{/js/common_list.js}"></script>
+<script th:src="@{/js/common_lists.js}"></script>
 <script type="text/javascript">
 	moduleURL = "[[@{/orders}]]";
 
 	$(document).ready(function() {
 		handleLinkViewCustomerDetails();
+		handleLinkViewOrderDetails();
 	});
 	
 	function handleLinkViewCustomerDetails() {
@@ -86,6 +92,14 @@
 			linkDetailURL = $(this).attr("href");
 			$("#detailModal").modal("show").find(".modal-content").load(linkDetailURL);
 		});			
+	}
+	
+	function handleLinkViewOrderDetails() {
+		$(".linkOrderDetail").on("click", function(e) {
+			e.preventDefault();
+			linkDetailURL = $(this).attr("href");
+			$("#orderDetailModal").modal("show").find(".modal-content").load(linkDetailURL);
+		});		
 	}
 </script>
 </body>

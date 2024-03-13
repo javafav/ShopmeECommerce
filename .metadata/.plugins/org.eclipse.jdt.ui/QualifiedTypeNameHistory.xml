@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.apache.poi.ss.formula.functions.T"/>
-    <fullyQualifiedTypeName name="org.springframework.data.repository.NoRepositoryBean"/>
-    <fullyQualifiedTypeName name="com.shopme.admin.paging.PagingAndSortingParam"/>
     <fullyQualifiedTypeName name="com.shopme.admin.paging.PagingAndSortingHelper"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetails"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetailsService"/>
@@ -42,7 +39,6 @@
     <fullyQualifiedTypeName name="com.shopme.shoppingcart.ShoppingCartService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="com.shopme.customer.CustomerService"/>
     <fullyQualifiedTypeName name="javax.persistence.Transient"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.CartItem"/>
@@ -58,6 +54,10 @@
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Country"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.Order"/>
+    <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
 </qualifiedTypeNameHistroy>
