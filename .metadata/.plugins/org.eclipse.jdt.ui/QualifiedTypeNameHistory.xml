@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.admin.paging.PagingAndSortingHelper"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetails"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetailsService"/>
-    <fullyQualifiedTypeName name="com.shopme.customer.CustomerRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UsernameNotFoundException"/>
     <fullyQualifiedTypeName name="com.shopme.customer.CustomerUserDetailsService"/>
     <fullyQualifiedTypeName name="javax.persistence.Enumerated"/>
     <fullyQualifiedTypeName name="org.springframework.security.oauth2.core.user.OAuth2User"/>
@@ -60,4 +55,9 @@
     <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Order"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.order.Order"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.IdBasedEntity"/>
+    <fullyQualifiedTypeName name="javax.persistence.MappedSuperclass"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddress"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddressWithCountry"/>
 </qualifiedTypeNameHistroy>

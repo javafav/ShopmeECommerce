@@ -6,11 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
@@ -21,10 +17,8 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "categories")
-public class Category {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Category extends IdBasedEntity  {
+
 
 	@Column(nullable = false, length = 128, unique = true)
 	private String name;

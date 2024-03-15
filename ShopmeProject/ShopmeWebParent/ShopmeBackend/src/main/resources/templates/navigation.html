@@ -111,7 +111,7 @@
 								
 								<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-								   th:href="@{/shipping_rates}">Shipping Rate</a><
+								   th:href="@{/shipping_rates}">Shipping Rate</a>
 								   <div class="dropdown-menu">	
 									    	<a class="dropdown-item dropdown-menu-hover"  th:href="@{/shipping_rates/new}">Create New Shipping Rate</a>
 									    	<a class="dropdown-item dropdown-menu-hover"  th:href="@{/shipping_rates}">View All</a>
@@ -123,8 +123,12 @@
 								sec:authorize="hasAnyAuthority('Admin', 'Salesperson', 'Shipper')">
 
 
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/orders}">Orders</a></li>
+								<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+									th:href="@{/orders}">Orders</a>
+										<div class="dropdown-menu">	
+									    	<a class="dropdown-item dropdown-menu-hover"  th:href="@{/orders}">View All</a>
+									    	</div></li>
 							</th:block>
 
 							<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson')">

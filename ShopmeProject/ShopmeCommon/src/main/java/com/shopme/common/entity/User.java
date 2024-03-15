@@ -8,9 +8,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -18,11 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class User extends IdBasedEntity  {
 
 	@Column(length = 128, nullable = false, unique = true)
 	private String email;
@@ -55,14 +48,6 @@ public class User {
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getEmail() {
@@ -125,8 +110,6 @@ public class User {
 		this.roles.add(role);
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + "]";
@@ -134,27 +117,27 @@ public class User {
 
 	@Transient
 	public String getPhotoImagePath() {
-		if(id == null || photos == null) return "/images/default-user.png";
-		return "/user-photos/" + this.id  + "/" + this.photos;
+		if (id == null || photos == null)
+			return "/images/default-user.png";
+		return "/user-photos/" + this.id + "/" + this.photos;
 	}
 
 	@Transient
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;
 	}
-	
+
 	public boolean hasRole(String roleName) {
 		Iterator<Role> iterator = roles.iterator();
-		
-		while(iterator.hasNext()) {
+
+		while (iterator.hasNext()) {
 			Role role = iterator.next();
-			if(role.getName().equals(roleName)) {
+			if (role.getName().equals(roleName)) {
 				return true;
 			}
 		}
-		
-		
+
 		return false;
-		
+
 	}
 }

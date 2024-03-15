@@ -14,8 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.shopme.admin.paging.PagingAndSortingHelper;
 import com.shopme.admin.paging.PagingAndSortingParam;
 import com.shopme.admin.setting.SettingService;
-import com.shopme.common.entity.Order;
-import com.shopme.common.entity.Setting;
+import com.shopme.common.entity.order.Order;
+import com.shopme.common.entity.setting.Setting;
 import com.shopme.common.exception.OrderNotFoundException;
 
 @Controller
@@ -65,4 +65,16 @@ public class OrderController {
 			request.setAttribute(setting.getKey(), setting.getValue());
 		}	
 	}	
+	
+	@GetMapping("/orders/delete/{id}")
+	public String deleteOrder(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+		try {
+			orderService.delete(id);;
+			ra.addFlashAttribute("message", "The order ID " + id + " has been deleted.");
+		} catch (OrderNotFoundException ex) {
+			ra.addFlashAttribute("message", ex.getMessage());
+		}
+		
+		return defaultRedirectURL;
+	}
 }
