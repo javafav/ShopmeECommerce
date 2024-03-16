@@ -30,7 +30,8 @@
 						</div>
 						<div class="mb-4">
 							<h5 class="card-title mb-0">
-								<b>Your Primary Address</b> <span class="float-right h5">
+								<b>Your Primary Address</b>
+								 <span class="float-right h5">
 									<a class="fas fa-edit icon-white" title="Edit this Adderess"
 									th:href="@{/account_details(redirect=address_book)}"></a>
 								</span>
@@ -41,9 +42,14 @@
 								</th:block>
 								
 									<th:block th:unless="${usePrimaryAddressAsDefault}">
-										<a class="h6" style="color: #00008b"
+										<a  th:unless="${param.redirect}" class="h6" style="color: #00008b"
 											th:href="@{/address_book/default/0}">[Set
-											as Default]</a></th:block>
+											as Default]</a>
+											<a  th:if="${param.redirect}"  class="h6" style="color: #00008b"
+											th:href="@{/address_book/default/{id}(id=0, redirect=${param.redirect})}">[Set
+											as Default]</a>
+											
+											</th:block>
 
 
 
@@ -100,10 +106,12 @@
 
 
 									<th:block th:unless="${address.defaultForShipping}">
-										<a class="h6" style="color: #00008b"
+										<a th:unless="${param.redirect}" class="h6" style="color: #00008b"
 											th:href="@{'/address_book/default/'+ ${address.id}}">[Set
 											as Default]</a>
-
+                                        	<a th:if="${param.redirect}" class="h6" style="color: #00008b"
+											th:href="@{/address_book/default/{id}(id=${address.id}, redirect=${param.redirect})}">[Set
+											as Default]</a>
 
 										<span class="float-right h5"> <a
 											class="fas fa-edit icon-white" title="Edit this Adderess"

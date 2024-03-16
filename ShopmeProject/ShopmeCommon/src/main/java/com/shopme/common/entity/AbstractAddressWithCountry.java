@@ -36,12 +36,13 @@ public abstract class AbstractAddressWithCountry extends AbstractAddress {
 		
 		if (state != null && !state.isEmpty()) address += ", " + state;
 		
-		address += ", " + country.getName();
+		   if (country != null) {
+		        address += ", " + country.getName();
+		    }
 		
 		if (!postalCode.isEmpty()) address += ". Postal Code: " + postalCode;
 		if (!phoneNumber.isEmpty()) address += ". Phone Number: " + phoneNumber;
 		
 		return address;
-	
-}
+	}
 }

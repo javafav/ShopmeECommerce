@@ -163,7 +163,7 @@ public class Order extends AbstractAddress {
 		setAddressLine1(customer.getAddressLine1());
 		setAddressLine2(customer.getAddressLine2());
 		setCity(customer.getCity());
-		setCountry(customer.getCountry().getName().toString());
+		setCountry(customer.getCountry().getName());
 		setPostalCode(customer.getPostalCode());
 		setState(customer.getState());		
 	}

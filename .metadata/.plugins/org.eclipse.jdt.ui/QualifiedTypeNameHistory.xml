@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.customer.CustomerUserDetailsService"/>
-    <fullyQualifiedTypeName name="javax.persistence.Enumerated"/>
-    <fullyQualifiedTypeName name="org.springframework.security.oauth2.core.user.OAuth2User"/>
-    <fullyQualifiedTypeName name="org.springframework.security.oauth2.core.user.DefaultOAuth2User"/>
-    <fullyQualifiedTypeName name="org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService"/>
     <fullyQualifiedTypeName name="com.shopme.security.oauth.CustomerOAuth2UserService"/>
     <fullyQualifiedTypeName name="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
@@ -21,7 +16,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="net.bytebuddy.utility.RandomString"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="com.shopme.shoppingcart.CartItemRepository"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Product"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
@@ -30,7 +24,6 @@
     <fullyQualifiedTypeName name="com.shopme.common.exception.ShoppingCartException"/>
     <fullyQualifiedTypeName name="com.shopme.shoppingcart.ShoppingCartException"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.shopme.shoppingcart.ShoppingCartService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
@@ -41,13 +34,8 @@
     <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
     <fullyQualifiedTypeName name="com.shopme.admin.paging.SearchAndPagingRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.data.repository.CrudRepository"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.Address"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.Customer"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.Country"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
@@ -60,4 +48,16 @@
     <fullyQualifiedTypeName name="javax.persistence.MappedSuperclass"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddress"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddressWithCountry"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.CrudRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.shopme.shipping.ShippingRateRepository"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.Customer"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.Country"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.State"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.Address"/>
+    <fullyQualifiedTypeName name="com.shopme.address.AddressService"/>
+    <fullyQualifiedTypeName name="com.shopme.shipping.ShippingRateService"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.ShippingRate"/>
 </qualifiedTypeNameHistroy>
