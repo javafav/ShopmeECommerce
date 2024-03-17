@@ -57,6 +57,7 @@ public class AddressController {
 		model.addAttribute("address", new Address());
 		model.addAttribute("pageTitle", "Add New Address");
 		
+		
 		return "address_book/address_form";
 	}
 	
@@ -67,9 +68,18 @@ public class AddressController {
 		address.setCustomer(customer);
 		addressService.save(address);
 		
+		String redirectOption = request.getParameter("redirect");
+		String redirectURL = "redirect:/address_book";
+		
+		if ("checkout".equals(redirectOption)) {
+			redirectURL += "?redirect=checkout";
+		}else if ("cart".equals(redirectOption)) {
+			redirectURL += "?redirect=cart";
+		}
+		
 		ra.addFlashAttribute("message", "The address has been saved successfully.");
 		
-		return "redirect:/address_book";
+		return redirectURL;
 	}
 	
 	@GetMapping("/address_book/edit/{id}")
@@ -79,7 +89,8 @@ public class AddressController {
 		List<Country> listCountries = customerService.listAllCountries();
 		
 		Address address = addressService.get(addressId, customer.getId());
-
+		
+	
 		model.addAttribute("address", address);
 		model.addAttribute("listCountries", listCountries);
 		model.addAttribute("pageTitle", "Edit Address (ID: " + addressId + ")");
@@ -109,7 +120,9 @@ public class AddressController {
 		
 		if ("cart".equals(redirectOption)) {
 			redirectURL = "redirect:/cart";
-		}		
+		}else if ("checkout".equals(redirectOption)) {
+			redirectURL = "redirect:/checkout";
+		}	
 		
 		return redirectURL;
 	
