@@ -72,7 +72,7 @@
 			</div>
 			
      	<div class="tab-pane" id="payments" role="tabpanel">
-				<h2>Payments</h2>
+				<div th:replace="settings/payment :: content"></div>
 			</div>
 
 		</div>
@@ -100,6 +100,7 @@
 
 	<script type="text/javascript">
 	$("#customerVerificationContent").richText();
+	$("#orderConfirmationContent").richText({height:400});
 
 	    contextPath = "[[@{/}]]"
 		MAX_FILE_SIZE = 1 * 1024 * 1024; //1 MB
