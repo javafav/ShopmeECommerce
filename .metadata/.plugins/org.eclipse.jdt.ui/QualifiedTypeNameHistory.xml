@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.security.authentication.RememberMeAuthenticationToken"/>
-    <fullyQualifiedTypeName name="org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken"/>
-    <fullyQualifiedTypeName name="com.shopme.security.oauth.CustomerOAuth2User"/>
-    <fullyQualifiedTypeName name="javax.persistence.Column"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
-    <fullyQualifiedTypeName name="net.bytebuddy.utility.RandomString"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="com.shopme.shoppingcart.CartItemRepository"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Product"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
@@ -43,7 +36,6 @@
     <fullyQualifiedTypeName name="com.shopme.common.entity.ShippingRate"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.shopme.order.OrderReopositary"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Address"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.Order"/>
@@ -60,4 +52,12 @@
     <fullyQualifiedTypeName name="com.shopme.order.OrderService"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.setting.SettingBag"/>
+    <fullyQualifiedTypeName name="java.text.DecimalFormat"/>
+    <fullyQualifiedTypeName name="java.text.DecimalFormatSymbols"/>
+    <fullyQualifiedTypeName name="com.shopme.setting.CurrencySettingBag"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.shopme.setting.SettingService"/>
+    <fullyQualifiedTypeName name="javax.mail.MessagingException"/>
+    <fullyQualifiedTypeName name="java.io.UnsupportedEncodingException"/>
 </qualifiedTypeNameHistroy>

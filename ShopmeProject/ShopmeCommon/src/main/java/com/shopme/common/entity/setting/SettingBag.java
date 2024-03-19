@@ -7,7 +7,6 @@ public class SettingBag {
 	private List<Setting> listSetting;
 
 	public SettingBag(List<Setting> listSetting) {
-		
 		this.listSetting = listSetting;
 	}
 	
