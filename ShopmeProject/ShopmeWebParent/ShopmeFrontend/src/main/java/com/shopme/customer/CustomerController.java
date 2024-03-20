@@ -87,7 +87,7 @@ public class CustomerController {
 	@GetMapping("/verify")
 	public String verifyCustomer(@RequestParam("code") String code) {
 		boolean verified = customerService.verifyCustomer(code);
-		 System.out.println("Verfiy Method id called");
+		
 		return "register/" + ( verified ? "verify_success" : "verify_fail");
 		
 	}

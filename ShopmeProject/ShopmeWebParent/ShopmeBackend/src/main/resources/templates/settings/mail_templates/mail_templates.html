@@ -10,6 +10,9 @@
 
 			<li class="nav-item"><a class="nav-link active"
 				data-toggle="tab" href="#account_verification" role="tab">Account Verification</a></li>
+  	
+  	        <li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="#forgot_password" role="tab">Forgot Password</a></li>
 
 			<li class="nav-item"><a class="nav-link" data-toggle="tab"
 				href="#order_confirmation" role="tab">Order Confirmation</a></li>
@@ -23,6 +26,10 @@
 
 			<div class="tab-pane active" id="account_verification" role="tabpanel">
 				<div th:replace="settings/mail_templates/account_verification :: content"></div>
+			</div>
+			
+			<div class="tab-pane p-3" id="forgot_password" role="tabpanel">
+				<div th:replace="settings/mail_templates/forgot_password :: content"></div>
 			</div>
 
 			<div class="tab-pane p-3" id="order_confirmation" role="tabpanel">

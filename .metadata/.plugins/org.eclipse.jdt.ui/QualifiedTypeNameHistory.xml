@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.shoppingcart.CartItemRepository"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.Product"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="com.shopme.Utility"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.CustomerNotFoundException"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.ShoppingCartException"/>
@@ -53,11 +50,14 @@
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.setting.SettingBag"/>
-    <fullyQualifiedTypeName name="java.text.DecimalFormat"/>
     <fullyQualifiedTypeName name="java.text.DecimalFormatSymbols"/>
     <fullyQualifiedTypeName name="com.shopme.setting.CurrencySettingBag"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.shopme.setting.SettingService"/>
     <fullyQualifiedTypeName name="javax.mail.MessagingException"/>
     <fullyQualifiedTypeName name="java.io.UnsupportedEncodingException"/>
+    <fullyQualifiedTypeName name="com.shopme.setting.CurrencyRepository"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="com.shopme.setting.PaymentSettingBag"/>
+    <fullyQualifiedTypeName name="java.text.DecimalFormat"/>
 </qualifiedTypeNameHistroy>

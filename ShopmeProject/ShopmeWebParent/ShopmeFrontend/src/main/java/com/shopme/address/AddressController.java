@@ -21,14 +21,16 @@ import com.shopme.customer.CustomerService;
 @Controller
 public class AddressController {
 
-	@Autowired private AddressService addressService;
-	@Autowired private CustomerService customerService;	
-	
+	@Autowired
+	private AddressService addressService;
+	@Autowired
+	private CustomerService customerService;
+
 	@GetMapping("/address_book")
 	public String showAddressBook(Model model, HttpServletRequest request) {
 		Customer customer = getAuthenticatedCustomer(request);
 		List<Address> listAddresses = addressService.listAddressBook(customer);
-		
+
 		boolean usePrimaryAddressAsDefault = true;
 		for (Address address : listAddresses) {
 			if (address.isDefaultForShipping()) {
@@ -36,95 +38,91 @@ public class AddressController {
 				break;
 			}
 		}
-		
+
 		model.addAttribute("listAddresses", listAddresses);
 		model.addAttribute("customer", customer);
 		model.addAttribute("usePrimaryAddressAsDefault", usePrimaryAddressAsDefault);
-		
+
 		return "address_book/addresses";
 	}
-	
+
 	private Customer getAuthenticatedCustomer(HttpServletRequest request) {
-		String email = Utility.getEmailOfAuthenticatedCustomer(request);				
+		String email = Utility.getEmailOfAuthenticatedCustomer(request);
 		return customerService.getCustomerByEmail(email);
-	}	
-	
+	}
+
 	@GetMapping("/address_book/new")
 	public String newAddress(Model model) {
 		List<Country> listCountries = customerService.listAllCountries();
-		
+
 		model.addAttribute("listCountries", listCountries);
 		model.addAttribute("address", new Address());
 		model.addAttribute("pageTitle", "Add New Address");
-		
-		
+
 		return "address_book/address_form";
 	}
-	
+
 	@PostMapping("/address_book/save")
 	public String saveAddress(Address address, HttpServletRequest request, RedirectAttributes ra) {
 		Customer customer = getAuthenticatedCustomer(request);
-		
+
 		address.setCustomer(customer);
 		addressService.save(address);
-		
+
 		String redirectOption = request.getParameter("redirect");
 		String redirectURL = "redirect:/address_book";
-		
+
 		if ("checkout".equals(redirectOption)) {
 			redirectURL += "?redirect=checkout";
-		}else if ("cart".equals(redirectOption)) {
+		} else if ("cart".equals(redirectOption)) {
 			redirectURL += "?redirect=cart";
 		}
-		
+
 		ra.addFlashAttribute("message", "The address has been saved successfully.");
-		
+
 		return redirectURL;
 	}
-	
+
 	@GetMapping("/address_book/edit/{id}")
-	public String editAddress(@PathVariable("id") Integer addressId, Model model,
-			HttpServletRequest request) {
+	public String editAddress(@PathVariable("id") Integer addressId, Model model, HttpServletRequest request) {
 		Customer customer = getAuthenticatedCustomer(request);
 		List<Country> listCountries = customerService.listAllCountries();
-		
+
 		Address address = addressService.get(addressId, customer.getId());
-		
-	
+
 		model.addAttribute("address", address);
 		model.addAttribute("listCountries", listCountries);
 		model.addAttribute("pageTitle", "Edit Address (ID: " + addressId + ")");
-		
+
 		return "address_book/address_form";
 	}
-	
+
 	@GetMapping("/address_book/delete/{id}")
 	public String deleteAddress(@PathVariable("id") Integer addressId, RedirectAttributes ra,
 			HttpServletRequest request) {
 		Customer customer = getAuthenticatedCustomer(request);
 		addressService.delete(addressId, customer.getId());
-		
+
 		ra.addFlashAttribute("message", "The address  has been deleted.");
-		
+
 		return "redirect:/address_book";
 	}
-	
+
 	@GetMapping("/address_book/default/{id}")
-	public String setDefaultAddress(@PathVariable("id") Integer addressId,
-			HttpServletRequest request) {
+	public String setDefaultAddress(@PathVariable("id") Integer addressId, HttpServletRequest request) {
 		Customer customer = getAuthenticatedCustomer(request);
 		addressService.seDefaultAddress(addressId, customer.getId());
-		
+
 		String redirectOption = request.getParameter("redirect");
 		String redirectURL = "redirect:/address_book";
-		
+
 		if ("cart".equals(redirectOption)) {
 			redirectURL = "redirect:/cart";
-		}else if ("checkout".equals(redirectOption)) {
+		} else if ("checkout".equals(redirectOption)) {
 			redirectURL = "redirect:/checkout";
-		}	
-		
+		}
+
 		return redirectURL;
-	
+
 	}
 }

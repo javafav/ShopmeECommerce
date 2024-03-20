@@ -74,7 +74,7 @@ public class SettingController {
 	}
 	
 	@PostMapping("/settings/mail_templates/account_verficition")
-	public String saveMailTemplateSetting(HttpServletRequest request, RedirectAttributes redirectAttributes)
+	public String saveMailTemplateSettingForAccountVerfiction(HttpServletRequest request, RedirectAttributes redirectAttributes)
 			throws IOException {
 
 		List<Setting> mialTemplateSetting = service.getMailTemplatesSetting();
@@ -84,6 +84,32 @@ public class SettingController {
 		redirectAttributes.addFlashAttribute("message", "Customer verification template updated successfully!");
 		return "redirect:/settings#mailTemplates";
 	}
+	
+	@PostMapping("/settings/mail_templates/forgot_password")
+	public String saveMailTemplateSettingForForgotPassword(HttpServletRequest request, RedirectAttributes redirectAttributes)
+			throws IOException {
+
+		List<Setting> mialTemplateSetting = service.getMailTemplatesSetting();
+
+		updateSettingValuesFromForm(request, mialTemplateSetting);
+
+		redirectAttributes.addFlashAttribute("message", "Forgot password template updated successfully!");
+		return "redirect:/settings#mailTemplates";
+	}
+	
+	@PostMapping("/settings/mail_templates/order_confirmation")
+	public String saveMailTemplateSettingForOrderCofirmation(HttpServletRequest request, RedirectAttributes redirectAttributes)
+			throws IOException {
+
+		List<Setting> mialTemplateSetting = service.getMailTemplatesSetting();
+
+		updateSettingValuesFromForm(request, mialTemplateSetting);
+
+		redirectAttributes.addFlashAttribute("message", "Order confirmation template updated successfully!");
+		return "redirect:/settings#mailTemplates";
+	}
+	
+	
 	@PostMapping("/settings/save_payment")
 	public String savePaymentSetttings(HttpServletRequest request, RedirectAttributes ra) {
 		List<Setting> paymentSettings = service.getPaymentSettings();

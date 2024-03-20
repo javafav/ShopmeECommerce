@@ -57,6 +57,13 @@ public class EmailSettingBag extends SettingBag {
 	
 	public String getOrderConfirmationContent() {
 		return super.getValue("ORDER_CONFIRMATION_CONTENT");
-		
+	
+	}
+	
+	public String getForgotPasswordSubject() {
+		return super.getValue("FORGOT_PASSWORD_SUBJECT");
+	}
+	public String getForgotPasswordContent() {
+		return super.getValue("FORGOT_PASSWORD_CONTENT");
 	}
 }
