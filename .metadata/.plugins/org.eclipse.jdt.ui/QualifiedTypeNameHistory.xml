@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.Utility"/>
-    <fullyQualifiedTypeName name="com.shopme.common.exception.CustomerNotFoundException"/>
-    <fullyQualifiedTypeName name="com.shopme.common.exception.ShoppingCartException"/>
-    <fullyQualifiedTypeName name="com.shopme.shoppingcart.ShoppingCartException"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-    <fullyQualifiedTypeName name="com.shopme.shoppingcart.ShoppingCartService"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
-    <fullyQualifiedTypeName name="com.shopme.customer.CustomerService"/>
     <fullyQualifiedTypeName name="javax.persistence.Transient"/>
     <fullyQualifiedTypeName name="com.shopme.product.ProductRepository"/>
     <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
@@ -20,7 +11,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Order"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.IdBasedEntity"/>
     <fullyQualifiedTypeName name="javax.persistence.MappedSuperclass"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddress"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddressWithCountry"/>
@@ -37,10 +27,8 @@
     <fullyQualifiedTypeName name="com.shopme.common.entity.Address"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.Order"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Customer"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="com.shopme.checkout.CheckoutInfo"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderStatus"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.CartItem"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderDetail"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.product.Product"/>
@@ -60,4 +48,16 @@
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="com.shopme.setting.PaymentSettingBag"/>
     <fullyQualifiedTypeName name="java.text.DecimalFormat"/>
+    <fullyQualifiedTypeName name="com.shopme.checkout.paypal.PayPalService"/>
+    <fullyQualifiedTypeName name="com.shopme.checkout.paypal.PayPalApiException"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.IdBasedEntity"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderStatus"/>
+    <fullyQualifiedTypeName name="javax.persistence.Enumerated"/>
+    <fullyQualifiedTypeName name="javax.persistence.Column"/>
+    <fullyQualifiedTypeName name="org.hibernate.annotations.ManyToAny"/>
+    <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
+    <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
