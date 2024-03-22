@@ -9,14 +9,7 @@ public enum OrderStatus {
 		}
 		
 	}, 
-	
-	CANCELLED {
-		@Override
-		public String defaultDescription() {
-			return "Order was rejected";
-		}
-	}, 
-	
+		
 	PROCESSING {
 		@Override
 		public String defaultDescription() {
@@ -51,7 +44,12 @@ public enum OrderStatus {
 			return "Customer received products";
 		}		
 	}, 
-	
+	CANCELLED {
+		@Override
+		public String defaultDescription() {
+			return "Order was rejected";
+		}
+	},
 	RETURNED {
 		@Override
 		public String defaultDescription() {
