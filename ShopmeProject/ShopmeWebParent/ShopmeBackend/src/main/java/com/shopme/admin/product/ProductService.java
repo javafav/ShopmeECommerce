@@ -55,7 +55,12 @@ public class ProductService {
 		helper.updateModelAttributes(pageNum, page);
 		
 	}
-	
+	public void searchProducts(int pageNum, PagingAndSortingHelper helper) {
+		Pageable pageable = helper.createPageable(PRODUCTS_PER_PAGE, pageNum);
+		String keyword = helper.getKeyword();		
+		Page<Product> page = repo.searchByName(keyword, pageable);		
+		helper.updateModelAttributes(pageNum, page);
+	}
 	
 
 	public void updateProductEnableStatus(Integer productId, boolean status) throws ProductNotFoundException {
