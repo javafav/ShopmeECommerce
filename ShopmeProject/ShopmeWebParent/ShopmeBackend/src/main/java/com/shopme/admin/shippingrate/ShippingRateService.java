@@ -73,18 +73,20 @@ public class ShippingRateService {
 	}	
 	
 
-	public float calculateShippingCost(Integer productId, Integer countryId, String state ) throws ShippingRateNotFoundException {
+	public float calculateShippingCost(Integer productId, Integer countryId, String state) 
+			throws ShippingRateNotFoundException {
 		ShippingRate shippingRate = shipRepo.findByCountryAndState(countryId, state);
-		if(shippingRate ==null ) {
-			throw new ShippingRateNotFoundException("SHippint rate is not found ");
+		
+		if (shippingRate == null) {
+			throw new ShippingRateNotFoundException("No shipping rate found for the given "
+					+ "destination. You have to enter shipping cost manually.");
 		}
 		
 		Product product = productRepo.findById(productId).get();
-		float dimWeight = (product.getLength() * product.getHeight() * product.getWidth()) / DIM_DIVISOR;
+		
+		float dimWeight = (product.getLength() * product.getWidth() * product.getHeight()) / DIM_DIVISOR;
 		float finalWeight = product.getWeight() > dimWeight ? product.getWeight() : dimWeight;
-		
-		
-		
+				
 		return finalWeight * shippingRate.getRate();
 	}
 }

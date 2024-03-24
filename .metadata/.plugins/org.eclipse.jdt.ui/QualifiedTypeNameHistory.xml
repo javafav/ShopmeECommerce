@@ -26,7 +26,6 @@
     <fullyQualifiedTypeName name="com.shopme.checkout.CheckoutInfo"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.CartItem"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderDetail"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.product.Product"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.PaymentMethod"/>
     <fullyQualifiedTypeName name="com.shopme.order.OrderService"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.shopme.admin.product.ProductService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.product.Product"/>
 </qualifiedTypeNameHistroy>

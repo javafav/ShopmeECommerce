@@ -101,9 +101,12 @@
 	<script type="text/javascript">
 		moduleURL = "[[@{/users}]]";
 		MAX_FILE_SIZE = 1 * 1024 * 1024; //1 MB
+		var csrfHeaderName = "[[${_csrf.headerName}]]";
+		var csrfValue = "[[${_csrf.token}]]";
+		
 		function checkUniqueUser(form) {
 			url = "[[@{/users/email_unique}]]";
-			csrfValue = $("input[name = '_csrf']").val();
+
 			userId = $("#id").val();
 
 			userEmail = $("#email").val();

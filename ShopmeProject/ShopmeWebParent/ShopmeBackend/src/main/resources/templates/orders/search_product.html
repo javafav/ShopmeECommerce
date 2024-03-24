@@ -25,6 +25,7 @@
 	</div>
 	
 	<div th:replace="fragments :: pagination('products')"></div>
+	<div th:replace="modal_fragments :: modal_dialog"></div>
 
 
 
@@ -41,7 +42,14 @@ function handleProductLink(){
 		productId = $(this).attr("pid");
 		productName = $("#pname" + productId ).text();
 		
-		alert("Selected Product Id: " + productId + " Name" + productName );
+		if(window.parent.isProductAlreadyAdded(productId)){
+			showWarningDialog("The product '" + productName +  "'  is Existed");
+		}else {
+			window.parent.addProduct(productId, productName );
+		}
+		
+		
+		
 		
 	});
 }
@@ -49,6 +57,9 @@ function handleProductLink(){
 
 
 </script>
+<script th:src="@{/js/common_forms.js}"></script>
+
+
 <body>
 
 </body>

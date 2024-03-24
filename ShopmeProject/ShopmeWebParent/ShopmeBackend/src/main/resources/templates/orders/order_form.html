@@ -59,7 +59,8 @@
 </div>	
 <script type="text/javascript">
 	contextPath = "[[@{/}]]";
-	
+	var csrfHeaderName = "[[${_csrf.headerName}]]";
+	var csrfValue = "[[${_csrf.token}]]";
 	$(document).ready(function() {
 		$('#buttonCancel').click(function() { 
 			window.location = "[[@{/orders}]]";	
@@ -72,6 +73,6 @@
 <script th:src="@{/js/order_form_overview_products.js}"></script>
 <script th:src="@{/js/jquery.number.min.js}"></script>
 <script th:src="@{/js/common_form_country_state.js}"></script>
-
+<script th:src="@{/js/order_form_remove_products.js}"></script>
 </body>
 </html>
