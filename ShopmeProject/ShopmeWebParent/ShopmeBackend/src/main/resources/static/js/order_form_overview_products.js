@@ -131,3 +131,43 @@ function formatOrderAmounts() {
 function formatNumberForField(fieldRef) {
 	fieldRef.val($.number(fieldRef.val(), 2));
 }
+
+function processFormBeforeSubmit(){
+	setCountryName();
+	removeThousandSeprator(fieldProductCost);
+	removeThousandSeprator(fieldSubtotal);
+	removeThousandSeprator(fieldShippingCost);
+	removeThousandSeprator(fieldTax);
+	removeThousandSeprator(fieldTotal); 
+	
+	cost-input(fieldTotal);
+
+	$(".cost-input").each(function() {
+		removeThousandSeprator($(this));
+	});
+
+	$(".price-input").each(function() {
+		removeThousandSeprator($(this));
+	});
+
+	$(".subtotal-output").each(function() {
+		removeThousandSeprator($(this));
+	});
+	
+	$(".ship-input").each(function() {
+		removeThousandSeprator($(this));
+	});
+	
+
+
+
+
+}
+function setCountryName(){
+selectedCountry = $("#country option:selected").text();
+$("#countryName").val(selectedCountry);
+}
+
+function removeThousandSeprator(fiedlRef){
+	fiedlRef.val(fiedlRef.val().replace("," , ""));
+}

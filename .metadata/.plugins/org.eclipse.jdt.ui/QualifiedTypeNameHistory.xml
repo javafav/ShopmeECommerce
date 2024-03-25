@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
-    <fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
-    <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Order"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
     <fullyQualifiedTypeName name="javax.persistence.MappedSuperclass"/>
@@ -58,6 +54,10 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.shopme.admin.product.ProductService"/>
+    <fullyQualifiedTypeName name="javax.persistence.Transient"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.product.Product"/>
+    <fullyQualifiedTypeName name="java.text.ParseException"/>
 </qualifiedTypeNameHistroy>
