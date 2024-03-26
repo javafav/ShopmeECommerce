@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.Order"/>
-    <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
     <fullyQualifiedTypeName name="javax.persistence.MappedSuperclass"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddress"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddressWithCountry"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="java.util.Set"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.product.Product"/>
     <fullyQualifiedTypeName name="java.text.ParseException"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.security.ShopmeUserDetails"/>
 </qualifiedTypeNameHistroy>
