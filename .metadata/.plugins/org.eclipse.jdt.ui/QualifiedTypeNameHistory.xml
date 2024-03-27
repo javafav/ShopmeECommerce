@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.persistence.MappedSuperclass"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddress"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddressWithCountry"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.CrudRepository"/>
@@ -16,7 +15,6 @@
     <fullyQualifiedTypeName name="com.shopme.common.entity.Address"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.Order"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Customer"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="com.shopme.checkout.CheckoutInfo"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.CartItem"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderDetail"/>
@@ -38,7 +36,6 @@
     <fullyQualifiedTypeName name="com.shopme.checkout.paypal.PayPalApiException"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.IdBasedEntity"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderStatus"/>
     <fullyQualifiedTypeName name="javax.persistence.Enumerated"/>
     <fullyQualifiedTypeName name="javax.persistence.Column"/>
     <fullyQualifiedTypeName name="org.hibernate.annotations.ManyToAny"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="java.text.ParseException"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
     <fullyQualifiedTypeName name="com.shopme.admin.security.ShopmeUserDetails"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderStatus"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderTrack"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
 </qualifiedTypeNameHistroy>
