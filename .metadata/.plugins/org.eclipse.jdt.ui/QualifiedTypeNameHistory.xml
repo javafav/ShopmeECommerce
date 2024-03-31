@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddress"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.AbstractAddressWithCountry"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.CrudRepository"/>
     <fullyQualifiedTypeName name="com.shopme.shipping.ShippingRateRepository"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderStatus"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderTrack"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
 </qualifiedTypeNameHistroy>

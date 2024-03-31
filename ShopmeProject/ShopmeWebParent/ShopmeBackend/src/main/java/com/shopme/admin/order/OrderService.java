@@ -80,11 +80,15 @@ public class OrderService {
 		orderRepo.save(orderInForm);
 	}	
 	
-	public void updateStatus(Integer orderId, String status) {
+	public void updateStatus(Integer orderId, String status) throws OrderNotFoundException {
 		Order orderInDB = orderRepo.findById(orderId).get();
 	    OrderStatus statusToUdate = OrderStatus.valueOf(status);
 	    
 	    if(!orderInDB.getStatus().equals(statusToUdate)) {
+	    	 if(orderInDB.getStatus().equals("PROCESSING") || orderInDB.getStatus().equals("NEW")  ) 
+	    	 {
+	    		 throw new OrderNotFoundException("The packge is not ready yet");
+	    	 }
 	    	List<OrderTrack> orderTracks = orderInDB.getOrderTracks();
 	    	
 	    	OrderTrack orderTrack = new OrderTrack();

@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shopme.common.exception.OrderNotFoundException;
+
 @RestController
 public class OrderRestController {
 
@@ -13,9 +15,16 @@ public class OrderRestController {
 
 	@PostMapping("/orders_shipper/update/{id}/{status}")
 	public Response updateOrderStatus(@PathVariable("id") Integer orderId, @PathVariable("status") String status) {
-		service.updateStatus(orderId, status);
-		return new Response(orderId, status);
-	}
+		try {
+			service.updateStatus(orderId, status);
+			return new Response(orderId, status);
+		} catch (OrderNotFoundException e) {
+			
+			return new Response(orderId, e.getMessage());
+			
+		}
+	
+ }
 }
 
 class Response {
