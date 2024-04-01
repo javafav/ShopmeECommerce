@@ -183,6 +183,23 @@ public class CustomerService {
 	        customerRepo.save(customer);
 	    }
 	
+	 public boolean comparePasswords(String oldPassword, String newPassword) {
+		    int minLength = Math.min(oldPassword.length(), newPassword.length());
+		    int matchingCharacters = 0;
+
+		    for (int i = 0; i < minLength; i++) {
+		        if (oldPassword.charAt(i) == newPassword.charAt(i)) {
+		            matchingCharacters++;
+		        }
+		    }
+
+		    // You can define a threshold for similarity
+		    double similarityThreshold = 0.8;
+		    double similarityRatio = (double) matchingCharacters / minLength;
+
+		    return similarityRatio >= similarityThreshold;
+		}
+
 		
 	
 }

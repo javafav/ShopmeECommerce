@@ -33,17 +33,22 @@
 				<h2 th:text="${name}"></h2>
 			</div>
 			<div>
-				<span>Brand: [[${product.brand.name}]]</span>
+				<span class="h6">Brand: [[${product.brand.name}]] </span> 	<img th:src="@{${product.brand.logoPath}}" style="max-width:70px;max-height: 50px">
+			
 			</div>
+		
+		
+ 
+		
 		<div>
-				List Price:
+			Original Price:
 				<span th:if="${product.discountPercent <= 0}"><div th:replace="product/product_fragment :: price_fragment(${product.price})"></div></span>
 				<del th:if="${product.discountPercent > 0}"><span><div th:replace="product/product_fragment :: price_fragment(${product.price})"></div></span></del>
 			</div>
 			<div th:if="${product.discountPercent > 0}">
-				Price:
+				Special Offer Price:
 				<span style="font-size: larger; color: darkred"><div th:replace="product/product_fragment :: price_fragment(${product.discountPrice})"></div></span>
-				([[${#numbers.formatDecimal(product.discountPercent, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]] % off)
+				<span style="color:#009999">(Save [[${#numbers.formatDecimal(product.discountPercent, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]%)</span>
 			</div>
 			<div>&nbsp;</div>
 			<div th:utext="${product.shortDescription}"></div>			

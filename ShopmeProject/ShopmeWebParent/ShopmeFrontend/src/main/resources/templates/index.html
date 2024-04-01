@@ -22,7 +22,7 @@
 	</div>
 	<div class="row" >
 	  <div class="col" th:each="cat : ${listCategories}">
-	 	 <div>	<img th:src="@{${cat.imagePath}}" style="width:80px" /></div>
+	 	 <div>	<img th:src="@{${cat.imagePath}}" style="max-width:80px" /></div>
 	  	 <div>
 	  	 <a th:href="@{ '/c/' + ${cat.alias}}">
 	  	 [[${cat.name}]]

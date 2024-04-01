@@ -72,7 +72,7 @@ public class BrandController {
 		}
 
 		redirectAttributes.addFlashAttribute("message", "The brand has been saved successfuly!");
-		return"redirect:/brands";
+		return defaultRedirectURL;
 	}
 	
 	@GetMapping("/brands/edit/{id}")
