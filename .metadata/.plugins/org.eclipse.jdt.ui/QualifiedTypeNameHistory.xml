@@ -54,10 +54,10 @@
     <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
     <fullyQualifiedTypeName name="com.shopme.admin.security.ShopmeUserDetails"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderStatus"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderTrack"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Sort"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Pageable"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Customer"/>
+    <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderTrack"/>
 </qualifiedTypeNameHistroy>
