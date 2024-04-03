@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.shipping.ShippingRateRepository"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Country"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.State"/>
     <fullyQualifiedTypeName name="com.shopme.address.AddressService"/>
@@ -10,7 +9,6 @@
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="com.shopme.order.OrderReopositary"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Address"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.order.Order"/>
     <fullyQualifiedTypeName name="com.shopme.checkout.CheckoutInfo"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.CartItem"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderDetail"/>
@@ -38,7 +36,6 @@
     <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
     <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.shopme.admin.shippingrate.ShippingRateNotFoundException"/>
     <fullyQualifiedTypeName name="com.shopme.admin.product.ProductRepository"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
@@ -54,10 +51,13 @@
     <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
     <fullyQualifiedTypeName name="com.shopme.admin.security.ShopmeUserDetails"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderStatus"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Sort"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Pageable"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Customer"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderTrack"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.Category"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.order.Order"/>
 </qualifiedTypeNameHistroy>
