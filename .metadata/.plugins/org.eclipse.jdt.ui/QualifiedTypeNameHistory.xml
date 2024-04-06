@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.Country"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.State"/>
-    <fullyQualifiedTypeName name="com.shopme.address.AddressService"/>
     <fullyQualifiedTypeName name="com.shopme.shipping.ShippingRateService"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.ShippingRate"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
@@ -40,14 +37,12 @@
     <fullyQualifiedTypeName name="com.shopme.admin.product.ProductRepository"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.shopme.admin.product.ProductService"/>
     <fullyQualifiedTypeName name="javax.persistence.Transient"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.product.Product"/>
-    <fullyQualifiedTypeName name="java.text.ParseException"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
     <fullyQualifiedTypeName name="com.shopme.admin.security.ShopmeUserDetails"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderStatus"/>
@@ -56,8 +51,13 @@
     <fullyQualifiedTypeName name="com.shopme.common.entity.Customer"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderTrack"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Category"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.Order"/>
+    <fullyQualifiedTypeName name="java.text.ParseException"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.text.DateFormat"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.setting.SettingService"/>
 </qualifiedTypeNameHistroy>

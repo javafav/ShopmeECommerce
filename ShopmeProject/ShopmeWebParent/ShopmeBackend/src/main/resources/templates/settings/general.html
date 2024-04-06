@@ -38,21 +38,17 @@
 		</div>
 
 		
-		<div class="form-group row">
-					<label class="col-sm-4 col-form-label">Currency Type:</label>
-					<div class="col-sm-8">
-						<select class="form-control" name="CURRENCY_ID" >
-
-
-							<th:block th:each="currency : ${listCurrencies}">
-								<option th:value="${currency.id}" th:selected="(${currency.id} == ${CURRENCY_ID})">[[${currency}]]</option>
-
-							</th:block>
-
-						</select>
-				
-					</div>
-				</div>
+	<div class="form-group row">
+		<label class="col-sm-4 col-form-label">Currency Type:</label>
+		<div class="col-sm-8">
+			<select name="CURRENCY_ID" class="form-control">
+			<th:block th:each="currency : ${listCurrencies}">
+				<option th:value="${currency.id}" 
+					th:selected="(${currency.id} == ${CURRENCY_ID})">[[${currency}]]</option>
+			</th:block>
+			</select>			
+		</div>
+	</div>	
 
 		<div class="form-group row">
 			<label class="col-sm-4 col-form-label">Currency Symbol Position:</label>

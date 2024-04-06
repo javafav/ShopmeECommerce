@@ -53,10 +53,11 @@ public class Currency extends IdBasedEntity  {
 		this.code = code;
 	}
 
+
+	
 	@Override
 	public String toString() {
-		return this.name + "- " + this.code + " - " + this.symbol;
+		return name + " - " + code + " - " + symbol;
 	}
-	
 		
 }
