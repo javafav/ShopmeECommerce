@@ -13,7 +13,7 @@ import com.shopme.common.entity.setting.Setting;
 
 @Controller
 public class ReportController {
-
+	
 	@Autowired private SettingService settingService;
 	
 	@GetMapping("/reports")
@@ -21,11 +21,12 @@ public class ReportController {
 		loadCurrencySetting(request);
 		return "reports/reports";
 	}
+	
 	private void loadCurrencySetting(HttpServletRequest request) {
 		List<Setting> currencySettings = settingService.getCurrencySettings();
 		
 		for (Setting setting : currencySettings) {
 			request.setAttribute(setting.getKey(), setting.getValue());
 		}	
-	}
+	}	
 }
