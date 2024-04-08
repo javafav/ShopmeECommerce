@@ -45,12 +45,14 @@ public class MasterOrderReportService extends AbstractReportService {
 				reportItem.addGrossSales(order.getTotal());
 				reportItem.addNetSales(order.getSubtotal() - order.getProductCost());
 				reportItem.increaseOrdersCount();
+				//System.out.println("Net sale in Date :: "+ reportItem.getNetSales());
 			}
 		}
 	}
 	
 	private void printReportData(List<ReportItem> listReportItems) {
 		listReportItems.forEach(item -> {
+			//System.out.print("Net Sale Report Print For Date");
 			System.out.printf("%s, %10.2f, %10.2f, %d \n", item.getIdentifier(), item.getGrossSales(),
 					item.getNetSales(), item.getOrdersCount());
 		});
