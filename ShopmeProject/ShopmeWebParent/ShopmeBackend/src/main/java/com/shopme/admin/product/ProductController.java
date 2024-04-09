@@ -54,6 +54,11 @@ public class ProductController {
 		List<Category> listCategories = categoryService.categoryListUsedInForm();
 		
 		if (categoryId != null) model.addAttribute("categoryId", categoryId);
+		
+		
+	
+		model.addAttribute("productsPerPage", productService.PRODUCTS_PER_PAGE);
+		
 		model.addAttribute("listCategories", listCategories);
 		
 		return "products/products";		

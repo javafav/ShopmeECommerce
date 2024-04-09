@@ -93,8 +93,8 @@
 		</th:block>
 	</div>	
 	
-	<div th:replace="fragments :: pagination('orders')"></div>
-	
+
+	<div th:replace="pagination_for_more_then_10page :: pagination('orders')"></div>
 	<div th:replace="modal_fragments :: confirm_modal" ></div>
 	
 	<div class="modal fade" id="detailModal">
@@ -120,6 +120,7 @@
 		handleLinkViewCustomerDetails();
 		handleLinkViewOrderDetails();
 		handleLinkDeleteOrder();
+		$("input[name='keyword']").attr("placeholder", "Orders")
 	});
 	function handleLinkDeleteOrder() {
 		$(".link-delete").on("click", function(e) {

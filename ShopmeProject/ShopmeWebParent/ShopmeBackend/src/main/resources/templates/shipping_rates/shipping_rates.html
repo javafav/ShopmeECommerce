@@ -80,7 +80,9 @@
 		$(".link-delete").on("click", function(e) {
 			e.preventDefault();
 			showDeleteConfirmModal($(this), 'shipping rate');
+		
 		});
+		$("input[name='keyword']").attr("placeholder", "Shipping Rates")
 	});
 </script>
 <script th:src="@{/js/common.js}"></script>

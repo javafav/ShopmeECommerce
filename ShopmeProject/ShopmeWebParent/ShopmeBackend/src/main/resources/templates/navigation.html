@@ -89,14 +89,22 @@
 
 							<a class="dropdown-item dropdown-menu-hover"  sec:authorize="hasAnyAuthority('Admin', 'Editor')" th:href="@{/products/new}">Create New Product</a>
 							<a class="dropdown-item dropdown-menu-hover"  th:href="@{/products}">View All</a>
+							<a class="dropdown-item dropdown-menu-hover" sec:authorize="hasAuthority('Admin')" th:href="@{/reviews}">Reviews</a>
+							
+							
 							
 							</div>
 						</li>
 									
 
 							</th:block>
-                                                                               
-							<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson')">
+					
+					<th:block sec:authorize="hasAuthority('Assistant')">
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/reviews}">Reviews</a></li>
+					</th:block>
+
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson')">
 
 
 								<li class="nav-item dropdown">
