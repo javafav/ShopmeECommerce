@@ -31,6 +31,11 @@ public class MainController {
 		return "index";
 	}
 	
+	@GetMapping("/privacy")
+	public String viewPrivacyPage(Model model) {
+	return "privacy_policy";
+	}
+	
 	@GetMapping("/login")
 	public String viewLoginPage() {
 		
