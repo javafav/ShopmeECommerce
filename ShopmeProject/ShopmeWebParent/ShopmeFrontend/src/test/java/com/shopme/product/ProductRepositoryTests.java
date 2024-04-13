@@ -34,5 +34,9 @@ public class ProductRepositoryTests {
 		
 		listProduct.forEach(proudct -> System.out.println(proudct.getName()));
 	}
-	
+	@Test
+	public void testUpdateReviewCountAndAverageRating() {
+		Integer productId = 100;
+		repo.updateReviewCountAndAverageRating(productId);
+	}
 }

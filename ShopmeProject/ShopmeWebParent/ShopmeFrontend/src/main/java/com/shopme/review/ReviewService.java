@@ -1,5 +1,7 @@
 package com.shopme.review;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +14,7 @@ import com.shopme.common.entity.Review;
 import com.shopme.common.exception.ReviewNotFoundException;
 
 @Service
+@Transactional
 public class ReviewService {
 	public static final int REVIEWS_PER_PAGE = 5;
 	
