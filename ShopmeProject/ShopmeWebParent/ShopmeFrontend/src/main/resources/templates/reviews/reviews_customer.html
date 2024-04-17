@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: page_head('My Reviews', 'none')" />
+<head>
+<head th:replace="fragments :: page_head('My Reviews', 'tag')" />
+<link rel="stylesheet" th:href="@{/style.css}">
+
+</head>
 <body>
 <div class="container-fluid">
 	<div th:replace="navigation :: header_menu"></div>
@@ -32,7 +36,7 @@
 						</a>
 					</td>
 					<td>[[${review.headline}]]</td>
-					<td>[[${review.rating}]] <i class="far fa-star"></i></td>
+					<td>[[${review.rating}]] <i class="far fa-star fa-solid icon-gold"></i></td>
 					<td>[[${review.reviewTime}]]</td>
 					<td>
 						<a class="fas fa-file-alt fa-2x icon-green link-detail-review"
@@ -56,7 +60,7 @@
 				</div>
 				<div>
 					&nbsp;
-					<span>[[${review.rating}]] <i class="far fa-star"></i></span>
+					<span>[[${review.rating}]] <i class="far fa-star fa-solid icon-gold"></i></span>
 					&nbsp;
 					<a class="fas fa-file-alt fa-2x icon-green link-detail-review"
 						th:href="@{'/reviews/detail/' + ${review.id}}"
@@ -83,10 +87,16 @@
 <script th:src="@{/js/common_list.js}"></script>
 <script type="text/javascript">
 	moduleURL = "[[@{/reviews}]]";
+	contextPath = "[[@{/}]]";
 
+	var csrfHeaderName = "[[${_csrf.headerName}]]";
+	var csrfValue = "[[${_csrf.token}]]"
+	
 	$(document).ready(function() {
 		handleDetailLink(".link-detail-review", "#reviewDetailModal");
 	});
 </script>
+	<script type="text/javascript"
+		th:src="@{/js/shopping_cart_items_count.js}"></script>
 </body>
 </html>

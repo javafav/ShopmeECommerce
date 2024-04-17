@@ -54,13 +54,9 @@ contextPath = "[[@{/}]]";
 
 var csrfHeaderName = "[[${_csrf.headerName}]]";
 var csrfValue = "[[${_csrf.token}]]";
-$(".product-detail-rating-star").rating({
-	displayOnly: true,
-	hoverOnClera: false,
-	showCaption: false,
-	theme: 'krajee-svg'
-});
+
 </script>
+<script type="text/javascript" th:src="@{/js/common_rating.js}"></script>
 
 <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 </body>
