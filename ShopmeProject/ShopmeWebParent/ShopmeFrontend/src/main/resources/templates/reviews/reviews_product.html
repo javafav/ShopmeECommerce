@@ -54,14 +54,18 @@
 		</div>						
 	</div>
 			
-	<div th:replace="fragments :: pagination('/ratings/' + ${product.alias}, 'reviews')"></div>
+	<div th:replace="fragments :: pagination('reviews', '/ratings/' + ${product.alias})"></div>
 	
 	<div th:replace="navigation :: footer_menu"></div>
 	
 </div>
 <script type="text/javascript">
+    contextPath = "[[@{/}]]";
 	decimalSeparator = "[[${DECIMAL_POINT_TYPE == 'COMMA' ? ',' : '.'}]]";
 	thousandSeparator = "[[${THOUSANDS_POINT_TYPE == 'COMMA' ? ',' : '.'}]]";
+	
+    var csrfHeaderName = "[[${_csrf.headerName}]]";
+	var csrfValue = "[[${_csrf.token}]]"
 </script>
 <script th:src="@{/js/common_list.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>

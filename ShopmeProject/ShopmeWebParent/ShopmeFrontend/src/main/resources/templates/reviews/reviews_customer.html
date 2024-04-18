@@ -72,7 +72,7 @@
 		</div>	
 	</div>		
 	
-	<div th:replace="fragments :: pagination('/reviews', 'reviews')"></div>
+	<div th:replace="fragments :: pagination('reviews','/reviews')"></div>
 
 	<div class="modal fade" id="reviewDetailModal">
 		<div class="modal-dialog modal-lg">
@@ -86,7 +86,7 @@
 </div>
 <script th:src="@{/js/common_list.js}"></script>
 <script type="text/javascript">
-	moduleURL = "[[@{/reviews}]]";
+	
 	contextPath = "[[@{/}]]";
 
 	var csrfHeaderName = "[[${_csrf.headerName}]]";

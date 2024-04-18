@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.CartItem"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.order.PaymentMethod"/>
-    <fullyQualifiedTypeName name="com.shopme.order.OrderService"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.setting.SettingBag"/>
-    <fullyQualifiedTypeName name="java.text.DecimalFormatSymbols"/>
     <fullyQualifiedTypeName name="com.shopme.setting.CurrencySettingBag"/>
     <fullyQualifiedTypeName name="com.shopme.setting.SettingService"/>
     <fullyQualifiedTypeName name="javax.mail.MessagingException"/>
@@ -29,7 +23,6 @@
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="com.shopme.admin.product.ProductService"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.product.Product"/>
@@ -42,7 +35,6 @@
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.Order"/>
     <fullyQualifiedTypeName name="java.text.ParseException"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.text.DateFormat"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.shopme.admin.setting.SettingService"/>
@@ -60,4 +52,12 @@
     <fullyQualifiedTypeName name="javax.swing.text.html.HTMLDocument.Iterator"/>
     <fullyQualifiedTypeName name="java.util.Iterator"/>
     <fullyQualifiedTypeName name="com.shopme.review.ReviewService"/>
+    <fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
+    <fullyQualifiedTypeName name="com.shopme.common.exception.ProductNotFoundException"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="com.shopme.product.ProductRepository"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="com.shopme.ControllerHelper"/>
 </qualifiedTypeNameHistroy>

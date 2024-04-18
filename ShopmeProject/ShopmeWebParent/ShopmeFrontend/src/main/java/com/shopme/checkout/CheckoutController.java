@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.shopme.ControllerHelper;
 import com.shopme.Utility;
 import com.shopme.address.AddressService;
 import com.shopme.checkout.paypal.PayPalApiException;
@@ -42,17 +43,18 @@ import com.shopme.shoppingcart.ShoppingCartService;
 public class CheckoutController {
 
 	@Autowired private CheckoutService checkoutService;
-	@Autowired private CustomerService customerService;
+
 	@Autowired private AddressService addressService;
 	@Autowired private ShippingRateService shipService;
 	@Autowired private ShoppingCartService cartService;
 	@Autowired private OrderService orderService;
 	@Autowired private SettingService settingService;
 	@Autowired private PayPalService paypalService;
+	@Autowired private ControllerHelper controllerHelper;
 	
 	@GetMapping("/checkout")
 	public String showCheckoutPage(Model model, HttpServletRequest request) {
-		Customer customer = getAuthenticatedCustomer(request);
+		Customer customer =controllerHelper.getAuthenticatedCustomer(request);
 		
 		Address defaultAddress = addressService.getDefaultAddress(customer);
 		ShippingRate shippingRate = null;
@@ -86,17 +88,13 @@ public class CheckoutController {
 		return "checkout/checkout";
 	}
 	
-	private Customer getAuthenticatedCustomer(HttpServletRequest request) {
-		String email = Utility.getEmailOfAuthenticatedCustomer(request);				
-		return customerService.getCustomerByEmail(email);
-	}	
-	
+
 	@PostMapping("/place_order")
 	public String placeOrder(HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
 		String paymentType = request.getParameter("paymentMethod");
 		PaymentMethod paymentMethod = PaymentMethod.valueOf(paymentType);
 		
-		Customer customer = getAuthenticatedCustomer(request);
+		Customer customer =controllerHelper.getAuthenticatedCustomer(request);
 		
 		Address defaultAddress = addressService.getDefaultAddress(customer);
 		ShippingRate shippingRate = null;

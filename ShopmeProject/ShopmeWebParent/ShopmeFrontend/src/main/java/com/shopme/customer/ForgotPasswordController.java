@@ -24,10 +24,11 @@ import com.shopme.setting.SettingService;
 
 @Controller
 public class ForgotPasswordController {
-	@Autowired
-	private CustomerService customerService;
-	@Autowired
-	private SettingService settingService;
+	
+	@Autowired	private CustomerService customerService;
+	@Autowired private SettingService settingService;
+	
+	
 
 	@GetMapping("/forgot_password")
 	public String showRequestForm() {
@@ -127,9 +128,5 @@ public class ForgotPasswordController {
 		return "message";
 	}
 
-	private Customer getAuthenticatedCustomer(HttpServletRequest request) {
-		String email = Utility.getEmailOfAuthenticatedCustomer(request);
 
-		return customerService.getCustomerByEmail(email);
-	}
 }

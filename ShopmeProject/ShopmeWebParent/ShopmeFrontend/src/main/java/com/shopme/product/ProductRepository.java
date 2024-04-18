@@ -18,10 +18,16 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
 	
 	public Product findByAlias(String alias);
 	
-	@Query(value = "SELECT * FROM products WHERE enabled = true AND MATCH(name, short_description, full_description) AGAINST (?1 IN NATURAL LANGUAGE MODE)",
-		       nativeQuery = true,
-		       countQuery = "SELECT COUNT(*) FROM products WHERE enabled = true AND MATCH(name, short_description, full_description) AGAINST (?1 IN NATURAL LANGUAGE MODE)")
-		public Page<Product> search(@Param("keyword") String keyword, Pageable pageable);
+	@Query(value = "SELECT * FROM products p " + "JOIN brands b ON p.brand_id = b.id "
+			+ "JOIN categories c ON p.category_id = c.id " + "WHERE p.enabled = true AND "
+			+ "(MATCH(p.name, p.short_description, p.full_description) AGAINST (?1 IN NATURAL LANGUAGE MODE) "
+			+ "OR b.name LIKE %?1% OR c.name LIKE %?1%)", nativeQuery = true, countQuery = "SELECT COUNT(*) FROM products p "
+					+ "JOIN brands b ON p.brand_id = b.id " + "JOIN categories c ON p.category_id = c.id "
+					+ "WHERE p.enabled = true AND "
+					+ "(MATCH(p.name, p.short_description, p.full_description) AGAINST (?1 IN NATURAL LANGUAGE MODE) "
+					+ "OR b.name LIKE %?1% OR c.name LIKE %?1%)")
+	public Page<Product> search(@Param("keyword") String keyword, Pageable pageable);
+
 
 
 	@Query("Update Product p SET p.averageRating = COALESCE((SELECT AVG(r.rating) FROM Review r WHERE r.product.id = ?1), 0),"

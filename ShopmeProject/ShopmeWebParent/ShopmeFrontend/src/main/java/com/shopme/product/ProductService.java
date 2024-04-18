@@ -1,5 +1,7 @@
 package com.shopme.product;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,6 +37,15 @@ public class ProductService {
 		return product;
 	}
 	
+	public Product getProduct(Integer productId) throws ProductNotFoundException {
+		try {
+			return repo.findById(productId).get();
+		} catch (NoSuchElementException ex) {
+			throw new ProductNotFoundException("No Product found witn gienve id" + productId);
+		}
+
+	}
+
 	public Page<Product> search(String keyword, int pageNum) {
 	
 		PageRequest pagebale = PageRequest.of(pageNum - 1, SEARCH_RESULTS_PER_PAGE);

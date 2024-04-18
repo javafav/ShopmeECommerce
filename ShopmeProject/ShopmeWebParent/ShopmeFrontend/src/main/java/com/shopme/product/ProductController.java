@@ -2,6 +2,8 @@ package com.shopme.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -10,12 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.shopme.ControllerHelper;
+import com.shopme.Utility;
 import com.shopme.category.CategoryService;
 import com.shopme.common.entity.Category;
+import com.shopme.common.entity.Customer;
 import com.shopme.common.entity.Review;
 import com.shopme.common.entity.product.Product;
 import com.shopme.common.exception.CategoryNotFoundException;
 import com.shopme.common.exception.ProductNotFoundException;
+import com.shopme.customer.CustomerService;
 import com.shopme.review.ReviewService;
 
 @Controller
@@ -25,6 +31,7 @@ public class ProductController {
 	@Autowired	private CategoryService categoryService;
 	@Autowired  private ProductService productService;
 	@Autowired private ReviewService reviewService;
+	@Autowired private ControllerHelper controllerHelper;
 	
 	@GetMapping("/c/{category_alias}")
 	public String viewCategoryFirstPage(@PathVariable(name = "category_alias") String alias,Model model) { 
@@ -80,13 +87,29 @@ public class ProductController {
 	}
 	
 	@GetMapping("/p/{alias}")
-	public String productDetail(@PathVariable("alias") String alias, Model model) {
+	public String viewProductDetail(@PathVariable("alias") String alias, Model model, HttpServletRequest request) {
 		try {
 	
 
 			Product product = productService.getProduct(alias);
 			List<Category> listCategoryParents = categoryService.getAllParents(product.getCategory());
 			Page<Review> listReviews = reviewService.list3MostRecentReviewsByProduct(product);
+			
+			Customer customer =controllerHelper.getAuthenticatedCustomer(request);
+			
+			if(customer != null) {
+		
+				boolean customerReviewed = reviewService.didCustomerReviewProduct(customer, product.getId());
+			
+			if (customerReviewed) {
+				model.addAttribute("customerReviewed", customerReviewed);
+			} else {
+				boolean customerCanReview = reviewService.canCustomerReviewProduct(customer, product.getId());
+				model.addAttribute("customerCanReview", customerCanReview);
+			 }
+		}
+			
+			
 			
 			model.addAttribute("name", product.getName());
 			model.addAttribute("product", product);
@@ -138,4 +161,5 @@ public class ProductController {
 		
 		return "product/search_result";
 	}
+
 }

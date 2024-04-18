@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.shopme.admin.paging.SearchAndPagingRepository;
 import com.shopme.common.entity.User;
 
-@Repository
+
 public interface UserRepository extends SearchAndPagingRepository<User, Integer> {
 
 	@Query("SELECT u FROM User u WHERE u.email = :email")
