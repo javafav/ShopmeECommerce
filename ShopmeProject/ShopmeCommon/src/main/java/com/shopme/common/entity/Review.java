@@ -22,6 +22,8 @@ public class Review extends IdBasedEntity {
 	
 	private int rating;	
 	
+	private int votes;
+	
 	@Column(nullable = false)
 	private Date reviewTime;
 	
@@ -32,6 +34,11 @@ public class Review extends IdBasedEntity {
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
+
+	public Review() {}
+	public Review(Integer reviewId) {
+		this.id = reviewId;
+	}
 
 	public String getHeadline() {
 		return headline;
@@ -81,6 +88,12 @@ public class Review extends IdBasedEntity {
 		this.customer = customer;
 	}
 
+	public int getVotes() {
+		return votes;
+	}
+	public void setVotes(int votes) {
+		this.votes = votes;
+	}
 	@Override
 	public String toString() {
 		return "Review [headline=" + headline + ", rating=" + rating + ", reviewTime=" + reviewTime + ", product="
