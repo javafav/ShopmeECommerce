@@ -1,10 +1,13 @@
 package com.shopme.review;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.shopme.common.entity.Review;
 import com.shopme.common.entity.product.Product;
@@ -29,11 +32,23 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	
 
 	
-	@Query("UPDATE Review r SET r.votes = (SELECT SUM(v.votes) FROM ReviewVote v WHERE v.review.id = ?1)"
+	@Query("UPDATE Review r SET r.votes = (SELECT SUM(v.votes)AS INT FROM ReviewVote v WHERE v.review.id = ?1)"
 	        + " WHERE r.id = ?1")
 	@Modifying
 	public void updateVoteCount(Integer reviewId);
 	
 	@Query("SELECT COUNT(r) FROM Review r WHERE r.id = ?1")
 	public Integer getVoteCount(Integer reviewId);
+	
+	
+    @Modifying
+    @Transactional
+    @Query("UPDATE Review r SET r.positiveVotes = (SELECT SUM(v.votes) FROM ReviewVote v WHERE v.review = r AND v.votes > 0) WHERE r.id = ?1")
+    void updatePositiveVotes( Integer reviewId);
+
+    
+    @Modifying
+    @Transactional
+    @Query("UPDATE Review r SET r.negativeVotes = (SELECT SUM(ABS(v.votes)) FROM ReviewVote v WHERE v.review = r AND v.votes < 0) WHERE r.id = ?1")
+    void updateNegativeVotes( Integer reviewId);
 }

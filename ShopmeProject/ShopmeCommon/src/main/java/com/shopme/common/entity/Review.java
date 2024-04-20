@@ -24,6 +24,10 @@ public class Review extends IdBasedEntity {
 	
 	private int votes;
 	
+    
+    private int positiveVotes;
+    private int negativeVotes;
+	
 	@Column(nullable = false)
 	private Date reviewTime;
 	
@@ -93,6 +97,22 @@ public class Review extends IdBasedEntity {
 	}
 	public void setVotes(int votes) {
 		this.votes = votes;
+	}
+	
+	
+	
+	
+	public int getPositiveVotes() {
+		return positiveVotes;
+	}
+	public void setPositiveVotes(int positiveVotes) {
+		this.positiveVotes = positiveVotes;
+	}
+	public int getNegativeVotes() {
+		return negativeVotes;
+	}
+	public void setNegativeVotes(int negativeVotes) {
+		this.negativeVotes = negativeVotes;
 	}
 	@Override
 	public String toString() {

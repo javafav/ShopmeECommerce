@@ -20,6 +20,7 @@ import com.shopme.common.entity.product.Product;
 import com.shopme.common.exception.ProductNotFoundException;
 import com.shopme.common.exception.ReviewNotFoundException;
 import com.shopme.product.ProductService;
+import com.shopme.review.vote.ReviewVoteService;
 
 @Controller
 public class ReviewController {
@@ -28,6 +29,7 @@ public class ReviewController {
 	@Autowired private ReviewService reviewService;
 	@Autowired private ProductService productService;
 	@Autowired private ControllerHelper controllerHelper;
+	@Autowired private ReviewVoteService reviewVoteService;
 
 	@GetMapping("/reviews")
 	public String listFirstPage(Model model) {
@@ -38,9 +40,12 @@ public class ReviewController {
 	public String listReviewsByCustomerByPage(Model model, HttpServletRequest request,
 							@PathVariable(name = "pageNum") int pageNum,
 							String keyword, String sortField, String sortDir) {
+		
 		Customer customer =controllerHelper.getAuthenticatedCustomer(request);
 		Page<Review> page = reviewService.listByCustomerByPage(customer, keyword, pageNum, sortField, sortDir);		
 		List<Review> listReviews = page.getContent();
+		
+		
 		
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());

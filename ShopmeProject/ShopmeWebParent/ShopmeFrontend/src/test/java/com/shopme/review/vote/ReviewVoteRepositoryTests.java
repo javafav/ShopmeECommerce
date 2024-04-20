@@ -68,4 +68,19 @@ public class ReviewVoteRepositoryTests {
 		
 		findByCustomerAndReviewVote.forEach(System.out::println);
 	}
+	
+   @Test
+   public void testSumPositiveValues() {
+	  
+	 int sumPositiveValues = repo.sumPositiveValues(4);
+	   System.out.println("Sum : " + sumPositiveValues);
+   }
+   
+   @Test
+   public void testSumNegitveValues() {
+	  
+	   int sumNegitveValues = repo.sumNegativeValues(42);
+	   System.out.println("Sum : " + sumNegitveValues);
+   }
+	
 }

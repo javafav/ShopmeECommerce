@@ -18,6 +18,11 @@ public interface ReviewVoteRepository extends JpaRepository<ReviewVote, Integer>
 	
 	@Query("SELECT CONCAT(c.firstName, ' ', c.lastName) AS fullName FROM Customer c JOIN ReviewVote v ON c.id = v.customer.id WHERE v.review.id = ?1")
 	public List<String> findCustomerFullNamesByReviewVote(Integer reviewVoteId);
+	
+	@Query("SELECT SUM(CASE WHEN v.votes > 0 AND v.review.id = ?1 THEN v.votes ELSE 0 END) FROM ReviewVote v")
+	public int sumPositiveValues(Integer reviewId);
 
+	@Query("SELECT SUM( ABS(CASE WHEN v.votes < 0 AND v.review.id = ?1 THEN v.votes ELSE 0 END)) FROM ReviewVote v")
+	 public int sumNegativeValues(Integer reviewId);
 
 }

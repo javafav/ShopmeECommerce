@@ -1,5 +1,6 @@
 package com.shopme.review.vote;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.transaction.Transactional;
@@ -24,11 +25,15 @@ public class ReviewVoteService {
 		reviewRepo.updateVoteCount(reviewId);
 		Integer voteCount = reviewRepo.getVoteCount(reviewId);
 		
-		return VoteResult.success("You have unvoted " + voteType + " that review.", voteCount);
+		int sumNegativeValues = voteRepo.sumNegativeValues(reviewId);
+		int sumPositiveValues = voteRepo.sumPositiveValues(reviewId);
+		
+		return VoteResult.success("You have unvoted " + voteType + " that review.", voteCount, sumNegativeValues, sumPositiveValues );
 	}
 	
 	public VoteResult doVote(Integer reviewId, Customer customer, VoteType voteType) {
 		Review review = null;
+		
 		
 		try {
 			review = reviewRepo.findById(reviewId).get();
@@ -62,8 +67,18 @@ public class ReviewVoteService {
 		voteRepo.save(vote);
 		reviewRepo.updateVoteCount(reviewId);
 		Integer voteCount = reviewRepo.getVoteCount(reviewId);
+		int sumNegativeValues = voteRepo.sumNegativeValues(reviewId);
+		int sumPositiveValues = voteRepo.sumPositiveValues(reviewId);
+		
+		System.out.println("Positive:" + sumPositiveValues);
+		System.out.println("Negitve:" + sumNegativeValues);
 		
 		return VoteResult.success("You have successfully voted " + voteType + " that review.", 
-				voteCount);
+				voteCount,sumNegativeValues, sumPositiveValues);
+	}
+	
+	
+	public List<String> voteCountByCustomer(Integer reviewId) {
+		return voteRepo.findCustomerFullNamesByReviewVote(reviewId);
 	}
 }
