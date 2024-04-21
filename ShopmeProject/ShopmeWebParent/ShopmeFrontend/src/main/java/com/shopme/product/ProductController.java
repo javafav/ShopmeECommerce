@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shopme.ControllerHelper;
-import com.shopme.Utility;
+
 import com.shopme.category.CategoryService;
 import com.shopme.common.entity.Category;
 import com.shopme.common.entity.Customer;
@@ -23,6 +23,7 @@ import com.shopme.common.exception.CategoryNotFoundException;
 import com.shopme.common.exception.ProductNotFoundException;
 import com.shopme.customer.CustomerService;
 import com.shopme.review.ReviewService;
+import com.shopme.review.vote.ReviewVoteService;
 
 @Controller
 public class ProductController {
@@ -32,6 +33,7 @@ public class ProductController {
 	@Autowired  private ProductService productService;
 	@Autowired private ReviewService reviewService;
 	@Autowired private ControllerHelper controllerHelper;
+	@Autowired private ReviewVoteService voteService;
 	
 	@GetMapping("/c/{category_alias}")
 	public String viewCategoryFirstPage(@PathVariable(name = "category_alias") String alias,Model model) { 
@@ -100,6 +102,7 @@ public class ProductController {
 			if(customer != null) {
 		
 				boolean customerReviewed = reviewService.didCustomerReviewProduct(customer, product.getId());
+				voteService.markReviewsVotedForProductByCustomer(listReviews.getContent(), product.getId(), customer.getId());
 			
 			if (customerReviewed) {
 				model.addAttribute("customerReviewed", customerReviewed);

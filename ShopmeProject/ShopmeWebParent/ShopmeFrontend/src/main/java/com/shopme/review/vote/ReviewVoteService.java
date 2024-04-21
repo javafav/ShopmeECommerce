@@ -67,14 +67,34 @@ public class ReviewVoteService {
 		voteRepo.save(vote);
 		reviewRepo.updateVoteCount(reviewId);
 		Integer voteCount = reviewRepo.getVoteCount(reviewId);
-		int sumNegativeValues = voteRepo.sumNegativeValues(reviewId);
-		int sumPositiveValues = voteRepo.sumPositiveValues(reviewId);
+		int sumNegativeValues = reviewRepo.updateNegativeVotes(reviewId);
+		int sumPositiveValues = reviewRepo.updatePositiveVotes(reviewId);
 		
 		System.out.println("Positive:" + sumPositiveValues);
 		System.out.println("Negitve:" + sumNegativeValues);
 		
 		return VoteResult.success("You have successfully voted " + voteType + " that review.", 
 				voteCount,sumNegativeValues, sumPositiveValues);
+	}
+	
+	public void markReviewsVotedForProductByCustomer(List<Review> listReviews, Integer productId,
+			Integer customerId) {
+		List<ReviewVote> listVotes = voteRepo.findByProductAndCustomer(productId, customerId);
+		
+		for (ReviewVote vote : listVotes) {
+			Review votedReview = vote.getReview();
+			
+			if (listReviews.contains(votedReview)) {
+				int index = listReviews.indexOf(votedReview);
+				Review review = listReviews.get(index);
+				
+				if (vote.isUpvoted()) {
+					review.setUpvotedByCurrentCustomer(true);
+				} else if (vote.isDownvoted()) {
+					review.setDownvotedByCurrentCustomer(true);
+				}
+			}
+		}
 	}
 	
 	

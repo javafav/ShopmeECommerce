@@ -29,7 +29,7 @@ public class ReviewController {
 	@Autowired private ReviewService reviewService;
 	@Autowired private ProductService productService;
 	@Autowired private ControllerHelper controllerHelper;
-	@Autowired private ReviewVoteService reviewVoteService;
+	@Autowired private ReviewVoteService voteService;
 
 	@GetMapping("/reviews")
 	public String listFirstPage(Model model) {
@@ -92,7 +92,7 @@ public class ReviewController {
 	public String listByProductByPage(Model model,
 				@PathVariable(name = "productAlias") String productAlias,
 				@PathVariable(name = "pageNum") int pageNum,
-				String sortField, String sortDir) {
+				String sortField, String sortDir,HttpServletRequest request) {
 		
 		Product product = null;
 		
@@ -104,6 +104,12 @@ public class ReviewController {
 		
 		Page<Review> page = reviewService.listByProduct(product, pageNum, sortField, sortDir);
 		List<Review> listReviews = page.getContent();
+		
+		Customer customer = controllerHelper.getAuthenticatedCustomer(request);
+		if (customer != null) {
+			voteService.markReviewsVotedForProductByCustomer(listReviews, product.getId(), customer.getId());
+		}
+		
 		
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
@@ -130,8 +136,8 @@ public class ReviewController {
 	}
 	
 	@GetMapping("/ratings/{productAlias}")
-	public String listByProductFirstPage(@PathVariable(name = "productAlias") String productAlias, Model model) {
-		return listByProductByPage(model, productAlias, 1, "reviewTime", "desc");
+	public String listByProductFirstPage(@PathVariable(name = "productAlias") String productAlias, Model model,HttpServletRequest request) {
+		return listByProductByPage(model, productAlias, 1, "reviewTime", "desc", request);
 	}	
 
 	@GetMapping("/write_review/product/{productId}")

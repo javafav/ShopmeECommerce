@@ -44,11 +44,11 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     @Modifying
     @Transactional
     @Query("UPDATE Review r SET r.positiveVotes = (SELECT SUM(v.votes) FROM ReviewVote v WHERE v.review = r AND v.votes > 0) WHERE r.id = ?1")
-    void updatePositiveVotes( Integer reviewId);
+    int updatePositiveVotes( Integer reviewId);
 
     
     @Modifying
     @Transactional
     @Query("UPDATE Review r SET r.negativeVotes = (SELECT SUM(ABS(v.votes)) FROM ReviewVote v WHERE v.review = r AND v.votes < 0) WHERE r.id = ?1")
-    void updateNegativeVotes( Integer reviewId);
+    int updateNegativeVotes( Integer reviewId);
 }
