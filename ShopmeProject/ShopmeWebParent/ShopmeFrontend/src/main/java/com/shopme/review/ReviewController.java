@@ -22,6 +22,7 @@ import com.shopme.common.exception.ReviewNotFoundException;
 import com.shopme.product.ProductService;
 import com.shopme.review.vote.ReviewVoteService;
 
+
 @Controller
 public class ReviewController {
 	private String defaultRedirectURL = "redirect:/reviews/page/1?sortField=reviewTime&sortDir=desc";
@@ -29,7 +30,8 @@ public class ReviewController {
 	@Autowired private ReviewService reviewService;
 	@Autowired private ProductService productService;
 	@Autowired private ControllerHelper controllerHelper;
-	@Autowired private ReviewVoteService voteService;
+	@Autowired private  ReviewVoteService voteService;
+
 
 	@GetMapping("/reviews")
 	public String listFirstPage(Model model) {

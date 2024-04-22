@@ -79,10 +79,11 @@ public class ReviewRepositoryTests {
 	
 	@Test
 	public void testUpdateVoteCount() {
-		Integer reviewId = 4;
+		Integer reviewId = 32;
 		repo.updateVoteCount(reviewId);
 		Review review = repo.findById(reviewId).get();
-		System.out.println("Review Vote Count:" + review.getVotes());
+	
+		System.out.println("Review Vote Count:" + review.getVotes()+ "Positve Vote: " +review.getPositiveVotes());
 		
 		
 }

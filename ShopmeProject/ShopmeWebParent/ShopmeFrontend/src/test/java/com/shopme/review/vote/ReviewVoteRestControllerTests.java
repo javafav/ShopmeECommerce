@@ -46,7 +46,7 @@ public class ReviewVoteRestControllerTests {
 	}
 	
 	@Test
-	@WithMockUser(username = "tina.jamerson@gmail.com", password = "tina2020")
+	@WithMockUser(username = "tina.jamerson.2021@gmail.com", password = "tina2020")
 	public void testVoteNonExistReview() throws Exception {
 		String requestURL = "/vote_review/123/up";
 		
@@ -86,9 +86,9 @@ public class ReviewVoteRestControllerTests {
 		assertEquals(voteCountBefore + 1, voteCountAfter);
 		
 	}
-
+	
 	@Test
-	@WithMockUser(username = "tina.jamerson@gmail.com", password = "tina2020")
+	@WithMockUser(username = "tina.jamerson.2021@gmail.com", password = "tina2020")
 	public void testUndoVoteUp() throws Exception {
 		Integer reviewId = 20;
 		String requestURL = "/vote_review/" + reviewId + "/up";

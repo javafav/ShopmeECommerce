@@ -4,31 +4,23 @@ public class VoteResult {
 	private boolean successful;
 	private String message;
 	private int voteCount;
-	private int sumOfPositiveVoteCount;
-	private int sumOfNegativeVoteCount;
+	private int positiveVoteCount;
+	private int negativeVoteCount;
 
-	public static VoteResult fail(String message ) {
-		return new VoteResult(false, message, 0);
+	public static VoteResult fail(String message) {
+		return new VoteResult(false, message, 0, 0, 0);
 	}
 
-	public static VoteResult success(String message, int voteCount,  int sumOfNegativeVoteCount, int sumOfPositiveVoteCount ) {
-		return new VoteResult(true, message, voteCount,sumOfNegativeVoteCount, sumOfPositiveVoteCount );
+	public static VoteResult success(String message, int voteCount, int positiveVoteCount, int negativeVoteCount) {
+		return new VoteResult(true, message, voteCount, positiveVoteCount, negativeVoteCount);
 	}
 	
-	private VoteResult(boolean successful, String message, int voteCount) {
-		
+	private VoteResult(boolean successful, String message, int voteCount, int positiveVoteCount, int negativeVoteCount) {
 		this.successful = successful;
 		this.message = message;
 		this.voteCount = voteCount;
-	}
-	
-	
-	private VoteResult(boolean successful, String message, int voteCount, int sumOfNegativeVoteCount, int sumOfPositiveVoteCount  ) {
-		this.successful = successful;
-		this.message = message;
-		this.voteCount = voteCount;
-		this.sumOfNegativeVoteCount = sumOfNegativeVoteCount;
-		this.sumOfPositiveVoteCount = sumOfPositiveVoteCount;
+		this.positiveVoteCount = positiveVoteCount;
+		this.negativeVoteCount = negativeVoteCount;
 	}
 
 	public boolean isSuccessful() {
@@ -55,20 +47,21 @@ public class VoteResult {
 		this.voteCount = voteCount;
 	}
 
-	public int getSumOfPositiveVoteCount() {
-		return sumOfPositiveVoteCount;
+	public int getPositiveVoteCount() {
+		return positiveVoteCount;
 	}
 
-	public void setSumOfPositiveVoteCount(int sumOfPositiveVoteCount) {
-		this.sumOfPositiveVoteCount = sumOfPositiveVoteCount;
+	public void setPositiveVoteCount(int positiveVoteCount) {
+		this.positiveVoteCount = positiveVoteCount;
 	}
 
-	public int getSumOfNegativeVoteCount() {
-		return sumOfNegativeVoteCount;
+	public int getNegativeVoteCount() {
+		return negativeVoteCount;
 	}
 
-	public void setSumOfNegativeVoteCount(int sumOfNegativeVoteCount) {
-		this.sumOfNegativeVoteCount = sumOfNegativeVoteCount;
+	public void setNegativeVoteCount(int negativeVoteCount) {
+		this.negativeVoteCount = negativeVoteCount;
 	}
+	
 
 }

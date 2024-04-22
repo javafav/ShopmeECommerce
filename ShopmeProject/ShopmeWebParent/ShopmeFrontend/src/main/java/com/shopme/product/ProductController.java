@@ -25,6 +25,7 @@ import com.shopme.customer.CustomerService;
 import com.shopme.review.ReviewService;
 import com.shopme.review.vote.ReviewVoteService;
 
+
 @Controller
 public class ProductController {
 
@@ -33,7 +34,8 @@ public class ProductController {
 	@Autowired  private ProductService productService;
 	@Autowired private ReviewService reviewService;
 	@Autowired private ControllerHelper controllerHelper;
-	@Autowired private ReviewVoteService voteService;
+	@Autowired private  ReviewVoteService voteService;
+	
 	
 	@GetMapping("/c/{category_alias}")
 	public String viewCategoryFirstPage(@PathVariable(name = "category_alias") String alias,Model model) { 

@@ -72,23 +72,31 @@ function updateVoteCountAndIcons(currentLink, voteResult) {
 	voteUpLink = $("#linkVoteUp-" + reviewId);
 	voteDownLink = $("#linkVoteDown-" + reviewId);
 	
-	voteThmbsUp = $("#thumbsUp-" + reviewId);
+	
 	
 	
 	$("#voteCount-" + reviewId).text(voteResult.voteCount + " Votes");
+	
 	
 	message = voteResult.message;
 	
 	if (message.includes("successfully voted up")) {
 		highlightVoteUpIcon(currentLink, voteDownLink);
-      voteThmbsUp.text("Test: " + reviewId);
+		updateThumbsUpCount(reviewId, voteResult);
+     
 	} else if (message.includes("successfully voted down")) {
 		highlightVoteDownIcon(currentLink, voteUpLink);
+		updateThumbsDownCount(reviewId, voteResult);
+	
 		
 	} else if (message.includes("unvoted down")) {
 		unhighlightVoteDownIcon(voteDownLink);
+		updateThumbsDownCount(reviewId, voteResult);
+	
 	} else if (message.includes("unvoted up")) {
 		unhighlightVoteDownIcon(voteUpLink);
+		updateThumbsUpCount(reviewId, voteResult);
+		
 	}
 }
 
@@ -115,5 +123,11 @@ function unhighlightVoteUpIcon(voteUpLink) {
 }
 
 function updateThumbsUpCount(reviewId ,voteResult){
-	$("#thumbsUp-" + reviewId).text(voteResult.sumOfPositiveVoteCount);
+	$("#linkThumbsUp-" + reviewId).text(voteResult.positiveVoteCount);
+	
+}
+
+function updateThumbsDownCount(reviewId ,voteResult){
+	$("#linkThumbsDown-" + reviewId).text(voteResult.negativeVoteCount);
+	
 }

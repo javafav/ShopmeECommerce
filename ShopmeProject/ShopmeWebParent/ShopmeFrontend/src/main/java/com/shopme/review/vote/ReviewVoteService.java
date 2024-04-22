@@ -21,19 +21,25 @@ public class ReviewVoteService {
 	@Autowired private ReviewVoteRepository voteRepo;
 	
 	public VoteResult undoVote(ReviewVote vote, Integer reviewId, VoteType voteType) {
+		
 		voteRepo.delete(vote);
 		reviewRepo.updateVoteCount(reviewId);
+		
+		reviewRepo.updatePositiveVotes(reviewId);
+		reviewRepo.updateNegativeVotes(reviewId);
+		
 		Integer voteCount = reviewRepo.getVoteCount(reviewId);
+		Integer positiveVoteCount = reviewRepo.getPositiveVoteCount(reviewId);
+		Integer negativeVotesCount = reviewRepo.getNegativeVotesCount(reviewId);
 		
-		int sumNegativeValues = voteRepo.sumNegativeValues(reviewId);
-		int sumPositiveValues = voteRepo.sumPositiveValues(reviewId);
+		//System.out.println("Undo Vote:  Vote Count: " + voteCount + " form ReviewId: " + reviewId );
+		System.out.println("Undo Vote: Postive Vote Count: " + positiveVoteCount + " form ReviewId: " + reviewId );
 		
-		return VoteResult.success("You have unvoted " + voteType + " that review.", voteCount, sumNegativeValues, sumPositiveValues );
+		return VoteResult.success("You have unvoted " + voteType + " that review.", voteCount, positiveVoteCount, negativeVotesCount);
 	}
 	
 	public VoteResult doVote(Integer reviewId, Customer customer, VoteType voteType) {
 		Review review = null;
-		
 		
 		try {
 			review = reviewRepo.findById(reviewId).get();
@@ -66,15 +72,18 @@ public class ReviewVoteService {
 		
 		voteRepo.save(vote);
 		reviewRepo.updateVoteCount(reviewId);
-		Integer voteCount = reviewRepo.getVoteCount(reviewId);
-		int sumNegativeValues = reviewRepo.updateNegativeVotes(reviewId);
-		int sumPositiveValues = reviewRepo.updatePositiveVotes(reviewId);
+		reviewRepo.updatePositiveVotes(reviewId);
+		reviewRepo.updateNegativeVotes(reviewId);
 		
-		System.out.println("Positive:" + sumPositiveValues);
-		System.out.println("Negitve:" + sumNegativeValues);
+		Integer voteCount = reviewRepo.getVoteCount(reviewId);
+		Integer positiveVoteCount = reviewRepo.getPositiveVoteCount(reviewId);
+		Integer negativeVotesCount = reviewRepo.getNegativeVotesCount(reviewId);
+	
+		//	System.out.println("Undo Vote:  Vote Count: " + voteCount + " form ReviewId: " + reviewId );
+		System.out.println("Do Vote: Postive Vote Count: " + positiveVoteCount + " form ReviewId: " + reviewId );
 		
 		return VoteResult.success("You have successfully voted " + voteType + " that review.", 
-				voteCount,sumNegativeValues, sumPositiveValues);
+				voteCount, positiveVoteCount, negativeVotesCount);
 	}
 	
 	public void markReviewsVotedForProductByCustomer(List<Review> listReviews, Integer productId,
@@ -95,10 +104,5 @@ public class ReviewVoteService {
 				}
 			}
 		}
-	}
-	
-	
-	public List<String> voteCountByCustomer(Integer reviewId) {
-		return voteRepo.findCustomerFullNamesByReviewVote(reviewId);
 	}
 }

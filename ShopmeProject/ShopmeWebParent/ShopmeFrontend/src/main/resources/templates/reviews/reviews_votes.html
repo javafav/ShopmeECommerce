@@ -15,7 +15,7 @@
 					   	th:href="@{'/vote_review/' + ${review.id} + '/up'}"></a>
 					   
 				</div>
-					<small >[[${review.positiveVotes}]]</small>
+					<small th:id="'linkThumbsUp-' + ${review.id}" >[[${review.positiveVotes}]]</small>
 				
 				<div class="col-xs ml-2">
 						<button type="button" class="btn mb-2" data-toggle="popover"
@@ -39,8 +39,9 @@
 						th:id="'linkVoteDown-' + ${review.id}"
 						th:reviewId="${review.id}"
 					   	th:href="@{'/vote_review/' + ${review.id} + '/down'}"></a>
-					   	 	<small ></small>
-				</div>				
+					   	 
+				</div>	
+				<small th:id="'linkThumbsDown-' + ${review.id}" >[[${review.positiveVotes}]]</small>			
 			</div>
 			<div class="row">
 				<div class="col"><b>[[${review.headline}]]</b></div>

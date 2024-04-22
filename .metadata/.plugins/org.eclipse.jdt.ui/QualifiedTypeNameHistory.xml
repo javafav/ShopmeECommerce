@@ -37,7 +37,6 @@
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderStatus"/>
     <fullyQualifiedTypeName name="javax.swing.text.html.HTMLDocument.Iterator"/>
     <fullyQualifiedTypeName name="java.util.Iterator"/>
-    <fullyQualifiedTypeName name="com.shopme.review.ReviewService"/>
     <fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.ProductNotFoundException"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
@@ -55,9 +54,10 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.CustomerNotFoundException"/>
     <fullyQualifiedTypeName name="java.util.Collections"/>
-    <fullyQualifiedTypeName name="com.shopme.review.vote.ReviewVoteService"/>
     <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
     <fullyQualifiedTypeName name="javax.persistence.Transient"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="com.shopme.review.ReviewService"/>
+    <fullyQualifiedTypeName name="com.shopme.review.vote.ReviewVoteService"/>
 </qualifiedTypeNameHistroy>
