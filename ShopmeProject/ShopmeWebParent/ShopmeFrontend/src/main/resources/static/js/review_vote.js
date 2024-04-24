@@ -1,50 +1,47 @@
 var thumbsUpCount;
+var unorderdListForCustomers;
 
 $(document).ready(function() {
-
+   unorderdListForCustomers = $("#unorderdListForCustomers")
 	$(".linkVoteReview").on("click", function(e) {
 		e.preventDefault();
 		voteReview($(this));
 	});
-$(".linkVoteReviewCount").hover(function() {
-    // Mouse enters the element
-    voteCount($(this));
-}, function() {
-
+	$(".linkVoteReviewCount").on("click", function(e){
+			e.preventDefault();
+			displayVotesByCustomerName($(this));
+	})
 });
-});
-
-function voteCount(link) {
-    var reviewId = link.attr("reviewId");
-    var requestURL = contextPath + 'vote_review/count/' + reviewId;
-
+function displayVotesByCustomerName(link) {
+    var requestURL = link.attr("href");
     $.ajax({
         type: "GET",
         url: requestURL,
         beforeSend: function(xhr) {
             xhr.setRequestHeader(csrfHeaderName, csrfValue);
         }
-    }).done(function(response) {
- console.log(response);
-        if (Array.isArray(response)) {
-            // Convert the response array to a string
-            var customerNames = response.join(' ');
-            // Set the tooltip content to the customer names
-            link.attr('title', customerNames);
-            // Initialize and show the tooltip
-            link.tooltip().tooltip('show');
+    }).done(function(names) {
+        var html = "<ul>";
+        if (names && names.length > 0) {
+            $.each(names, function(index, name) {
+                html += "<li>" + name + "</li>";
+            });
         } else {
-            showErrorModal("Invalid response format");
+            html += "<li>No customers have voted</li>";
         }
-    }).fail(function(response) {
-        showErrorModal("Failed");
+        html += "</ul>";
+        $("#customerListModal").find(".modal-body").html(html);
+        $("#customerListModal").modal("show");
+    }).fail(function() {
+        showErrorModal("Error voting review.");
     });
 }
 
+
 function voteReview(currentLink) {
-	
+
 	requestURL = currentLink.attr("href");
- 
+
 	$.ajax({
 		type: "POST",
 		url: requestURL,
@@ -53,50 +50,50 @@ function voteReview(currentLink) {
 		}
 	}).done(function(voteResult) {
 		console.log(voteResult);
-		
+
 		if (voteResult.successful) {
 			$("#modalDialog").on("hide.bs.modal", function(e) {
 				updateVoteCountAndIcons(currentLink, voteResult);
 			});
 		}
-		
+
 		showModalDialog("Vote Review", voteResult.message);
-		
+
 	}).fail(function() {
 		showErrorModal("Error voting review.");
-	});	
+	});
 }
 
 function updateVoteCountAndIcons(currentLink, voteResult) {
 	reviewId = currentLink.attr("reviewId");
 	voteUpLink = $("#linkVoteUp-" + reviewId);
 	voteDownLink = $("#linkVoteDown-" + reviewId);
-	
-	
-	
-	
+
+
+
+
 	$("#voteCount-" + reviewId).text(voteResult.voteCount + " Votes");
-	
-	
+
+
 	message = voteResult.message;
-	
+
 	if (message.includes("successfully voted up")) {
 		highlightVoteUpIcon(currentLink, voteDownLink);
 		updateThumbsUpCount(reviewId, voteResult);
-     
+
 	} else if (message.includes("successfully voted down")) {
 		highlightVoteDownIcon(currentLink, voteUpLink);
 		updateThumbsDownCount(reviewId, voteResult);
-	
-		
+
+
 	} else if (message.includes("unvoted down")) {
 		unhighlightVoteDownIcon(voteDownLink);
 		updateThumbsDownCount(reviewId, voteResult);
-	
+
 	} else if (message.includes("unvoted up")) {
 		unhighlightVoteDownIcon(voteUpLink);
 		updateThumbsUpCount(reviewId, voteResult);
-		
+
 	}
 }
 
@@ -114,20 +111,20 @@ function highlightVoteDownIcon(voteDownLink, voteUpLink) {
 
 function unhighlightVoteDownIcon(voteDownLink) {
 	voteDownLink.attr("title", "Vote down this review");
-	voteDownLink.removeClass("fas").addClass("far");	
+	voteDownLink.removeClass("fas").addClass("far");
 }
 
 function unhighlightVoteUpIcon(voteUpLink) {
 	voteUpLink.attr("title", "Vote up this review");
-	voteUpLink.removeClass("fas").addClass("far");	
+	voteUpLink.removeClass("fas").addClass("far");
 }
 
-function updateThumbsUpCount(reviewId ,voteResult){
+function updateThumbsUpCount(reviewId, voteResult) {
 	$("#linkThumbsUp-" + reviewId).text(voteResult.positiveVoteCount);
-	
+
 }
 
-function updateThumbsDownCount(reviewId ,voteResult){
+function updateThumbsDownCount(reviewId, voteResult) {
 	$("#linkThumbsDown-" + reviewId).text(voteResult.negativeVoteCount);
-	
+
 }

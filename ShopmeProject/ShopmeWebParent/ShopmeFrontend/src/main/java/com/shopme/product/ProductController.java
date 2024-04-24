@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shopme.ControllerHelper;
-
 import com.shopme.category.CategoryService;
 import com.shopme.common.entity.Category;
 import com.shopme.common.entity.Customer;
@@ -21,7 +20,6 @@ import com.shopme.common.entity.Review;
 import com.shopme.common.entity.product.Product;
 import com.shopme.common.exception.CategoryNotFoundException;
 import com.shopme.common.exception.ProductNotFoundException;
-import com.shopme.customer.CustomerService;
 import com.shopme.review.ReviewService;
 import com.shopme.review.vote.ReviewVoteService;
 
@@ -100,6 +98,8 @@ public class ProductController {
 			Page<Review> listReviews = reviewService.list3MostRecentReviewsByProduct(product);
 			
 			Customer customer =controllerHelper.getAuthenticatedCustomer(request);
+			
+
 			
 			if(customer != null) {
 		

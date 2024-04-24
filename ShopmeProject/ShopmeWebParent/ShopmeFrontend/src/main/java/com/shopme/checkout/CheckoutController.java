@@ -29,7 +29,6 @@ import com.shopme.common.entity.Customer;
 import com.shopme.common.entity.ShippingRate;
 import com.shopme.common.entity.order.Order;
 import com.shopme.common.entity.order.PaymentMethod;
-import com.shopme.customer.CustomerService;
 import com.shopme.order.OrderService;
 import com.shopme.setting.CurrencySettingBag;
 import com.shopme.setting.EmailSettingBag;

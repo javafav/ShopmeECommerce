@@ -1,5 +1,6 @@
 package com.shopme.review.vote;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -32,8 +33,8 @@ public class ReviewVoteService {
 		Integer positiveVoteCount = reviewRepo.getPositiveVoteCount(reviewId);
 		Integer negativeVotesCount = reviewRepo.getNegativeVotesCount(reviewId);
 		
-		//System.out.println("Undo Vote:  Vote Count: " + voteCount + " form ReviewId: " + reviewId );
-		System.out.println("Undo Vote: Postive Vote Count: " + positiveVoteCount + " form ReviewId: " + reviewId );
+		// System.out.println("Undo Vote:  Vote Count: " + voteCount + " form ReviewId: " + reviewId );
+		// System.out.println("Undo Vote: Postive Vote : " + positiveVoteCount + " Negitve Vote: " + negativeVotesCount +  " form ReviewId: " + reviewId );
 		
 		return VoteResult.success("You have unvoted " + voteType + " that review.", voteCount, positiveVoteCount, negativeVotesCount);
 	}
@@ -79,8 +80,8 @@ public class ReviewVoteService {
 		Integer positiveVoteCount = reviewRepo.getPositiveVoteCount(reviewId);
 		Integer negativeVotesCount = reviewRepo.getNegativeVotesCount(reviewId);
 	
-		//	System.out.println("Undo Vote:  Vote Count: " + voteCount + " form ReviewId: " + reviewId );
-		System.out.println("Do Vote: Postive Vote Count: " + positiveVoteCount + " form ReviewId: " + reviewId );
+     //	System.out.println("Undo Vote:  Vote Count: " + voteCount + " form ReviewId: " + reviewId );
+	//	System.out.println("Do Vote: Postive Vote : " + positiveVoteCount + " Negitve Vote: " + negativeVotesCount +  " form ReviewId: " + reviewId );
 		
 		return VoteResult.success("You have successfully voted " + voteType + " that review.", 
 				voteCount, positiveVoteCount, negativeVotesCount);
@@ -105,4 +106,10 @@ public class ReviewVoteService {
 			}
 		}
 	}
+
+	  public List<String> findCustomersWhoVotedByReviewId(int  reviewId) {
+	        return voteRepo.findCustomerFullNamesByReviewId(reviewId);
+	    }
+	  
+
 }

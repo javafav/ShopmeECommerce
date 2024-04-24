@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.shopme.ControllerHelper;
-import com.shopme.Utility;
 import com.shopme.common.entity.Customer;
 import com.shopme.common.entity.order.Order;
 import com.shopme.common.entity.order.OrderDetail;

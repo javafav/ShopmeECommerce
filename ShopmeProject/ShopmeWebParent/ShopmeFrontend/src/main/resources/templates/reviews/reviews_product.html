@@ -29,12 +29,16 @@
 			</div>			
 		</div>
 	</div>	
+	
+
 
 	<div class="row"><div class="col"><hr/></div></div>
 <div th:replace="reviews/reviews_votes :: content"></div>
 			
 	<div th:replace="fragments :: pagination('reviews', '/ratings/' + ${product.alias})"></div>
 	<div th:replace="fragments :: modal_dialog"></div>
+	
+	<div th:replace="reviews/review_customer_modal :: content"></div>
 	<div th:replace="navigation :: footer_menu"></div>
 	
 </div>

@@ -23,6 +23,13 @@
 }
 
 
+   .customerListModal {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
 /* Custom background color for carousel control icons */
 .carousel-control-prev-icon {
     background-color: #494951; /* Red background */

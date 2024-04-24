@@ -16,22 +16,25 @@
 					   
 				</div>
 					<small th:id="'linkThumbsUp-' + ${review.id}" >[[${review.positiveVotes}]]</small>
-				
-				<div class="col-xs ml-2">
-						<button type="button" class="btn mb-2" data-toggle="popover"
-							data-placement="left" title="Tooltip on top">
-							<button type="button" class="btn mb-2" data-toggle="popover"
-								data-placement="left" data-content="Customer Names">
-								<span class="badge badge-primary badge-pill linkVoteReviewCount"
-									th:reviewId="${review.id}" th:id="'voteCount-' + ${review.id}">
-									[[${review.votes}]] Votes </span>
-							</button>
-							
-					</div>
-				
-				
 
-				
+					<div class="col-xs ml-2">
+
+						<a class="badge badge-primary badge-pill linkVoteReviewCount"
+							th:href="@{'/vote_review/count/' + ${review.id}}"
+				            title="Click to View the Voted Customer Names"
+							th:id="'voteCount-' + ${review.id}"> [[${review.votes}]]
+							Votes 
+							</a>
+						<div 
+						
+						     
+						     th:divList=" 'divListGroup' + ${review.id}"></div>
+
+                         </div>
+
+
+
+
 
 					<div class="col-xs ml-2">
 					<a class="linkVoteReview fa-thumbs-down"
@@ -41,7 +44,7 @@
 					   	th:href="@{'/vote_review/' + ${review.id} + '/down'}"></a>
 					   	 
 				</div>	
-				<small th:id="'linkThumbsDown-' + ${review.id}" >[[${review.positiveVotes}]]</small>			
+				<small th:id="'linkThumbsDown-' + ${review.id}" >[[${review.negativeVotes}]]</small>			
 			</div>
 			<div class="row">
 				<div class="col"><b>[[${review.headline}]]</b></div>
@@ -56,7 +59,16 @@
 			
 			<div class="row"><div class="col"><hr/></div></div>
 		</th:block>				
-	</div>						
+	</div>	
+		<div th:each="name : ${customerNames}">
+    <ul>
+        <li >
+            <span th:text="${name}"></span>
+        </li>
+    </ul>
+</div>
+
+						
 </div>
 </body>
 </html>

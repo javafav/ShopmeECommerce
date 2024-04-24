@@ -1,8 +1,11 @@
 package com.shopme.review.vote;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,5 +32,10 @@ public class VoteReviewRestController {
 		
 		VoteType voteType = VoteType.valueOf(type.toUpperCase());
 		return service.doVote(reviewId, customer, voteType);
+	}
+	
+	@GetMapping("/vote_review/count/{id}")
+	public List<String> customerNamesWhoVoted(@PathVariable("id") Integer id){
+		 return service.findCustomersWhoVotedByReviewId(id);
 	}
 }

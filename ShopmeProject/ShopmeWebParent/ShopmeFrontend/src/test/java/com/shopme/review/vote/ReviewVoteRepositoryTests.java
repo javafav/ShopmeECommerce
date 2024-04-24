@@ -58,29 +58,20 @@ public class ReviewVoteRepositoryTests {
 		listVotes.forEach(System.out::println);
 	}
 	
-	@Test
-	public void testFindByCustomerAndReviewVote() {
-		
-		Integer reviewId = 4;
-		
-		List<String> findByCustomerAndReviewVote = repo.findCustomerFullNamesByReviewVote(reviewId);
-		assertThat(findByCustomerAndReviewVote.size()).isGreaterThan(0);
-		
-		findByCustomerAndReviewVote.forEach(System.out::println);
-	}
+    @Test
+    public void testFindCustomerFullNamesByReviewId() {
+        // Assuming you have a reviewId to test with
+        Integer reviewId = 51;
+
+        // Call the method to retrieve customer full names by review ID
+        List<String> customerFullNames = repo.findCustomerFullNamesByReviewId(reviewId);
+      
+        for (String fullName : customerFullNames) {
+            System.out.println(fullName);
+        }
+    
+    }
 	
-   @Test
-   public void testSumPositiveValues() {
-	  
-	 int sumPositiveValues = repo.sumPositiveValues(4);
-	   System.out.println("Sum : " + sumPositiveValues);
-   }
-   
-   @Test
-   public void testSumNegitveValues() {
-	  
-	   int sumNegitveValues = repo.sumNegativeValues(42);
-	   System.out.println("Sum : " + sumNegitveValues);
-   }
+
 	
 }

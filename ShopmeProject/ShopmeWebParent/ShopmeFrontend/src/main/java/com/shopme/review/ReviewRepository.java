@@ -1,13 +1,15 @@
 package com.shopme.review;
 
-import javax.transaction.Transactional;
+
+
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+
 
 import com.shopme.common.entity.Review;
 import com.shopme.common.entity.product.Product;
@@ -37,18 +39,23 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	public Integer getVoteCount(Integer reviewId);
 
 	@Modifying
-	@Query("UPDATE Review r SET r.positiveVotes = (SELECT COALESCE(ABS(SUM(v.votes)), 0) FROM ReviewVote v "
-			+ "WHERE v.review.id = r.id) WHERE r.id = ?1")
+	@Query("UPDATE Review r SET r.positiveVotes = (SELECT COALESCE(ABS(SUM(CASE WHEN v.votes > 0 THEN v.votes ELSE 0 END)), 0) FROM ReviewVote v "
+	        + "WHERE v.review.id = r.id) WHERE r.id = ?1")
 	void updatePositiveVotes(Integer reviewId);
+
+
 
 	@Query("SELECT r.positiveVotes FROM Review r WHERE r.id = ?1")
 	public Integer getPositiveVoteCount(Integer reviewId);
 
-    @Modifying
-    @Query("UPDATE Review r SET r.negativeVotes = (SELECT COALESCE(ABS(SUM(v.votes)), 0) FROM ReviewVote v "
-    		+ "WHERE v.review.id = r.id) WHERE r.id = ?1")
-    void updateNegativeVotes(Integer reviewId);
+	@Modifying
+	@Query("UPDATE Review r SET r.negativeVotes = (SELECT COALESCE(ABS(SUM(CASE WHEN v.votes < 0 THEN v.votes ELSE 0 END)), 0) FROM ReviewVote v "
+			+ " WHERE v.review.id = r.id) WHERE r.id = ?1")
+	void updateNegativeVotes(Integer reviewId);
     
 	@Query("SELECT r.negativeVotes FROM Review r WHERE r.id = ?1")
 	public Integer getNegativeVotesCount(Integer reviewId);
+
+	@Query("SELECT CONCAT(c.firstName, ' ', c.lastName) AS fullName FROM Customer c JOIN ReviewVote v ON c.id = v.customer.id WHERE v.review.id = ?1")
+	public List<String> findCustomerFullNamesByReviewVote(Integer reviewVoteId);
 }

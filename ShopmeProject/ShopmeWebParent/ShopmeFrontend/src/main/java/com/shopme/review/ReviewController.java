@@ -110,6 +110,7 @@ public class ReviewController {
 		Customer customer = controllerHelper.getAuthenticatedCustomer(request);
 		if (customer != null) {
 			voteService.markReviewsVotedForProductByCustomer(listReviews, product.getId(), customer.getId());
+		
 		}
 		
 		
