@@ -59,6 +59,13 @@ public class ReviewService {
 		return reviewRepo.findByProduct(product, pageable);		
 	}
 	
+	public Page<Review> list3MostVotedReviewsByProduct(Product product) {
+		Sort sort = Sort.by("votes").descending();
+		Pageable pageable = PageRequest.of(0, 3, sort);
+		
+		return reviewRepo.findByProduct(product, pageable);		
+	}
+	
 	public Page<Review> listByProduct(Product product, int pageNum, String sortField, String sortDir) {
 		Sort sort = Sort.by(sortField);
 		sort = sortDir.equals("asc") ? sort.ascending() : sort.descending(); 

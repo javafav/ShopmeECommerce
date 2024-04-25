@@ -80,19 +80,23 @@ function updateVoteCountAndIcons(currentLink, voteResult) {
 	if (message.includes("successfully voted up")) {
 		highlightVoteUpIcon(currentLink, voteDownLink);
 		updateThumbsUpCount(reviewId, voteResult);
+		updateThumbsDownCount(reviewId, voteResult);
 
 	} else if (message.includes("successfully voted down")) {
 		highlightVoteDownIcon(currentLink, voteUpLink);
+		updateThumbsUpCount(reviewId, voteResult);
 		updateThumbsDownCount(reviewId, voteResult);
 
 
 	} else if (message.includes("unvoted down")) {
 		unhighlightVoteDownIcon(voteDownLink);
+		updateThumbsUpCount(reviewId, voteResult);
 		updateThumbsDownCount(reviewId, voteResult);
 
 	} else if (message.includes("unvoted up")) {
 		unhighlightVoteDownIcon(voteUpLink);
 		updateThumbsUpCount(reviewId, voteResult);
+		updateThumbsDownCount(reviewId, voteResult);
 
 	}
 }

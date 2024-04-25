@@ -112,11 +112,17 @@ function removeProduct(link) {
 		}
 	}).done(function(responseJSON) {
 		rowNumber = link.attr("rowNumber")
-		removeProductHTML(rowNumber);
+	
 		updateTotal();
 		updateCountNumbers();
 		totalCartItem();
+		
 		showModalDialog("Shopping Cart", responseJSON);
+		
+		$("#modalDialog").on("hide.bs.modal", function(e) {
+					removeProductHTML(rowNumber);
+					showEmptyShoppingCart() ;
+			});
 	}).fail(function() {
 		showErrorModal("Error while removing product .");
 	});
