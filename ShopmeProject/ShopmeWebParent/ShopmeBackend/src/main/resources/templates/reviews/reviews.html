@@ -81,8 +81,8 @@
 		</div>	
 	</div>		
 	
-	<div th:replace="fragments :: pagination('reviews')"></div>
-	
+
+	<div th:replace="pagination_for_more_then_10page :: pagination('reviews')"></div>
 	<div th:replace="modal_fragments :: confirm_modal" ></div>
 	
 	<div class="modal fade" id="xlargeModal">

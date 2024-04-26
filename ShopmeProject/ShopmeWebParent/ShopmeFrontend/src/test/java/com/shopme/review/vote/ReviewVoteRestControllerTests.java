@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shopme.common.entity.Review;
 import com.shopme.review.ReviewRepository;
+import com.shopme.vote.VoteResult;
 
 @SpringBootTest
 @AutoConfigureMockMvc
