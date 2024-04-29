@@ -46,7 +46,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	
 	@Modifying
 	@Query("UPDATE Question q SET q.positiveVotes = (SELECT COALESCE(ABS(SUM(CASE WHEN q.votes > 0 THEN v.votes ELSE 0 END)), 0) FROM QuestionVote v "
-	        + "WHERE v.review.id = q.id) WHERE q.id = ?1")
+	        + "WHERE v.question.id = q.id) WHERE q.id = ?1")
 	void updatePositiveVotes(Integer questionId);
 
 
@@ -56,7 +56,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
 	@Modifying
 	@Query("UPDATE Question q SET q.negativeVotes = (SELECT COALESCE(ABS(SUM(CASE WHEN q.votes < 0 THEN q.votes ELSE 0 END)), 0) FROM QuestionVote v "
-			+ " WHERE v.review.id = q.id) WHERE q.id = ?1")
+			+ " WHERE v.question.id = q.id) WHERE q.id = ?1")
 	void updateNegativeVotes(Integer questionId);
     
 	@Query("SELECT q.negativeVotes FROM Question q WHERE q.id = ?1")

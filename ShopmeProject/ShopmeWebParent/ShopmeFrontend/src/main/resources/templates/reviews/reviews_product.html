@@ -57,12 +57,19 @@
 	
     var csrfHeaderName = "[[${_csrf.headerName}]]";
 	var csrfValue = "[[${_csrf.token}]]"
+	
+		$(document).ready(function() {
+			$(".linkVoteReview").on("click", function(e) {
+				e.preventDefault();
+				doVote($(this), "review");
+			});		
+		});	
 </script>
 <script th:src="@{/js/common_list.js}"></script>
+<script th:src="@{/js/common_vote.js}"></script>
 <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
-<script type="text/javascript" th:src="@{/js/review_vote.js}"></script>
 <script type="text/javascript" th:src="@{/js/common_rating.js}"></script>
 </body>
 </html>

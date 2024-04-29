@@ -1,8 +1,8 @@
 package com.shopme.product;
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,10 +16,13 @@ import com.shopme.ControllerHelper;
 import com.shopme.category.CategoryService;
 import com.shopme.common.entity.Category;
 import com.shopme.common.entity.Customer;
+import com.shopme.common.entity.Question;
 import com.shopme.common.entity.Review;
 import com.shopme.common.entity.product.Product;
 import com.shopme.common.exception.CategoryNotFoundException;
 import com.shopme.common.exception.ProductNotFoundException;
+import com.shopme.question.QuestionService;
+import com.shopme.question.vote.QuestionVoteService;
 import com.shopme.review.ReviewService;
 import com.shopme.review.vote.ReviewVoteService;
 
@@ -33,6 +36,8 @@ public class ProductController {
 	@Autowired private ReviewService reviewService;
 	@Autowired private ControllerHelper controllerHelper;
 	@Autowired private  ReviewVoteService voteService;
+	@Autowired private QuestionVoteService questionVoteService;
+	@Autowired private QuestionService questionService;
 	
 	
 	@GetMapping("/c/{category_alias}")
@@ -94,7 +99,10 @@ public class ProductController {
 	
 
 			Product product = productService.getProduct(alias);
+			
 			List<Category> listCategoryParents = categoryService.getAllParents(product.getCategory());
+			List<Question> listQuestions = questionService.getTop3VotedQuestions(product.getId());
+		
 			Page<Review> listReviews = reviewService.list3MostRecentReviewsByProduct(product);
 			
 			Customer customer =controllerHelper.getAuthenticatedCustomer(request);
@@ -105,6 +113,7 @@ public class ProductController {
 		
 				boolean customerReviewed = reviewService.didCustomerReviewProduct(customer, product.getId());
 				voteService.markReviewsVotedForProductByCustomer(listReviews.getContent(), product.getId(), customer.getId());
+				questionVoteService.markQuestionsVotedForProductByCustomer(listQuestions, product.getId(), customer.getId());
 			
 			if (customerReviewed) {
 				model.addAttribute("customerReviewed", customerReviewed);
@@ -114,7 +123,12 @@ public class ProductController {
 			 }
 		}
 			
+			int numberOfQuestions = questionService.getNumberOfQuestions(product.getId());
+			int numberOfAnsweredQuestions = questionService.getNumberOfAnsweredQuestions(product.getId());
 			
+			model.addAttribute("listQuestions", listQuestions);			
+			model.addAttribute("numberOfQuestions", numberOfQuestions);
+			model.addAttribute("numberOfAnsweredQuestions", numberOfAnsweredQuestions);
 			
 			model.addAttribute("name", product.getName());
 			model.addAttribute("product", product);
