@@ -84,4 +84,8 @@ public class QuestionService {
 	public Question getByCustomerAndId(Customer customer, Integer questionId) {
 		return questionRepo.findByCustomerAndId(customer.getId(), questionId);
 	}
+	
+	  public List<String> findCustomersWhoVotedByQuestionId(int  questionId) {
+	        return questionRepo.findCustomerFullNamesByQuestionId(questionId);
+	    }
 }

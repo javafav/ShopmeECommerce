@@ -62,5 +62,8 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	@Query("SELECT q.negativeVotes FROM Question q WHERE q.id = ?1")
 	public Integer getNegativeVotesCount(Integer questionId);
 
+	
+	@Query("SELECT DISTINCT  CONCAT(c.firstName, ' ', c.lastName) AS fullName FROM Customer c JOIN QuestionVote v ON c.id = v.customer.id WHERE v.question.id = ?1")
+	public List<String> findCustomerFullNamesByQuestionId(int reviewId);
 
 }

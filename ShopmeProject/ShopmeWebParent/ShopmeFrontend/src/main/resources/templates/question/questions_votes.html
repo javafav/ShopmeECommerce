@@ -8,25 +8,37 @@
 				<div class="col-xs"><b>Question:</b></div>
 							
 				<div class="col-xs ml-2">
-					<a class="linkVoteQuestion fa-thumbs-up"
+					<a class="linkVoteQuestion fa-hand-point-up icon-dark"
 						th:classappend="${question.upvotedByCurrentCustomer ? 'fas' : 'far'}"
 						th:id="'linkVoteUp-question-' + ${question.id}"
 						th:questionId="${question.id}"
 					   	th:href="@{'/vote_question/' + ${question.id} + '/up'}"></a>
 				</div>
+				<small th:id="'linkThumbsUp-question-' + ${question.id}" >[[${question.positiveVotes}]]</small>
 				
 				<div class="col-xs ml-2">
-					<span th:id="'voteCount-question-' + ${question.id}">[[${question.votes}]] Votes</span>
+			     	
+					<a class="badge badge-secondary badge-pill linkVoteQuestionsCount"
+							th:href="@{'/vote_question/count/' + ${question.id}}"
+				            title="Click to View the Reacted Customer Names"
+							th:id="'voteCount-question-' + ${question.id}"> [[${question.votes}]] Votes
+							 
+							</a>
+			
 				</div>
 				
+			
+				
 				<div class="col-xs ml-2">
-					<a class="linkVoteQuestion fa-thumbs-down"
+					<a class="linkVoteQuestion fa-hand-point-down icon-dark"
 						th:classappend="${question.downvotedByCurrentCustomer ? 'fas' : 'far'}"
 						th:id="'linkVoteDown-question-' + ${question.id}"
 						th:questionId="${question.id}"
 					   	th:href="@{'/vote_question/' + ${question.id} + '/down'}"></a>
-				</div>								
+				</div>	
+						<small th:id="'linkThumbsDown-question-' + ${question.id}" >[[${question.negativeVotes}]]</small>							
 			</div>
+			
 			<div class="row"><div class="col">[[${question.questionContent}]]</div></div>
 			<div class="row">
 				<div class="col ml-4">

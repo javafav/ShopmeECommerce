@@ -63,6 +63,11 @@
 				e.preventDefault();
 				doVote($(this), "review");
 			});		
+			
+			$(".linkVoteQuestion").on("click", function(e) {
+				e.preventDefault();
+				doVote($(this), "question");
+			});
 		});	
 </script>
 <script th:src="@{/js/common_list.js}"></script>

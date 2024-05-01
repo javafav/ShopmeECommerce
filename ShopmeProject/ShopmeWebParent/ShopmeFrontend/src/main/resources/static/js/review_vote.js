@@ -7,35 +7,8 @@ $(document).ready(function() {
 		e.preventDefault();
 		voteReview($(this));
 	});
-	$(".linkVoteReviewCount").on("click", function(e){
-			e.preventDefault();
-			displayVotesByCustomerName($(this));
-	})
+
 });
-function displayVotesByCustomerName(link) {
-    var requestURL = link.attr("href");
-    $.ajax({
-        type: "GET",
-        url: requestURL,
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader(csrfHeaderName, csrfValue);
-        }
-    }).done(function(names) {
-        var html = "<ul>";
-        if (names && names.length > 0) {
-            $.each(names, function(index, name) {
-                html += "<li>" + name + "</li>";
-            });
-        } else {
-            html += "<li>No customers have voted</li>";
-        }
-        html += "</ul>";
-        $("#customerListModal").find(".modal-body").html(html);
-        $("#customerListModal").modal("show");
-    }).fail(function() {
-        showErrorModal("Error voting review.");
-    });
-}
 
 
 function voteReview(currentLink) {
@@ -66,8 +39,8 @@ function voteReview(currentLink) {
 
 function updateVoteCountAndIcons(currentLink, voteResult) {
 	reviewId = currentLink.attr("reviewId");
-	voteUpLink = $("#linkVoteUp-" + reviewId);
-	voteDownLink = $("#linkVoteDown-" + reviewId);
+	voteUpLink = $("#linkVoteUp-review-" + reviewId);
+	voteDownLink = $("#linkVoteDown-review-" + reviewId);
 
 
 

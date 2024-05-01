@@ -27,8 +27,8 @@ function updateVoteCountAndIcons(currentLink, voteResult, entityName) {
 	itemId = currentLink.attr(entityName + "Id");
 	voteUpLink = $("#linkVoteUp-" + entityName + "-" + itemId);
 	voteDownLink = $("#linkVoteDown-" + entityName + "-" + itemId);
-	
-	voteDownLink = $("#linkVoteDown-" + reviewId);
+
+
 
 	$("#voteCount-" + entityName + "-" + itemId).text(voteResult.voteCount + " Votes");
 
@@ -36,20 +36,20 @@ function updateVoteCountAndIcons(currentLink, voteResult, entityName) {
 
 	if (message.includes("successfully voted up")) {
 		highlightVoteUpIcon(currentLink, voteDownLink, entityName);
-		updateThumbsUpCount(itemId, voteResult);
-		updateThumbsDownCount(itemId, voteResult);
+		updateThumbsUpCount(itemId, voteResult, entityName);
+		updateThumbsDownCount(itemId, voteResult, entityName);
 	} else if (message.includes("successfully voted down")) {
 		highlightVoteDownIcon(currentLink, voteUpLink, entityName);
-		updateThumbsUpCount(itemId, voteResult);
-		updateThumbsDownCount(itemId, voteResult);
+		updateThumbsUpCount(itemId, voteResult, entityName);
+		updateThumbsDownCount(itemId, voteResult, entityName);
 	} else if (message.includes("unvoted down")) {
 		unhighlightVoteDownIcon(voteDownLink, entityName);
-		updateThumbsUpCount(itemId, voteResult);
-		updateThumbsDownCount(itemId, voteResult);
+		updateThumbsUpCount(itemId, voteResult, entityName);
+		updateThumbsDownCount(itemId, voteResult, entityName);
 	} else if (message.includes("unvoted up")) {
 		unhighlightVoteDownIcon(voteUpLink, entityName);
-		updateThumbsUpCount(itemId, voteResult);
-		updateThumbsDownCount(itemId, voteResult);
+		updateThumbsUpCount(itemId, voteResult, entityName);
+		updateThumbsDownCount(itemId, voteResult, entityName);
 	}
 }
 
@@ -75,12 +75,63 @@ function unhighlightVoteUpIcon(voteUpLink, entityName) {
 	voteUpLink.removeClass("fas").addClass("far");
 }
 
-function updateThumbsUpCount(reviewId, voteResult) {
-	$("#linkThumbsUp-" + reviewId).text(voteResult.positiveVoteCount);
+function updateThumbsUpCount(itemId, voteResult, entityName) {
+		$("#linkThumbsUp-" + entityName + "-" + itemId).text(voteResult.positiveVoteCount);
 
 }
 
-function updateThumbsDownCount(reviewId, voteResult) {
-	$("#linkThumbsDown-" + reviewId).text(voteResult.negativeVoteCount);
+function updateThumbsDownCount(itemId, voteResult, entityName) {
+	$("#linkThumbsDown-" + entityName + "-" + itemId).text(voteResult.negativeVoteCount);
 
+}
+
+
+function displayVotesByCustomerNameAndReview(link) {
+	var requestURL = link.attr("href");
+	$.ajax({
+		type: "GET",
+		url: requestURL,
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader(csrfHeaderName, csrfValue);
+		}
+	}).done(function(names) {
+		var html = "<ul>";
+		if (names && names.length > 0) {
+			$.each(names, function(index, name) {
+				html += "<li>" + name + "</li>";
+			});
+		} else {
+			html += "<li>No customers have voted</li>";
+		}
+		html += "</ul>";
+		$("#customerListModal").find(".modal-body").html(html);
+		$("#customerListModal").modal("show");
+	}).fail(function() {
+		showErrorModal("Error voting review.");
+	});
+}
+
+function displayVotesByCustomerNameAndQuestion(link) {
+	var requestURL = link.attr("href");
+	$.ajax({
+		type: "GET",
+		url: requestURL,
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader(csrfHeaderName, csrfValue);
+		}
+	}).done(function(names, enityName) {
+		var html = "<ul>";
+		if (names && names.length > 0) {
+			$.each(names, function(index, name) {
+				html += "<li>" + name + "</li>";
+			});
+		} else {
+			html += "<li>No customers have reacted</li>";
+		}
+		html += "</ul>";
+		$("#customerQuestionModal").find(".modal-body").html(html);
+		$("#customerQuestionModal").modal("show");
+	}).fail(function() {
+		showErrorModal("Error reacting question.");
+	});
 }
