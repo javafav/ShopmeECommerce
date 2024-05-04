@@ -94,7 +94,7 @@
 	<div th:replace="fragments :: pagination('customers')"></div>
 	
 	<div th:replace="modal_fragments :: confirm_modal" ></div>
-	
+	                           
 	<div class="modal fade" id="detailModal">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -108,20 +108,12 @@
 
 <script type="text/javascript">
 	moduleURL = "[[@{/customers}]]";
-
+	entityName = "customers";
+	
 	$(document).ready(function() {
-		$(".link-delete").on("click", function(e) {
-			e.preventDefault();
-			showDeleteConfirmModal($(this), 'customer');
-		});
-		
-		$(".link-detail").on("click", function(e) {
-			e.preventDefault();
-			linkDetailURL = $(this).attr("href");
-			$("#detailModal").modal("show").find(".modal-content").load(linkDetailURL);
-		});
-		$("input[name='keyword']").attr("placeholder", "Customers")
+		handleDefaultDetailLinkClick();
 	});
+
 </script>
 <script th:src="@{/js/common.js}"></script>
 <script th:src="@{/js/common_lists.js}"></script>

@@ -14,8 +14,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Rollback;
 
+import com.shopme.common.entity.Question;
 import com.shopme.common.entity.Review;
 import com.shopme.common.entity.product.Product;
+import com.shopme.question.QuestionRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -23,6 +25,7 @@ import com.shopme.common.entity.product.Product;
 public class ReviewRepositoryTests {
 	
 	@Autowired private ReviewRepository repo;
+	@Autowired private QuestionRepository questionRepo;;
 	
 	@Test
 	public void testFindByCustomerNoKeyword() {
@@ -78,12 +81,22 @@ public class ReviewRepositoryTests {
 	}
 	
 	@Test
-	public void testUpdateVoteCount() {
+	public void testUpdateVoteCountForReviews() {
 		Integer reviewId = 32;
 		repo.updateVoteCount(reviewId);
 		Review review = repo.findById(reviewId).get();
 	
 		System.out.println("Review Vote Count:" + review.getVotes()+ "Positve Vote: " +review.getPositiveVotes());
+		
+}
+	
+	@Test
+	public void testUpdateVoteCountForQuestions() {
+		Integer questionId = 9;
+		questionRepo.updateVoteCount(questionId);
+		Question question = questionRepo.findById(questionId).get();
+	
+		System.out.println("Question Vote Count: " + question.getVotes());
 		
 		
 }

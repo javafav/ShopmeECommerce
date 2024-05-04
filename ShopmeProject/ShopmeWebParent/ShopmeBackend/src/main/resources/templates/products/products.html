@@ -175,7 +175,7 @@
 
 
 
-  <div  class="modal fade" id="detailDialog">
+  <div  class="modal fade" id="detailModal">
 
 			<div class="modal-dialog modal-xl">
 
@@ -196,36 +196,19 @@
 		<script th:src="@{/js/common.js}"></script>
 		<script th:src="@{/js/common_lists.js}"></script>
 		<script type="text/javascript">
-			moduleURL = "[[@{/products}]]"
+			moduleURL = "[[@{/products}]]";
+			entityName = "product"
 
+			
 			$(document).ready(function() {
+				handleDefaultDetailLinkClick();
 
-				$(".link-delete").on("click", function(e) {
-					e.preventDefault();
-
-					showDeleteConfirmModal($(this), "product");
+				$("#dropdownCategory").on("change", function() {
+					$("#searchForm").submit();
 
 				});
-				
-			
-			$(".link-detail").on("click", function(e){
-				linkDetailURL = $(this).attr("href");
-				e.preventDefault();
-				$('#detailDialog').modal('show').find(".modal-content").load(linkDetailURL);
+
 			});
-			
-			$("#dropdownCategory").on("change", function() {
-				$("#searchForm").submit();
-			
-			
-			});
-			
-			
-			
-			});
-			
-			
-			
 		</script>
 </body>
 </html>

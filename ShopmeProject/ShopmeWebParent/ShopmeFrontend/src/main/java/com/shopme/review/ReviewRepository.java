@@ -31,7 +31,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	@Query("SELECT COUNT(r.id) FROM Review r WHERE r.customer.id = ?1 AND r.product.id = ?2")
 	public Long countByCustomerAndProduct(Integer customerId, Integer productId);
 
-	@Query("UPDATE Review r SET r.votes = (SELECT COALESCE(ABS(SUM(v.votes)), 0) FROM ReviewVote v WHERE v.review.id = ?1) WHERE r.id = ?1")
+	@Query("UPDATE Review r SET r.votes = (SELECT COALESCE(SUM(ABS(v.votes)), 0) FROM ReviewVote v WHERE v.review.id = ?1) WHERE r.id = ?1")
 	@Modifying
 	public void updateVoteCount(Integer reviewId);
 
@@ -39,7 +39,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	public Integer getVoteCount(Integer reviewId);
 
 	@Modifying
-	@Query("UPDATE Review r SET r.positiveVotes = (SELECT COALESCE(ABS(SUM(CASE WHEN v.votes > 0 THEN v.votes ELSE 0 END)), 0) FROM ReviewVote v "
+	@Query("UPDATE Review r SET r.positiveVotes = (SELECT COALESCE(SUM(ABS(CASE WHEN v.votes > 0 THEN v.votes ELSE 0 END)), 0) FROM ReviewVote v "
 	        + "WHERE v.review.id = r.id) WHERE r.id = ?1")
 	void updatePositiveVotes(Integer reviewId);
 
@@ -49,7 +49,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	public Integer getPositiveVoteCount(Integer reviewId);
 
 	@Modifying
-	@Query("UPDATE Review r SET r.negativeVotes = (SELECT COALESCE(ABS(SUM(CASE WHEN v.votes < 0 THEN v.votes ELSE 0 END)), 0) FROM ReviewVote v "
+	@Query("UPDATE Review r SET r.negativeVotes = (SELECT COALESCE(SUM(ABS(CASE WHEN v.votes < 0 THEN v.votes ELSE 0 END)), 0) FROM ReviewVote v "
 			+ " WHERE v.review.id = r.id) WHERE r.id = ?1")
 	void updateNegativeVotes(Integer reviewId);
     

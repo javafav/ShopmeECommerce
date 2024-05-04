@@ -126,7 +126,7 @@ function displayVotesByCustomerNameAndQuestion(link) {
 				html += "<li>" + name + "</li>";
 			});
 		} else {
-			html += "<li>No customers have reacted</li>";
+			html += "<li>No customers have voted</li>";
 		}
 		html += "</ul>";
 		$("#customerQuestionModal").find(".modal-body").html(html);

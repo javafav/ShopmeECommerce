@@ -110,18 +110,9 @@
 		<script th:src="@{/js/common.js}"></script>
 		<script th:src="@{/js/common_lists.js}"></script>
 		<script type="text/javascript">
-			moduleURL = "[[@{/brands}]]"
+			moduleURL = "[[@{/brands}]]";
+			entityName = "brands";
 
-			$(document).ready(function() {
-
-				$(".link-delete").on("click", function(e) {
-					e.preventDefault();
-
-					showDeleteConfirmModal($(this), "brand");
-
-				});
-				$("input[name='keyword']").attr("placeholder", "Brands")
-			});
 		</script>
 </body>
 </html>

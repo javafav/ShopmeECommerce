@@ -58,6 +58,7 @@ public class QuestionVoteService {
 		}
 		
 		voteRepo.save(vote);
+	
 		questionRepo.updateVoteCount(questionId);
 		questionRepo.updatePositiveVotes(questionId);
 		questionRepo.updateNegativeVotes(questionId);
@@ -65,6 +66,8 @@ public class QuestionVoteService {
 		Integer voteCount = questionRepo.getVoteCount(questionId);
 		Integer positiveVoteCount = questionRepo.getPositiveVoteCount(questionId);
 		Integer negativeVotesCount = questionRepo.getNegativeVotesCount(questionId);
+		
+		System.out.println(" Do Vote Vote Count: " + voteCount + " : Positve Vote Count: " + positiveVoteCount + " : Negitve Vote Count: " +  negativeVotesCount);
 		
 		return VoteResult.success("You have successfully voted " + voteType + " that question.", 
 				voteCount, positiveVoteCount, negativeVotesCount);
@@ -82,7 +85,8 @@ public class QuestionVoteService {
 		Integer positiveVoteCount = questionRepo.getPositiveVoteCount(questionId);
 		Integer negativeVotesCount = questionRepo.getNegativeVotesCount(questionId);
 		
-		
+		System.out.println("Undo Vote Vote Count: " + voteCount + " : Positve Vote Count: " + positiveVoteCount + " : Negitve Vote Count: " +  negativeVotesCount);
+
 	
 		
 		return VoteResult.success("You have unvoted " + voteType + " that question.", voteCount, positiveVoteCount, negativeVotesCount);

@@ -117,19 +117,8 @@
 	<script th:src="@{/js/common_lists.js}"></script>
 	<script type="text/javascript">
 	moduleURL = "[[@{/categories}]]"
+    entityName = "category"
 
-		$(document).ready(function() {
-
-			$(".link-delete").on("click", function(e) {
-				e.preventDefault();
-
-				showDeleteConfirmModal($(this), "category");
-
-			});
-
-			$("input[name='keyword']").attr("placeholder", "Categories");
-
-		});
 	</script>
 </body>
 </html>

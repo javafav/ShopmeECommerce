@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.hibernate.annotations.ManyToAny"/>
-    <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
-    <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
-    <fullyQualifiedTypeName name="com.shopme.admin.shippingrate.ShippingRateNotFoundException"/>
     <fullyQualifiedTypeName name="com.shopme.admin.product.ProductRepository"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
     <fullyQualifiedTypeName name="com.shopme.admin.product.ProductService"/>
@@ -55,9 +51,13 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="com.shopme.admin.paging.SearchAndPagingRepository"/>
     <fullyQualifiedTypeName name="com.shopme.question.QuestionService"/>
     <fullyQualifiedTypeName name="org.aspectj.weaver.patterns.TypePatternQuestions.Question"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Question"/>
     <fullyQualifiedTypeName name="com.shopme.question.vote.QuestionVoteService"/>
+    <fullyQualifiedTypeName name="org.springframework.web.util.UriUtils"/>
+    <fullyQualifiedTypeName name="java.nio.charset.StandardCharsets"/>
+    <fullyQualifiedTypeName name="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler"/>
+    <fullyQualifiedTypeName name="com.shopme.question.QuestionRepository"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.paging.SearchAndPagingRepository"/>
 </qualifiedTypeNameHistroy>
