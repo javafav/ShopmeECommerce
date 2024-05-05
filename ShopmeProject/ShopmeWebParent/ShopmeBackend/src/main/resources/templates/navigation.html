@@ -141,7 +141,8 @@
 
 							<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson')">
 
-								<li class="nav-item"><a class="nav-link"
+								<li class="nav-item ">
+								<a class="nav-link"
 									th:href="@{/reports}">Sales Reports</a></li>
 
 							</th:block>
@@ -149,11 +150,29 @@
 							<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 
 
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/articles}">Atrtcles</a></li>
+								<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+									th:href="@{/articles}">Articles</a>
+									  <div class="dropdown-menu">	
+									    	<a class="dropdown-item dropdown-menu-hover"  th:href="@{/articles/new}">Create New Articles </a>
+									    	<a class="dropdown-item dropdown-menu-hover"  th:href="@{/articles}">View All</a>
+									    	</div>
+									
+									
+									
+									</li>
 
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/menus}">Menus</a></li>
+								<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+									th:href="@{/menus}">Menus</a>
+									
+									 <div class="dropdown-menu">	
+									    	<a class="dropdown-item dropdown-menu-hover"  th:href="@{/menus/new}">Create New Menu </a>
+									    	<a class="dropdown-item dropdown-menu-hover"  th:href="@{/menus}">View All</a>
+									    	</div>
+									
+									
+									</li>
 
 							</th:block>
 
