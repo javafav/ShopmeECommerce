@@ -9,7 +9,7 @@
 		<a th:href="@{/articles/new}" class="fas fa-folder-plus fa-2x icon-dark mr-2"></a>
 	</div>
 		
-	<div th:replace="fragments :: search_form_and_message" />
+	<div th:replace="fragments :: search_form_and_message" ></div>
 	
 	<div class="full-details">
 		<table class="table table-bordered table-striped table-hover table-responsive-xl">
@@ -40,15 +40,15 @@
 					<td>[[${article.user.fullName}]]</td>
 					<td class="hideable-column"><div th:replace="fragments :: format_time(${article.updatedTime})"></div></td>
 					<td>
-						<div th:replace="fragments :: status(${article.published}, 'article', '/articles/' + ${article.id})" />
+						<div th:replace="fragments :: status(${article.published}, 'article', '/articles/' + ${article.id})" ></div>
 					</td>
 					<td>
 						<a class="fas fa-file-alt fa-2x icon-green link-detail" 
 							th:href="@{'/articles/detail/' + ${article.id}}" title="View details of this article"></a>
 						&nbsp;&nbsp; 					
-						<div th:replace="fragments :: edit('article', '/articles/edit/' + ${article.id})" />
+						<div th:replace="fragments :: edit('article', '/articles/edit/' + ${article.id})" ></div>
 						&nbsp;&nbsp;  
-						<div th:replace="fragments :: delete('article', ${article.id}, '/articles/delete/' + ${article.id}, true)" />						
+						<div th:replace="fragments :: delete('article',  '/articles/delete/' + ${article.id}, ${article.id}, true)" ></div>						
 					</td>					
 				</tr>
 			</tbody>
@@ -64,11 +64,11 @@
 					<a class="fas fa-file-alt fa-2x icon-green link-detail" 
 						th:href="@{'/articles/detail/' + ${article.id}}"></a>
 					&nbsp;						
-					<div th:replace="fragments :: status(${article.published}, 'article', '/articles/' + ${article.id})" />
+					<div th:replace="fragments :: status(${article.published}, 'article', '/articles/' + ${article.id})" ></div>
 					&nbsp; 
-					<div th:replace="fragments :: edit('article', '/articles/edit/' + ${article.id})" />
+					<div th:replace="fragments :: edit('article', '/articles/edit/' + ${article.id})" ></div>
 					&nbsp;
-					<div th:replace="fragments :: delete('article', ${article.id}, '/articles/delete/' + ${article.id}, true)" />
+					<div th:replace="fragments :: delete('article',  '/articles/delete/' + ${article.id}, ${article.id}, true)" ></div>
 				</div>
 			</div>
 			<div>&nbsp;</div>
