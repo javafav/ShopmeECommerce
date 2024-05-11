@@ -2,133 +2,79 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: page_head(${pageTitle}, 'none')" />
 <body>
-<div class="container-fluid">
-	<div th:replace="navigation :: header_menu"></div>
-	<div>&nbsp;</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header">
+                    <h3 class="text-center font-weight-light my-4">Customer Registration</h3>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/create_customer}" method="post" th:object="${customer}" onsubmit="return checkEmailUnique(this);">
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputFirstName">First Name</label>
+                            <input class="form-control py-4" id="inputFirstName" type="text" th:field="*{firstName}" placeholder="Enter your first name" required="required" maxlength="45" minlength="2" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputLastName">Last Name</label>
+                            <input class="form-control py-4" id="inputLastName" type="text" th:field="*{lastName}" placeholder="Enter your last name" required="required" maxlength="45" minlength="2" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEmail">Email</label>
+                            <input class="form-control py-4" id="inputEmail" type="email" th:field="*{email}" placeholder="Enter your email address" required="required" maxlength="45" minlength="8" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputPassword">Password</label>
+                            <input class="form-control py-4" id="inputPassword" type="password" th:field="*{password}" placeholder="Enter your password" required="required" maxlength="15" minlength="6" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputConfirmPassword">Confirm Password</label>
+                            <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm your password" required="required" maxlength="15" minlength="6" oninput="checkPasswordMatch(this)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputPhoneNumber">Phone Number</label>
+                            <input class="form-control py-4" id="inputPhoneNumber" type="text" th:field="*{phoneNumber}" placeholder="Enter your phone number" required="required" maxlength="15" minlength="8" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputAddressLine1">Address Line 1</label>
+                            <input class="form-control py-4" id="inputAddressLine1" type="text" th:field="*{addressLine1}" placeholder="Enter your address line 1" required="required" maxlength="64" minlength="3" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputAddressLine2">Address Line 2</label>
+                            <input class="form-control py-4" id="inputAddressLine2" type="text" th:field="*{addressLine2}" placeholder="Enter your address line 2" maxlength="64" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputCity">City</label>
+                            <input class="form-control py-4" id="inputCity" type="text" th:field="*{city}" placeholder="Enter your city" maxlength="45" minlength="2" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputCountry">Country</label>
+                            <select class="form-control" id="inputCountry" th:field="*{country}">
+                                <option value="">Select your country</option>
+                                <th:block th:each="country : ${listCountries}">
+                                    <option th:value="${country.id}" th:text="${country.name}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputState">State/Province</label>
+                            <input class="form-control py-4" id="inputState" type="text" th:field="*{state}" placeholder="Enter your state/province" maxlength="45" minlength="3" list="listStates" />
+                            <datalist id="listStates"></datalist>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputPostalCode">Postal Code</label>
+                            <input class="form-control py-4" id="inputPostalCode" type="text" th:field="*{postalCode}" placeholder="Enter your postal code" maxlength="10" minlength="2" />
+                        </div>
+                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                            <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-	<div class="text-center">
-		<h2>Customer Registration</h2>
-	</div>
-
-	<form th:action="@{/create_customer}" method="post" th:object="${customer}"
-		style="max-width: 600px; margin: 0 auto"
-		onsubmit="return checkEmailUnique(this);">
-	<div class="border border-secondary rounded p-3">
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">First Name:</label>
-			<div class="col-sm-8">
-				<input type="text" th:field="*{firstName}" class="form-control"
-					required="required" maxlength="45" minlength="2" />
-			</div>
-		</div>
-		
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">Last Name:</label>
-			<div class="col-sm-8">
-				<input type="text" th:field="*{lastName}" class="form-control"
-					required="required" maxlength="45" minlength="2" />
-			</div>
-		</div>
-				
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">E-mail:</label>
-			<div class="col-sm-8">
-				<input type="email" th:field="*{email}" class="form-control"
-					required="required" maxlength="45" minlength="8" />
-			</div>
-		</div>
-
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">Password:</label>
-			<div class="col-sm-8">
-				<input type="password" th:field="*{password}" class="form-control"
-					required="required" maxlength="15" minlength="6"
-					
-					 />
-			</div>
-		</div>
-
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">Re-type Password:</label>
-			<div class="col-sm-8">
-				<input type="password" id="confirmPassword" class="form-control"
-					required="required" maxlength="15" minlength="6"
-					oninput="checkPasswordMatch(this)"
-					
-					 />
-			</div>
-		</div>
-		
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">Phone Number:</label>
-			<div class="col-sm-8">
-				<input type="text" th:field="*{phoneNumber}" class="form-control"
-					required="required" maxlength="15" minlength="8" />
-			</div>
-		</div>
-
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">Address Line 1:</label>
-			<div class="col-sm-8">
-				<input type="text" th:field="*{addressLine1}" class="form-control"
-					required="required" maxlength="64" minlength="3" />
-			</div>
-		</div>
-
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">Address Line 2:</label>
-			<div class="col-sm-8">
-				<input type="text" th:field="*{addressLine2}" class="form-control"
-					maxlength="64" />
-			</div>
-		</div>
-
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">City:</label>
-			<div class="col-sm-8">
-				<input type="text" th:field="*{city}" class="form-control"
-					maxlength="45" minlength="2" />
-			</div>
-		</div>
-
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">Country:</label>
-			<div class="col-sm-8">
-				<select class="form-control" th:field="*{country}">
-					<th:block th:each="country : ${listCountries}">
-					<option th:value="${country.id}">[[${country.name}]]</option>
-					</th:block>
-				</select>
-			</div>
-		</div>
-				
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">State/Province:</label>
-			<div class="col-sm-8">
-				<input type="text" th:field="*{state}" class="form-control"
-					maxlength="45" minlength="3" list="listStates" />
-				<datalist id="listStates"></datalist>
-			</div>
-		</div>
-								
-		<div class="form-group row">
-			<label class="col-sm-4 col-form-label">Postal Code:</label>
-			<div class="col-sm-8">
-				<input type="text" th:field="*{postalCode}" class="form-control"
-					maxlength="10" minlength="2" />
-			</div>
-		</div>
-																		
-		<div class="text-center">
-			<input type="submit" value="Create Account" class="btn btn-primary" />
-		</div>
-	</div>
-	</form>
-	
-	<div>&nbsp;</div>
-	<div th:replace="fragments :: modal_dialog"></div>
-	<div th:replace="navigation :: footer_menu"></div>
-</div>	
 <script type="text/javascript">
 	contextPath = "[[@{/}]]";
 

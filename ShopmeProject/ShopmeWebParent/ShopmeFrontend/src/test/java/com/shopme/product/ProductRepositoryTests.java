@@ -34,6 +34,20 @@ public class ProductRepositoryTests {
 		
 		listProduct.forEach(proudct -> System.out.println(proudct.getName()));
 	}
+	
+	@Test
+	public void testFindAllProductOnSaleOrDiscount() {
+		int pageNum = 1;
+		
+		PageRequest pagebale = PageRequest.of(pageNum - 1, ProductService.PRODUCTS_PER_PAGE);
+		Page<Product> productOnSaleOrDiscount = repo.findAllProductOnSaleOrDiscount(pagebale);
+		
+		List<Product> listProduct = productOnSaleOrDiscount.getContent();
+		listProduct.forEach(proudct -> System.out.println(proudct.getName()));
+	
+	
+	}
+	
 	@Test
 	public void testUpdateReviewCountAndAverageRating() {
 		Integer productId = 100;

@@ -4,7 +4,8 @@
 <head>
 
 <head th:replace="fragments :: page_head('Shopme', tag)" />
-
+ <link th:href="@{/css/styles.css}" rel="stylesheet" />
+ <link th:href="@{/css/home.css}" rel="stylesheet" />
 
 </head>
 <body>
@@ -20,24 +21,37 @@
 		<h2>Shop by Categories</h2>
 		
 	</div>
-	<div class="row" >
-	  <div class="col" th:each="cat : ${listCategories}">
-	 	 <div>	<img th:src="@{${cat.imagePath}}" style="max-width:80px" /></div>
-	  	 <div>
-	  	 <a th:href="@{ '/c/' + ${cat.alias}}">
-	  	 [[${cat.name}]]
-	  	 </a>
-	  	 </div>
 	
-	
-	
-	
-	  </div>
-		
-	
-	</div>
-	
+	 <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+	                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+	                
+	                	<div class="col mb-5" th:each="cat : ${listCategories}">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" th:src="@{${cat.imagePath}}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+									<h5 class="fw-bolder">
+										<a th:href="@{ '/c/' + ${cat.alias}}" class=" product-name"> [[${cat.name}]] </a>
+									</h5>
 
+								</div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{ '/c/' + ${cat.alias}}">View more</a></div>
+                            </div>
+                        </div>
+                    </div>
+	                
+	                
+	                </div>
+                </div>
+       </section>
+                
 
 <div th:replace="navigation :: footer_menu"></div>
 

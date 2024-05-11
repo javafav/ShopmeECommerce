@@ -23,14 +23,17 @@ import com.shopme.common.exception.CategoryNotFoundException;
 
 @Controller
 public class CategoryController {
-
+	
+	private String defaultRedirectURL = "redirect:/categories/page/1?sortField=name&sortDir=asc&keyword=";
+	
 	@Autowired
 	private CategoryService service;
 
+	
 	@GetMapping("/categories")
-	public String listFirstPage(@RequestParam(name = "sortDir", required = false) String sortDir, Model model) {
+	public String listFirstPage() {
 
-		return listByPage(1, sortDir,null, model);
+		return defaultRedirectURL;
 
 	}
 	

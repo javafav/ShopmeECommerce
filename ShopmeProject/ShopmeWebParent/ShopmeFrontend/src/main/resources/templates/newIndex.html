@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security5" >
+ <head th:replace="fragments :: page_head('Home', none)" />
+    <body>
+     <!-- Navigation-->
+
+   <div th:replace="navigation :: nav_menu"></div>
+
+        <!-- Header-->
+        
+ <div th:replace="navigation :: header_images"></div>
+<div th:replace="breadcrumb :: content"></div>
+
+        <!-- Section-->
+       
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <th:block th:each="product : ${listProducts}">
+                   
+                    
+                     <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+						[[${#numbers.formatDecimal(product.discountPercent, 1,
+						THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]% OFF</div>
+                            <!-- Product image-->
+                          <img class="card-img-top" th:src="@{${product.mainImagePath}}" alt="..." style="max-width: 450px;max-height: 300px" />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <a class="fw-bolder product-name" href="/">[[${product.shortName}]]</a>
+                                    <!-- Product price-->
+                                   <div>
+					Price: <span th:if="${product.discountPercent <= 0}"><div
+							th:replace="product/product_fragment :: price_fragment(${product.price})"></div></span>
+					<del th:if="${product.discountPercent > 0}">
+						<span><div
+								th:replace="product/product_fragment :: price_fragment(${product.price})"></div></span>
+					</del>
+				</div>
+				<div th:if="${product.discountPercent > 0}">
+					Sale Price: <span
+						style="font-size: larger; color: darkred"><div
+							th:replace="product/product_fragment :: price_fragment(${product.discountPrice})"></div></span>
+							<br>
+					<strong style="color: #009999">Save: [[${CURRENCY_SYMBOL}]][[${#numbers.formatDecimal(product.price - product.discountPrice, 1,
+						THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</strong>
+				</div>
+				<div>&nbsp;</div>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                               <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View details</a></div>
+                                <div class="text-center"><a class="btn btn-dark mt-2" href="#">Add to cart</a></div>
+                            </div>
+                        </div>
+                    </div>
+                     </th:block>
+                
+                </div>
+            </div>
+        </section>
+        
+        <div	th:replace="fragments :: pagination('product', '/newindex' )"></div>
+        <!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <div class="row">
+            <!-- Footer Menu -->
+            <div class="col-md-4 col-sm-6">
+                <h5 class="text-white mb-4">Useful Links</h5>
+                <ul class="nav flex-column">
+                    <!-- Start of Dynamic Footer Menu Items -->
+                    <th:block th:each="footerMenu : ${footerMenuItems}">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" th:href="@{'/m/' + ${footerMenu.alias}}" th:text="${footerMenu.title}"></a>
+                        </li>						
+                    </th:block>
+                    <!-- End of Dynamic Footer Menu Items -->
+                </ul>
+            </div>
+            <!-- Contact Information -->
+            <div class="col-md-4 col-sm-6">
+                <h5 class="text-white mb-4">Contact Us</h5>
+                <p class="text-white mb-2">123 Street Name</p>
+                <p class="text-white mb-2">City, Country</p>
+                <p class="text-white mb-2">Email: info@example.com</p>
+                <p class="text-white">Phone: +123 456 7890</p>
+            </div>
+            <!-- Subscribe Form -->
+            <div class="col-md-4 col-sm-12">
+                <h5 class="text-white mb-4">Subscribe to Our Newsletter</h5>
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-light" type="button" id="button-addon2">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Divider -->
+        <hr class="mt-5 mb-4" style="border-color: rgba(255, 255, 255, 0.2);">
+        <!-- Copyright Notice -->
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+    </div>
+</footer>
+
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+   
+       
+     <script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
+      <script type="text/javascript" th:src="@{/js/common.js}"></script>
+     
+ 
+   </body>
+   
+</html>

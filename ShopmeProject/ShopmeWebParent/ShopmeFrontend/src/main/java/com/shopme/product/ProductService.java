@@ -53,4 +53,11 @@ public class ProductService {
 		
 
 	}
+	
+	public Page<Product> getProductOnDiscountOrSale(int pageNum){
+		
+		PageRequest pagebale = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
+		return repo.findAllProductOnSaleOrDiscount(pagebale);
+		
+	}
 }

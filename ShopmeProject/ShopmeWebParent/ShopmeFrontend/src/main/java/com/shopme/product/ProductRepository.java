@@ -28,7 +28,9 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
 					+ "OR b.name LIKE %?1% OR c.name LIKE %?1%)")
 	public Page<Product> search(@Param("keyword") String keyword, Pageable pageable);
 
-
+	@Query("SELECT p FROM Product p where p.enabled = true AND p.discountPercent > 0")
+	public Page<Product> findAllProductOnSaleOrDiscount(Pageable pageable);
+	
 
 	@Query("Update Product p SET p.averageRating = COALESCE((SELECT AVG(r.rating) FROM Review r WHERE r.product.id = ?1), 0),"
 			+ " p.reviewCount = (SELECT COUNT(r.id) FROM Review r WHERE r.product.id =?1) "

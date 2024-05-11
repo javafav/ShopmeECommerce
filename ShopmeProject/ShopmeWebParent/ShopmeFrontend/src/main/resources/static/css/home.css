@@ -1,0 +1,19 @@
+  .product-name {
+    color: black; /* Default link color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.2s ease; /* Smooth transition for color change */
+  }
+
+
+
+  /* Hover effect */
+.product-name:hover {
+  color: #009999 ; /* Change color on hover */
+    text-decoration: underline; /* Add underline on hover */
+  }
+
+  /* Active link styles (when clicked) */
+  .product-name :active {
+    color: green; /* Change color when clicked */
+  }
+
