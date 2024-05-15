@@ -14,8 +14,11 @@
 
 	<div class="container-fluid">
 
-		<div th:replace="navigation :: header_menu"></div>
-		<div th:replace="navigation :: search_nav"></div>
+	 <div th:replace="navigation :: nav_menu"></div>
+		     <!-- Header-->
+ <div th:replace="navigation :: special_message"></div>      
+ <div th:replace="navigation :: header_images"></div>
+<div th:replace="breadcrumb :: content"></div>
 
 		<div th:replace="breadcrumb :: content"></div>
 
@@ -41,7 +44,7 @@
 		<div	th:replace="fragments :: pagination('product', '/search' )"></div>
 
 
-		<div th:replace="navigation :: footer_menu"></div>
+		<div th:replace="fragments :: footer_menu"></div>
 
 	</div>
 <script type="text/javascript">

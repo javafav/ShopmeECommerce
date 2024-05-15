@@ -8,7 +8,7 @@
    <div th:replace="navigation :: nav_menu"></div>
 
         <!-- Header-->
-        
+ <div th:replace="navigation :: special_message"></div>      
  <div th:replace="navigation :: header_images"></div>
 <div th:replace="breadcrumb :: content"></div>
 
@@ -34,7 +34,7 @@
                                     <!-- Product name-->
                                     <a class="fw-bolder product-name" href="/">[[${product.shortName}]]</a>
                                     <!-- Product price-->
-                                   <div>
+                         <div>
 					Price: <span th:if="${product.discountPercent <= 0}"><div
 							th:replace="product/product_fragment :: price_fragment(${product.price})"></div></span>
 					<del th:if="${product.discountPercent > 0}">
@@ -55,8 +55,9 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                               <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View details</a></div>
-                                <div class="text-center"><a class="btn btn-dark mt-2" href="#">Add to cart</a></div>
+                               <div class="text-center"><a class="btn btn-outline-dark " href="#">View details</a></div>
+                            
+                          <div class="mt-3 text-center"><a type="button" class=" btn btn-dark addToCart"  id="buttonAdd2Cart" th:href="'cart/add/' + ${product.id} + '/1'" >Add to cart</a></div>
                             </div>
                         </div>
                     </div>
@@ -68,59 +69,32 @@
         
         <div	th:replace="fragments :: pagination('product', '/newindex' )"></div>
         <!-- Footer-->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <div class="row">
-            <!-- Footer Menu -->
-            <div class="col-md-4 col-sm-6">
-                <h5 class="text-white mb-4">Useful Links</h5>
-                <ul class="nav flex-column">
-                    <!-- Start of Dynamic Footer Menu Items -->
-                    <th:block th:each="footerMenu : ${footerMenuItems}">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" th:href="@{'/m/' + ${footerMenu.alias}}" th:text="${footerMenu.title}"></a>
-                        </li>						
-                    </th:block>
-                    <!-- End of Dynamic Footer Menu Items -->
-                </ul>
-            </div>
-            <!-- Contact Information -->
-            <div class="col-md-4 col-sm-6">
-                <h5 class="text-white mb-4">Contact Us</h5>
-                <p class="text-white mb-2">123 Street Name</p>
-                <p class="text-white mb-2">City, Country</p>
-                <p class="text-white mb-2">Email: info@example.com</p>
-                <p class="text-white">Phone: +123 456 7890</p>
-            </div>
-            <!-- Subscribe Form -->
-            <div class="col-md-4 col-sm-12">
-                <h5 class="text-white mb-4">Subscribe to Our Newsletter</h5>
-                <form>
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-light" type="button" id="button-addon2">Subscribe</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- Divider -->
-        <hr class="mt-5 mb-4" style="border-color: rgba(255, 255, 255, 0.2);">
-        <!-- Copyright Notice -->
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
-    </div>
-</footer>
 
+ <div	th:replace="fragments :: footer_menu"></div>
 
+   <div th:replace="fragments :: modal_dialog"></div>
+   
 
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-   
-       
-     <script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
+	<script type="text/javascript">
+	
+	contextPath = "[[@{/}]]";
+	var csrfHeaderName = "[[${_csrf.headerName}]]";
+	var csrfValue = "[[${_csrf.token}]]";
+	decimalSeparator = "[[${DECIMAL_POINT_TYPE == 'COMMA' ? ',' : '.'}]]";
+	thousandSeparator = "[[${THOUSANDS_POINT_TYPE == 'COMMA' ? ',' : '.'}]]";
+
+	</script>
+
+	
       <script type="text/javascript" th:src="@{/js/common.js}"></script>
-     
+     	<script type="text/javascript" th:src="@{/js/add_to_cart.js}"></script>
+     		<script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
+     		<script type="text/javascript" th:src="@{/js/quantity_control.js}"></script>
+
  
    </body>
+
    
 </html>

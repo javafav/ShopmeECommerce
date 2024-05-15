@@ -16,6 +16,17 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
 			+ " ORDER BY p.name ASC")
 	public Page<Product> listProductByCategory(Integer categoryId, String IdMatch, Pageable pagebale);
 	
+	@Query("SELECT p FROM Product p WHERE p.enabled = true ORDER BY p.name ASC ")
+	public Page<Product> listAllProduct(Pageable pagebale);
+	
+	@Query("SELECT p FROM Product p WHERE p.enabled = true AND p.averageRating >= ?1 ORDER BY p.name ASC ")
+	public Page<Product> listAllMostRatedProduct(float avgRating, Pageable pagebale);
+	
+	@Query("SELECT p FROM Product p JOIN OrderDetail od ON od.product.id = p.id GROUP BY p.id HAVING SUM(od.quantity) >= ?1 ORDER BY p.name ASC")
+	public Page<Product> listAllBestSellingProduct(Long quantity, Pageable pageable);
+
+	
+	
 	public Product findByAlias(String alias);
 	
 	@Query(value = "SELECT * FROM products p " + "JOIN brands b ON p.brand_id = b.id "

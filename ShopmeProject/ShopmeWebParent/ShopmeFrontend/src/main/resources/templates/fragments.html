@@ -5,13 +5,17 @@
 <title>Shopme - [[${SITE_NAME}]]</title>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" />
+
 <link rel="stylesheet" th:href="@{/style.css}" type="text/css" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<link rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+
+
  <link th:href="@{/css/styles.css}" rel="stylesheet" />
 <link th:href="@{/css/home.css}" rel="stylesheet" />
 </head>
@@ -37,9 +41,64 @@
 
 </head>
 
+<div th:fragment="footer_menu">
+
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <div class="row">
+            <!-- Footer Menu -->
+            <div class="col-md-4 col-sm-6">
+                <h5 class="text-white mb-4">Useful Links</h5>
+                <ul class="nav flex-column">
+                    <!-- Start of Dynamic Footer Menu Items -->
+                    <th:block th:each="footerMenu : ${footerMenuItems}">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" th:href="@{'/m/' + ${footerMenu.alias}}" th:text="${footerMenu.title}"></a>
+                        </li>						
+                    </th:block>
+                    <!-- End of Dynamic Footer Menu Items -->
+                </ul>
+            </div>
+            <!-- Contact Information -->
+            <div class="col-md-4 col-sm-6">
+                <h5 class="text-white mb-4">Contact Us</h5>
+                <p class="text-white mb-2">123 Street Name</p>
+                <p class="text-white mb-2">City, Country</p>
+                <p class="text-white mb-2">Email: info@example.com</p>
+                <p class="text-white">Phone: +123 456 7890</p>
+            </div>
+            <!-- Subscribe Form -->
+            <div class="col-md-4 col-sm-12">
+                <h5 class="text-white mb-4">Subscribe to Our Newsletter</h5>
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-light" type="button" id="button-addon2">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Social Media Icons -->
+        <div class="text-center">
+            <a href="#" class="text-white me-3 icon-lg"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white me-3 icon-lg"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white me-3 icon-lg"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white icon-lg"><i class="bi bi-linkedin"></i></a>
+        </div>
+        <!-- Divider -->
+        <hr class="mt-4 mb-4" style="border-color: rgba(255, 255, 255, 0.2);">
+        <!-- Copyright Notice -->
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+    </div>
+</footer>
+
+
+
+</div>
+
 <body>
 <th th:fragment="column_link(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
-	<a class="text-white"
+	<a class="text-white "
 		th:href="@{${moduleURL} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName}  +'&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">
 		[[${columnLabel}]]
 	</a>								
@@ -48,7 +107,7 @@
 </th>
 
 <a th:fragment="page_link( moduleURL, pageNum,columnLabel)"
-	    class="page-link"
+	    class="page-link dropdown-menu-hover product-name"
 		th:href="@{${moduleURL}+ '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir='+ ${sortDir} + '&keyword=' + ${keyword != null ? keyword : ''}}">[[${columnLabel}]]</a>
 
 
@@ -100,23 +159,24 @@
 
 	</div>
 <div th:fragment="modal_dialog" class="modal fade text-center" id="modalDialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="modalTitle">Warning</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			
-			<div class="modal-body">
-				<span id="modalBody"></span>
-			</div>
-			
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Warning</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                <span id="modalBody"></span>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
+
 <div th:fragment="confirm_modal" class="modal fade text-center" id="confirmModal">
 	<div class="modal-dialog">
 		<div class="modal-content">

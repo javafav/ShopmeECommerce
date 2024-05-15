@@ -49,6 +49,52 @@ public class ProductRepositoryTests {
 	}
 	
 	@Test
+	public void testListAllBestSellingProduct() {
+		
+		Long quanity = (long) 2;
+		int pageNum = 1;
+		
+		PageRequest pagebale = PageRequest.of(pageNum - 1, ProductService.PRODUCTS_PER_PAGE);
+		  Page<Product> listAllBestSellingProduct = repo.listAllBestSellingProduct(quanity, pagebale);
+		
+		List<Product> listProduct = listAllBestSellingProduct.getContent();
+		listProduct.forEach(proudct -> System.out.println(proudct.getName()));
+	
+		
+	}
+	
+	
+	@Test
+	public void testListAllProduct() {
+		
+	
+		int pageNum = 1;
+		
+		PageRequest pagebale = PageRequest.of(pageNum - 1, ProductService.PRODUCTS_PER_PAGE);
+		Page<Product> listAllProduct = repo.listAllProduct(pagebale);
+		List<Product> listProduct = listAllProduct.getContent();
+		listProduct.forEach(proudct -> System.out.println(proudct.getName()));
+	
+		
+	}
+	
+	
+	
+	@Test
+	public void testListAllMostRatedProduct() {
+		
+	    float avgRating =1.0f;
+		int pageNum = 1;
+		
+		PageRequest pagebale = PageRequest.of(pageNum - 1, ProductService.PRODUCTS_PER_PAGE);
+		Page<Product> listAllMostRatedProduct = repo.listAllMostRatedProduct(avgRating, pagebale);
+		List<Product> listProduct = listAllMostRatedProduct.getContent();
+		listProduct.forEach(proudct -> System.out.println(proudct.getName()));
+	
+		
+	}
+	
+	@Test
 	public void testUpdateReviewCountAndAverageRating() {
 		Integer productId = 100;
 		repo.updateReviewCountAndAverageRating(productId);

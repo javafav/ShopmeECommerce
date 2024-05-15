@@ -180,5 +180,39 @@ public class ProductController {
 		
 		return "product/search_result";
 	}
+	
+	
+	@GetMapping("/list_all_product")
+	public String listFirstPageOfProductByNameOrderByAsc(Model model) {
+		return listAllPageOfProductByNameOrderByAsc(1, model);
+	}
+
+	@GetMapping("/list_all_product/page/{pageNum}")
+	public String listAllPageOfProductByNameOrderByAsc(@PathVariable("pageNum") Integer pageNum, Model model) {
+
+		Page<Product> pageProduct = productService.getAllProduct(pageNum);
+		List<Product> listProducts = pageProduct.getContent();
+
+		long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
+		long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
+		if (endCount > pageProduct.getTotalElements()) {
+			endCount = pageProduct.getTotalElements();
+		}
+
+		
+		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("currentPage", pageNum);
+		model.addAttribute("totalPages", pageProduct.getTotalPages());
+
+		model.addAttribute("startCount", startCount);
+		model.addAttribute("endCount", endCount);
+
+		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("totalItems", pageProduct.getTotalElements());
+		
+		return "product/all_product";
+	}
+	
+	
 
 }

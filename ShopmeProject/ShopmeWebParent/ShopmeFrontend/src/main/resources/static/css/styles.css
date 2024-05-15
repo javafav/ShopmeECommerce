@@ -85,11 +85,7 @@
   box-sizing: border-box;
 }
 
-.dropdown-menu-hover:hover {
-	
-	background: #343a40;
-	color: ivory;
-}
+
 
 /* For Small Screens */
 @media screen and (max-width: 768px) {

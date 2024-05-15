@@ -60,4 +60,25 @@ public class ProductService {
 		return repo.findAllProductOnSaleOrDiscount(pagebale);
 		
 	}
+	
+   public Page<Product> getAllProduct(int pageNum){
+		
+		PageRequest pagebale = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
+		return repo.listAllProduct(pagebale);
+		
+	}
+   
+   public Page<Product> getAllMostRatedProduct(float avgRating, int pageNum){
+		 
+		PageRequest pagebale = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
+		return repo.listAllMostRatedProduct(avgRating, pagebale);
+		
+	}
+   
+   public Page<Product> getAllBestSelingProduct(Long quantity, int pageNum){
+		 
+		PageRequest pagebale = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
+		return repo.listAllBestSellingProduct(quantity, pagebale);
+		
+	}
 }

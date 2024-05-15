@@ -1,26 +1,26 @@
  <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
 
-<head th:replace="fragments :: page_head('Shopme', tag)" />
- <link th:href="@{/css/styles.css}" rel="stylesheet" />
- <link th:href="@{/css/home.css}" rel="stylesheet" />
 
-</head>
+<head th:replace="fragments :: page_head('Shopme', none)" />
+
+
+
 <body>
 
 <div class="container-fluid">
 
-<div th:replace="navigation :: header_menu"></div>
-<div th:replace="navigation :: search_nav"></div>
+<div th:replace="navigation :: nav_menu"></div>
+<div th:replace="navigation :: special_message"></div> 
+<div th:replace="navigation :: header_images"></div>
 
 
 
-	<div>
-		<h2>Shop by Categories</h2>
-		
-	</div>
+
+<div class="text-center mt-3">
+    <h1 class="display-4 fw-bold  text-dark" style=" font-family:  'Arial Black', sans-serif;;">Shop by Categories</h1>
+</div>
 	
 	 <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -29,7 +29,7 @@
 	                	<div class="col mb-5" th:each="cat : ${listCategories}">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" th:src="@{${cat.imagePath}}" alt="..." />
+                          <a th:href="@{ '/c/' + ${cat.alias}}" >  <img class="card-img-top" th:src="@{${cat.imagePath}}" alt="..." /></a>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -53,7 +53,7 @@
        </section>
                 
 
-<div th:replace="navigation :: footer_menu"></div>
+<div th:replace="fragments :: footer_menu"></div>
 
 </div>
 <script type="text/javascript">

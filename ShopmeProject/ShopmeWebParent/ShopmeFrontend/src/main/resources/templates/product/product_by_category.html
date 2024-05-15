@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security5">
 <head>
 <head th:replace="fragments :: page_head(${pageTitle}, tag)" />
 <link th:href="@{/star-rating/css/star-rating.css}" media="all" rel="stylesheet" type="text/css" />
@@ -10,17 +11,20 @@
 <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-<div th:replace="navigation :: header_menu"></div>
-	<div class="container-fluid">
+ <div th:replace="navigation :: nav_menu"></div>
+ <div th:replace="navigation :: special_message"></div>      
+ <div th:replace="navigation :: header_images"></div>
 
-		
-       <div th:replace="navigation :: search_nav"></div>
+<div th:replace="breadcrumb :: content"></div>
 
-		<div th:replace="breadcrumb :: content"></div>
+
 
 		<div class="row text-center">
 			<th:block th:each="cat : ${category.children}">
+				
+        
 				<div class="col" th:if="${cat.enabled == true}">
+					 <p class="text-muted mt-2">Discover more in <b>[[${cat.name}]]</b> </p>
 					<a th:href="@{'/c/' + ${cat.alias}}"> <img
 						th:src="@{${cat.imagePath}}" height="100" /> <br /> <b>[[${cat.name}]]</b>
 					</a>

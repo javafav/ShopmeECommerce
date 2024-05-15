@@ -57,7 +57,7 @@ public class ProductController {
 		
 		
 	
-		model.addAttribute("productsPerPage", productService.PRODUCTS_PER_PAGE);
+		model.addAttribute("productsPerPage", ProductService.PRODUCTS_PER_PAGE);
 		
 		model.addAttribute("listCategories", listCategories);
 		

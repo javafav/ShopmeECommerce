@@ -45,7 +45,6 @@
     <fullyQualifiedTypeName name="com.shopme.review.vote.ReviewVoteService"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Review"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.shopme.question.QuestionService"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="com.shopme.menu.MenuService"/>
     <fullyQualifiedTypeName name="java.awt.Menu"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Menu"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="pagination(entityName, moduleURL)" th:remove="${tag}">
+
+	<div class="text-center">
+		<span th:if="${totalItems > 0}">Showing [[${entityName}]] #
+			[[${startCount}]] to [[${endCount}]] of total [[${totalItems}]]</span> <span
+			th:unless="${totalItems > 0}">No [[${entityName}]] found</span>
+	</div>
+	<div th:if="${totalPages > 1}">
+
+		<nav>
+			<ul class="pagination justify-content-center flex-wrap">
+				<li
+					th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+					<a th:replace="fragments :: page_link(${moduleURL}, 1,'First')"></a>
+				</li>
+				<li
+					th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+
+					<a
+					th:replace="fragments :: page_link(${moduleURL}, ${currentPage -1}, 'Previous')"></a>
+
+				</li>
+
+				<th:block th:if="${totalPages <= 10}">
+
+					<li
+						th:class="${currentPage == i ? 'page-item active' : 'page-item'}"
+						th:each="i : ${#numbers.sequence(1,totalPages)}"><a
+						th:replace="fragments :: page_link(${moduleURL}, ${i}, ${i})"></a></li>
+
+				</th:block>
+
+			<th:block th:if="${totalPages > 10}">
+
+					<th:block
+                               th:if="${currentPage <= 5 || currentPage > totalPages - 4}" th:with="pageIndex=${totalPages - 5}">
+
+						<li
+							th:class="${currentPage == i ? 'page-item active ' : 'page-item'}"
+							th:each="i : ${#numbers.sequence(1,5)}"><a
+							th:replace="fragments :: page_link(${moduleURL}, ${i},${i})"></a>
+						</li>
+						<a th:if="{currentPage <= 5}" th:replace="fragments :: page_link(${moduleURL}, ${ currentPage <= 5 ? 6 : pageIndex }, '...')"></a>
+					
+                    
+						<li
+							th:class="${currentPage == i ? 'page-item active' : 'page-item'}"
+							th:each="i : ${#numbers.sequence(totalPages - 4 ,totalPages)}">
+							<a th:replace="fragments :: page_link(${moduleURL}, ${i}, ${i})"></a>
+						</li>
+					</th:block>
+
+					<th:block th:if="${currentPage > 5 && currentPage <= totalPages - 4}">
+
+						<a
+							th:replace="fragments :: page_link(${moduleURL}, ${currentPage - 5} ,'...')"></a>
+						<li
+							th:class="${currentPage == i ? 'page-item active' : 'page-item'}"
+							th:each="i : ${#numbers.sequence(currentPage - 4, currentPage + 4)}">
+							<a th:replace="fragments :: page_link(${moduleURL}, ${i}, ${i})"></a>
+						</li>
+						<a
+							th:replace="fragments :: page_link(${moduleURL}, ${currentPage + 5} ,'...')"></a>
+					</th:block>
+
+
+			</th:block>
+
+				<li
+					th:class="${currentPage < totalPages  ? 'page-item' : 'page-item disabled'}">
+
+					<a
+					th:replace="fragments :: page_link(${moduleURL},${currentPage + 1},'Next')"></a>
+
+				</li>
+				<li
+					th:class="${currentPage < totalPages  ? 'page-item' : 'page-item disabled'}">
+
+					<a
+					th:replace="fragments :: page_link( ${moduleURL},${totalPages},'Last')"></a>
+
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+</div>
+
+</html>

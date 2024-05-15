@@ -5,6 +5,10 @@
   }
 
 
+.custom-heading {
+    color: green; /* Dark gray color */
+    font-family: 'Arial Black', sans-serif;
+}
 
   /* Hover effect */
 .product-name:hover {
@@ -16,4 +20,16 @@
   .product-name :active {
     color: green; /* Change color when clicked */
   }
+  
+  .dropdown-menu-hover:hover {
+	
+	background: #343a40;
+	color: #F8F8FF;
+}
+/* Custom CSS to change the active page item color */
+.page-item.active .page-link {
+    background-color: #343a40;;
+    border-color: #f0f8ff;
+    color: #F8F8FF;
+}
 
