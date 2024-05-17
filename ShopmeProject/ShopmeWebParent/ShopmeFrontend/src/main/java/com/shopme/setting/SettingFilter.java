@@ -12,7 +12,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.shopme.common.entity.Menu;
 import com.shopme.common.entity.setting.Setting;
@@ -43,6 +46,7 @@ public class SettingFilter implements Filter {
 	
 		
 		loadMenuSettings(request);
+		//setCsrfTokenAndHeaderName(request);
 		chain.doFilter(request, response);
 		
 		
@@ -54,6 +58,14 @@ public class SettingFilter implements Filter {
 
 		List<Menu> footerMenuItems = menuService.getFooterMenuItems();
 		request.setAttribute("footerMenuItems", footerMenuItems);		
+	}
+	
+	private void setCsrfTokenAndHeaderName(ServletRequest request) {
+		     ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		    CsrfToken csrfToken = (CsrfToken) attr.getRequest().getAttribute(CsrfToken.class.getName());
+		    
+		    request.setAttribute("csrfToken", csrfToken.getToken());
+		    request.setAttribute("csrfHeaderName", csrfToken.getHeaderName());
 	}
 
 }

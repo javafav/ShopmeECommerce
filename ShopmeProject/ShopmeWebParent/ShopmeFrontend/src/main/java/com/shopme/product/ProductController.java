@@ -1,4 +1,5 @@
 package com.shopme.product;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shopme.ControllerHelper;
 import com.shopme.category.CategoryService;
@@ -146,6 +148,22 @@ public class ProductController {
 		}
 	}
 	
+	@GetMapping("/products/details/{id}")
+	public String detailsProduct(@PathVariable(name = "id") Integer id, Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+			Product product = productService.get(id);
+
+			model.addAttribute("product", product);
+		    return "products/product_detail_modal";
+
+		} catch (ProductNotFoundException e) {
+
+			redirectAttributes.addFlashAttribute("message", e.getMessage());
+			return "redirect:/404";
+		}
+	}
+	
 	@GetMapping("/search")
 	public String searchProductzFirstPage(@RequestParam("keyword") String keyword, Model model) {
 		return searchProductByPage(keyword, 1, model);
@@ -212,6 +230,112 @@ public class ProductController {
 		
 		return "product/all_product";
 	}
+	
+
+	@GetMapping("/best_selling_product")
+	public String listFirstPageOfBestSellingProductByNameOrderByDesc(Model model) {
+		return listAllPageOfBestSellingProductByNameOrderByDesc(1, model);
+	}
+
+	@GetMapping("/best_selling_product/page/{pageNum}")
+	public String listAllPageOfBestSellingProductByNameOrderByDesc(@PathVariable("pageNum") Integer pageNum, Model model) {
+
+		
+		Page<Product> pageProduct = productService.getAllBestSelingProduct(ProductService.BEST_SELLING_INDEX, pageNum);
+		List<Product> listProducts = pageProduct.getContent();
+
+		long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
+		long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
+		if (endCount > pageProduct.getTotalElements()) {
+			endCount = pageProduct.getTotalElements();
+		}
+
+		
+		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("currentPage", pageNum);
+		model.addAttribute("totalPages", pageProduct.getTotalPages());
+
+		model.addAttribute("startCount", startCount);
+		model.addAttribute("endCount", endCount);
+
+		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("totalItems", pageProduct.getTotalElements());
+		
+		return "product/best_selling_product";
+	}
+	
+	
+	@GetMapping("/most_rated_product")
+	public String listFirstPageOfMostRatedProductByNameOrderByAsc(Model model) {
+		return listAllPageOfMostRatedProductByNameOrderByAsc(1, model);
+	}
+
+	@GetMapping("/most_rated_product/page/{pageNum}")
+	public String listAllPageOfMostRatedProductByNameOrderByAsc(@PathVariable("pageNum") Integer pageNum, Model model) {
+
+		
+		Page<Product> pageProduct = productService.getAllMostRatedProduct(ProductService.MOST_RATED_INDEX, pageNum);
+		List<Product> listProducts = pageProduct.getContent();
+
+		long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
+		long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
+		if (endCount > pageProduct.getTotalElements()) {
+			endCount = pageProduct.getTotalElements();
+		}
+
+		
+		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("currentPage", pageNum);
+		model.addAttribute("totalPages", pageProduct.getTotalPages());
+
+		model.addAttribute("startCount", startCount);
+		model.addAttribute("endCount", endCount);
+
+		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("totalItems", pageProduct.getTotalElements());
+		
+		return "product/most_rated_product";
+	}
+	
+	
+	
+	@GetMapping("/new_arrival_product")
+	public String listFirstPageNewArrivalProductByNameOrderByAsc(Model model) {
+		return listAllPageOfewArrivalProductByNameOrderByAsc(1, model);
+	}
+
+	@GetMapping("/new_arrival_product/page/{pageNum}")
+	public String listAllPageOfewArrivalProductByNameOrderByAsc(@PathVariable("pageNum") Integer pageNum, Model model) {
+
+		
+		Page<Product> pageProduct;
+		try {
+			pageProduct = productService.getAllNewArrivalProduct(pageNum);
+		} catch (ParseException e) {
+		   return "error";
+		}
+		List<Product> listProducts = pageProduct.getContent();
+
+		long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
+		long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
+		if (endCount > pageProduct.getTotalElements()) {
+			endCount = pageProduct.getTotalElements();
+		}
+
+		
+		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("currentPage", pageNum);
+		model.addAttribute("totalPages", pageProduct.getTotalPages());
+
+		model.addAttribute("startCount", startCount);
+		model.addAttribute("endCount", endCount);
+
+		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("totalItems", pageProduct.getTotalElements());
+		
+		return "product/new_arrival_product";
+	}
+	
 	
 	
 

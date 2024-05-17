@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.Set"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.product.Product"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
-    <fullyQualifiedTypeName name="com.shopme.admin.security.ShopmeUserDetails"/>
     <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderTrack"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Category"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.order.Order"/>
     <fullyQualifiedTypeName name="java.text.ParseException"/>
-    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-    <fullyQualifiedTypeName name="java.text.DateFormat"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.shopme.admin.setting.SettingService"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Sort"/>
@@ -26,7 +20,6 @@
     <fullyQualifiedTypeName name="com.shopme.common.exception.ProductNotFoundException"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="com.shopme.product.ProductRepository"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
     <fullyQualifiedTypeName name="com.shopme.ControllerHelper"/>
@@ -60,4 +53,11 @@
     <fullyQualifiedTypeName name="java.awt.Menu"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Menu"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="com.shopme.product.ProductService"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.text.DateFormat"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.Brand"/>
+    <fullyQualifiedTypeName name="org.springframework.web.context.request.ServletRequestAttributes"/>
+    <fullyQualifiedTypeName name="org.springframework.web.context.request.RequestContextHolder"/>
 </qualifiedTypeNameHistroy>

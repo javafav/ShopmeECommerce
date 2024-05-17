@@ -32,4 +32,109 @@
     border-color: #f0f8ff;
     color: #F8F8FF;
 }
+.ribbon {
+  position: absolute;
+  top: 0.2rem; /* Adjust as needed */
+  right: 0.2rem; /* Adjust as needed */
+  z-index: 1;
+  width: 3rem; /* Adjust width as needed */
+  padding: 0.25rem 0;
+  background-color: #6bbf69; /* Mild green color */
+  color: white;
+  font-size: 0.8rem;
+  text-align: center;
+  transform: rotate(-15deg);
+  transform-origin: top left;
+}
+
+.ribbon::before,
+.ribbon::after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-color: #6bbf69 transparent transparent transparent; /* Mild green color */
+}
+
+.ribbon::before {
+  top: 100%;
+  left: 0;
+  border-width: 0.5rem 0 0 0.5rem; /* Adjust size as needed */
+}
+
+.ribbon::after {
+  bottom: 100%;
+  right: 0;
+  border-width: 0 0.5rem 0.5rem 0; /* Adjust size as needed */
+}
+
+.mine-badge {
+  position: absolute;
+  top: 8px; /* Adjust position as needed */
+  left: 2px; /* Adjust position as needed */
+  z-index: 1;
+  width: auto;
+  padding: 5px 10px; /* Adjust padding as needed */
+  background-color:#6f42c1; /* Blue color with transparency */
+  color: #ffffff; /* White color */
+  font-size: 0.8rem;
+  text-align: center;
+  transform: rotate(-15deg);
+}
+
+.mine-badge ::before,
+.mine-badge ::after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-color: rgba(0, 123, 255, 0.8) transparent transparent transparent; /* Blue color with transparency */
+}
+
+.mine-badge ::before {
+  top: 100%;
+  left: 0;
+  border-width: 8px 8px 0 0; /* Adjust size as needed */
+}
+
+.mine-badge ::after {
+  bottom: 100%;
+  right: 0;
+  border-width: 0 0 8px 8px; /* Adjust size as needed */
+}
+
+.new-arrival-badge {
+  position: absolute;
+  top: 10px; /* Adjust position as needed */
+  right: 10px; /* Adjust position as needed */
+  z-index: 1;
+  width: auto;
+  padding: 5px 10px; /* Adjust padding as needed */
+  background-color: #28a745; /* Green color */
+  color: #ffffff; /* White text color */
+  font-size: 0.8rem;
+  text-align: center;
+  transform: rotate(-45deg);
+  transform-origin: top left;
+  border-radius: 3px; /* Optional: adds rounded corners */
+}
+
+.new-arrival-badge::before,
+.new-arrival-badge::after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-color: #28a745 transparent transparent transparent; /* Green color */
+}
+
+.new-arrival-badge::before {
+  top: 100%;
+  left: 0;
+  border-width: 8px 8px 0 0; /* Adjust size as needed */
+}
+
+.new-arrival-badge::after {
+  bottom: 100%;
+  right: 0;
+  border-width: 0 0 8px 8px; /* Adjust size as needed */
+}
+
 

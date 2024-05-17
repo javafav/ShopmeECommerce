@@ -1,5 +1,9 @@
 package com.shopme.product;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -24,7 +28,6 @@ public class ProductRepositoryTests {
 	@Test
 	public void testSearch() {
 		
-		String search = "test";
 		int pageNum = 2;
 		
 		PageRequest pagebale = PageRequest.of(pageNum - 1, ProductService.SEARCH_RESULTS_PER_PAGE);
@@ -51,7 +54,7 @@ public class ProductRepositoryTests {
 	@Test
 	public void testListAllBestSellingProduct() {
 		
-		Long quanity = (long) 2;
+		Long  quanity = (long) 2;
 		int pageNum = 1;
 		
 		PageRequest pagebale = PageRequest.of(pageNum - 1, ProductService.PRODUCTS_PER_PAGE);
@@ -62,6 +65,26 @@ public class ProductRepositoryTests {
 	
 		
 	}
+	
+	@Test
+	public void testListAllProductsAddedLastXMonths() throws ParseException {
+		
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date startTime = dateFormatter.parse("2020-09-01");
+		Date endTime = dateFormatter.parse("2020-09-30");
+		
+		int pageNum = 1; 
+		
+		
+		  PageRequest pagebale = PageRequest.of(pageNum - 1, ProductService.PRODUCTS_PER_PAGE);
+		  Page<Product> listAllProductsAddedLastXMonths = repo.listAllProductsAddedLastXMonths(startTime, endTime, pagebale);
+		
+		List<Product> listProduct = listAllProductsAddedLastXMonths.getContent();
+		listProduct.forEach(proudct -> System.out.println(proudct.getName()));
+	
+		
+	}
+	
 	
 	
 	@Test

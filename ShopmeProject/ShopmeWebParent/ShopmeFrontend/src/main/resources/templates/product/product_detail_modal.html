@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="product_detail_modal_dialog">
+        <div class="modal fade text-center" id="productModalDialog" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle">Product Detail</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                 
+                        <!-- Main Image -->
+                        <div id="modalImageContainer">
+                            <img th:src="@{${product.mainImagePath}}" class="img-fluid" alt="Product Image" />
+                        </div>
+                        <!-- Extra Images -->
+                        <div id="modalExtraImagesContainer" class="justify-content-center mt-3">
+                            <th:block th:each="extraImage : ${product.images}">
+                                <img th:src="@{${extraImage.imagePath}}" height="40px" class="m-2 border p-1 image-thumbnail" />
+                            </th:block>
+                        </div>
+                        <!-- Product Name -->
+                        <h2 th:text="${product.name}"></h2>
+                        <!-- Brand -->
+                        <div id="modalProductBrand">
+                            <span class="h6">Brand: <span th:text="${product.brand.name}"></span></span>
+                            <img th:src="@{${product.brand.logoPath}}" class="img-fluid" style="max-width: 60px; max-height: 50px;" />
+                        </div>
+                        <!-- Short Description -->
+                        <div class="mt-3" th:utext="${product.shortDescription}"></div>
+                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

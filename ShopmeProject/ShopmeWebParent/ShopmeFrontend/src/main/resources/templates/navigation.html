@@ -76,11 +76,11 @@
           
               <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/list_all_product}">All Products</a></li>
              <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item dropdown-menu-hover" href="#">Feature Products</a></li>
+            <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/new_arrival_product}">New Arrival</a></li>
             <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item dropdown-menu-hover" href="#">Most Rated Products</a></li>
+            <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/most_rated_product}">Most Rated</a></li>
  <li><hr class="dropdown-divider" /></li>           
-<li><a class="dropdown-item dropdown-menu-hover" href="#">Best Selling Products</a></li>
+<li><a class="dropdown-item dropdown-menu-hover" th:href="@{/best_selling_product}">Best Selling</a></li>
            
           </ul>
         </li>
@@ -101,10 +101,10 @@
 				<th:block sec:authorize="isAuthenticated()">
 							
 				  <li class="nav-item dropdown">
-                  	<a class="nav-link dropdown-toggle fw-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                 	<a class="nav-link dropdown-toggle fw-bold " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
 										th:href="@{/account_details}"
-										sec:authentication="principal.fullName"></a>
-							
+										> <i class="fa-solid fa-id-card"></i>&nbsp;<span sec:authentication="principal.fullName"></span></a>
+						
 							
 							
 										
@@ -127,26 +127,26 @@
             <form class="d-flex me-3 form-inline" th:action="@{/search}" method="get"> <!-- Added margin-right -->
                 <input class="form-control me-2 rounded-pill" name="keyword" th:value="${keyword}" type="search" placeholder="Search" aria-label="Search" required="required">
 
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi bi-search"></i> <!-- Bootstrap Icon for Search -->
+                <button class="btn btn-outline-dark ms-2" type="submit">
+                    <i class="fa-solid fa-magnifying-glass fa-lg"></i> <!-- Fontawesome Icon for Search -->
                 </button>
             </form>
             <!-- End of Search Form -->
           <th:block sec:authorize="isAuthenticated()">
             <form class="d-flex" >
                 <button class="btn btn-outline-dark me-3" type="submit"> <!-- Added margin-right -->
-                    <i class="bi-cart-fill me-1"></i>
+                 <i class="fa-solid fa-cart-shopping fa-lg"></i>
                     Cart
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    <span id="cartItems"  class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </button>
             </form>
             </th:block>
   
-            <div class="d-flex" sec:authorize="!isAuthenticated()">
+            <div class="d-flex ms-4" sec:authorize="!isAuthenticated()">
                 <a th:href="@{/login}" class="btn btn-outline-dark "><i class="fa-solid fa-user"></i>&nbsp;Login</a>
             </div>
 				
-					<div class="d-flex" sec:authorize="isAuthenticated()">
+					<div class="d-flex ms-4" sec:authorize="isAuthenticated()">
 					<b><a class="btn btn-outline-dark"
 									href="javascript: document.logoutForm.submit()"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout</a></b>
 					</div>
