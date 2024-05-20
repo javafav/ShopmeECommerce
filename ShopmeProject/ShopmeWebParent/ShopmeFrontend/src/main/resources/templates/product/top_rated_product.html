@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="https://www.thymeleaf.org/extras/spring-security5">
+<head>
+<head th:replace="fragments :: page_head('Home', tag)" />
+<link th:href="@{/star-rating/css/star-rating.css}" media="all"
+	rel="stylesheet" type="text/css" />
+<script th:src="@{/star-rating/js/star-rating.js}"
+	type="text/javascript"></script>
+<link th:href="@{/star-rating/themes/krajee-svg/theme.css}" media="all"
+	rel="stylesheet" type="text/css" />
+<script th:src="@{/star-rating/themes/krajee-svg/theme.js}"></script>
+</head>
+<body>
+<!-- Navigation-->
+<div th:replace="navigation :: nav_menu"></div>
+<!-- Header-->
+<div th:replace="navigation :: special_message"></div>
+<div th:replace="navigation :: header_images"></div>
+<div th:replace="breadcrumb :: content"></div>
+<!-- Section-->
+
+<div class="text-center mt-3">
+    <h1 class="display-4 fw-bold" style="font-family: 'Arial Black', sans-serif; letter-spacing: 3px; color: #313131;">Top Rated  Products</h1>
+</div>
+
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <th:block th:each="product : ${listProducts}">
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        
+              
+                        <!-- Product image-->
+                        <img class="card-img-top" th:src="@{${product.mainImagePath}}" alt="..." style="max-width: 450px;max-height: 300px" />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <a class="fw-bolder product-name" th:href="@{'/p/' + ${product.alias}}" title="Click to view full details">[[${product.shortName}]]</a>
+                                <!-- Product price-->
+                                <div>
+                                    Price: <span th:if="${product.discountPercent <= 0}"><div th:replace="product/product_fragment :: price_fragment(${product.price})"></div></span>
+                                    <del th:if="${product.discountPercent > 0}">
+                                        <span><div th:replace="product/product_fragment :: price_fragment(${product.price})"></div></span>
+                                    </del>
+                                </div>
+                                <div th:if="${product.discountPercent > 0}">
+                                    Sale Price: <span style="font-size: larger; color: darkred"><div th:replace="product/product_fragment :: price_fragment(${product.discountPrice})"></div></span>
+                                    <br>
+                                </div>
+                                <div>&nbsp;</div>
+                            </div>
+								<div class="col-xs">
+									<input type="text" class="product-detail-rating-star" dir="ltr"
+										data-size="md" th:value="${product.averageRating}" />
+								</div>
+							</div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark link-detail " th:href="@{'/products/details/' + ${product.id}}">View details</a></div>
+                            <div class="mt-3 text-center">
+                             <a type="button" class="btn btn-dark addToCart" 
+                                th:productId="${product.id}" 
+                                th:href="'cart/add/' + ${product.id} + '/1'">Add to cart</a>
+                            </div>
+                            <input type="hidden" id="csrfToken" th:value="${_csrf.token}" />
+                           <input type="hidden" id="csrfHeaderName" th:value="${_csrf.headerName}" />
+                           <input type="hidden" th:id="'quantity' + ${product.id}" value="1" />
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</section>
+
+	
+	  <!-- Modal Dialog for Product Detail-->
+	<div class="modal fade" id="detailModal">
+	  <div class="modal-dialog modal-md">
+	    <div class="modal-content">
+	    </div>
+	  </div>
+	</div>	
+
+
+<div th:replace="pagination_for_more_then_10page :: pagination('products', '/top_rated_product')"></div>
+<!-- Footer-->
+<div th:replace="fragments :: footer_menu"></div>
+<div th:replace="fragments :: modal_dialog"></div>
+<!-- Bootstrap core JS-->
+<script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
+<script type="text/javascript">
+    contextPath = "[[@{/}]]";
+    var csrfHeaderName = "[[${_csrf.headerName}]]";
+	var csrfValue = "[[${_csrf.token}]]";
+    decimalSeparator = "[[${DECIMAL_POINT_TYPE == 'COMMA' ? ',' : '.'}]]";
+    thousandSeparator = "[[${THOUSANDS_POINT_TYPE == 'COMMA' ? ',' : '.'}]]";
+</script>
+<script type="text/javascript" th:src="@{/js/common_rating.js}"></script>
+<script type="text/javascript" th:src="@{/js/common.js}"></script>
+<script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
+ <script type="text/javascript" th:src="@{/js/add_to_cart_from_pages.js}"></script>
+ <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
+
+</body>
+</html>

@@ -96,7 +96,7 @@
 
 <body>
 <th th:fragment="column_link(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
-	<a class="text-white "
+	<a class="text-white  "
 		th:href="@{${moduleURL} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName}  +'&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">
 		[[${columnLabel}]]
 	</a>								
@@ -205,21 +205,27 @@
 </div>	
 
 <div th:fragment="search_form()" th:remove="tag">
-	<form th:action="@{${moduleURL} + '/page/1'}" class="form-inline m-3">
-		<input type="hidden" name="sortField" th:value="${sortField}" />
-		<input type="hidden" name="sortDir" th:value="${sortDir}" />
-		
-		Filter:&nbsp;
-		<input type="search" name="keyword" th:value="${keyword}" class="form-control" required/>
-		&nbsp;&nbsp;
-		<button type="submit" class="btn btn-primary">
-			<i class="fas fa-search"></i>
-		</button>
-		&nbsp;&nbsp;
-		<button type="button" class="btn btn-secondary" onclick="clearFilter()">
-			<i class="fas fa-eraser"></i>
-		</button>
-	</form>
+    <form th:action="@{${moduleURL} + '/page/1'}" class="row g-3 align-items-center mb-3">
+        <input type="hidden" name="sortField" th:value="${sortField}" />
+        <input type="hidden" name="sortDir" th:value="${sortDir}" />
+        
+        <div class="col-auto">
+            <label for="keyword" >Filter:</label>
+            </div>
+             <div class="col-auto">
+            <input type="search" id="keyword" name="keyword" th:value="${keyword}" class="form-control" required placeholder="Filter">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-secondary" onclick="clearFilter()">
+                <i class="fas fa-eraser"></i>
+            </button>
+        </div>
+    </form>
 </div>
 </body>
 </html>

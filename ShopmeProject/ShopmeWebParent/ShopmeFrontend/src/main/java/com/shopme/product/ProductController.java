@@ -155,7 +155,7 @@ public class ProductController {
 			Product product = productService.get(id);
 
 			model.addAttribute("product", product);
-		    return "products/product_detail_modal";
+		    return "product/product_detail_modal";
 
 		} catch (ProductNotFoundException e) {
 
@@ -265,12 +265,12 @@ public class ProductController {
 	}
 	
 	
-	@GetMapping("/most_rated_product")
+	@GetMapping("/top_rated_product")
 	public String listFirstPageOfMostRatedProductByNameOrderByAsc(Model model) {
 		return listAllPageOfMostRatedProductByNameOrderByAsc(1, model);
 	}
 
-	@GetMapping("/most_rated_product/page/{pageNum}")
+	@GetMapping("/top_rated_product/page/{pageNum}")
 	public String listAllPageOfMostRatedProductByNameOrderByAsc(@PathVariable("pageNum") Integer pageNum, Model model) {
 
 		
@@ -294,7 +294,7 @@ public class ProductController {
 		model.addAttribute("listProducts", listProducts);
 		model.addAttribute("totalItems", pageProduct.getTotalElements());
 		
-		return "product/most_rated_product";
+		return "product/top_rated_product";
 	}
 	
 	
