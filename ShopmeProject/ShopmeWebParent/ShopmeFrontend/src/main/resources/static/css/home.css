@@ -1,4 +1,35 @@
+.no-underline {
+    text-decoration: none;
+}
 
+.no-underline:hover {
+    text-decoration: underline;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container-fluid {
+    flex-grow: 1;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+
+
+button .caption {
+    display: none;
+}
+
+button:hover .caption {
+    display: inline;
+    /* Additional styling as needed */
+}
 
 
   .product-name {

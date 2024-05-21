@@ -1,7 +1,8 @@
 <div class="modal-header">
-	<h4 class="modal-title">Question Details</h4>
-	<button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Question Details</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: white;"></button>
 </div>
+
 		
 <div class="m-2">
 	<form>
@@ -12,54 +13,54 @@
 	  	<div class="m-1 text-center"><span class="text-success"><b>This question was approved.</b></span></div>
 	  </th:block>
 	  	  
-	  <div class="form-group row">
-	    <label for="name" class="col-sm-2 col-form-label">Product:</label>
+	  <div class="mb-3 row">
+	    <label for="product" class="col-sm-2 col-form-label">Product:</label>
 	    <div class="col-sm-10">
-	      <input type="text" readonly class="form-control" th:value="${question.product.name}">
+	      <input type="text" readonly class="form-control" th:value="${question.product.name}" id="product">
 	    </div>
 	  </div>
-	  <div class="form-group row">
-	    <label for="name" class="col-sm-2 col-form-label">Question:</label>
+	  <div class="mb-3 row">
+	    <label for="questionContent" class="col-sm-2 col-form-label">Question:</label>
 	    <div class="col-sm-10">
-	      <textarea readonly class="form-control" th:text="${question.questionContent}" rows="2"></textarea>
+	      <textarea readonly class="form-control" th:text="${question.questionContent}" rows="2" id="questionContent"></textarea>
 	    </div>
 	  </div>
-	  <div class="form-group row">
-	    <label for="name" class="col-sm-2 col-form-label">Asked by:</label>
+	  <div class="mb-3 row">
+	    <label for="askerName" class="col-sm-2 col-form-label">Asked by:</label>
 	    <div class="col-sm-10">
-	      <input type="text" readonly class="form-control" th:value="${question.asker.fullName}">
+	      <input type="text" readonly class="form-control" th:value="${question.asker.fullName}" id="askerName">
 	    </div>
 	  </div>	
-	  <div class="form-group row">
-	    <label for="name" class="col-sm-2 col-form-label">Ask Time:</label>
+	  <div class="mb-3 row">
+	    <label for="askTime" class="col-sm-2 col-form-label">Ask Time:</label>
 	    <div class="col-sm-10">
-	      <input type="text" readonly class="form-control" th:value="${question.askTime}">
+	      <input type="text" readonly class="form-control" th:value="${question.askTime}" id="askTime">
 	    </div>
 	  </div>
-	  <div class="form-group row">
-	    <label for="name" class="col-sm-2 col-form-label">Votes:</label>
+	  <div class="mb-3 row">
+	    <label for="votes" class="col-sm-2 col-form-label">Votes:</label>
 	    <div class="col-sm-10">
-	      <input type="text" readonly class="form-control" th:value="${question.votes}">
+	      <input type="text" readonly class="form-control" th:value="${question.votes}" id="votes">
 	    </div>
 	  </div>
 	  	  
 	  <th:block th:if="${question.answered == true}">	    
-	  <div class="form-group row">
-	    <label for="name" class="col-sm-2 col-form-label">Answer:</label>
+	  <div class="mb-3 row">
+	    <label for="answer" class="col-sm-2 col-form-label">Answer:</label>
 	    <div class="col-sm-10">
-	      <textarea readonly class="form-control" th:text="${question.answer}" rows="3"></textarea>
+	      <textarea readonly class="form-control" th:text="${question.answer}" rows="3" id="answer"></textarea>
 	    </div>
 	  </div>
-	  <div class="form-group row">
-	    <label for="name" class="col-sm-2 col-form-label">Answered by:</label>
+	  <div class="mb-3 row">
+	    <label for="answererName" class="col-sm-2 col-form-label">Answered by:</label>
 	    <div class="col-sm-10">
-	      <input type="text" readonly class="form-control" th:value="${question.answerer.fullName}">
+	      <input type="text" readonly class="form-control" th:value="${question.answerer.fullName}" id="answererName">
 	    </div>
 	  </div>
-	  <div class="form-group row">
-	    <label for="name" class="col-sm-2 col-form-label">Answer Time:</label>
+	  <div class="mb-3 row">
+	    <label for="answerTime" class="col-sm-2 col-form-label">Answer Time:</label>
 	    <div class="col-sm-10">
-	      <input type="text" readonly class="form-control" th:value="${question.answerTime}">
+	      <input type="text" readonly class="form-control" th:value="${question.answerTime}" id="answerTime">
 	    </div>
 	  </div>	  
 	  </th:block>
@@ -72,5 +73,5 @@
 </div>
 	
 <div class="modal-footer">
-	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-</div>	
+	<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+</div>

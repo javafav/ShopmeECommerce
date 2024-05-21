@@ -2,106 +2,101 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <head th:replace="fragments :: page_head('My Reviews', 'tag')" />
-  
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
-<body>
-<div class="container-fluid">
-    <div th:replace="navigation :: header_menu"></div>
-    <div th:replace="navigation :: search_nav"></div>
-    <div class="text-center">
-        <h2>Reviews Posted by me</h2>
-    </div>
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1">
+        <div th:replace="navigation :: nav_menu"></div>
+        <div th:replace="navigation :: special_message"></div>
+        
 
-    <div th:replace="fragments :: search_form"></div>
-
-    <div class="full-details">
-        <table class="table table-bordered table-striped table-hover table-responsive-xl">
-            <thead class="table-dark">
-            <tr>
-                <th th:replace="fragments :: column_link('id', 'ID', 'none')" />
-                <th th:replace="fragments :: column_link('product', 'Product', 'none')" />
-                <th th:replace="fragments :: column_link('headline', 'Headline', 'none')" />
-                <th th:replace="fragments :: column_link('rating', 'Rating', 'none')" />
-                <th th:replace="fragments :: column_link('reviewTime', 'Review Time', 'none')" />
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="review : ${listReviews}">
-                <td th:text="${review.id}"></td>
-                <td>
-                    <a class="product-name" title= "Click to view product detail" th:href="@{'/p/' + ${review.product.alias}}" target="_blank" th:text="${review.product.shortName}"></a>
-                </td>
-                <td th:text="${review.headline}"></td>
-                <td>
-                    <span th:text="${review.rating}"></span>
-                    <i class="far fa-star fa-solid icon-gold"></i>
-                </td>
-                <td th:text="${review.reviewTime}"></td>
-                <td>
-                    <a class="fas fa-file-alt fa-2x icon-green link-detail-review"
-                       th:href="@{'/reviews/detail/' + ${review.id}}"
-                       title="View details of this review"></a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="less-details">
-        <div th:each="review : ${listReviews}" class="row m-1">
-            <div class="col-2">
-                <span th:text="${review.id}"></span>
-            </div>
-            <div class="col-10">
-                <div class="mb-1">
-                    <span th:text="${review.product.shortName}"></span>
-                </div>
-                <div>
-                    <span th:text="${review.rating}"></span>
-                    <i class="far fa-star fa-solid icon-gold"></i>
-                    <a class="fas fa-file-alt fa-2x icon-green link-detail-review"
-                       th:href="@{'/reviews/detail/' + ${review.id}}"
-                       title="View details of this review"></a>
-                </div>
-            </div>
-            <div>&nbsp;</div>
+        <div class="text-center">
+            <h2>Reviews Posted by Me</h2>
         </div>
+
+        <div th:replace="fragments :: search_form"></div>
+
+        <div class="full-details">
+            <table class="table table-bordered table-striped table-hover table-responsive-xl">
+                <thead class="table-dark">
+                    <tr>
+                        <th th:replace="fragments :: column_link('id', 'ID', 'none')" />
+                        <th th:replace="fragments :: column_link('product', 'Product', 'none')" />
+                        <th th:replace="fragments :: column_link('headline', 'Headline', 'none')" />
+                        <th th:replace="fragments :: column_link('rating', 'Rating', 'none')" />
+                        <th th:replace="fragments :: column_link('reviewTime', 'Review Time', 'none')" />
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="review : ${listReviews}">
+                        <td th:text="${review.id}"></td>
+                        <td>
+                            <a class="product-name" title="Click to view product detail" th:href="@{'/p/' + ${review.product.alias}}" target="_blank" th:text="${review.product.shortName}"></a>
+                        </td>
+                        <td th:text="${review.headline}"></td>
+                        <td>
+                            <span th:text="${review.rating}"></span>
+                            <i class="far fa-star fa-solid icon-gold"></i>
+                        </td>
+                        <td th:text="${review.reviewTime}"></td>
+                        <td>
+                            <a class="fas fa-file-alt fa-2x icon-green link-detail"
+                               th:href="@{'/reviews/detail/' + ${review.id}}"
+                               title="View details of this review"></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="less-details">
+            <div th:each="review : ${listReviews}" class="row m-1">
+                <div class="col-2">
+                    <span th:text="${review.id}"></span>
+                </div>
+                <div class="col-10">
+                    <div class="mb-1">
+                        <span th:text="${review.product.shortName}"></span>
+                    </div>
+                    <div>
+                        <span th:text="${review.rating}"></span>
+                        <i class="far fa-star fa-solid icon-gold"></i>
+                        &nbsp;&nbsp;
+                        <a class="fas fa-file-alt fa-2x icon-green link-detail"
+                           th:href="@{'/reviews/detail/' + ${review.id}}"
+                           title="View details of this review"></a>
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+            </div>
+        </div>
+
+        <div th:replace="fragments :: pagination('reviews','/reviews')"></div>
     </div>
 
-    <div th:replace="fragments :: pagination('reviews','/reviews')"></div>
+    <div th:replace="fragments :: footer_menu" class="mt-auto"></div>
 
-    <div class="modal fade" id="reviewDetailModal">
+    <div class="modal fade" id="detailModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content"></div>
         </div>
     </div>
 
-    <div th:replace="navigation :: footer_menu"></div>
 
-</div>
+    <script type="text/javascript">
+        var moduleURL = "[[@{/reviews}]]";   
+        var contextPath = "[[@{/}]]";
+        var csrfHeaderName = "[[${_csrf.headerName}]]";
+        var csrfValue = "[[${_csrf.token}]]";
 
-<script th:src="@{/js/common_list.js}"></script>
-<script type="text/javascript">
-    var contextPath = "[[@{/}]]";
-    var csrfHeaderName = "[[${_csrf.headerName}]]";
-    var csrfValue = "[[${_csrf.token}]]";
-
-    $(document).ready(function() {
-        handleDetailLink(".link-detail-review", "#reviewDetailModal");
-        $("input[name='keyword']").attr("placeholder", "Reviews" );
-    });
-
-    function handleDetailLink(cssClass, modalId) {
-        $(cssClass).on("click", function(e) {
-            e.preventDefault();
-            var linkDetailURL = $(this).attr("href");
-            $(modalId).modal("show").find(".modal-content").load(linkDetailURL);
+        $(document).ready(function() {
+            handleDefaultDetailLinkClick();
+            $("input[name='keyword-form']").attr("placeholder","Reviews"  );
         });
-    }
-</script>
-<script th:src="@{/js/common_vote.js}"></script>
-<script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
+    </script>
+    <script th:src="@{/js/common_list.js}"></script>
+    <script th:src="@{/js/common_vote.js}"></script>
+    <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 </body>
 </html>
