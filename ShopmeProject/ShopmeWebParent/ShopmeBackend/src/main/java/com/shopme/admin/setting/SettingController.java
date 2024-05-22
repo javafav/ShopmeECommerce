@@ -109,6 +109,17 @@ public class SettingController {
 		return "redirect:/settings#mailTemplates";
 	}
 	
+	@PostMapping("/settings/mail_templates/newsletter_subscription")
+	public String saveMailTemplateSettingForNewsLetterSubsription(HttpServletRequest request, RedirectAttributes redirectAttributes)
+			throws IOException {
+
+		List<Setting> mialTemplateSetting = service.getMailTemplatesSetting();
+
+		updateSettingValuesFromForm(request, mialTemplateSetting);
+
+		redirectAttributes.addFlashAttribute("message", "Newsletter Subscription template updated successfully!");
+		return "redirect:/settings#newsletter_subscription";
+	}
 	
 	@PostMapping("/settings/save_payment")
 	public String savePaymentSetttings(HttpServletRequest request, RedirectAttributes ra) {

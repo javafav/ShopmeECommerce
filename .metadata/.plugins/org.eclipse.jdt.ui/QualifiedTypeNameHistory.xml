@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopme.common.exception.OrderNotFoundException"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.order.OrderTrack"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.Category"/>
-    <fullyQualifiedTypeName name="com.shopme.common.entity.order.Order"/>
     <fullyQualifiedTypeName name="java.text.ParseException"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.shopme.admin.setting.SettingService"/>
@@ -33,7 +29,6 @@
     <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
     <fullyQualifiedTypeName name="javax.persistence.Transient"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="com.shopme.review.ReviewService"/>
     <fullyQualifiedTypeName name="com.shopme.review.vote.ReviewVoteService"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Review"/>
@@ -52,7 +47,6 @@
     <fullyQualifiedTypeName name="com.shopme.menu.MenuService"/>
     <fullyQualifiedTypeName name="java.awt.Menu"/>
     <fullyQualifiedTypeName name="com.shopme.common.entity.Menu"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="com.shopme.product.ProductService"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
@@ -60,4 +54,10 @@
     <fullyQualifiedTypeName name="com.shopme.common.entity.Brand"/>
     <fullyQualifiedTypeName name="org.springframework.web.context.request.ServletRequestAttributes"/>
     <fullyQualifiedTypeName name="org.springframework.web.context.request.RequestContextHolder"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.scheduling.annotation.EnableAsync"/>
+    <fullyQualifiedTypeName name="org.springframework.scheduling.annotation.Async"/>
+    <fullyQualifiedTypeName name="com.shopme.setting.SettingService"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
 </qualifiedTypeNameHistroy>

@@ -17,7 +17,8 @@
 			<li class="nav-item"><a class="nav-link" data-toggle="tab"
 				href="#order_confirmation" role="tab">Order Confirmation</a></li>
 
-			
+           <li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="#newsletter_subscription" role="tab">Newsletter Subscription</a></li>			
 
 		</ul>
 
@@ -36,6 +37,9 @@
 				<div th:replace="settings/mail_templates/order_confirmation :: content"></div>
 			</div>
 
+			<div class="tab-pane p-3" id="newsletter_subscription" role="tabpanel">
+		        <div th:replace="settings/mail_templates/newsletter_subscription :: content"></div>
+			</div>
 
 
 		</div>

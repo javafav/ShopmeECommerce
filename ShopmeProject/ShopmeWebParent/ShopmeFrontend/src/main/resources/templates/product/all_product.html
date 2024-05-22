@@ -85,7 +85,7 @@
  <div	th:replace="fragments :: footer_menu"></div>
 
    <div th:replace="fragments :: modal_dialog"></div>
-   
+    <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 
         <!-- Bootstrap core JS-->
 <script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
@@ -97,6 +97,40 @@
 	decimalSeparator = "[[${DECIMAL_POINT_TYPE == 'COMMA' ? ',' : '.'}]]";
 	thousandSeparator = "[[${THOUSANDS_POINT_TYPE == 'COMMA' ? ',' : '.'}]]";
 
+	
+    $(document).ready(function () {
+    
+    	 $('#subscribeButton').click(function() {
+    	        var email = $('#emailInput').val().trim();
+
+    	        if (email === '') {
+    	            alert('Please enter your email.');
+    	            return;
+    	        }
+
+    	        // Show the modal immediately
+    	        $('#myModal').modal('show');
+    	        $('#emailInput').val('');
+    	        // Make the AJAX request to initiate email sending
+    	        $.ajax({
+    	            url: contextPath + 'subscribe/newsletter',
+    	            type: 'GET',
+    	            data: { emailForSubscription: email },
+    	            success: function(response) {
+    	                console.log(response);
+    	            },
+    	            error: function(xhr, status, error) {
+    	                console.error('An error occurred: ' + error);
+    	                // Show an error notification to the user
+    	                alert('Failed to send subscription email. Please try again later.');
+    	                // Optionally, hide the modal if the email sending failed
+    	               $('#emailInput').val('');
+    	                $('#myModal').modal('hide');
+    	            }
+    	        });
+    	    });
+    });
+	
 	</script>
 
 	

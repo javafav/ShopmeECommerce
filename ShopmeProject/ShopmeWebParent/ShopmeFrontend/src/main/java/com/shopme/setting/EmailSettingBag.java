@@ -60,6 +60,17 @@ public class EmailSettingBag extends SettingBag {
 	
 	}
 	
+	
+	public String getSubscriptionSubject() {
+		return super.getValue("SUBSCRIPTION_SUBJECT");
+	}
+	
+public String getSubscriptionContent() {
+	return super.getValue("SUBSCRIPTION_CONTENT");
+	}
+	
+	
+	
 	public String getForgotPasswordSubject() {
 		return super.getValue("FORGOT_PASSWORD_SUBJECT");
 	}

@@ -114,6 +114,7 @@ public class CheckoutController {
 		return "checkout/order_completed";
 	}
 	
+	
 	private void sendOrderConfirmationEmail(HttpServletRequest request, Order order) 
 			throws UnsupportedEncodingException, MessagingException {
 		EmailSettingBag emailSettings = settingService.getEmailSettings();

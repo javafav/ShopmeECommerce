@@ -3,6 +3,7 @@ package com.shopme.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,6 +21,7 @@ import com.shopme.security.oauth.OAuthLoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
+@EnableAsync
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired private CustomerOAuth2UserService oAuth2UserService;
@@ -31,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 		.antMatchers("/account_details", "/update_account_details", "/orders/**",
-				"/cart", "/address_book/**", "/checkout", "/place_order", "/review/**", 
+				"/cart", "/address_book/**", "/checkout", "/place_order", "/reviews/**", 
 				"/process_paypal_order","/write_review/**", "/post_review","/customer/questions/**").authenticated()
 		.anyRequest().permitAll()
 		.and()

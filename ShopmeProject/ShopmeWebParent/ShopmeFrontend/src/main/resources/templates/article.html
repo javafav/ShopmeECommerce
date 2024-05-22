@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: page_head(${pageTitle}, 'none')" />
-<body style="background-color: #f8f9fa;">
-<div class="container-fluid">
-	<div th:replace="navigation :: header_menu"></div>
-	<div th:replace="navigation :: search_nav"></div>
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1">
+        <div th:replace="navigation :: nav_menu"></div>
+        <div th:replace="navigation :: special_message"></div>
 
-	<div class="row justify-content-center mt-4">
-		<div class="col-lg-8 col-md-10">
-			<div class="card shadow">
-				<div class="card-body">
-					<h2 class="text-center mb-4">[[${article.title}]]</h2>
-					<div th:utext="${article.content}" class="border p-4"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8 col-md-10">
+                <div class="card shadow mb-5">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">[[${article.title}]]</h2>
+                        <div th:utext="${article.content}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	<div th:replace="navigation :: footer_menu"></div>
-</div>	
+        <footer th:replace="fragments :: footer_menu" class="mt-auto"></footer>
+    </div>  
 </body>
 </html>
