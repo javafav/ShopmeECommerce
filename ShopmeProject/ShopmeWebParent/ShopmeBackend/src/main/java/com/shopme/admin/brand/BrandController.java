@@ -20,6 +20,7 @@ import com.shopme.admin.paging.PagingAndSortingHelper;
 import com.shopme.admin.paging.PagingAndSortingParam;
 import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Category;
+import com.shopme.common.entity.HeadersImages;
 
 
 @Controller

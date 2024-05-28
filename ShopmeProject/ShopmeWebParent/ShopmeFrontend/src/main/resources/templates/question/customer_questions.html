@@ -84,15 +84,20 @@
 
     <!-- Ensure the footer stays at the bottom -->
     <div th:replace="fragments :: footer_menu" class="mt-auto"></div>
+    <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 
     <script th:src="@{/js/common_list.js}"></script>
     <script type="text/javascript">
         moduleURL = "[[@{/customer/questions}]]";
-
+    	var csrfHeaderName = "[[${_csrf.headerName}]]";
+    	var csrfValue = "[[${_csrf.token}]]";
+   
         $(document).ready(function(){
             handleDefaultDetailLinkClick();
             $("input[name='keyword-form']").attr("placeholder","Questions"  );
         });
     </script>
+<script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
+<script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 </body>
 </html>

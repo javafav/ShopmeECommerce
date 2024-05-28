@@ -1,3 +1,52 @@
+.breadcrumb {
+    padding: 15px 15px 15px 50px;
+    margin: 0;
+    background: #12abb3;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.breadcrumb li {
+    float: left;
+    position: relative;
+}
+
+.breadcrumb li:first-child {
+    /* Remove absolute positioning and negative top/left values */
+    /* width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #12abb3;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+    text-align: center; */
+    z-index: 1;
+    transition: all 0.1s ease 0s;
+}
+
+.breadcrumb li:first-child a {
+    /* Adjust the font size and line height to match other items */
+    font-size: 14px;
+    line-height: 35px;
+    /* Adjust the padding to create space around the home icon */
+    padding: 0 10px;
+}
+
+.breadcrumb li:hover:first-child {
+    /* Adjust the transform origin to center the scaling effect */
+    transform-origin: center;
+}
+
+.breadcrumb > li:first-child + li:before {
+    display: none;
+}
+
+.breadcrumb li.active,
+.breadcrumb li a {
+    font-size: 14px;
+    color: #fff;
+}
+
+
 .no-underline {
     text-decoration: none;
 }

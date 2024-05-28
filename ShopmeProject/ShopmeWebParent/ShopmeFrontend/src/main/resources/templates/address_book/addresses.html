@@ -98,6 +98,7 @@
         </div>
         <div>&nbsp;</div>
         <div th:replace="fragments :: confirm_modal"></div>
+        <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
     </div>
     <footer th:replace="fragments ::footer_menu" class="mt-auto"></footer>
    
@@ -123,8 +124,8 @@
 
     </script>
 <script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
-<script type="text/javascript"
-        th:src="@{/js/shopping_cart_items_count.js}"></script>
+<script type="text/javascript"  th:src="@{/js/shopping_cart_items_count.js}"></script>
+<script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
 </body>
 
 

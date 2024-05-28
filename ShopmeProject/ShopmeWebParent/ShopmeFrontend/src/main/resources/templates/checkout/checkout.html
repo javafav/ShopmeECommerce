@@ -96,6 +96,7 @@
 	</div>
 	
 	<div th:replace="navigation :: footer_menu"></div>
+	    <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 </div>
 <script th:src="@{https://www.paypal.com/sdk/js(client-id=${paypalClientId},currency=${currencyCode})}"></script>
 <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
@@ -183,5 +184,7 @@
 
 	
 </script>
+<script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
+<script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 </body>
 </html>	

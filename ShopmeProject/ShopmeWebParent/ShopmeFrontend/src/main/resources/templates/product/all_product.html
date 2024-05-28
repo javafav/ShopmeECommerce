@@ -98,46 +98,15 @@
 	thousandSeparator = "[[${THOUSANDS_POINT_TYPE == 'COMMA' ? ',' : '.'}]]";
 
 	
-    $(document).ready(function () {
-    
-    	 $('#subscribeButton').click(function() {
-    	        var email = $('#emailInput').val().trim();
-
-    	        if (email === '') {
-    	            alert('Please enter your email.');
-    	            return;
-    	        }
-
-    	        // Show the modal immediately
-    	        $('#myModal').modal('show');
-    	        $('#emailInput').val('');
-    	        // Make the AJAX request to initiate email sending
-    	        $.ajax({
-    	            url: contextPath + 'subscribe/newsletter',
-    	            type: 'GET',
-    	            data: { emailForSubscription: email },
-    	            success: function(response) {
-    	                console.log(response);
-    	            },
-    	            error: function(xhr, status, error) {
-    	                console.error('An error occurred: ' + error);
-    	                // Show an error notification to the user
-    	                alert('Failed to send subscription email. Please try again later.');
-    	                // Optionally, hide the modal if the email sending failed
-    	               $('#emailInput').val('');
-    	                $('#myModal').modal('hide');
-    	            }
-    	        });
-    	    });
-    });
 	
 	</script>
 
 	
       <script type="text/javascript" th:src="@{/js/common.js}"></script>
       <script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
-     <script type="text/javascript" th:src="@{/js/add_to_cart_from_pages.js}"></script>
-     <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
+      <script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
+      <script type="text/javascript" th:src="@{/js/add_to_cart_from_pages.js}"></script>
+      <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 
  
    </body>

@@ -1,4 +1,4 @@
-package com.shopme.admin.product;
+ package com.shopme.admin.product;
 
 import java.util.Date;
 import java.util.List;

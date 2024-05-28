@@ -17,8 +17,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.shopme.common.entity.HeadersImages;
 import com.shopme.common.entity.Menu;
 import com.shopme.common.entity.setting.Setting;
+import com.shopme.headerimage.HeaderImageService;
 import com.shopme.menu.MenuService;
 @Component
 public class SettingFilter implements Filter {
@@ -26,6 +28,7 @@ public class SettingFilter implements Filter {
   
 	 @Autowired  private SettingService settingService;
 	 @Autowired  private MenuService menuService;
+	 @Autowired  private HeaderImageService headerImageService;
 	
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse response, FilterChain chain)
@@ -46,6 +49,7 @@ public class SettingFilter implements Filter {
 	
 		
 		loadMenuSettings(request);
+		loadImageHeaderSettings(request);
 		//setCsrfTokenAndHeaderName(request);
 		chain.doFilter(request, response);
 		
@@ -60,12 +64,21 @@ public class SettingFilter implements Filter {
 		request.setAttribute("footerMenuItems", footerMenuItems);		
 	}
 	
-	private void setCsrfTokenAndHeaderName(ServletRequest request) {
-		     ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		    CsrfToken csrfToken = (CsrfToken) attr.getRequest().getAttribute(CsrfToken.class.getName());
-		    
-		    request.setAttribute("csrfToken", csrfToken.getToken());
-		    request.setAttribute("csrfHeaderName", csrfToken.getHeaderName());
+	private void loadImageHeaderSettings(ServletRequest request) {
+	    // Fetch the settings for the image header section from your service
+	    List<HeadersImages> headerImages = headerImageService.getAllHeaderImages();
+	    
+	    // Set the header images as an attribute in the request object
+	    request.setAttribute("headerImages", headerImages);
 	}
+	
+	
+//	private void setCsrfTokenAndHeaderName(ServletRequest request) {
+//		     ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+//		    CsrfToken csrfToken = (CsrfToken) attr.getRequest().getAttribute(CsrfToken.class.getName());
+//		    
+//		    request.setAttribute("csrfToken", csrfToken.getToken());
+//		    request.setAttribute("csrfHeaderName", csrfToken.getHeaderName());
+//	}
 
 }

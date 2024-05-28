@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="content" th:remove="tag">
+
+		<div class="row " id="divProductImages">
+			
+			
+			<th:block th:each="headerImage, status : ${listHeaderImages}">
+
+
+				<div class="col border m-2 p-2" th:id="'divExtraImage' + ${status.index}">
+
+				<h2>Test</h2>
+						<div>	
+						<label>Header Image # [[${status.index + 1}]]: [[${headerImage.name}]]</label>
+						<a name="removeImageLink" class="btn fa-regular fa-circle-xmark fa-2x icon-dark float-right" 
+    					   
+                           title = "Remove this image"></a>
+						
+						</div>
+					
+
+					<div>
+						<img th:src="@{${headerImage.headerImagePath}}"
+							class="img-fluid product-images" 
+							th:id="'extraThumbnail' + ${status.index}"
+							th:alt="'Header image # ' + (${status.index + 1}) + ' preview'"/>
+					</div>
+
+					<div class="mt-2">
+						<input class="m-2" name="extraImage" type="file"
+							accept="image/png, image/jpeg">
+					</div>
+
+			
+
+		 
+	</div>
+
+			</th:block>
+			
+		
+		
+				
+
+				
+			
+				
+			
+
+			</div>
+		
+		
+		
+		</div>
+
+	
+
+</body>
+</html>

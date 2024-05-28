@@ -75,6 +75,7 @@
 	  </div>
 	</div>	
 <div th:replace="pagination_for_more_then_10page :: pagination('products', '/new_arrival_product')"></div>
+ <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 <!-- Footer-->
 <div th:replace="fragments :: footer_menu"></div>
 <div th:replace="fragments :: modal_dialog"></div>
@@ -89,6 +90,7 @@
 </script>
 <script type="text/javascript" th:src="@{/js/common.js}"></script>
 <script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
+ <script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
  <script type="text/javascript" th:src="@{/js/add_to_cart_from_pages.js}"></script>
  <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 

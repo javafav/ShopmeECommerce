@@ -2,8 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="page_head(title,remove)" th:remove="${remove}">
 <meta http-equiv="Content_Type" content="text/html; charset=UTF-8">
-<meta name="viewport"
-	content="width=device-width, inital-scale=1.0, minimum-scale=1.0">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>[[${title}]]</title>
 
 <link rel="stylesheet"
@@ -38,7 +37,7 @@
 
 
 
-	<div class="text-center" th:fragment="footer">
+	<div class="text-center mt-2  footer" th:fragment="footer">
 		<p>Shopme Control Panel - Copyright &copy; Shopme</p>
 	</div>
 	

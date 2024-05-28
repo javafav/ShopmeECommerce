@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('Image Carousels - ShopmeAdmin', 'none')"></head>
+
+<body>
+    <div class="container-fluid d-flex flex-column min-vh-100">
+        <div th:replace="navigation :: menu"></div>
+
+        <div class="flex-grow-1">
+            <h2 class="mt-3">Manage Header Images for Shopme Website</h2>
+            <a th:href="@{/carousels/new}" class="fa fa-folder-plus fa-2x icon-dark mr-3"></a>
+
+            <div class="full-details mt-5">
+                <table class="table table-bordered table-striped table-hover table-responsive-md table-width">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="hideable-column">ID</th>
+                            <th>Name</th>
+                            <th>Header Image</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="p-5">
+                        <th:block th:each="carousel : ${listCarousels}">
+                            <tr>
+                                <td class="hideable-column">[[${carousel.id}]]</td>
+                                <td><b>[[${carousel.imageURL}]]</b></td>
+                                <td><img th:src="@{${carousel.imagePath}}" class="img-fluid" style="width: 100px; height: auto;"></td>
+                                <td>
+                                    <div th:replace="fragments :: edit('header image', '/carousels/edit/' + ${carousel.id})"></div>
+                                    <span class="medium-sacreen-brand"></span> &nbsp;
+                                    <div th:replace="fragments :: delete('header image', '/carousels/delete/' + ${carousel.id}, ${carousel.id}, true)"></div>
+                                </td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="less-details">
+                <div th:each="carousel : ${listCarousels}" class="row m-1">
+                    <div class="col-4">
+                        <img th:src="@{${carousel.imagePath}}" class="img-fluid mt-2" style="width: 100px; height: auto;">
+                    </div>
+                    <div class="col-5"><b>[[${carousel.imageURL}]]</b></div>
+                    <div class="col-3">
+                        <div th:replace="fragments :: edit('header image', '/carousels/edit/' + ${carousel.id})"></div>
+                        <div th:replace="fragments :: delete('header image', '/carousels/delete/' + ${carousel.id}, ${carousel.id}, true)"></div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="modal_fragments :: confirm_modal"></div>
+        <div th:replace="modal_fragments :: modal_dialog"></div>
+        <div th:replace="fragments :: footer" class="mt-auto"></div>
+    </div>
+
+    <script type="text/javascript">
+        var csrfHeaderName = "[[${_csrf.headerName}]]";
+        var csrfValue = "[[${_csrf.token}]]";
+
+        $(document).ready(function(){
+            $(".link-delete").on("click",function(e){
+                e.preventDefault();
+                porcessDelete($(this));
+            });
+        });
+
+        function porcessDelete(linkDelete) {
+            var url = linkDelete.attr("href");
+
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(csrfHeaderName, csrfValue);
+                },
+                success: function(response) {
+                    if (response.includes("Cannot delete")) {
+                        showWarningDialog(response);
+                        return;
+                    } else {
+                        showDeleteConfirmModal(linkDelete, "carousel");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    showErrorDialog("Could not connect to the server");
+                }
+            });
+            return false;
+        }
+
+        function showDeleteConfirmModal(link, entityName) {
+            entityId = link.attr("entityId");
+
+            $("#confirmText").text("Are you sure you want to delete this " + entityName + " ID " + entityId + " ?");
+            $("#confirmModal").modal();
+
+            $("#yesButton").click(function() {
+                window.location.href = 'http://localhost:8080/ShopmeAdmin/carousels';
+            });
+        }
+    </script>
+    <script th:src="@{/js/common.js}"></script>
+    <script th:src="@{/js/common_forms.js}"></script>
+
+</body>
+</html>

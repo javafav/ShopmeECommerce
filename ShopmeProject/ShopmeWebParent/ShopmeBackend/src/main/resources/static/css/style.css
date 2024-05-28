@@ -1,3 +1,7 @@
+
+
+
+
 .icon-white {
 	color: white;
 }
@@ -106,4 +110,30 @@ button:hover .caption {
 	
 	background: #343a40;
 	color: ivory;
+}
+
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.full-details {
+    flex: 1; /* This makes the full-details section grow to fill the remaining space */
+}
+
+.footer {
+    color:  ivory; 
+    background-color: #343a40; /* Example background color */
+   /* Example text color */
+    
+    text-align: center; /* Example text alignment */
+    margin-top: auto; /* Push the footer to the bottom */
 }

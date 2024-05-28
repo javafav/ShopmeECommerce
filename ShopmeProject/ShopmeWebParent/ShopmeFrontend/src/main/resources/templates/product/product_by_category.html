@@ -15,11 +15,12 @@
  <div th:replace="navigation :: special_message"></div>      
  <div th:replace="navigation :: header_images"></div>
 
+
+
 <div th:replace="breadcrumb :: content"></div>
 
-
-
 		<div class="row text-center">
+	
 			<th:block th:each="cat : ${category.children}">
 				
         
@@ -47,6 +48,7 @@
 
 		<div
 			th:replace="fragments :: pagination('product', '/c/' + ${category.alias} )"></div>
+			 <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 
 
 
@@ -61,7 +63,7 @@ var csrfValue = "[[${_csrf.token}]]";
 
 </script>
 <script type="text/javascript" th:src="@{/js/common_rating.js}"></script>
-
+ <script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
 <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 </body>
 </html>
