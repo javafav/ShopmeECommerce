@@ -95,13 +95,21 @@
                         <a class="nav-link dropdown-toggle fw-bold " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                            th:href="@{/account_details}"><i class="fa-solid fa-id-card"></i>&nbsp;<span sec:authentication="principal.fullName"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li class="nav-item"><a class="dropdown-item dropdown-menu-hover" th:href="@{/address_book}">Address Book</a></li>
+                            <li ><a class="dropdown-item dropdown-menu-hover" th:href="@{/account_details}">Account</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/orders}">Orders</a></li>
                             <li><hr class="dropdown-divider" /></li>
                             <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/customer/questions}">Questions</a></li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/reviews}">Reviews</a></li>
+                             <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/reviews}">Reviews</a></li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/orders}">Orders</a></li>
+                             <li ><a class="dropdown-item dropdown-menu-hover" th:href="@{/address_book}">Address Book</a></li>
+                            
+                        
+                         
+                           
+                            
+                           
                         </ul>
                     </li>
                 </th:block>
@@ -119,11 +127,12 @@
             <!-- Cart Button -->
             <th:block sec:authorize="isAuthenticated()">
                 <form class="d-flex mb-2 mb-lg-0">
-                    <button class="btn btn-outline-dark me-3" type="submit">
+                    <a class="btn btn-outline-dark me-3" th:href="@{/cart}"  id="cartLogo" >
                         <i class="fa-solid fa-cart-shopping"></i>
                         Cart
                         <span id="cartItems" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
+                    </a>
+                
                 </form>
             </th:block>
             <!-- End of Cart Button -->
@@ -161,6 +170,9 @@
 <div th:fragment="special_message">
 <marquee behavior="scroll" direction="left" style="color:#FF0000">Limited time offer! Get 20% off on all products. Shop now!</marquee>
  </div>
+
+
+
 <div th:fragment="header_images">
     <header class="bg-dark py-5">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">

@@ -26,7 +26,7 @@
         
 				<div class="col" th:if="${cat.enabled == true}">
 					 <p class="text-muted mt-2">Discover more in <b>[[${cat.name}]]</b> </p>
-					<a th:href="@{'/c/' + ${cat.alias}}"> <img
+					<a class="product-name" th:href="@{'/c/' + ${cat.alias}}"> <img
 						th:src="@{${cat.imagePath}}" height="100" /> <br /> <b>[[${cat.name}]]</b>
 					</a>
 				</div>
@@ -36,7 +36,7 @@
 		<div class="row">&nbsp;</div>
 
 
-		<div class="row">
+		<div class="row ms-3">
 			<th:block th:each="product : ${listProducts}">
 			<div th:replace="product/product_fragment :: content"></div>
 
@@ -52,9 +52,9 @@
 
 
 
-		<div th:replace="navigation :: footer_menu"></div>
+		<div th:replace="fragments :: footer_menu" class="mt-auto"></div>
 
-	</div>
+	 <script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
 <script type="text/javascript">
 contextPath = "[[@{/}]]";
 
@@ -62,6 +62,7 @@ var csrfHeaderName = "[[${_csrf.headerName}]]";
 var csrfValue = "[[${_csrf.token}]]";
 
 </script>
+
 <script type="text/javascript" th:src="@{/js/common_rating.js}"></script>
  <script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
 <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>

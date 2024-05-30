@@ -145,7 +145,7 @@
 	   <div th:replace="reviews/question_customer_modal :: content"></div>
 	    <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 
-		<div th:replace="navigation :: footer_menu"></div>
+		<div th:replace="fragments :: footer_menu" class="mt-auto"></div>
 		
 		<div th:replace="fragments :: modal_dialog"></div>
 		<div th:replace="product/image_carousel :: content"></div>
@@ -199,7 +199,7 @@
 				e.preventDefault();
 				displayVotesByCustomerNameAndQuestion($(this));
 			})
-
+   
 			formatRatingNumber();
 
 		});

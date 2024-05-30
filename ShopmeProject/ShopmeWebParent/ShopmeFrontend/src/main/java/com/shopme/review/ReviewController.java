@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shopme.ControllerHelper;
@@ -25,7 +26,7 @@ import com.shopme.review.vote.ReviewVoteService;
 
 @Controller
 public class ReviewController {
-	private String defaultRedirectURL = "redirect:/reviews/page/1?sortField=reviewTime&sortDir=desc";
+	private String defaultRedirectURL = "redirect:/reviews/page/1?sortField=reviewTime&sortDir=desc&keywordForm";
 	
 	@Autowired private ReviewService reviewService;
 	@Autowired private ProductService productService;
@@ -41,7 +42,7 @@ public class ReviewController {
 	@GetMapping("/reviews/page/{pageNum}") 
 	public String listReviewsByCustomerByPage(Model model, HttpServletRequest request,
 							@PathVariable(name = "pageNum") int pageNum,
-							String keyword, String sortField, String sortDir) {
+							@RequestParam("keywordForm") String keyword, String sortField, String sortDir) {
 		
 		Customer customer =controllerHelper.getAuthenticatedCustomer(request);
 		Page<Review> page = reviewService.listByCustomerByPage(customer, keyword, pageNum, sortField, sortDir);		
@@ -54,7 +55,7 @@ public class ReviewController {
 		model.addAttribute("currentPage", pageNum);
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("keyword", keyword);
+		model.addAttribute("keywordForm", keyword);
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		model.addAttribute("moduleURL", "/reviews");
 		

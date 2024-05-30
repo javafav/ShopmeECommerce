@@ -72,10 +72,11 @@
             </div>
         </div>
 
-        <div th:replace="fragments :: pagination('reviews','/reviews')"></div>
+        <div th:replace="fragments :: pagination_for_form('reviews','/reviews')"></div>
     </div>
 
     <div th:replace="fragments :: footer_menu" class="mt-auto"></div>
+    <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 
     <div class="modal fade" id="detailModal">
         <div class="modal-dialog modal-lg">
@@ -92,11 +93,12 @@
 
         $(document).ready(function() {
             handleDefaultDetailLinkClick();
-            $("input[name='keyword-form']").attr("placeholder","Reviews"  );
+            $("input[name='keywordForm']").attr("placeholder","Reviews"  );
         });
     </script>
     <script th:src="@{/js/common_list.js}"></script>
     <script th:src="@{/js/common_vote.js}"></script>
+    <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
     <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 </body>
 </html>

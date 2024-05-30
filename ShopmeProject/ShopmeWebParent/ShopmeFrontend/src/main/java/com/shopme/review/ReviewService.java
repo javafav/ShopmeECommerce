@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shopme.common.entity.Customer;
 import com.shopme.common.entity.Review;
@@ -38,6 +39,7 @@ public class ReviewService {
 		Pageable pageable = PageRequest.of(pageNum - 1, REVIEWS_PER_PAGE, sort);
 		
 		if (keyword != null) {
+			System.out.println("Keyword: " + keyword);
 			return reviewRepo.findByCustomer(customer.getId(), keyword, pageable);
 		}
 		

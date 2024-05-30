@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shopme.ControllerHelper;
 import com.shopme.common.entity.Customer;
@@ -37,7 +38,7 @@ public class OrderController {
 
 	@GetMapping("/orders/page/{pageNum}")
 	public String listOrdersByPage(Model model, HttpServletRequest request, @PathVariable(name = "pageNum") int pageNum,
-			String sortField, String sortDir, String orderKeyword) {
+			String sortField, String sortDir,@RequestParam("keywordForm") String orderKeyword) {
 		Customer customer = controllerHelper.getAuthenticatedCustomer(request);
 
 		Page<Order> page = orderService.listForCustomerByPage(customer, pageNum, sortField, sortDir, orderKeyword);
@@ -49,7 +50,7 @@ public class OrderController {
 		model.addAttribute("listOrders", listOrders);
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("orderKeyword", orderKeyword);
+		model.addAttribute("keywordForm", orderKeyword);
 		model.addAttribute("moduleURL", "/orders");
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 

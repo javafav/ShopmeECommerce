@@ -1,51 +1,72 @@
+
+.custom-badge2 {
+    background-color: #6c757d; /* Primary color */
+    color: white;
+}
+
+.custom-badge2:hover {
+    background-color: #5a6268; /* Darker primary color for hover */
+    color: white;
+}
+
+
+
+.custom-badge {
+    background-color: #007bff; /* Primary color */
+    color: white;
+}
+
+.custom-badge:hover {
+    background-color: #0056b3; /* Darker primary color for hover */
+    color: white;
+}
+
+
+
 .breadcrumb {
-    padding: 15px 15px 15px 50px;
     margin: 0;
     background: #12abb3;
     border-radius: 5px;
-    overflow: hidden;
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
 }
 
 .breadcrumb li {
-    float: left;
-    position: relative;
+    list-style: none; /* Remove default list styling */
+    margin-right: 10px; /* Add some space between items */
 }
 
 .breadcrumb li:first-child {
-    /* Remove absolute positioning and negative top/left values */
-    /* width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: #12abb3;
-    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
-    text-align: center; */
-    z-index: 1;
-    transition: all 0.1s ease 0s;
+    display: flex; /* Ensure the first item is also a flex container */
+    align-items: center; /* Center the home icon vertically */
+    margin-right: 10px; /* Adjust space after the home icon */
 }
 
 .breadcrumb li:first-child a {
-    /* Adjust the font size and line height to match other items */
-    font-size: 14px;
-    line-height: 35px;
-    /* Adjust the padding to create space around the home icon */
-    padding: 0 10px;
-}
-
-.breadcrumb li:hover:first-child {
-    /* Adjust the transform origin to center the scaling effect */
-    transform-origin: center;
-}
-
-.breadcrumb > li:first-child + li:before {
-    display: none;
+    font-size: 24px; /* Maintain a larger size for the home icon */
+    color: #fff; /* Ensure the home icon color matches other items */
+    text-decoration: none; /* Remove underline */
 }
 
 .breadcrumb li.active,
 .breadcrumb li a {
     font-size: 14px;
     color: #fff;
+    text-decoration: none; /* Remove underline */
 }
 
+/* Optional: Add custom styles for other breadcrumb items */
+.breadcrumb li a:hover {
+    text-decoration: underline; /* Add underline on hover for other items */
+}
+
+.breadcrumb li + li:before {
+    content: '/';
+    color: #fff;
+    margin-right: 10px;
+}
+
+  
 
 .no-underline {
     text-decoration: none;
@@ -95,13 +116,13 @@ button:hover .caption {
 
   /* Hover effect */
 .product-name:hover {
-  color: #009999 ; /* Change color on hover */
+  color: #12abb3; /* Change color on hover */
     text-decoration: underline; /* Add underline on hover */
   }
 
   /* Active link styles (when clicked) */
   .product-name :active {
-    color: green; /* Change color when clicked */
+    color: #009999 ; /* Change color when clicked */
   }
   
   .dropdown-menu-hover:hover {

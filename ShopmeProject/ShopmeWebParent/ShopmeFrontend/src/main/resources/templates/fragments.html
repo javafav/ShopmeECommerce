@@ -110,15 +110,68 @@
 </th>
 
 
+
+<a th:fragment="page_link_for_form( moduleURL, pageNum,columnLabel)"
+	    class="page-link dropdown-menu-hover product-name"
+		th:href="@{${moduleURL} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir='+ ${sortDir} + '&keywordForm=' + ${keywordForm != null ? keywordForm : ''}}">[[${columnLabel}]]</a>
+
+
+
+<div th:fragment="pagination_for_form(entityName,moduleURL)" th:remove="${tag}">
+
+		<div class="text-center m-2">
+			<span th:if="${totalItems > 0}">Showing [[${entityName}]] #
+				[[${startCount}]] to [[${endCount}]] of total [[${totalItems}]]</span> <span
+				th:unless="${totalItems > 0}">No [[${entityName}]] found</span>
+		</div>
+		<div th:if="${totalPages > 1}">
+
+			<nav>
+				<ul class="pagination justify-content-center flex-wrap">
+					<li
+						th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+						<a th:replace="fragments :: page_link_for_form(${moduleURL},1,'First')" ></a>
+					</li>
+					<li
+						th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+
+						<a
+						th:replace="fragments :: page_link_for_form(${moduleURL},${currentPage -1},'Previous')"></a>
+
+					</li>
+					<li
+						th:class="${currentPage == i ? 'page-item active' : 'page-item'}"
+						th:each="i : ${#numbers.sequence(1,totalPages)}"><a
+						th:replace="fragments :: page_link_for_form(${moduleURL},${i},${i})"></a></li>
+
+					<li
+						th:class="${currentPage < totalPages  ? 'page-item' : 'page-item disabled'}">
+
+						<a
+						th:replace="fragments ::page_link_for_form(${moduleURL},${currentPage + 1},'Next')"></a>
+
+					</li>
+					<li
+						th:class="${currentPage < totalPages  ? 'page-item' : 'page-item disabled'}">
+
+						<a
+						th:replace="fragments :: page_link_for_form( ${moduleURL},${totalPages},'Last')"></a>
+
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+
 <a th:fragment="page_link( moduleURL, pageNum,columnLabel)"
 	    class="page-link dropdown-menu-hover product-name"
 		th:href="@{${moduleURL}+ '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir='+ ${sortDir} + '&keyword=' + ${keyword != null ? keyword : ''}}">[[${columnLabel}]]</a>
 
 
-
 	<div th:fragment="pagination(entityName,moduleURL)" th:remove="${tag}">
 
-		<div class="text-center">
+		<div class="text-center m-2">
 			<span th:if="${totalItems > 0}">Showing [[${entityName}]] #
 				[[${startCount}]] to [[${endCount}]] of total [[${totalItems}]]</span> <span
 				th:unless="${totalItems > 0}">No [[${entityName}]] found</span>
@@ -220,7 +273,7 @@
             <label for="keyword" >Filter:</label>
             </div>
              <div class="col-auto">
-            <input type="search" id="keyword" name="keyword-form" th:value="${keyword}" class="form-control" required>
+            <input type="search" id="keyword" name="keywordForm" th:value="${keywordForm}" class="form-control" required>
         </div>
      
   

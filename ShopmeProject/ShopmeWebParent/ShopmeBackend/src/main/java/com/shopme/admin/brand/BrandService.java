@@ -15,11 +15,13 @@ import com.shopme.common.entity.Brand;
 @Service
 public class BrandService {
 
+
+	public static final int BRANDS_PER_PAGE = 10;
+	
 	@Autowired
 	private BrandRepository repo;
 
-    public static final int BRANDS_PER_PAGE = 10;
-	
+   
 	
     public List<Brand> listAll(){
     	return (List<Brand>) repo.findAll();

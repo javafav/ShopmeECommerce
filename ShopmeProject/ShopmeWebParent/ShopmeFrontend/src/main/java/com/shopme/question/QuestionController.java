@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shopme.ControllerHelper;
@@ -95,7 +96,7 @@ public class QuestionController {
 	public String listQuestionsByCustomerByPage(
 				Model model, HttpServletRequest request,
 				@PathVariable(name = "pageNum") int pageNum,
-				String keyword, String sortField, String sortDir) {
+				@RequestParam("keywordForm")String keyword, String sortField, String sortDir) {
 		Customer customer = controllerHelper.getAuthenticatedCustomer(request);
 		Page<Question> page = questionService.listQuestionsByCustomer(customer, keyword, pageNum, sortField, sortDir);		
 		List<Question> listQuestions = page.getContent();
@@ -105,7 +106,7 @@ public class QuestionController {
 		model.addAttribute("currentPage", pageNum);
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("keyword", keyword);
+		model.addAttribute("keywordForm", keyword);
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		model.addAttribute("moduleURL", "/customer/questions");
 		

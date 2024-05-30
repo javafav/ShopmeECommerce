@@ -129,8 +129,8 @@ function displayVotesByCustomerNameAndQuestion(link) {
 			html += "<li>No customers have voted</li>";
 		}
 		html += "</ul>";
-		$("#customerQuestionModal").find(".modal-body").html(html);
-		$("#customerQuestionModal").modal("show");
+		$("#customerListModal").find(".modal-body").html(html);
+		$("#customerListModal").modal("show");
 	}).fail(function() {
 		showErrorModal("Error reacting question.");
 	});

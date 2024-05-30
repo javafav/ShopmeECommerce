@@ -1,74 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<body>				
-<div th:fragment="content" class="row m-2">
-	<div class="col">
-		<th:block th:each="review : ${listReviews}">
-			<div class="row">
-				<div class="col-xs"><input type="text" class="product-detail-rating-star" dir="ltr" data-size="xs" th:value="${review.rating}" /></div>
-				
-				<div class="col-xs ml-2">
-					<a class="linkVoteReview  fa-thumbs-up"
-						th:classappend="${review.upvotedByCurrentCustomer ? 'fas' : 'far'}"
-						th:id="'linkVoteUp-review-' + ${review.id}"
-						th:reviewId="${review.id}"
-					   	th:href="@{'/vote_review/' + ${review.id} + '/up'}"></a>
-					   
-				</div>
-					<small th:id="'linkThumbsUp-review-' + ${review.id}" >[[${review.positiveVotes}]]</small>
 
-					<div class="col-xs ml-2">
+<body>
+    <div th:fragment="content" class="row m-2">
+        <div class="col">
+            <th:block th:each="review : ${listReviews}">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <input type="text" class="product-detail-rating-star" dir="ltr" data-size="xs" th:value="${review.rating}" />
+                    </div>
 
-						<a class="badge badge-primary badge-pill linkVoteReviewCount"
-							th:href="@{'/vote_review/count/' + ${review.id}}"
-				            title="Click to View the Voted Customer Names"
-							th:id="'voteCount-review-' + ${review.id}"> [[${review.votes}]]
-							Votes 
-							</a>
-						<div 
-						
-						     
-						     th:divList=" 'divListGroup' + ${review.id}"></div>
+                    <div class="col-auto d-flex align-items-center">
+                        <a class="linkVoteReview fa-thumbs-up text-decoration-none"
+                            th:classappend="${review.upvotedByCurrentCustomer ? 'fas' : 'far'}"
+                            th:id="'linkVoteUp-review-' + ${review.id}"
+                            th:reviewId="${review.id}"
+                            th:href="@{'/vote_review/' + ${review.id} + '/up'}"></a>
+                        <small  th:id="'linkThumbsUp-review-' + ${review.id}">[[${review.positiveVotes}]]</small>
+                    </div>
 
-                         </div>
+                    <div class="col-auto d-flex align-items-center ms-1">
+                        <a class="badge custom-badge rounded-pill linkVoteReviewCount text-decoration-none"
+                            th:href="@{'/vote_review/count/' + ${review.id}}"
+                            title="Click to View the Voted Customer Names"
+                            th:id="'voteCount-review-' + ${review.id}">[[${review.votes}]] Votes</a>
+                    </div>
 
+                    <div class="col-auto d-flex align-items-center ms-1">
+                        <a class="linkVoteReview fa-thumbs-down text-decoration-none"
+                            th:classappend="${review.downvotedByCurrentCustomer ? 'fas' : 'far'}"
+                            th:id="'linkVoteDown-review-' + ${review.id}"
+                            th:reviewId="${review.id}"
+                            th:href="@{'/vote_review/' + ${review.id} + '/down'}"></a>
+                        <small class="ms-1" th:id="'linkThumbsDown-review-' + ${review.id}">[[${review.negativeVotes}]]</small>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col"><b>[[${review.headline}]]</b></div>
+                </div>
+                <div class="row">
+                    <div class="col">[[${review.comment}]]</div>
+                </div>
 
+                <div class="row">
+                    <div class="col ms-3">
+                        <small>[[${review.customer.fullName}]], 
+                            <div th:replace="fragments :: format_time(${review.reviewTime})"></div>
+                        </small>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col">
+                        <hr />
+                    </div>
+                </div>
+            </th:block>
+        </div>
 
-					<div class="col-xs ml-2">
-					 <a class="linkVoteReview fa-thumbs-down"
-						th:classappend="${review.downvotedByCurrentCustomer ? 'fas' : 'far'}"
-						th:id="'linkVoteDown-review-' + ${review.id}"
-						th:reviewId="${review.id}"
-					   	th:href="@{'/vote_review/' + ${review.id} + '/down'}"></a>
-					   	 
-				</div>	
-				<small th:id="'linkThumbsDown-review-' + ${review.id}" >[[${review.negativeVotes}]]</small>			
-			</div>
-			<div class="row">
-				<div class="col"><b>[[${review.headline}]]</b></div>
-			</div>
-			<div class="row">
-				<div class="col">[[${review.comment}]]</div>
-			</div>								
-
-			<div class="row">
-				<div class="col ml-3"><small>[[${review.customer.fullName}]], <div th:replace="fragments :: format_time(${review.reviewTime})"></div></small></div>
-			</div>
-			
-			<div class="row"><div class="col"><hr/></div></div>
-		</th:block>				
-	</div>	
-		<div th:each="name : ${customerNames}">
-    <ul>
-        <li >
-            <span th:text="${name}"></span>
-        </li>
-    </ul>
-</div>
-
-						
-</div>
+        <div th:each="name : ${customerNames}">
+            <ul>
+                <li>
+                    <span th:text="${name}"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
 </body>
+
 </html>

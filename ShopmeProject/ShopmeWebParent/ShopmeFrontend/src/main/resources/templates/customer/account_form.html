@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: page_head('Your Account Details', 'none')" />
 <body>
-<div class="container-fluid">
-	<div th:replace="navigation :: header_menu"></div>
-	<div>&nbsp;</div>
+<div class="container-fluid mb-3">
+	 <div th:replace="navigation :: nav_menu"></div>
+	  <div style="border-bottom: 20px solid black;margin: 5px;padding: 5"></div>
+  
+    <div>&nbsp;</div>
 
 	<div class="text-center">
 		<h2>Your Account Details</h2>
@@ -20,20 +22,20 @@
 		[[${message}]]
 	</div>		
 	<div class="border border-secondary rounded p-3">
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">Authentication Type:</label>
 			<div class="col-sm-8">
-				<input type="text" th:field="*{authenticationType}" class="form-control" readonly="readonly"/>
+				<input type="text" th:field="*{authenticationType}" class="form-control text-muted" readonly="readonly"/>
 			</div>
 		</div>	
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">E-mail:</label>
 			<div class="col-sm-8">
-				<input type="text" th:field="*{email}" class="form-control" readonly="readonly"/>
+				<input type="text" th:field="*{email}" class="form-control text-muted" readonly="readonly"/>
 			</div>
 		</div>
 			
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">First Name:</label>
 			<div class="col-sm-8">
 				<input type="text" th:field="*{firstName}" class="form-control"
@@ -41,7 +43,7 @@
 			</div>
 		</div>
 		
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">Last Name:</label>
 			<div class="col-sm-8">
 				<input type="text" th:field="*{lastName}" class="form-control"
@@ -50,7 +52,7 @@
 		</div>
 				
 		<th:block th:if="${customer.authenticationType.name() == 'DATABASE'}">
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">Password:</label>
 			<div class="col-sm-8">
 				<input type="password" th:field="*{password}" class="form-control"
@@ -60,7 +62,7 @@
 			</div>
 		</div>
 
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">Re-type Password:</label>
 			<div class="col-sm-8">
 				<input type="password" id="confirmPassword" class="form-control"
@@ -71,7 +73,7 @@
 		</div>
 		</th:block>
 		
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">Phone Number:</label>
 			<div class="col-sm-8">
 				<input type="text" th:field="*{phoneNumber}" class="form-control"
@@ -79,7 +81,7 @@
 			</div>
 		</div>
 
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">Address Line 1:</label>
 			<div class="col-sm-8">
 				<input type="text" th:field="*{addressLine1}" class="form-control"
@@ -87,7 +89,7 @@
 			</div>
 		</div>
 
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">Address Line 2:</label>
 			<div class="col-sm-8">
 				<input type="text" th:field="*{addressLine2}" class="form-control"
@@ -95,7 +97,7 @@
 			</div>
 		</div>
 
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">City:</label>
 			<div class="col-sm-8">
 				<input type="text" th:field="*{city}" class="form-control"
@@ -103,10 +105,10 @@
 			</div>
 		</div>
 
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">Country:</label>
 			<div class="col-sm-8">
-				<select class="form-control" th:field="*{country}">
+				<select class="form-select" th:field="*{country}">
 					<th:block th:each="country : ${listCountries}">
 					<option th:value="${country.id}">[[${country.name}]]</option>
 					</th:block>
@@ -114,7 +116,7 @@
 			</div>
 		</div>
 				
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">State/Province:</label>
 			<div class="col-sm-8">
 				<input type="text" th:field="*{state}" class="form-control"
@@ -123,7 +125,7 @@
 			</div>
 		</div>
 								
-		<div class="form-group row">
+		<div class="mb-3 row">
 			<label class="col-sm-4 col-form-label">Postal Code:</label>
 			<div class="col-sm-8">
 				<input type="text" th:field="*{postalCode}" class="form-control"
@@ -137,9 +139,11 @@
 	</div>
 	</form>
 		
-	<div th:replace="navigation :: footer_menu"></div>
-	<div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
+	
+
 </div>
+<div th:replace="fragments :: footer_menu" class="mt-auto"></div>
+<div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 <script type="text/javascript">
 	contextPath = "[[@{/}]]";
 	var csrfHeaderName = "[[${_csrf.headerName}]]";
