@@ -61,14 +61,28 @@
 <div th:fragment="nav_menu">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" th:href="@{/}">
+        <a class="navbar-brand me-auto" th:href="@{/}">
             <img th:src="@{${SITE_LOGO}}" alt="Shopme">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!"><i class="fa-solid fa-house icon-dark"></i>&nbsp;Home</a></li>
-                <li class="nav-item dropdown">
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" th:href="@{/}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-house icon-dark"></i>&nbsp;Home
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+        <th:block th:each="headerMenu, iterStat : ${headerMenuItems}">
+            <li><a class="dropdown-item dropdown-menu-hover" th:href="@{'/m/' + ${headerMenu.alias}}">[[${headerMenu.title}]]</a></li>
+            <li th:if="${!iterStat.last}"><hr class="dropdown-divider" /></li>
+        </th:block>
+    </ul>
+</li>
+
+
+
+						<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="productCategoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-brands fa-product-hunt"></i>&nbsp;Products</a>
                     <ul class="dropdown-menu" aria-labelledby="productCategoriesDropdown">
                         <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/list_all_product}">All Products</a></li>

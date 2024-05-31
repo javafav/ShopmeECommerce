@@ -18,21 +18,22 @@ import com.shopme.common.entity.Customer;
 import com.shopme.common.entity.order.Order;
 import com.shopme.common.entity.order.OrderDetail;
 import com.shopme.common.entity.product.Product;
-import com.shopme.customer.CustomerService;
+
 import com.shopme.review.ReviewService;
 
 @Controller
 public class OrderController {
-
+	
+	private String defaultRedirectURL = "redirect:/orders/page/1?sortField=orderTime&sortDir=desc&keywordForm";
 	
 	@Autowired	private OrderService orderService;
-    @Autowired private CustomerService customerService;
+
     @Autowired private ReviewService reviewService;
 	@Autowired private ControllerHelper controllerHelper;
 
 	@GetMapping("/orders")
 	public String listFirstPage(Model model, HttpServletRequest request) {
-		return listOrdersByPage(model, request, 1, "orderTime", "desc", null);
+		return defaultRedirectURL;
 	}
 	
 

@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="fragments :: page_head('Shopping Cart', 'none')" />
-<body>
-<div class="container-fluid">
-	<div th:replace="navigation :: header_menu"></div>
-	<div th:replace="navigation :: search_nav"></div>
+<body class="d-flex flex-column min-vh-100">
+<div class="container-fluid flex-grow-1">
+   <div th:replace="navigation :: nav_menu"></div>
+   <div th:replace="navigation :: special_message"></div>
+   <div style="border-bottom: 20px solid black; margin: 5px; padding: 5px;"></div>
 
 	<div class="text-center">
 		<h2>Checkout</h2>
 	</div>
 	
 	<div class="row m-1">
-		<div class="col-sm-8">
+		<div class="col-lg-8">
 			<div class="card">
-				<div class="card-header"><h5>Shipping information</h5></div>
+				<div class="card-header"><h5>Shipping Information</h5></div>
 				<div class="card-body">
 					<p>
 						<b>Ship to:</b>&nbsp; [[${shippingAddress}]]
@@ -40,8 +40,8 @@
 							<button class="btn btn-primary d-none" id="buttonSubmit">Place Order with COD</button>
 						</p>
 						</form>
-						</div>
-							<div id="paypal-button-container"></div>
+					</div>
+					<div id="paypal-button-container"></div>
 					
 					<form th:action="@{/process_paypal_order}" method="post" id="paypalForm">
 						<input type="hidden" name="orderId" id="orderId" />
@@ -51,12 +51,12 @@
 			</div>
 		</div>
 		
-		<div class="col-sm-4">
+		<div class="col-lg-4">
 			<div class="card">
 				<div class="card-header"><h5>Order Summary</h5></div>
 				<div class="card-body">
 					<div>
-					<table>
+					<table class="table">
 						<th:block th:each="item : ${cartItems}">
 						<tr th:with="product = ${item.product}">
 							<td>[[${item.quantity}]] X &nbsp;&nbsp;</td>
@@ -95,9 +95,11 @@
 		</div>		
 	</div>
 	
-	<div th:replace="navigation :: footer_menu"></div>
-	    <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
+	<div th:replace="fragments :: footer_menu" class="mt-auto"></div>
+	<div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
+	<div th:replace="fragments :: modal_dialog"></div>
 </div>
+
 <script th:src="@{https://www.paypal.com/sdk/js(client-id=${paypalClientId},currency=${currencyCode})}"></script>
 <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 <script type="text/javascript">
@@ -121,14 +123,12 @@
 		createOrder: function(data, actions) {
 			// setup a transaction
 			return actions.order.create({
-				
 				intent: 'CAPTURE', // make payment immediately
 				payer: {
 					name: {
 					given_name: "[[${customer.firstName}]]",
 					surname: "[[${customer.lastName}]]"
 					},
-				
 					address: {
 						address_line_1: "[[${customer.addressLine1}]]",
 						address_line_2: "[[${customer.addressLine2}]]",
@@ -137,9 +137,7 @@
 						postal_code: "[[${customer.postalCode}]]",
 						country_code: "[[${customer.country.code}]]"
 					},
-					
 					email_address: "[[${customer.email}]]",
-					
 					phone: {
 						phone_type: "MOBILE",
 						phone_number: {
@@ -147,20 +145,17 @@
 						}
 					}
 				},
-				
 				purchase_units: [{
 					amount: {
 						value: "[[${checkoutInfo.paymentTotal4PayPal}]]",
 						currency_code: "[[${currencyCode}]]"
 					}
 				}],
-				
 				application_context: {
 					shipping_preference: "NO_SHIPPING"
 				}
 			});
 		},
-		
 		onApprove: function(data, actions) {
 			// buyer approved payment
 			return actions.order.capture().then(function(details) {
@@ -169,22 +164,19 @@
 				validateOrder(orderId);				
 			});
 		},
-		
 		onCancel: function(data) {
 			// buyer cancelled payment
-			alert('Payment cancelled by the buyer');
+			showWarningModal('Payment has been canceled by the user');
 		},
-		
 		onError: function(err) {
 			// error that prevents buyer from doing checkout
 			showErrorModal("Something wrong with your address information, so payment will not work.");
 		}
 	}).render("#paypal-button-container");
-	
-
-	
 </script>
+<script type="text/javascript" th:src="@{/js/common.js}"></script>
+<script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
 <script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
 <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 </body>
-</html>	
+</html>

@@ -11,7 +11,7 @@ $(".navbar .dropdown").hover(
         var $dropdownMenu = $(this).find('.dropdown-menu').first();
         setTimeout(function() {
             $dropdownMenu.stop(true, true).slideUp();
-        }, 350); // Adjust delay time as needed
+        }, 500); // Adjust delay time as needed
     }
 );
 });

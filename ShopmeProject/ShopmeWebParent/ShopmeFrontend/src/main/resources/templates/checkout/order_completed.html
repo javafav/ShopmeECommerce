@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: page_head('Shopme', 'none')" />
-<body>
-<div class="container-fluid">
-	<div th:replace="navigation :: header_menu"></div>
-	<div th:replace="navigation :: search_nav"></div>
+<body class="d-flex flex-column min-vh-100">
+<div class="container-fluid flex-grow-1">
+   <div th:replace="navigation :: nav_menu"></div>
+   <div th:replace="navigation :: special_message"></div>
+   <div style="border-bottom: 20px solid black; margin: 5px; padding: 5px;"></div>
 	
 	<div class="text-center border border-secondary rounded m-3 p-3">
 		<h2>Your Order has been Completed!</h2>
@@ -12,16 +13,16 @@
 		<h4>Kindly check your email for the details.</h4>
 	</div>
 
-	
-	<div th:replace="navigation :: footer_menu"></div>
-	<div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 </div>
+	<div th:replace="fragments :: footer_menu" class="mt-auto"></div>
+	<div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 <script type="text/javascript">
 	contextPath = "[[@{/}]]";
 
 	var csrfHeaderName = "[[${_csrf.headerName}]]";
 	var csrfValue = "[[${_csrf.token}]]";
 </script>	
+<script type="text/javascript" th:src="@{/js/common.js}"></script>
 <script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
 <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 </body>
