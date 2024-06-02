@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: page_head(${pageTitle}, 'none')" />
@@ -116,28 +117,29 @@
 </div>    
 <script type="text/javascript">
     contextPath = "[[@{/}]]";
-    
-    function checkEmailUnique(form) {
-        const url = contextPath + "customers/check_unique_email";
-        const customerEmail = $("#inputEmail").val();
-        const csrfValue = $("input[name='_csrf']").val();
-        
-        const params = {email: customerEmail, _csrf: csrfValue};
-        
-        $.post(url, params, function(response) {
-            if (response === "OK") {
-                form.submit();
-            } else if (response === "Duplicated") {
-                showWarningModal("There is another customer having the email " + customerEmail);
-            } else {
-                showErrorModal("Unknown response from server");
-            }
-        }).fail(function() {
-            showErrorModal("Could not connect to the server");
-        });
-        
-        return false;
-    }    
+    var csrfHeaderName = "[[${_csrf.headerName}]]";
+    var csrfValue = "[[${_csrf.token}]]";
+	function checkEmailUnique(form) {
+		url = contextPath + "customers/check_unique_email";
+		customerEmail = $("#email").val();
+		csrfValue = $("input[name='_csrf']").val();
+		
+		params = {email: customerEmail, _csrf: csrfValue};
+		
+		$.post(url, params, function(response) {
+			if (response == "OK") {
+				form.submit();
+			} else if (response == "Duplicated") {
+				showWarningModal("There is another cusotmer having the email " + customerEmail);
+			} else {
+				showErrorModal("Unknown response from server");
+			}
+		}).fail(function() {
+			showErrorModal("Could not connect to the server");
+		});
+		
+		return false;
+	}   
     
     function checkPasswordMatch(input) {
         if (input.value !== document.getElementById('inputPassword').value) {

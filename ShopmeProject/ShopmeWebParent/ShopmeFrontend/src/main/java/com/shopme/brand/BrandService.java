@@ -1,8 +1,12 @@
 package com.shopme.brand;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -17,7 +21,10 @@ public class BrandService {
 	@Autowired
 	private BrandRepository repo;
 	
-	public List<Brand> listAll(){
-	    	return (List<Brand>) repo.findAll();
-	    }
+	public Page<Brand> listByPage(int pageNum){
+		Sort sort = Sort.by("name").ascending();
+		
+		Pageable pageable = PageRequest.of( pageNum - 1, BRANDS_PER_PAGE,sort);
+		return repo.findAll(pageable);
+	}
 }

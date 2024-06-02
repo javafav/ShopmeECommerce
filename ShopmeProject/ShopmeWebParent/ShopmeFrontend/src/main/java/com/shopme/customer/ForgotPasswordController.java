@@ -95,14 +95,14 @@ public class ForgotPasswordController {
 	}
 
 	@GetMapping("/reset_password")
-	public String showResetForm(@RequestParam("token") String token, Model model) {
+	public String showResetForm( String token, Model model) {
 		Customer customer = customerService.getByResetPasswordToken(token);
 		if (customer != null) {
 			model.addAttribute("token", token);
 		} else {
-			model.addAttribute("pageTitle", "Invalid Token");
-			model.addAttribute("message", "Invalid Token");
-			return "message";
+			model.addAttribute("pageTitle", "Invalid or Expired Token");
+			//model.addAttribute("message", " The token is invalid. Please <a th:href=\"@{/forgot_password}\">request a new one</a>.");
+			return "customer/invalid_token";
 		}
 
 		return "customer/reset_password_form";

@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.shopme.category.CategoryService;
 import com.shopme.common.entity.Category;
 import com.shopme.common.entity.product.Product;
-
 import com.shopme.product.ProductService;
+
 
 @Controller
 public class MainController {
@@ -27,11 +27,21 @@ public class MainController {
 
 	@Autowired private CategoryService categoryService;
 	@Autowired private ProductService productService;
+
+	
+	
+	
+	
+	
+
+	
+	
+	
 	
 	@GetMapping("")
 	public String viewHomePage(Model model) {
 		
-		List<Category> listCategories = categoryService.listAllCategoryNoChildren();
+		List<Category> listCategories = categoryService.listNoChildrenCategories();
 		model.addAttribute("listCategories", listCategories);
 		
 		

@@ -2,6 +2,7 @@ package com.shopme.category;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,22 +15,39 @@ public class CategoryService {
 
 	@Autowired 
 	private CategoryRepository repo;
-	
-	public List<Category> listAllCategoryNoChildren(){
+	public List<Category> listNoChildrenCategories() {
+		List<Category> listNoChildrenCategories = new ArrayList<>();
 		
-		List<Category> listCategoryNoChildren =  new ArrayList<>();
+		List<Category> listEnabledCategories = repo.findAllEnabled();
 		
-		List<Category> listAllEnabledCategory = repo.findAllEnabled();
-		
-		listAllEnabledCategory.forEach(cat -> {
-			if(cat.getChildren() == null || cat.getChildren().size() == 0) {
-				listCategoryNoChildren.add(cat);
+		listEnabledCategories.forEach(category -> {
+			Set<Category> children = category.getChildren();
+			if (children == null || children.size() == 0) {
+				listNoChildrenCategories.add(category);
 			}
-			
 		});
 		
-		return listCategoryNoChildren;
+		return listNoChildrenCategories;
 	}
+	
+	
+	
+	
+//	public List<Category> listAllCategoryNoChildren(){
+//		
+//		List<Category> listCategoryNoChildren =  new ArrayList<>();
+//		
+//		List<Category> listAllEnabledCategory = repo.findAllEnabled();
+//		
+//		listAllEnabledCategory.forEach(cat -> {
+//			if(cat.getChildren() == null || cat.getChildren().size() == 0) {
+//				listCategoryNoChildren.add(cat);
+//			}
+//			
+//		});
+//		
+//		return listCategoryNoChildren;
+//	}
 	
 	public Category getCategory(String alias) throws CategoryNotFoundException {
 		 Category category = repo.findByAliasEnabled(alias);

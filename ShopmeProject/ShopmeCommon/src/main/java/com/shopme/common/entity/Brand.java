@@ -34,14 +34,18 @@ public class Brand extends IdBasedEntity {
 	public Brand() {}
 	
 	
+	public Brand(Integer id) {
+		this.id = id;
+	}
+
+	
 	public Brand(Integer id, String name) {
 		
 		this.id = id;
 		this.name = name;
 		this.logo = "default-logo.png";
 	}
-
-
+	
 
 	public Brand(String name) {
 		this.name = name;

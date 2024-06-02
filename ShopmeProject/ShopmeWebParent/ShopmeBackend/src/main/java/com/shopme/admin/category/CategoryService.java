@@ -29,6 +29,11 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository repo;
 
+	public List<Category> listAll() {
+		return listByPage(new CategoryPageInfo(), "asc", 1, null);
+	}
+	
+	
 	public List<Category> listByPage(CategoryPageInfo pageInfo, String sortDir, int pageNum, String keyword) {
 		
 		Sort sort = Sort.by("name");

@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.shopme.common.entity.product.Product;
@@ -33,7 +34,14 @@ public class ProductService {
 		return repo.listProductByCategory(categoryId, allParentIds, pagebale);
 
 	}
+	
+	public Page<Product> listByBrand(int pageNum, Integer brandId) {
+		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
+		
+		return repo.listByBrand(brandId, pageable);
+	}	
 
+	
 	public Product getProduct(String alias) throws ProductNotFoundException {
 		Product product = repo.findByAlias(alias);
 		if (product == null) {
