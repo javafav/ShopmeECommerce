@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -27,6 +26,7 @@ import com.shopme.question.QuestionService;
 import com.shopme.question.vote.QuestionVoteService;
 import com.shopme.review.ReviewService;
 import com.shopme.review.vote.ReviewVoteService;
+import com.shopme.setting.SettingService;
 
 
 @Controller
@@ -40,6 +40,7 @@ public class ProductController {
 	@Autowired private  ReviewVoteService voteService;
 	@Autowired private QuestionVoteService questionVoteService;
 	@Autowired private QuestionService questionService;
+	@Autowired private SettingService settingService;
 	
 	
 	@GetMapping("/c/{category_alias}")
@@ -240,8 +241,9 @@ public class ProductController {
 	@GetMapping("/best_selling_product/page/{pageNum}")
 	public String listAllPageOfBestSellingProductByNameOrderByDesc(@PathVariable("pageNum") Integer pageNum, Model model) {
 
+	
 		
-		Page<Product> pageProduct = productService.getAllBestSelingProduct(ProductService.BEST_SELLING_INDEX, pageNum);
+		Page<Product> pageProduct = productService.getAllBestSelingProduct(settingService.BEST_SELLING_INDEX(), pageNum);
 		List<Product> listProducts = pageProduct.getContent();
 
 		long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
@@ -274,7 +276,9 @@ public class ProductController {
 	public String listAllPageOfMostRatedProductByNameOrderByAsc(@PathVariable("pageNum") Integer pageNum, Model model) {
 
 		
-		Page<Product> pageProduct = productService.getAllMostRatedProduct(ProductService.MOST_RATED_INDEX, pageNum);
+	
+		
+		Page<Product> pageProduct = productService.getAllMostRatedProduct(settingService.TOP_RATED_INDEX(), pageNum);
 		List<Product> listProducts = pageProduct.getContent();
 
 		long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
@@ -301,11 +305,11 @@ public class ProductController {
 	
 	@GetMapping("/new_arrival_product")
 	public String listFirstPageNewArrivalProductByNameOrderByAsc(Model model) {
-		return listAllPageOfewArrivalProductByNameOrderByAsc(1, model);
+		return listAllPageOfNewArrivalProductByNameOrderByAsc(1, model);
 	}
 
 	@GetMapping("/new_arrival_product/page/{pageNum}")
-	public String listAllPageOfewArrivalProductByNameOrderByAsc(@PathVariable("pageNum") Integer pageNum, Model model) {
+	public String listAllPageOfNewArrivalProductByNameOrderByAsc(@PathVariable("pageNum") Integer pageNum, Model model) {
 
 		
 		Page<Product> pageProduct;
@@ -334,6 +338,40 @@ public class ProductController {
 		model.addAttribute("totalItems", pageProduct.getTotalElements());
 		
 		return "product/new_arrival_product";
+	}
+	
+	@GetMapping("/clearance_sale")
+	public String listFirstPage(Model model) {
+		return viewNewIndexPage(1,model);
+	}
+	
+	
+	@GetMapping("/clearance_sale/page/{pageNum}")
+	public String viewNewIndexPage(@PathVariable("pageNum") int pageNum, Model model) {
+	  Page<Product> page = productService.getProductOnDiscountOrSale(pageNum);
+	  List<Product> listProducts = page.getContent();
+	  
+	 
+	 
+	  
+	    model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("currentPage", pageNum);
+		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("moduleURL", "/newindex");
+		
+       long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
+		model.addAttribute("startCount", startCount);
+
+		long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
+		if (endCount > page.getTotalElements()) {
+			endCount = page.getTotalElements();
+		}
+
+		model.addAttribute("endCount", endCount);
+		
+	  
+	  return "product/clearance_sale";
 	}
 	
 	

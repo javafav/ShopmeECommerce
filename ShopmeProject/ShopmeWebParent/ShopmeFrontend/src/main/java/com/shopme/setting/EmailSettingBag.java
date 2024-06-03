@@ -7,6 +7,7 @@ import com.shopme.common.entity.setting.SettingBag;
 
 public class EmailSettingBag extends SettingBag {
 
+	
 	public EmailSettingBag(List<Setting> listSettings) {
 		super(listSettings);
 	}
@@ -77,4 +78,12 @@ public String getSubscriptionContent() {
 	public String getForgotPasswordContent() {
 		return super.getValue("FORGOT_PASSWORD_CONTENT");
 	}
+	
+	public  String getMostRatedIndex() {
+		return  super.getValue("MOST_RATED_INDEX");
+    
+	}
+	
+	
+
 }

@@ -17,7 +17,7 @@ public class SettingService {
 	@Autowired
 	private CurrencyRepository currencyRepo;
 
-	public List<Setting> generalSettingBag() {
+	public  List<Setting> generalSettingBag() {
 		return settingRepo.findByTwoCategories(SettingCategory.GENERAL, SettingCategory.CURRENCY);
 
 	}
@@ -47,6 +47,21 @@ public class SettingService {
 
 		return currency.getCode();
 
+	}
+	
+	public float TOP_RATED_INDEX() {
+		Setting setting = settingRepo.findByKey("MOST_RATED_INDEX");
+		Float topRatedIndex = Float.parseFloat(setting.getValue());
+		
+		return topRatedIndex;
+	}
+
+	
+	public Long BEST_SELLING_INDEX() {
+		Setting setting = settingRepo.findByKey("BEST_SELLING_INDEX");
+		long bestSellingIndex = Long.parseLong(setting.getValue());
+		
+		return bestSellingIndex;
 	}
 
 }

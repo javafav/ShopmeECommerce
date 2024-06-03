@@ -44,7 +44,9 @@ public class Product extends IdBasedEntity {
 	private Date updatedTime;
 
 	private boolean enabled;
-
+    
+	private boolean newArrival;
+	
 	@Column(name = "in_stock")
 	private boolean inStock;
 
@@ -149,6 +151,14 @@ public class Product extends IdBasedEntity {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	public boolean isNewArrival() {
+		return newArrival;
+	}
+
+	public void setNewArrival(boolean newArrival) {
+		this.newArrival = newArrival;
 	}
 
 	public boolean isInStock() {

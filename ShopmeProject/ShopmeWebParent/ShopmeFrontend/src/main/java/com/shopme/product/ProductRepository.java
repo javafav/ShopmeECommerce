@@ -1,7 +1,5 @@
 package com.shopme.product;
 
-import java.util.Date;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,11 +25,11 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
 	@Query("SELECT p FROM Product p WHERE p.enabled = true AND p.averageRating >= ?1 ORDER BY p.averageRating DESC ")
 	public Page<Product> listAllMostRatedProduct(float avgRating, Pageable pagebale);
 	
-	@Query("SELECT p FROM Product p JOIN OrderDetail od ON od.product.id = p.id GROUP BY p.id HAVING SUM(od.quantity) >= ?1 ORDER BY p.name DESC")
+	@Query("SELECT p FROM Product p   JOIN OrderDetail od ON od.product.id = p.id GROUP BY p.id HAVING SUM(od.quantity) >= ?1 ORDER BY p.name DESC")
 	public Page<Product> listAllBestSellingProduct(Long quantity, Pageable pageable);
-
-    @Query("SELECT p FROM Product p WHERE  p.createdTime BETWEEN ?1 AND ?2 ")
-    Page<Product> listAllProductsAddedLastXMonths(Date startTime, Date endTime,Pageable pageable);
+  
+    @Query("SELECT p FROM Product p WHERE  p.newArrival = true AND p.enabled = true ORDER BY   p.updatedTime,  p.createdTime  DESC")
+    Page<Product> listAllProductsAddedLastXMonths (Pageable pageable);
 	
 	public Product findByAlias(String alias);
 	

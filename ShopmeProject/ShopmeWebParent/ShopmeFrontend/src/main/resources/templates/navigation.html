@@ -99,9 +99,10 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/}">All Categories</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/brands}">Products by Brands</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item dropdown-menu-hover" href="#!">New Arrivals</a></li>
+                          <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/clearance_sale}">Clearance Sale</a></li>
+                          <li><hr class="dropdown-divider" /></li>
+                          <li><a class="dropdown-item dropdown-menu-hover" th:href="@{/brands}">Products by Brands</a></li>
+                      
                     </ul>
                 </li>
                 <th:block sec:authorize="isAuthenticated()">
@@ -182,7 +183,7 @@
 <span class="border border-primary"></span>
 </div>
 <div th:fragment="special_message">
-<marquee behavior="scroll" direction="left" style="color:#FF0000">Limited time offer! Get 20% off on all products. Shop now!</marquee>
+<marquee behavior="scroll" direction="left" style="color:#FF0000">[[${ANNOUNCEMENT}]]</marquee>
  </div>
 
 

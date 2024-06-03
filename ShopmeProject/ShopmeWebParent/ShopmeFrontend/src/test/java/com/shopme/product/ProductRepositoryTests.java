@@ -69,15 +69,15 @@ public class ProductRepositoryTests {
 	@Test
 	public void testListAllProductsAddedLastXMonths() throws ParseException {
 		
-		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date startTime = dateFormatter.parse("2020-09-01");
-		Date endTime = dateFormatter.parse("2020-09-30");
+//		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+//		Date startTime = dateFormatter.parse("2020-09-01");
+//		Date endTime = dateFormatter.parse("2020-09-30");
 		
 		int pageNum = 1; 
 		
 		
 		  PageRequest pagebale = PageRequest.of(pageNum - 1, ProductService.PRODUCTS_PER_PAGE);
-		  Page<Product> listAllProductsAddedLastXMonths = repo.listAllProductsAddedLastXMonths(startTime, endTime, pagebale);
+		  Page<Product> listAllProductsAddedLastXMonths = repo.listAllProductsAddedLastXMonths( pagebale);
 		
 		List<Product> listProduct = listAllProductsAddedLastXMonths.getContent();
 		listProduct.forEach(proudct -> System.out.println(proudct.getName()));

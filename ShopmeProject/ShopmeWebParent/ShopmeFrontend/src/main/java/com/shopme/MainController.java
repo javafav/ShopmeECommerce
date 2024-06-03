@@ -49,39 +49,6 @@ public class MainController {
 	}
 	
 	
-	@GetMapping("/newindex")
-	public String listFirstPage(Model model) {
-		return viewNewIndexPage(1,model);
-	}
-	
-	
-	@GetMapping("/newindex/page/{pageNum}")
-	public String viewNewIndexPage(@PathVariable("pageNum") int pageNum, Model model) {
-	  Page<Product> page = productService.getProductOnDiscountOrSale(pageNum);
-	  List<Product> listProducts = page.getContent();
-	  
-	 
-	 
-	  
-	    model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("totalItems", page.getTotalElements());
-		model.addAttribute("currentPage", pageNum);
-		model.addAttribute("listProducts", listProducts);
-		model.addAttribute("moduleURL", "/newindex");
-		
-       long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
-		model.addAttribute("startCount", startCount);
-
-		long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
-		if (endCount > page.getTotalElements()) {
-			endCount = page.getTotalElements();
-		}
-
-		model.addAttribute("endCount", endCount);
-		
-	  
-	  return "newIndex";
-	}
 	
 	
 	@GetMapping("/privacy")

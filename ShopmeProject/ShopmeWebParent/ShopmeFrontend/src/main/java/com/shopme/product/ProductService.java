@@ -1,9 +1,6 @@
 package com.shopme.product;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +17,7 @@ public class ProductService {
 
 	public static final int PRODUCTS_PER_PAGE = 10;
 	public static final int SEARCH_RESULTS_PER_PAGE = 10;
-	public static final Long BEST_SELLING_INDEX = (long) 3;
-	public static final float MOST_RATED_INDEX = 2.5f;
+
 
 	@Autowired
 	private ProductRepository repo;
@@ -105,13 +101,13 @@ public class ProductService {
 	}
 
 	public Page<Product> getAllNewArrivalProduct(int pageNum) throws ParseException {
-
-		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date startTime = dateFormatter.parse("2020-03-01");
-		Date endTime = dateFormatter.parse("2020-09-30");
+//
+//		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+//		Date startTime = dateFormatter.parse("2020-03-01");
+//		Date endTime = dateFormatter.parse("2020-09-30");
 
 		PageRequest pagebale = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
-		return repo.listAllProductsAddedLastXMonths(startTime, endTime, pagebale);
+		return repo.listAllProductsAddedLastXMonths( pagebale);
 
 	}
 }

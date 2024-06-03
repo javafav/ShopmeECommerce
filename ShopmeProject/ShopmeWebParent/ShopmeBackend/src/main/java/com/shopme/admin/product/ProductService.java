@@ -132,10 +132,11 @@ public class ProductService {
 		product.setInStock(true);
 		
 		
-		if(product.getCreatedTime() == null) {
-			product.setCreatedTime(new Date());
-		} else {
+		if(product.getCreatedTime() != null ) {
 			product.setUpdatedTime(new Date());
+			
+		} else {
+			product.setCreatedTime(new Date());
 		}
 		
 		if (product.getAlias() == null || product.getAlias().isEmpty()) {

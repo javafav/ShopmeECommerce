@@ -61,6 +61,18 @@ public class SettingController {
 		return "redirect:/settings";
 	}
 	
+	@PostMapping("/settings/save_product_setting")
+	public String saveProductSetting(
+			        HttpServletRequest request, RedirectAttributes redirectAttributes) throws IOException {
+		
+		GeneralSettingBag settingBag = service.generalSettingBag();
+	    updateSettingValuesFromForm(request,settingBag.listAll());
+		
+		
+		redirectAttributes.addFlashAttribute("message", "Product settings updated successfully!");
+		return "redirect:/settings#product";
+	}
+	
 	@PostMapping("/settings/save_mail_server")
 	public String saveMailServerSetting(HttpServletRequest request, RedirectAttributes redirectAttributes)
 			throws IOException {
