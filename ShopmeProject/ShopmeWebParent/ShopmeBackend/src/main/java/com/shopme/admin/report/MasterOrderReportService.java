@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shopme.admin.order.OrderRepository;
 import com.shopme.common.entity.order.Order;
+import com.shopme.common.entity.order.OrderDetail;
 
 @Service
 public class MasterOrderReportService extends AbstractReportService {
@@ -22,7 +24,7 @@ public class MasterOrderReportService extends AbstractReportService {
 		
 		List<ReportItem> listReportItems = createReportData(startTime, endTime, reportType);
 		
-		System.out.println();
+		//System.out.println();
 		
 		calculateSalesForReportData(listOrders, listReportItems);
 		
@@ -36,10 +38,12 @@ public class MasterOrderReportService extends AbstractReportService {
 			String orderDateString = dateFormatter.format(order.getOrderTime());
 			
 			ReportItem reportItem = new ReportItem(orderDateString);
-			
+		
+		
 			int itemIndex = listReportItems.indexOf(reportItem);
 			
 			if (itemIndex >= 0) {
+				
 				reportItem = listReportItems.get(itemIndex);
 				
 				reportItem.addGrossSales(order.getTotal());
@@ -52,7 +56,7 @@ public class MasterOrderReportService extends AbstractReportService {
 	
 	private void printReportData(List<ReportItem> listReportItems) {
 		listReportItems.forEach(item -> {
-			//System.out.print("Net Sale Report Print For Date");
+			System.out.print("Net Sale Report Print");
 			System.out.printf("%s, %10.2f, %10.2f, %d \n", item.getIdentifier(), item.getGrossSales(),
 					item.getNetSales(), item.getOrdersCount());
 		});
@@ -75,6 +79,7 @@ public class MasterOrderReportService extends AbstractReportService {
 		
 		do {
 			if (reportType.equals(ReportType.DAY)) {
+				
 				startDate.add(Calendar.DAY_OF_MONTH, 1);
 			} else if (reportType.equals(ReportType.MONTH)) {
 				startDate.add(Calendar.MONTH, 1);

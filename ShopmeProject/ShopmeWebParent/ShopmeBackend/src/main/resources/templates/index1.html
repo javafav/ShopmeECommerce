@@ -1,19 +1,61 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/extras/spring-security5">
-
-<head th:replace="fragments :: page_head('eShopme Admin Controller','none')" />
-</head>
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments :: page_head('Home - Shopme Admin', 'none')" />
 <body>
-<div class="container-fluid d-flex flex-column min-vh-100">
-    <div th:replace="navigation :: menu"></div>
-    <div class="flex-grow-1">
-        <h2>Shopme Admin Page</h2>
-        Welcome <a th:href="@{/account}" sec:authentication="principal.fullName"></a>
-        <span sec:authentication="principal.authorities"></span>
-    </div>
-    <div th:replace="fragments :: footer" class="mt-auto"></div>
+<div class="container-fluid">
+	<div th:replace="navigation :: menu"></div>
+	<div>
+		<h2>Shopme Control Panel</h2>
+		Welcome 
+		<a th:href="@{/account}" 
+			sec:authentication="principal.fullName"></a>	
+		<span sec:authentication="principal.authorities"></span>		
+	</div>
+
+	<div class="row m-1">
+		<th:block sec:authorize="hasAuthority('Admin')">
+			<div th:replace="dashboard/general_info :: content" />
+			<div th:replace="dashboard/user_summary :: content" />
+		</th:block>
+		
+		<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+			<div th:replace="dashboard/category_summary :: content" />
+			<div th:replace="dashboard/brand_summary :: content" />
+		</th:block>
+		
+		<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor', 'Salesperson', 'Shipper')">
+			<div th:replace="dashboard/product_summary :: content" />
+		</th:block>
+		
+		<th:block sec:authorize="hasAnyAuthority('Admin', 'Assistant')">
+			<div th:replace="dashboard/question_summary :: content" />
+			<div th:replace="dashboard/review_summary :: content" />
+		</th:block>
+		
+		<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson')">
+			<div th:replace="dashboard/customer_summary :: content" />
+			<div th:replace="dashboard/shipping_rate_summary :: content" />
+		</th:block>							
+		
+		<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson', 'Shipper')">
+			<div th:replace="dashboard/order_summary :: content" />
+		</th:block>		
+		
+		<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+			<div th:replace="dashboard/article_summary :: content" />
+			<div th:replace="dashboard/menu_summary :: content" />
+		</th:block>
+		
+		<th:block sec:authorize="hasAuthority('Admin')">		
+		
+			<div th:replace="dashboard/setting_summary :: content" />
+		</th:block>		
+	</div>
+
+	<div th:replace="fragments :: footer"></div>
+	
 </div>
-<script th:src="@{/js/common.js}"></script>
 </body>
 </html>

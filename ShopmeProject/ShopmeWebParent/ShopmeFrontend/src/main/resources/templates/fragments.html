@@ -91,7 +91,7 @@
         <!-- Divider -->
         <hr class="mt-4 mb-4" style="border-color: rgba(255, 255, 255, 0.2);">
         <!-- Copyright Notice -->
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+        <p class="m-0 text-center text-white">Copyright &copy; [[${COPYRIGHT}]]</p>
     </div>
 </footer>
 
@@ -109,6 +109,15 @@
         th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}" ></span>                  
 </th>
 
+
+<th th:fragment="column_link_for_form(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
+    <a class="text-white no-underline"
+        th:href="@{${moduleURL} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName}  +'&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keywordForm != null ? '&keywordForm=' + keywordForm : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">
+        [[${columnLabel}]]
+    </a>                                
+    <span th:if="${sortField == fieldName}"
+        th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}" ></span>                  
+</th>
 
 
 <a th:fragment="page_link_for_form( moduleURL, pageNum,columnLabel)"

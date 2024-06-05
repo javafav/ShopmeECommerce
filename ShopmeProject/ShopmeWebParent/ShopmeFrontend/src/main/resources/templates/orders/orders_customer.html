@@ -16,11 +16,11 @@
             <table class="table table-bordered table-striped table-hover table-responsive-xl">
                 <thead class="table-dark">
                     <tr>
-                        <th th:replace="fragments :: column_link('id', 'ID', 'none')" />
-                        <th th:replace="fragments :: column_link('orderTime', 'Order Time', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('id', 'ID', 'none')" />
+                        <th th:replace="fragments ::column_link_for_form('orderTime', 'Order Time', 'none')" />
                         <th>Products</th>
-                        <th th:replace="fragments :: column_link('total', 'Total', 'none')" />
-                        <th th:replace="fragments :: column_link('status', 'Status', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('total', 'Total', 'none')" />
+                        <th th:replace="fragments ::column_link_for_form('status', 'Status', 'none')" />
                         <th></th>
                     </tr>
                 </thead>

@@ -16,11 +16,11 @@
             <table class="table table-striped table-bordered table-hover table-responsive-xl">
                 <thead class="table-dark">
                     <tr>
-                        <th th:replace="fragments :: column_link('id', 'ID', 'none')" />
-                        <th th:replace="fragments :: column_link('product', 'Product', 'none')" />
-                        <th th:replace="fragments :: column_link('questionContent', 'Question', 'none')" />
-                        <th th:replace="fragments :: column_link('askTime', 'Ask Time', 'none')" />
-                        <th th:replace="fragments :: column_link('approved', 'Approved', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('id', 'ID', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('product', 'Product', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('questionContent', 'Question', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('askTime', 'Ask Time', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('approved', 'Approved', 'none')" />
                         <th>Answered</th>
                         <th>Action</th>
                     </tr>
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <div th:replace="fragments :: pagination('questions', '/customer/questions')"></div>
+        <div th:replace="fragments ::pagination_for_form('questions', '/customer/questions')"></div>
 
         <div class="modal fade" id="detailModal">
             <div class="modal-dialog modal-xl">
@@ -83,20 +83,28 @@
     </div>
 
     <!-- Ensure the footer stays at the bottom -->
+       <div th:replace="fragments :: modal_dialog"></div>
     <div th:replace="fragments :: footer_menu" class="mt-auto"></div>
     <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 
     <script th:src="@{/js/common_list.js}"></script>
     <script type="text/javascript">
-        moduleURL = "[[@{/customer/questions}]]";
-    	var csrfHeaderName = "[[${_csrf.headerName}]]";
-    	var csrfValue = "[[${_csrf.token}]]";
-   
-        $(document).ready(function(){
-            handleDefaultDetailLinkClick();
-            $("input[name='keywordForm']").attr("placeholder","Questions"  );
-        });
-    </script>
+
+					contextPath = "[[@{/}]]";
+					moduleURL = "[[@{/customer/questions}]]";
+					var csrfHeaderName = "[[${_csrf.headerName}]]";
+					var csrfValue = "[[${_csrf.token}]]";
+
+					$(document).ready(
+							function() {
+								handleDefaultDetailLinkClick();
+								$("input[name='keywordForm']").attr(
+										"placeholder", "Questions");
+							});
+				</script>
+        
+    <script type="text/javascript" th:src="@{/js/common.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
 <script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
 <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 </body>

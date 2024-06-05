@@ -20,11 +20,11 @@
             <table class="table table-bordered table-striped table-hover table-responsive-xl">
                 <thead class="table-dark">
                     <tr>
-                        <th th:replace="fragments :: column_link('id', 'ID', 'none')" />
-                        <th th:replace="fragments :: column_link('product', 'Product', 'none')" />
-                        <th th:replace="fragments :: column_link('headline', 'Headline', 'none')" />
-                        <th th:replace="fragments :: column_link('rating', 'Rating', 'none')" />
-                        <th th:replace="fragments :: column_link('reviewTime', 'Review Time', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('id', 'ID', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('product', 'Product', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('headline', 'Headline', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('rating', 'Rating', 'none')" />
+                        <th th:replace="fragments :: column_link_for_form('reviewTime', 'Review Time', 'none')" />
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -75,6 +75,7 @@
         <div th:replace="fragments :: pagination_for_form('reviews','/reviews')"></div>
     </div>
 
+    <div th:replace="fragments :: modal_dialog"></div>
     <div th:replace="fragments :: footer_menu" class="mt-auto"></div>
     <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
 
@@ -86,8 +87,10 @@
 
 
     <script type="text/javascript">
-        var moduleURL = "[[@{/reviews}]]";   
-        var contextPath = "[[@{/}]]";
+    contextPath = "[[@{/}]]";   
+    
+    var moduleURL = "[[@{/reviews}]]";   
+      
         var csrfHeaderName = "[[${_csrf.headerName}]]";
         var csrfValue = "[[${_csrf.token}]]";
 
@@ -96,9 +99,15 @@
             $("input[name='keywordForm']").attr("placeholder","Reviews"  );
         });
     </script>
+    
     <script th:src="@{/js/common_list.js}"></script>
     <script th:src="@{/js/common_vote.js}"></script>
+    
+    <script type="text/javascript" th:src="@{/js/common.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
+  
+    <script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
     <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
-    <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
+    
 </body>
 </html>

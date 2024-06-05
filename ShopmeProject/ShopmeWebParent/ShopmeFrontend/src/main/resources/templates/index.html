@@ -53,6 +53,7 @@
                 </div>
        </section>
                 
+                   <div th:replace="fragments :: modal_dialog"></div>
 
 <div th:replace="fragments :: footer_menu"></div>
     <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
@@ -68,6 +69,7 @@ var csrfValue = "[[${_csrf.token}]]";
 
 </script>
 <script type="text/javascript" th:src="@{/js/common.js}"></script>
+      <script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
 <script type="text/javascript" th:src="@{/js/subscription_modal.js}"></script>
 <script type="text/javascript" th:src="@{/js/shopping_cart_items_count.js}"></script>
 
