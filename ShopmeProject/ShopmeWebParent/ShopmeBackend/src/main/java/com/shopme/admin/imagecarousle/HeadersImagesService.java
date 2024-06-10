@@ -45,6 +45,8 @@ public class HeadersImagesService {
 
         return imageCarouselRepository.save(imageCarousel);
     }
+    
+    
     public Long getTotalImages() {
         return imageCarouselRepository.count();
     }

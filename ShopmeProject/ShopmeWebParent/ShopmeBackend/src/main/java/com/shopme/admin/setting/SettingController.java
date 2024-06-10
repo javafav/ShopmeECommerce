@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shopme.admin.FileUploadUtil;
-
+import com.shopme.common.Constants;
 import com.shopme.common.entity.Currency;
 import com.shopme.common.entity.setting.Setting;
 
@@ -36,7 +36,8 @@ public class SettingController {
 		for(Setting setting  : listSettings) {
 			model.addAttribute(setting.getKey(), setting.getValue());
 		}
-		
+	  
+	  model.addAttribute("S3_BASE_URI", Constants.S3_BASE_URI);
 	  model.addAttribute("listCurrencies", listCurrencies);
 		
 		
@@ -68,7 +69,7 @@ public class SettingController {
 		GeneralSettingBag settingBag = service.generalSettingBag();
 	    updateSettingValuesFromForm(request,settingBag.listAll());
 		
-		
+	 
 		redirectAttributes.addFlashAttribute("message", "Product settings updated successfully!");
 		return "redirect:/settings#product";
 	}

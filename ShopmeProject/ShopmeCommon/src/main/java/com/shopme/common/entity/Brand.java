@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.shopme.common.Constants;
+
 
 
 @Entity
@@ -89,7 +91,7 @@ public class Brand extends IdBasedEntity {
 	@Transient
 	public String getLogoPath() {
 		if(this.id == null) return "/images/image-thumbnail.png";
-		return "/brands-logos/" + this.id + "/" + this.logo;
+		return Constants.S3_BASE_URI +  "/brands-logos/" + this.id + "/" + this.logo;
 	}
 
 }

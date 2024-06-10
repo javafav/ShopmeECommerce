@@ -13,6 +13,8 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.shopme.common.Constants;
+
 
 
 @Entity
@@ -189,7 +191,7 @@ public class Category extends IdBasedEntity  {
 	@Transient
 	public String getImagePath() {
 		if(id == null) return "/images/image-thumbnail.png";
-		return "/categories-images/" + this.id + "/" + this.image;
+		return Constants.S3_BASE_URI + "/category-images/" + this.id + "/" + this.image;
 	}
 	
 	

@@ -18,4 +18,19 @@
     <fullyQualifiedTypeName name="com.shopme.admin.dashboard.DashboardInfo"/>
     <fullyQualifiedTypeName name="com.shopme.admin.dashboard.DashboardService"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="software.amazon.awssdk.services.s3.S3Client"/>
+    <fullyQualifiedTypeName name="software.amazon.awssdk.services.s3.model.ListObjectsRequest"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.brand.AmazonS3UtilTests"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="java.io.InputStream"/>
+    <fullyQualifiedTypeName name="software.amazon.awssdk.services.s3.model.PutObjectRequest"/>
+    <fullyQualifiedTypeName name="software.amazon.awssdk.core.sync.RequestBody"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="software.amazon.awssdk.services.s3.model.DeleteObjectRequest"/>
+    <fullyQualifiedTypeName name="com.shopme.common.Constants"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.AmazonS3Util"/>
 </qualifiedTypeNameHistroy>

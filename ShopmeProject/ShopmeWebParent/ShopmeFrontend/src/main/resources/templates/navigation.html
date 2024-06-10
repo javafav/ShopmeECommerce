@@ -9,7 +9,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" th:href="@{/}">
-            <img th:src="@{${SITE_LOGO}}" alt="Shopme">
+            <img th:src="@{${S3_BASE_URI + SITE_LOGO}}" alt="Shopme">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -62,7 +62,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand me-auto" th:href="@{/}">
-            <img th:src="@{${SITE_LOGO}}" alt="Shopme">
+            <img th:src="@{${S3_BASE_URI + SITE_LOGO}}" alt="Shopme">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -195,10 +195,11 @@
                 <!-- Iterate over headerImages and generate carousel items -->
 				<div th:each="image, status : ${headerImages}">
                     <!-- Use th:class for conditional class setting based on status.first -->
-                    <div th:class="${status.first} ? 'carousel-item active' : 'carousel-item'">
+                    <div th:class="${status.first} ? 'carousel-item active' : 'carousel-item'" th:with="images =  ${image.imagePath}">
                         <img th:src="@{${image.imagePath}}"
                              class="d-block w-100 header-image"
                              th:alt="${image.caption}">
+                            
                     </div>
                 </div>
 				</div>

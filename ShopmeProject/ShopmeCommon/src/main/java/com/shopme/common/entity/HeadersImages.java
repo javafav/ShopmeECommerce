@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.shopme.common.Constants;
+
 @Entity
 @Table(name = "headers_images")
 public class HeadersImages extends IdBasedEntity {
@@ -76,6 +78,6 @@ public class HeadersImages extends IdBasedEntity {
 	public String getImagePath() {
 		if (id == null || imageURL == null ) return "/images/image-thumbnail.png";
 				
-		return "/carousels-images/" + this.id + "/" + this.imageURL;
+		return Constants.S3_BASE_URI + "/carousels-images/" + this.id + "/" + this.imageURL;
 	}
 }

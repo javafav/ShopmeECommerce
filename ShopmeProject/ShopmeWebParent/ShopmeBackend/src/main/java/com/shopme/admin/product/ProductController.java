@@ -106,12 +106,12 @@ public class ProductController {
 	
 		
 		ProductSaveHelper.setMainImageName(mainImageMultipart, product);
-		ProductSaveHelper.serExisttingExtraImgesNames(imageIDs, imageNames, product);
+		ProductSaveHelper.setExistingExtraImageNames(imageIDs, imageNames, product);
 		ProductSaveHelper.setNewExtraImageNames(extraImageMultipart, product);
-		ProductSaveHelper.setDetailNameAndValues(detailIDs,detailNames, detailValues, product);
+		ProductSaveHelper.setProductDetails(detailIDs,detailNames, detailValues, product);
 		Product savedProduct = productService.saveProduct(product);
-		ProductSaveHelper.saveUploadImages(mainImageMultipart, extraImageMultipart, savedProduct);
-		ProductSaveHelper.	deleteExtraImagesWereRemovedFromForm(product);
+		ProductSaveHelper.saveUploadedImages(mainImageMultipart, extraImageMultipart, savedProduct);
+		ProductSaveHelper.deleteExtraImagesWeredRemovedOnForm(product);
 
 		redirectAttributes.addFlashAttribute("message", "The product has been saved successfuly!");
 		return defaultRedirectURL;

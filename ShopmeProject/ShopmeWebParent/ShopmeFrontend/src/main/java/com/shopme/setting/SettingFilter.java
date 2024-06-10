@@ -12,11 +12,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.csrf.CsrfToken;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
+import org.springframework.stereotype.Component;
+
+
+import com.shopme.common.Constants;
 import com.shopme.common.entity.HeadersImages;
 import com.shopme.common.entity.Menu;
 import com.shopme.common.entity.setting.Setting;
@@ -46,7 +46,8 @@ public class SettingFilter implements Filter {
 		settings.forEach(setting -> {
 			request.setAttribute(setting.getKey(), setting.getValue());
 		});
-	
+		
+		request.setAttribute("S3_BASE_URI", Constants.S3_BASE_URI);
 		
 		loadMenuSettings(request);
 		loadImageHeaderSettings(request);

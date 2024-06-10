@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.shopme.admin.AmazonS3Util;
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.admin.brand.BrandNotFoundException;
 import com.shopme.common.entity.Brand;
@@ -68,15 +69,16 @@ public class HeadersImagesController {
     			imageCarousel.setImageURL(fileName);
         		
     			HeadersImages savedImage = imageCarouselService.saveImage(imageCarousel);
-    			String uploadDir = "../carousels-images/" +  savedImage.getId();
-    			FileUploadUtil.cleanDir(uploadDir);
-    			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-    			  redirectAttributes.addFlashAttribute("message","The Carousle is saved successfully!");
+    			String uploadDir = "carousels-images/" +  savedImage.getId();
+    			
+    			AmazonS3Util.removeFolder(uploadDir);
+    			AmazonS3Util.uploadFile(uploadDir, fileName, multipartFile.getInputStream());
+    			 
         	}else {
         		imageCarouselService.saveImage(imageCarousel);
-        		 redirectAttributes.addFlashAttribute("message","The Carousle is saved successfully!");
+        		
         	}
-        	
+        	 redirectAttributes.addFlashAttribute("message","The Carousle is saved successfully!");
         	return "redirect:/carousels";
         } catch (ImageCarouselNotFoundException e) {
         	redirectAttributes.addFlashAttribute("message", e.getMessage());

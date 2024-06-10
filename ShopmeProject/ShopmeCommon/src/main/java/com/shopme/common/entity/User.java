@@ -13,6 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+
+import com.shopme.common.Constants;
+
 @Entity
 @Table(name = "users")
 public class User extends IdBasedEntity  {
@@ -117,9 +120,9 @@ public class User extends IdBasedEntity  {
 
 	@Transient
 	public String getPhotoImagePath() {
-		if (id == null || photos == null)
-			return "/images/default-user.png";
-		return "/user-photos/" + this.id + "/" + this.photos;
+		if (id == null || photos == null)return "/images/default-user.png";
+			
+		return Constants.S3_BASE_URI +  "/user-photos/" + this.id + "/" + this.photos;
 	}
 
 	@Transient
