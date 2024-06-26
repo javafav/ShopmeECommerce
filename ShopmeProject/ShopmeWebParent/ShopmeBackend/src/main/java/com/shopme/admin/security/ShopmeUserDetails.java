@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.shopme.common.Constants;
 import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
 
@@ -75,9 +76,15 @@ public class ShopmeUserDetails implements UserDetails {
 	public String getFullName() {
 		return this.user.getFirstName() + " " + this.user.getLastName();
 	}
+
 	public String getPhotoImagePath() {
-		if(this.user.getId() == null || this.user.getPhotos() == null) return "/ShopmeAdmin/images/default-user.png";
-		return "/ShopmeAdmin/user-photos/" + this.user.getId()  + "/" + this.user.getPhotos();
+	    if (this.user.getId() == null || this.user.getPhotos() == null) {
+	        return "/images/default-user.png";
+	    }
+	    
+	    String photoPath = Constants.S3_BASE_URI + "user-photos/" + this.user.getId() + "/" + this.user.getPhotos();
+	    System.out.println("Photo Path: " + photoPath); // Debugging line
+	    return photoPath;
 	}
 	
 	public void setFirstName(String firstName) {

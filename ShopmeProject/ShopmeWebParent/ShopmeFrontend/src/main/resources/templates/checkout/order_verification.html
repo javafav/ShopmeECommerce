@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('Order Verification', 'none')" />
+<body>
+<div class="container-fluid flex-grow-1">
+   <div th:replace="navigation :: nav_menu"></div>
+   <div th:replace="navigation :: special_message"></div>
+   <div style="border-bottom: 20px solid black; margin: 5px; padding: 5px;"></div>
+
+        <div class="alert alert-warning mt-3 text-center" role="alert">
+            <h4 class="alert-heading">Order Verification</h4>
+            <p>A verification code has been sent to your email. Please enter it below to verify your order.</p>
+            <hr>
+        </div>
+
+        <form th:action="@{/verify_order}" method="post" style="max-width: 350px; margin: 0 auto;">
+            <div class="border border-secondary rounded p-3">
+                <div th:if="${error != null}" class="m-3">
+                    <p class="text-danger">[[${error}]]</p>
+                </div>
+                <div>
+                    <p>
+                        <input type="text" name="verificationCode" class="form-control" placeholder="Verification Code" required autofocus />
+                    </p>
+                    <p class="text-center">
+                        <input type="submit" value="Verify Order" class="btn btn-primary" />
+                    </p>
+                </div>
+            </div>
+        </form>
+
+        <div>&nbsp;</div>
+
+        <div th:replace="fragments :: footer_menu"></div>
+        <div th:replace="subscribe_newsletter_thanks_modal :: subscribe_modal"></div>
+    </div>
+</body>
+</html>

@@ -7,11 +7,13 @@
 <div class="container-fluid">
 	<div th:replace="navigation :: menu"></div>
 	<div>
-		<h2>Shopme Control Panel</h2>
+		<h2>SastyBrands Admin Control Panel</h2>
+		
 		Welcome 
-		<a th:href="@{/account}" 
-			sec:authentication="principal.fullName"></a>	
-		<span sec:authentication="principal.authorities"></span>		
+		<b><a th:href="@{/account}"  class="mb-2"
+			sec:authentication="principal.fullName"></a>	</b>
+		<span sec:authentication="principal.authorities"></span>
+			
 	</div>
 
 	<div class="row m-1">

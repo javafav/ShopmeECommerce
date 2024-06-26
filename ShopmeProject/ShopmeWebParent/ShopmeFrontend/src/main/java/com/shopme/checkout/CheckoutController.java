@@ -4,10 +4,12 @@ import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.shopme.ControllerHelper;
 import com.shopme.Utility;
+import com.shopme.VerificationCodeGenerator;
 import com.shopme.address.AddressService;
 import com.shopme.checkout.paypal.PayPalApiException;
 import com.shopme.checkout.paypal.PayPalService;
@@ -89,9 +92,11 @@ public class CheckoutController {
 	
 
 	@PostMapping("/place_order")
-	public String placeOrder(HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
+	public String placeOrder(HttpServletRequest request, Model model, HttpSession session) throws UnsupportedEncodingException, MessagingException {
 		String paymentType = request.getParameter("paymentMethod");
 		PaymentMethod paymentMethod = PaymentMethod.valueOf(paymentType);
+		
+		
 		
 		Customer customer =controllerHelper.getAuthenticatedCustomer(request);
 		
@@ -103,17 +108,73 @@ public class CheckoutController {
 		} else {
 			shippingRate = shipService.getShippingRateForCustomer(customer);
 		}
-				
+	
 		List<CartItem> cartItems = cartService.listCartItems(customer);
 		CheckoutInfo checkoutInfo = checkoutService.prepareCheckout(cartItems, shippingRate);
 		
-		Order createdOrder = orderService.createOrder(customer, defaultAddress, paymentMethod, cartItems, checkoutInfo);
-		cartService.deleteByCustomer(customer);
-		sendOrderConfirmationEmail(request, createdOrder);
+	    if (paymentMethod.equals(PaymentMethod.COD)) {
+	        Order order = orderService.createOrderForCOD(customer, defaultAddress, paymentMethod, cartItems, checkoutInfo);
+
+	        // Send verification email
+	        sendOrderVerificationEmail(request, session);
+
+	        model.addAttribute("customer", customer);
+	        model.addAttribute("defaultAddress", defaultAddress);
+	        model.addAttribute("paymentMethod", paymentMethod);
+	        model.addAttribute("cartItems", cartItems);
+	        model.addAttribute("checkoutInfo", checkoutInfo);
+	        session.setAttribute("order", order);
+
+	        return "checkout/order_verification";
+	    } else {
+	        Order createdOrder = orderService.createOrder(customer, defaultAddress, paymentMethod, cartItems, checkoutInfo);
+	        cartService.deleteByCustomer(customer);
+	        sendOrderConfirmationEmail(request, createdOrder);
+	        return "checkout/order_completed";
+	    }
 		
-		return "checkout/order_completed";
 	}
-	
+
+	@PostMapping("/verify_order")
+	public String verifyOrder(HttpServletRequest request, HttpSession session, Model model) {
+	    String enteredCode = request.getParameter("verificationCode");
+	    String storedCode = (String) session.getAttribute("verificationCode");
+	    Order order = (Order) session.getAttribute("order");
+
+	    if (order == null) {
+	        model.addAttribute("error", "Order session has expired. Please try placing the order again.");
+	        return "checkout/order_verification";
+	    }
+
+	    if (enteredCode != null && enteredCode.equals(storedCode)) {
+	        session.removeAttribute("verificationCode");
+	        session.removeAttribute("order");
+
+	        // Check if the order is not null before saving it
+	        if (order != null) {
+	            orderService.saveOrder(order);
+	            cartService.deleteByCustomer(order.getCustomer());
+
+	            try {
+	                sendOrderConfirmationEmail(request, order);
+	            } catch (UnsupportedEncodingException | MessagingException e) {
+	                return "error/500";
+	            }
+
+	            return "checkout/order_completed";
+	        } else {
+	            model.addAttribute("error", "Failed to process the order. Order is null.");
+	            return "checkout/order_verification";
+	        }
+	    } else {
+	        // Code is incorrect, show an error message
+	        model.addAttribute("error", "Invalid verification code. Please try again.");
+	        model.addAttribute("order", order);
+	        return "checkout/order_verification";
+	    }
+	}
+
+
 	
 	private void sendOrderConfirmationEmail(HttpServletRequest request, Order order) 
 			throws UnsupportedEncodingException, MessagingException {
@@ -153,8 +214,46 @@ public class CheckoutController {
 		mailSender.send(message);		
 	}
 	
+	
+	private void sendOrderVerificationEmail(HttpServletRequest request,  HttpSession session)
+			throws UnsupportedEncodingException, MessagingException {
+		EmailSettingBag emailSettings = settingService.getEmailSettings();
+		JavaMailSenderImpl mailSender = Utility.prepareMailSender(emailSettings);
+		mailSender.setDefaultEncoding("utf-8");
+		Customer customer =controllerHelper.getAuthenticatedCustomer(request);
+		
+		String verificationCode = VerificationCodeGenerator.generateVerificationCode();
+	    session.setAttribute("verificationCode", verificationCode);
+		
+		String toAddress = customer.getEmail();
+		String subject = emailSettings.getOrderVerificationSubject();
+		String content = emailSettings.getOrderVerificationContent();
+
+		//subject = subject.replace("[[orderId]]", String.valueOf(order.getId()));
+
+		MimeMessage message = mailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message);
+
+		helper.setFrom(emailSettings.getFromAddress(), emailSettings.getSenderName());
+		helper.setTo(toAddress);
+		helper.setSubject(subject);
+       
+		content = content.replace("[[customerName]]", customer.getFullName());
+		
+
+
+		content = content.replace("[[verificationCode]]", verificationCode);
+
+		helper.setText(content, true);
+		mailSender.send(message);
+		
+	}
+	
+	
+	
+	
 	@PostMapping("/process_paypal_order")
-	public String processPayPalOrder(HttpServletRequest request, Model model) 
+	public String processPayPalOrder(HttpServletRequest request, Model model,HttpSession session) 
 			throws UnsupportedEncodingException, MessagingException {
 		String orderId = request.getParameter("orderId");
 		
@@ -163,7 +262,7 @@ public class CheckoutController {
 		
 		try {
 			if (paypalService.validateOrder(orderId)) {
-				return placeOrder(request);
+				return placeOrder(request, model, session);
 			} else {
 				pageTitle = "Checkout Failure";
 				message = "ERROR: Transaction could not be completed because order information is invalid";

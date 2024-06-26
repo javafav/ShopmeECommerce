@@ -56,6 +56,7 @@ function updateQuantity(productId, quantity) {
 	}).done(function(updatedSubtotal) {
 		updateSubtotal(updatedSubtotal, productId);
 		updateTotal();
+		totalCartItem();
 	}).fail(function() {
 		showErrorModal("Error while updating product quantity.");
 	});	
@@ -108,6 +109,7 @@ function removeProduct(link) {
 					removeProductHTML(rowNumber);
 					updateTotal();
 					updateCountNumbers();
+					totalCartItem();
 					
 			});
 			

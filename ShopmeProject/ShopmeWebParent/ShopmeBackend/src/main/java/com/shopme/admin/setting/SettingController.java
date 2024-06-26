@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.shopme.admin.AmazonS3Util;
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.common.Constants;
 import com.shopme.common.entity.Currency;
@@ -98,6 +99,20 @@ public class SettingController {
 		return "redirect:/settings#mailTemplates";
 	}
 	
+	@PostMapping("/settings/mail_templates/order_verficition")
+	public String saveMailTemplateSettingForOrderVerfiction(HttpServletRequest request, RedirectAttributes redirectAttributes)
+			throws IOException {
+
+		List<Setting> mialTemplateSetting = service.getMailTemplatesSetting();
+
+		updateSettingValuesFromForm(request, mialTemplateSetting);
+
+		redirectAttributes.addFlashAttribute("message", "Order verification template updated successfully!");
+		return "redirect:/settings#mailTemplates";
+	}
+	
+	
+	
 	@PostMapping("/settings/mail_templates/forgot_password")
 	public String saveMailTemplateSettingForForgotPassword(HttpServletRequest request, RedirectAttributes redirectAttributes)
 			throws IOException {
@@ -131,7 +146,7 @@ public class SettingController {
 		updateSettingValuesFromForm(request, mialTemplateSetting);
 
 		redirectAttributes.addFlashAttribute("message", "Newsletter Subscription template updated successfully!");
-		return "redirect:/settings#newsletter_subscription";
+		return "redirect:/settings#mailTemplates";
 	}
 	
 	@PostMapping("/settings/save_payment")
@@ -146,18 +161,16 @@ public class SettingController {
 	
 
 	
-	private void saveSiteLogo(MultipartFile multipartFile, GeneralSettingBag generalSettingBag) throws IOException {
-		
-		if (!multipartFile.isEmpty()) {
 
+	private void saveSiteLogo(MultipartFile multipartFile, GeneralSettingBag settingBag) throws IOException {
+		if (!multipartFile.isEmpty()) {
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 			String value = "/site-logo/" + fileName;
-			String uploadDir = "../site-logo/";
+			settingBag.updateSiteLogo(value);
 			
-		   generalSettingBag.updateSiteLog(value);
-		   
-		    FileUploadUtil.cleanDir(uploadDir);
-			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+			String uploadDir = "site-logo";
+			AmazonS3Util.removeFolder(uploadDir);
+			AmazonS3Util.uploadFile(uploadDir, fileName, multipartFile.getInputStream());
 		}
 	}
 	
