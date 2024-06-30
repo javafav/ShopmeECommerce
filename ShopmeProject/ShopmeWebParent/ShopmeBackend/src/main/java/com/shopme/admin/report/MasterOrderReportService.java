@@ -28,7 +28,7 @@ public class MasterOrderReportService extends AbstractReportService {
 		
 		calculateSalesForReportData(listOrders, listReportItems);
 		
-		printReportData(listReportItems);
+	//	printReportData(listReportItems);
 		
 		return listReportItems;
 	}

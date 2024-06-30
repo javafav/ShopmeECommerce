@@ -76,7 +76,7 @@
 
 
 				<div>
-					Original Price: <span th:if="${product.discountPercent <= 0}"><div
+					 Price: <span th:if="${product.discountPercent <= 0}"><div
 							th:replace="product/product_fragment :: price_fragment(${product.price})"></div></span>
 					<del th:if="${product.discountPercent > 0}">
 						<span><div
@@ -84,10 +84,10 @@
 					</del>
 				</div>
 				<div th:if="${product.discountPercent > 0}">
-					Special Offer Price: <span
+					Sale Price: <span
 						style="font-size: larger; color: darkred"><div
 							th:replace="product/product_fragment :: price_fragment(${product.discountPrice})"></div></span>
-					<span style="color: #009999">(Save
+					<span style="color: #009999" class="h6">(Save
 						[[${#numbers.formatDecimal(product.discountPercent, 1,
 						THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]%)</span>
 				</div>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.shopme.admin.AmazonS3Util;
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.admin.paging.PagingAndSortingHelper;
 import com.shopme.admin.paging.PagingAndSortingParam;
@@ -39,6 +40,12 @@ public class UserController {
 	public String listFirstPage() {
 
 		return defaultRedirectURL;
+	}
+	
+	@GetMapping("/users/user_module_info")
+	public String userModuleInfo() {
+
+		return "users/user_module_info";
 	}
 
 	@GetMapping("/users/page/{pageNum}")
@@ -98,11 +105,11 @@ public class UserController {
 			User savedUser = service.save(user);
 			String uploadDir = "user-photos/" + savedUser.getId();
 			FileUploadUtil.cleanDir(uploadDir);
-			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+			AmazonS3Util.uploadFile(uploadDir, fileName, multipartFile.getInputStream());
 		} else {
 			if (user.getPhotos().isEmpty())
 				user.setPhotos(null);
-			service.save(user);
+			     service.save(user);
 		}
 
 		redirectAttributes.addFlashAttribute("message", "The User has been saved successfuly!");

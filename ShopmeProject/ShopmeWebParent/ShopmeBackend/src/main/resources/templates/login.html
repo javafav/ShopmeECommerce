@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-
 <head>
 <meta http-equiv="Content_Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, inital-scale=1.0, minimum-scale=1.0">
-<title>eShopme Admin Controller</title>
+<title>Sastay Brands Admin Controller</title>
 
 <link rel="stylesheet"
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" />
@@ -20,8 +19,7 @@
 <body>
 	<div class="container-fluid text-center">
 		<div>
-
-			<img th:src="@{/images/ShopmeAdminBig.png}">
+			<img th:src="@{/images/SastayBig.png}" class="img-fluid">
 		</div>
 
 		<form th:action="@{/login}" method="post"
@@ -34,7 +32,7 @@
 			</div>
 			
 			<div class="border border-secondary rounded p-3 mt-3">
-				<p>Access to Shopme Control Panel</p>
+				<p>Access to Sastay Brands  Control Panel</p>
 				<p>
 					<input type="email" name="email" placeholder="E-mail"
 						class="form-control" required>
@@ -53,20 +51,13 @@
 			</div>
 		</form>
 
-
-
-
+		<div class="mt-4">
+			<a th:href="@{/Sample_users_data.xlsx}" class="btn btn-info">Download this file to test the app</a>
+		</div>
 	</div>
 
-
-
-	<div class="text-center">
-		<p>Shopme Control Panel - Copyright &copy; Shopme</p>
+	<div class="text-center mt-4">
+		<p>Sastay Brands Control Panel - Copyright &copy; Sastay Brands</p>
 	</div>
-
-
-
-
-
 </body>
 </html>

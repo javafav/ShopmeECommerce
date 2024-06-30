@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import com.shopme.customer.CustomerUserDetailsService;
 import com.shopme.security.oauth.CustomerOAuth2UserService;
@@ -56,6 +56,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.rememberMe()
 			.key("1234567890_aBcDeFgHiJkLmNoPqRsTuVwXyZ")
 			.tokenValiditySeconds(14 * 24 * 60 * 60);
+		
+		  http
+	        .csrf()
+	            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		
 
 				

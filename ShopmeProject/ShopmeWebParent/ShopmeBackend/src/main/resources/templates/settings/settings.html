@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <head
-	th:replace="fragments :: page_head('Settings - Shome Admin','tag')" />
+	th:replace="fragments :: page_head('Settings - Sastay Brands','tag')" />
 <link rel="stylesheet" th:href="@{/richtext/richtext.min.css}">
 <script type="text/javascript"
 	th:src="@{/richtext/jquery.richtext.min.js}"></script>
@@ -27,8 +27,7 @@
 			<li class="nav-item"><a class="nav-link active"
 				data-toggle="tab" href="#general" role="tab">General</a></li>
 				
-		    <li class="nav-item"><a class="nav-link"
-				data-toggle="tab" href="#product" role="tab">Product</a></li>
+	
 
 			<li class="nav-item"><a class="nav-link" data-toggle="tab"
 				href="#countries" role="tab">Countries</a></li>
@@ -46,7 +45,8 @@
 				data-toggle="tab" href="#payments" role="tab">Payments</a></li>
 				
 						
-	
+		    <li class="nav-item"><a class="nav-link"
+				data-toggle="tab" href="#product" role="tab">Products Settings</a></li>
 
 		</ul>
 
@@ -57,9 +57,7 @@
 				<div th:replace="settings/general :: content"></div>
 			</div>
 			
-		    <div class="tab-pane" id="product" role="tabpanel">
-				<div th:replace="settings/product :: content"></div>
-			</div>
+		   
 			
 
 			<div class="tab-pane p-3" id="countries" role="tabpanel">
@@ -82,6 +80,9 @@
 			
      	<div class="tab-pane" id="payments" role="tabpanel">
 				<div th:replace="settings/payment :: content"></div>
+			</div>
+			 <div class="tab-pane" id="product" role="tabpanel">
+				<div th:replace="settings/product :: content"></div>
 			</div>
 			
 	

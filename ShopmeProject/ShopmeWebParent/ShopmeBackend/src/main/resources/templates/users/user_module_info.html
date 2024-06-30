@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('User Info Module - SastyBrands', 'none')"></head>
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1 d-flex flex-column">
+        <!-- Content Section -->
+        <div th:replace="navigation :: menu"></div>
+        <div class="content flex-grow-1">
+            <h1 class="text-center">User Module Help</h1>
+            <hr>
+            
+            <h2>Overview</h2>
+            <p>This section provides an overview of the user module and its key features. Only admin users are allowed to create users and manage user accounts, set permissions, and update their profiles.</p>
+            <img th:src="@{/images/admin.jpg}" alt="User Module Overview" class="img-fluid">
+
+            <h2>Creating a User Account</h2>
+            <p>User accounts can only be created by an admin user. If you need an account, please contact your administrator. The admin will create the account and provide you with the necessary login details.</p>
+            <img src="your-image-url-2.jpg" alt="Creating a User Account" class="help-img">
+
+            <h2>Managing Your Profile</h2>
+            <p>After logging in, you can update your profile information by navigating to the "Profile" section. Here, you can change your profile picture, update contact details, and change your password.</p>
+            <img src="your-image-url-3.jpg" alt="Managing Profile" class="help-img">
+
+            <h2>User Permissions</h2>
+            <p>The user module allows administrators to set different permissions for each user. This can include access to specific features, administrative privileges, and content management rights.</p>
+            <img src="your-image-url-4.jpg" alt="User Permissions" class="help-img">
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div th:replace="fragments :: footer" class="mt-auto"></div>
+    <script th:src="@{/js/common.js}"></script>
+    <script th:src="@{/js/common_lists.js}"></script>
+</body>
+</html>

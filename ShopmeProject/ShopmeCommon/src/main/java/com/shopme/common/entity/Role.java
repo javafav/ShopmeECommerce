@@ -15,7 +15,7 @@ public class Role extends IdBasedEntity  {
 	@Column(length = 45, nullable = false, unique = true)
 	private String name;
 
-	@Column(length = 150, nullable = false)
+	@Column(length = 255, nullable = false)
 	private String description;
 
 	public Role() {

@@ -33,4 +33,9 @@
     <fullyQualifiedTypeName name="com.shopme.common.Constants"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.shopme.admin.AmazonS3Util"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.order.PaymentMethod"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="com.shopme.VerificationCodeGenerator"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="org.springframework.security.web.csrf.CookieCsrfTokenRepository"/>
 </qualifiedTypeNameHistroy>

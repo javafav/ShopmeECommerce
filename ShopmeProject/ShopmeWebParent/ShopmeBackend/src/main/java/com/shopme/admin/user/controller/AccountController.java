@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.shopme.admin.AmazonS3Util;
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.admin.security.ShopmeUserDetails;
 import com.shopme.admin.user.UserService;
@@ -45,7 +46,7 @@ public class AccountController {
 			User savedUser = service.updateAccount(user);
 			String uploadDir = "user-photos/" + savedUser.getId();
 			FileUploadUtil.cleanDir(uploadDir);
-			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+			AmazonS3Util.uploadFile(uploadDir, fileName, multipartFile.getInputStream());
 		} else {
 			if (user.getPhotos().isEmpty())
 				user.setPhotos(null);

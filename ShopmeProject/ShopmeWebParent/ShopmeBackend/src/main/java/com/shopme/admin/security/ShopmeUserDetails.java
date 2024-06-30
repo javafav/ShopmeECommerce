@@ -82,8 +82,8 @@ public class ShopmeUserDetails implements UserDetails {
 	        return "/images/default-user.png";
 	    }
 	    
-	    String photoPath = Constants.S3_BASE_URI + "user-photos/" + this.user.getId() + "/" + this.user.getPhotos();
-	    System.out.println("Photo Path: " + photoPath); // Debugging line
+	    String photoPath = Constants.S3_BASE_URI + "/user-photos/" + this.user.getId() + "/" + this.user.getPhotos();
+	//    System.out.println("Photo Path: " + photoPath); // Debugging line
 	    return photoPath;
 	}
 	

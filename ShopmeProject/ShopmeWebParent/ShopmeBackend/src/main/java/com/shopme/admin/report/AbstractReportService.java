@@ -23,8 +23,8 @@ public abstract class AbstractReportService {
 		cal.add(Calendar.DAY_OF_MONTH, -(days - 1));
 		Date startTime = cal.getTime();
 		
-		System.out.println("Start time: " + startTime);
-		System.out.println("End time: " + endTime);
+//		System.out.println("Start time: " + startTime);
+//		System.out.println("End time: " + endTime);
 		
 		dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -45,9 +45,9 @@ public abstract class AbstractReportService {
 		cal.add(Calendar.MONTH, -(months - 1));
 		Date startTime = cal.getTime();
 		
-		System.out.println("Start time: " + startTime);
-		System.out.println("End time: " + endTime);
-		
+//		System.out.println("Start time: " + startTime);
+//		System.out.println("End time: " + endTime);
+//		
 		dateFormatter = new SimpleDateFormat("yyyy-MM");
 		
 		return getReportDataByDateRangeInternal(startTime, endTime, reportType);

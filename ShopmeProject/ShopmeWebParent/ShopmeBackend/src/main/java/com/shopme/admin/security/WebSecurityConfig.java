@@ -42,6 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
+		
+		.antMatchers("/Sample_users_data.xlsx").permitAll() 
 		.antMatchers("/states/list_by_country/**").hasAnyAuthority("Admin", "Salesperson")
 		.antMatchers("/users/**", "/settings/**", "/countries/**", "/states/**").hasAuthority("Admin")
 		.antMatchers("/categories/**", "/brands/**").hasAnyAuthority("Admin", "Editor")
